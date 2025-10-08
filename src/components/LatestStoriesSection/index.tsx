@@ -42,7 +42,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
         {/* Today's Picks - Left Column (1/3) */}
         <div className="lg:col-span-4 order-2 lg:order-1">
           <div className="h-full flex flex-col">
-            <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY'S PICKS</h3>
+            <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
             <div className="flex-1 space-y-6">
               {todaysPicks.map((article) => {
                 const category = getCategoryTitle(article)
@@ -135,7 +135,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
 
             {/* Grid of Additional Featured Articles */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[featuredSub1, featuredSub2].map((article, index) => {
+              {[featuredSub1, featuredSub2].map((article) => {
                 if (!article) return null
 
                 const category = getCategoryTitle(article)
