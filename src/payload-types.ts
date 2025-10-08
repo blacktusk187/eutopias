@@ -193,7 +193,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | LatestStoriesBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -250,18 +250,6 @@ export interface Post {
    * Number of times this post has been viewed
    */
   views?: number | null;
-  /**
-   * Mark this article as the main featured article (large box)
-   */
-  featuredArticle?: boolean | null;
-  /**
-   * Mark this article as featured sub-article 1 (smaller box)
-   */
-  featuredArticleSub1?: boolean | null;
-  /**
-   * Mark this article as featured sub-article 2 (smaller box)
-   */
-  featuredArticleSub2?: boolean | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
@@ -764,6 +752,31 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LatestStoriesBlock".
+ */
+export interface LatestStoriesBlock {
+  /**
+   * Select 3-5 posts to display in the left column
+   */
+  todaysPicks: (number | Post)[];
+  /**
+   * Large featured article displayed at the top right
+   */
+  featuredMain?: (number | null) | Post;
+  /**
+   * First article in the bottom grid
+   */
+  featuredSub1?: (number | null) | Post;
+  /**
+   * Second article in the bottom grid
+   */
+  featuredSub2?: (number | null) | Post;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'latestStories';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "authors".
  */
 export interface Author {
@@ -1103,6 +1116,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        latestStories?: T | LatestStoriesBlockSelect<T>;
       };
   meta?:
     | T
@@ -1204,6 +1218,18 @@ export interface FormBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LatestStoriesBlock_select".
+ */
+export interface LatestStoriesBlockSelect<T extends boolean = true> {
+  todaysPicks?: T;
+  featuredMain?: T;
+  featuredSub1?: T;
+  featuredSub2?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1221,9 +1247,6 @@ export interface PostsSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   views?: T;
-  featuredArticle?: T;
-  featuredArticleSub1?: T;
-  featuredArticleSub2?: T;
   authors?: T;
   populatedAuthors?:
     | T

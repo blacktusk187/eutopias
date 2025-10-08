@@ -1,3 +1,5 @@
+// TODO: Connect Authors collection to Posts to use in articles. Use Users just for Admins
+
 import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
