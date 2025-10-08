@@ -86,6 +86,8 @@ export default buildConfig({
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
         },
       },
+      // Configure to serve files directly from S3
+      disableLocalStorage: true,
     }),
   ],
   secret: process.env.PAYLOAD_SECRET,

@@ -7,26 +7,33 @@ import { getClientSideURL } from '@/utilities/getURL'
  * @returns Properly formatted URL with cache tag if provided
  */
 export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | null): string => {
-  if (!url) return ''
+  if (!url) {
+    return ''
+  }
 
   if (cacheTag && cacheTag !== '') {
     cacheTag = encodeURIComponent(cacheTag)
   }
 
-  // Check if URL already has http/https protocol (CloudFront or direct S3)
+  // Check if URL already has http/https protocol (direct S3)
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return cacheTag ? `${url}?${cacheTag}` : url
   }
 
-  // Check if we have a CloudFront domain configured
-  const cloudfrontDomain = process.env.CLOUDFRONT_DOMAIN
-  if (cloudfrontDomain) {
-    // Ensure CloudFront domain ends with /
-    const baseUrl = cloudfrontDomain.endsWith('/') ? cloudfrontDomain : `${cloudfrontDomain}/`
-    return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`
+  // Check if this is a PayloadCMS API URL that we need to convert to S3
+  if (url.startsWith('/api/media/file/')) {
+    // Extract the filename from the API URL
+    const filename = url.replace('/api/media/file/', '')
+    // Use direct S3 URL
+    const s3Bucket = process.env.S3_BUCKET_NAME || 'eutopias-magazine-media'
+    const s3Region = process.env.S3_REGION || 'us-east-2'
+    const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${filename}`
+    return cacheTag ? `${s3Url}?${cacheTag}` : s3Url
   }
 
-  // Fallback to client-side URL
-  const baseUrl = getClientSideURL()
-  return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`
+  // Use direct S3 URL for all other cases
+  const s3Bucket = process.env.S3_BUCKET_NAME || 'eutopias-magazine-media'
+  const s3Region = process.env.S3_REGION || 'us-east-2'
+  const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${url}`
+  return cacheTag ? `${s3Url}?${cacheTag}` : s3Url
 }

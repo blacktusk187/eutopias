@@ -18,6 +18,11 @@ const nextConfig = {
           protocol: url.protocol.replace(':', ''),
         }
       }),
+      // S3 bucket for media files
+      {
+        hostname: 'eutopias-magazine-media.s3.us-east-2.amazonaws.com',
+        protocol: 'https',
+      },
     ],
   },
   webpack: (webpackConfig) => {
