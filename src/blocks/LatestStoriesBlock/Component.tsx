@@ -10,6 +10,7 @@ export const LatestStoriesBlock: React.FC<
   const { todaysPicks, featuredMain, featuredSub1, featuredSub2 } = props
 
   // Convert the relationship data to Post objects
+  // The page query already fetches with depth: 2, so these should be fully populated
   const todaysPicksPosts = (todaysPicks || [])
     .map((pick) => (typeof pick === 'object' ? pick : null))
     .filter((pick): pick is Post => pick !== null)

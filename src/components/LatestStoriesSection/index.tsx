@@ -27,15 +27,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
 
   return (
     <div className="container mb-20 mt-16">
-      {/* Latest Stories Heading and Subscribe */}
-      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between border-b border-border pb-4">
-        <h2 className="text-3xl font-bold text-foreground mb-4 md:mb-0">LATEST STORIES</h2>
-        <Link
-          href="/newsletter"
-          className="inline-flex items-center gap-2 bg-[#003366] text-white px-6 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors"
-        >
-          Subscribe
-        </Link>
+      {/* Latest Stories Heading */}
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl font-bold text-[#003366] mb-4">LATEST STORIES</h2>
+        <div className="w-16 h-0.5 bg-[#003366] mx-auto"></div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -51,10 +46,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                   <Link key={article.id} href={`/posts/${article.slug}`} className="block group">
                     <div className="flex gap-4 hover:bg-accent/50 p-2 rounded transition-colors">
                       <div className="w-16 h-16 flex-shrink-0">
-                        {article.heroImage && typeof article.heroImage === 'object' ? (
+                        {article.meta?.image && typeof article.meta.image === 'object' ? (
                           <div className="relative w-full h-full overflow-hidden rounded">
                             <Media
-                              resource={article.heroImage}
+                              resource={article.meta.image}
                               fill
                               className="object-cover"
                               imgClassName="object-cover"
@@ -97,10 +92,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
             {featuredMain && (
               <div className="relative group">
                 <div className="relative aspect-[16/9] overflow-hidden rounded-lg">
-                  {featuredMain.heroImage && typeof featuredMain.heroImage === 'object' ? (
+                  {featuredMain.meta?.image && typeof featuredMain.meta.image === 'object' ? (
                     <>
                       <Media
-                        resource={featuredMain.heroImage}
+                        resource={featuredMain.meta.image}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                         imgClassName="object-cover"
@@ -143,10 +138,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                 return (
                   <Link key={article.id} href={`/posts/${article.slug}`} className="group">
                     <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
-                      {article.heroImage && typeof article.heroImage === 'object' ? (
+                      {article.meta?.image && typeof article.meta.image === 'object' ? (
                         <>
                           <Media
-                            resource={article.heroImage}
+                            resource={article.meta.image}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-300"
                             imgClassName="object-cover"

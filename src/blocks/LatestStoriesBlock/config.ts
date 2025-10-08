@@ -16,6 +16,7 @@ export const LatestStoriesBlock: Block = {
       admin: {
         description: 'Select 3-5 posts to display in the left column',
       },
+      maxDepth: 3,
     },
     {
       name: 'featuredMain',
@@ -25,6 +26,7 @@ export const LatestStoriesBlock: Block = {
       admin: {
         description: 'Large featured article displayed at the top right',
       },
+      maxDepth: 3,
     },
     {
       name: 'featuredSub1',
@@ -34,6 +36,7 @@ export const LatestStoriesBlock: Block = {
       admin: {
         description: 'First article in the bottom grid',
       },
+      maxDepth: 3,
     },
     {
       name: 'featuredSub2',
@@ -43,6 +46,7 @@ export const LatestStoriesBlock: Block = {
       admin: {
         description: 'Second article in the bottom grid',
       },
+      maxDepth: 3,
     },
   ],
   labels: {

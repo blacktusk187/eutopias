@@ -74,6 +74,7 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     limit: 1,
     overrideAccess: draft,
     pagination: false,
+    depth: 3,
     where: {
       slug: {
         equals: slug,
