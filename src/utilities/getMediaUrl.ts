@@ -2,65 +2,43 @@ import { getClientSideURL } from '@/utilities/getURL'
 
 /**
  * Processes media resource URL to ensure proper formatting
+ * Enforces all S3 objects to live under /uploads/
+ *
  * @param url The original URL from the resource
  * @param cacheTag Optional cache tag to append to the URL
  * @returns Properly formatted URL with cache tag if provided
  */
 export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | null): string => {
-  if (!url) {
-    return ''
-  }
+  if (!url) return ''
 
-  if (cacheTag && cacheTag !== '') {
-    cacheTag = encodeURIComponent(cacheTag)
-  }
+  const bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
+  const region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
 
-  // Check if URL already has http/https protocol (direct S3)
+  // Normalize cache tag
+  const tag = cacheTag && cacheTag !== '' ? encodeURIComponent(cacheTag) : null
+
+  // Case 1: Already an absolute S3/HTTP URL
   if (url.startsWith('http://') || url.startsWith('https://')) {
-    return cacheTag ? `${url}?${cacheTag}` : url
-  }
-
-  // Check if this is a PayloadCMS API URL that we need to convert to S3
-  if (url.startsWith('/api/media/file/')) {
-    // Extract the filename from the API URL
-    const filename = url.replace('/api/media/file/', '')
-
-    // Use direct S3 URL
-    const s3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
-    const s3Region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
-    const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${filename}`
-
-    // Debug logging in development
-    if (process.env.NODE_ENV === 'development') {
-      console.log('getMediaUrl Debug (S3):', {
-        originalUrl: url,
-        filename,
-        s3Bucket,
-        s3Region,
-        s3Url,
-        cacheTag,
-        nodeEnv: process.env.NODE_ENV
-      })
+    // Ensure it points into /uploads/
+    const u = new URL(url)
+    let pathname = u.pathname.replace(/^\/+/, '')
+    if (!pathname.startsWith('uploads/')) {
+      pathname = `uploads/${pathname}`
     }
-
-    return cacheTag ? `${s3Url}?${cacheTag}` : s3Url
+    const s3Url = `https://${u.hostname}/${pathname}`
+    return tag ? `${s3Url}?${tag}` : s3Url
   }
 
-  // Use direct S3 URL for all other cases
-  const s3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
-  const s3Region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
-  const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${url}`
-
-  // Debug logging in development
-  if (process.env.NODE_ENV === 'development') {
-    console.log('getMediaUrl Debug (fallback):', {
-      originalUrl: url,
-      s3Bucket,
-      s3Region,
-      s3Url,
-      cacheTag,
-    })
+  // Case 2: Payload CMS API proxy (/api/media/file/:filename)
+  if (url.startsWith('/api/media/file/')) {
+    const filename = url.replace('/api/media/file/', '').replace(/^\/+/, '')
+    const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`
+    return tag ? `${s3Url}?${tag}` : s3Url
   }
 
-  return cacheTag ? `${s3Url}?${cacheTag}` : s3Url
+  // Case 3: Relative path or bare filename
+  const file = url.replace(/^\/+/, '')
+  const withUploads = file.startsWith('uploads/') ? file : `uploads/${file}`
+  const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/${withUploads}`
+  return tag ? `${s3Url}?${tag}` : s3Url
 }
