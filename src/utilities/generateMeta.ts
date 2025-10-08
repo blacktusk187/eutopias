@@ -19,7 +19,7 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
     if (cloudfrontDomain && imageUrl) {
       const baseUrl = cloudfrontDomain.endsWith('/') ? cloudfrontDomain : `${cloudfrontDomain}/`
       url = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`
-    } else {
+    } else if (imageUrl) {
       url = imageUrl.startsWith('http') ? imageUrl : `${serverUrl}${imageUrl}`
     }
   }
