@@ -23,6 +23,15 @@ const nextConfig = {
         hostname: `${process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'}.s3.${process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'}.amazonaws.com`,
         protocol: 'https',
       },
+      // Fallback S3 configurations
+      {
+        hostname: 'eutopias-magazine-media.s3.us-east-2.amazonaws.com',
+        protocol: 'https',
+      },
+      {
+        hostname: 'eutopias-magazine-media.s3.us-west-2.amazonaws.com',
+        protocol: 'https',
+      },
     ],
   },
   webpack: (webpackConfig) => {

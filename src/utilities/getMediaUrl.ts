@@ -25,36 +25,21 @@ export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | 
     // Extract the filename from the API URL
     const filename = url.replace('/api/media/file/', '')
 
-    // Try multiple S3 configurations for production compatibility
-    const s3Configs = [
-      {
-        bucket: process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media',
-        region: process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2',
-      },
-      {
-        bucket: 'eutopias-magazine-media',
-        region: 'us-east-2',
-      },
-      {
-        bucket: 'eutopias-magazine-media',
-        region: 'us-west-2',
-      },
-    ]
-
-    // Use the first configuration (environment variables take precedence)
-    const { bucket: s3Bucket, region: s3Region } = s3Configs[0]
+    // Use direct S3 URL
+    const s3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
+    const s3Region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
     const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${filename}`
 
     // Debug logging in development
     if (process.env.NODE_ENV === 'development') {
-      console.log('getMediaUrl Debug:', {
+      console.log('getMediaUrl Debug (S3):', {
         originalUrl: url,
         filename,
         s3Bucket,
         s3Region,
         s3Url,
         cacheTag,
-        availableConfigs: s3Configs,
+        nodeEnv: process.env.NODE_ENV
       })
     }
 
