@@ -24,16 +24,16 @@ export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | 
   if (url.startsWith('/api/media/file/')) {
     // Extract the filename from the API URL
     const filename = url.replace('/api/media/file/', '')
-    // Use direct S3 URL
-    const s3Bucket = process.env.S3_BUCKET_NAME || 'eutopias-magazine-media'
-    const s3Region = process.env.S3_REGION || 'us-east-2'
+    // Use direct S3 URL with environment variables
+    const s3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
+    const s3Region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
     const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${filename}`
     return cacheTag ? `${s3Url}?${cacheTag}` : s3Url
   }
 
   // Use direct S3 URL for all other cases
-  const s3Bucket = process.env.S3_BUCKET_NAME || 'eutopias-magazine-media'
-  const s3Region = process.env.S3_REGION || 'us-east-2'
+  const s3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
+  const s3Region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
   const s3Url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${url}`
   return cacheTag ? `${s3Url}?${cacheTag}` : s3Url
 }
