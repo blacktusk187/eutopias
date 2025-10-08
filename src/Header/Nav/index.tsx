@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 import type { Header as HeaderType, Category } from '@/payload-types'
 import Link from 'next/link'
 
@@ -13,8 +13,8 @@ interface HeaderNavProps {
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({
   data: _data,
-  isSearchExpanded = false,
-  onSearchToggle = () => {},
+  isSearchExpanded: _isSearchExpanded = false,
+  onSearchToggle: _onSearchToggle = () => {},
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
@@ -47,57 +47,56 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     <nav className="flex items-center">
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 items-center">
-        {!isSearchExpanded && (
-          <>
-            {categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/posts/category/${category.slug}`}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
-              >
-                {category.title}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            ))}
-            {moreItems.length > 0 && (
-              <div className="relative group">
-                <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
-                  More
-                </button>
-                <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  {moreItems.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href}
-                      className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            <Link
-              href="/newsletter"
-              className="bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors"
-            >
-              Subscribe
-            </Link>
-          </>
+        {categories.map((category) => (
+          <Link
+            key={category.id}
+            href={`/posts/category/${category.slug}`}
+            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+          >
+            {category.title}
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+          </Link>
+        ))}
+        {moreItems.length > 0 && (
+          <div className="relative group">
+            <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
+              More
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              {moreItems.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         )}
-        {/* Search component will be added later */}
+        <Link
+          href="/search"
+          className="p-2 text-foreground hover:text-accent-foreground transition-colors"
+        >
+          <Search className="h-5 w-5" />
+        </Link>
+        <Link
+          href="/newsletter"
+          className="bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors"
+        >
+          Subscribe
+        </Link>
       </div>
 
       {/* Mobile Menu Button */}
-      {!isSearchExpanded && (
-        <button
-          className="md:hidden transition-colors text-foreground hover:text-accent-foreground relative z-50 flex-shrink-0"
-          aria-label="Toggle Menu"
-          onClick={toggleMenu}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      )}
+      <button
+        className="md:hidden transition-colors text-foreground hover:text-accent-foreground relative z-50 flex-shrink-0"
+        aria-label="Toggle Menu"
+        onClick={toggleMenu}
+      >
+        {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+      </button>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
@@ -130,8 +129,16 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             )}
             <div className="border-t border-border pt-4 mt-4">
               <Link
+                href="/search"
+                className="flex items-center gap-2 text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Search className="h-5 w-5" />
+                Search
+              </Link>
+              <Link
                 href="/newsletter"
-                className="block bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors text-center"
+                className="block bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors text-center mt-4"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Subscribe

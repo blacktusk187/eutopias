@@ -25,14 +25,18 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         <div className="md:hidden">
           {!isSearchExpanded ? (
             <div className="flex items-center justify-between">
-              <HeaderNav data={data} />
+              <HeaderNav
+                data={data}
+                isSearchExpanded={isSearchExpanded}
+                onSearchToggle={handleSearchToggle}
+              />
               <Link href="/" className="block flex-shrink-0">
                 <LogoHeader />
               </Link>
-              <div className="flex-shrink-0">{/* Search component will be added later */}</div>
+              <div className="flex-shrink-0">{/* Search handled in HeaderNav component */}</div>
             </div>
           ) : (
-            <div className="w-full">{/* Search component will be added later */}</div>
+            <div className="w-full">{/* Search handled in HeaderNav component */}</div>
           )}
         </div>
 
@@ -41,8 +45,12 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
           <Link href="/" className="block flex-shrink-0 min-w-0">
             <LogoHeader />
           </Link>
-          <div className="flex-shrink-0">
-            <HeaderNav data={data} />
+          <div className="flex items-center gap-4">
+            <HeaderNav
+              data={data}
+              isSearchExpanded={isSearchExpanded}
+              onSearchToggle={handleSearchToggle}
+            />
           </div>
         </div>
       </div>
