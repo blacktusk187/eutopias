@@ -7,7 +7,6 @@ import { getServerSideURL } from './getURL'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
-  const cloudfrontDomain = process.env.CLOUDFRONT_DOMAIN
 
   let url = serverUrl + '/website-template-OG.webp'
 
@@ -15,12 +14,18 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
     const ogUrl = image.sizes?.og?.url
     const imageUrl = ogUrl || image.url
 
-    // Use CloudFront if available, otherwise use server URL
-    if (cloudfrontDomain && imageUrl) {
-      const baseUrl = cloudfrontDomain.endsWith('/') ? cloudfrontDomain : `${cloudfrontDomain}/`
-      url = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`
-    } else if (imageUrl) {
-      url = imageUrl.startsWith('http') ? imageUrl : `${serverUrl}${imageUrl}`
+    if (imageUrl) {
+      // Convert to direct S3 URL if it's a PayloadCMS API URL
+      if (imageUrl.startsWith('/api/media/file/')) {
+        const filename = imageUrl.replace('/api/media/file/', '')
+        const s3Bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
+        const s3Region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
+        url = `https://${s3Bucket}.s3.${s3Region}.amazonaws.com/uploads/${filename}`
+      } else if (imageUrl.startsWith('http')) {
+        url = imageUrl
+      } else {
+        url = `${serverUrl}${imageUrl}`
+      }
     }
   }
 
