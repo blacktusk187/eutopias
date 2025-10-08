@@ -86,8 +86,6 @@ export default buildConfig({
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
         },
       },
-      // CloudFront distribution URL for serving media files
-      baseUrl: process.env.CLOUDFRONT_DOMAIN || '',
     }),
   ],
   secret: process.env.PAYLOAD_SECRET,
