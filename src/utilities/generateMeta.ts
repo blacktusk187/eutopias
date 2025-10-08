@@ -7,13 +7,21 @@ import { getServerSideURL } from './getURL'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
+  const cloudfrontDomain = process.env.CLOUDFRONT_DOMAIN
 
   let url = serverUrl + '/website-template-OG.webp'
 
   if (image && typeof image === 'object' && 'url' in image) {
     const ogUrl = image.sizes?.og?.url
+    const imageUrl = ogUrl || image.url
 
-    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
+    // Use CloudFront if available, otherwise use server URL
+    if (cloudfrontDomain && imageUrl) {
+      const baseUrl = cloudfrontDomain.endsWith('/') ? cloudfrontDomain : `${cloudfrontDomain}/`
+      url = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`
+    } else {
+      url = imageUrl.startsWith('http') ? imageUrl : `${serverUrl}${imageUrl}`
+    }
   }
 
   return url

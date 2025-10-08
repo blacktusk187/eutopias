@@ -13,12 +13,20 @@ export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | 
     cacheTag = encodeURIComponent(cacheTag)
   }
 
-  // Check if URL already has http/https protocol
+  // Check if URL already has http/https protocol (CloudFront or direct S3)
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return cacheTag ? `${url}?${cacheTag}` : url
   }
 
-  // Otherwise prepend client-side URL
+  // Check if we have a CloudFront domain configured
+  const cloudfrontDomain = process.env.CLOUDFRONT_DOMAIN
+  if (cloudfrontDomain) {
+    // Ensure CloudFront domain ends with /
+    const baseUrl = cloudfrontDomain.endsWith('/') ? cloudfrontDomain : `${cloudfrontDomain}/`
+    return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`
+  }
+
+  // Fallback to client-side URL
   const baseUrl = getClientSideURL()
   return cacheTag ? `${baseUrl}${url}?${cacheTag}` : `${baseUrl}${url}`
 }

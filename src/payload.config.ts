@@ -5,7 +5,9 @@ import sharp from 'sharp' // sharp-import
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
+import { s3Storage } from '@payloadcms/storage-s3'
 
+import { Authors } from './collections/Authors'
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
@@ -64,12 +66,29 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Media, Categories, Users, Authors],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
     ...plugins,
     // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: {
+          prefix: 'uploads/',
+        },
+      },
+      bucket: process.env.S3_BUCKET_NAME || 'eutopias-magazine-media',
+      config: {
+        region: process.env.S3_REGION || 'us-east-2',
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        },
+      },
+      // CloudFront distribution URL for serving media files
+      baseUrl: process.env.CLOUDFRONT_DOMAIN || '',
+    }),
   ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
