@@ -1,12 +1,10 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import type { Header } from '@/payload-types'
 
-import { Logo } from '@/components/Logo/Logo'
+import { LogoHeader } from '@/components/Logo/LogoHeader'
 import { HeaderNav } from './Nav'
 
 interface HeaderClientProps {
@@ -14,28 +12,39 @@ interface HeaderClientProps {
 }
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  /* Storing the value in a useState to avoid hydration errors */
-  const [theme, setTheme] = useState<string | null>(null)
-  const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  const pathname = usePathname()
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false)
 
-  useEffect(() => {
-    setHeaderTheme(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
-
-  useEffect(() => {
-    if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headerTheme])
+  const handleSearchToggle = (expanded: boolean) => {
+    setIsSearchExpanded(expanded)
+  }
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
-        </Link>
-        <HeaderNav data={data} />
+    <header className="container relative z-20">
+      <div className="py-4 md:py-8">
+        {/* Mobile Layout: Hamburger - Logo - Search */}
+        <div className="md:hidden">
+          {!isSearchExpanded ? (
+            <div className="flex items-center justify-between">
+              <HeaderNav data={data} />
+              <Link href="/" className="block flex-shrink-0">
+                <LogoHeader />
+              </Link>
+              <div className="flex-shrink-0">{/* Search component will be added later */}</div>
+            </div>
+          ) : (
+            <div className="w-full">{/* Search component will be added later */}</div>
+          )}
+        </div>
+
+        {/* Desktop Layout: Logo - Navigation */}
+        <div className="hidden md:flex justify-between items-center gap-4">
+          <Link href="/" className="block flex-shrink-0 min-w-0">
+            <LogoHeader />
+          </Link>
+          <div className="flex-shrink-0">
+            <HeaderNav data={data} />
+          </div>
+        </div>
       </div>
     </header>
   )
