@@ -246,6 +246,10 @@ export interface Post {
     description?: string | null;
   };
   publishedAt?: string | null;
+  /**
+   * Number of times this post has been viewed
+   */
+  views?: number | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
@@ -1204,6 +1208,7 @@ export interface PostsSelect<T extends boolean = true> {
         description?: T;
       };
   publishedAt?: T;
+  views?: T;
   authors?: T;
   populatedAuthors?:
     | T

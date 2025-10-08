@@ -182,6 +182,16 @@ export const Posts: CollectionConfig<'posts'> = {
       },
     },
     {
+      name: 'views',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+        description: 'Number of times this post has been viewed',
+      },
+      defaultValue: 0,
+    },
+    {
       name: 'authors',
       type: 'relationship',
       admin: {

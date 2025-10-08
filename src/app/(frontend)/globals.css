@@ -167,3 +167,56 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+/* Auto-scrolling trending banner styles */
+.trending-scroll-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.trending-scroll-container::before,
+.trending-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.trending-scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, hsl(var(--card)) 0%, transparent 100%);
+}
+
+.trending-scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, hsl(var(--card)) 0%, transparent 100%);
+}
+
+.trending-scroll-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: scroll-left 30s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.trending-scroll-container:hover .trending-scroll-content {
+  animation-play-state: paused;
+}
+
+/* Trending banner bottom shadow */
+.trending-banner-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
