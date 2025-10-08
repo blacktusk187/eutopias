@@ -192,6 +192,30 @@ export const Posts: CollectionConfig<'posts'> = {
       defaultValue: 0,
     },
     {
+      name: 'featuredArticle',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+        description: 'Mark this article as the main featured article (large box)',
+      },
+    },
+    {
+      name: 'featuredArticleSub1',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+        description: 'Mark this article as featured sub-article 1 (smaller box)',
+      },
+    },
+    {
+      name: 'featuredArticleSub2',
+      type: 'checkbox',
+      admin: {
+        position: 'sidebar',
+        description: 'Mark this article as featured sub-article 2 (smaller box)',
+      },
+    },
+    {
       name: 'authors',
       type: 'relationship',
       admin: {

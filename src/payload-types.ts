@@ -250,6 +250,18 @@ export interface Post {
    * Number of times this post has been viewed
    */
   views?: number | null;
+  /**
+   * Mark this article as the main featured article (large box)
+   */
+  featuredArticle?: boolean | null;
+  /**
+   * Mark this article as featured sub-article 1 (smaller box)
+   */
+  featuredArticleSub1?: boolean | null;
+  /**
+   * Mark this article as featured sub-article 2 (smaller box)
+   */
+  featuredArticleSub2?: boolean | null;
   authors?: (number | User)[] | null;
   populatedAuthors?:
     | {
@@ -1209,6 +1221,9 @@ export interface PostsSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   views?: T;
+  featuredArticle?: T;
+  featuredArticleSub1?: T;
+  featuredArticleSub2?: T;
   authors?: T;
   populatedAuthors?:
     | T
