@@ -92,6 +92,8 @@ const config = {
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
+        'eutopias-blue': 'hsl(var(--eutopias-blue))',
+        'eutopias-gold': 'hsl(var(--eutopias-gold))',
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],

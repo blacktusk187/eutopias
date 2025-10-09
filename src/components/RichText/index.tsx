@@ -12,6 +12,9 @@ import {
 } from '@payloadcms/richtext-lexical/react'
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
+import { PullQuoteBlock } from '@/blocks/PullQuote/Component'
+import { SubheadingBlock } from '@/blocks/Subheading/Component'
+import { RelatedContentBlock } from '@/blocks/RelatedContent/Component'
 
 import type {
   BannerBlock as BannerBlockProps,
@@ -24,7 +27,15 @@ import { cn } from '@/utilities/ui'
 
 type NodeTypes =
   | DefaultNodeTypes
-  | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>
+  | SerializedBlockNode<
+      | CTABlockProps
+      | MediaBlockProps
+      | BannerBlockProps
+      | CodeBlockProps
+      | import('@/payload-types').PullQuoteBlock
+      | import('@/payload-types').SubheadingBlock
+      | import('@/payload-types').RelatedContentBlock
+    >
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { value, relationTo } = linkNode.fields.doc!
@@ -52,6 +63,9 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+    pullQuote: ({ node }) => <PullQuoteBlock className="col-start-2" {...node.fields} />,
+    subheading: ({ node }) => <SubheadingBlock className="col-start-2" {...node.fields} />,
+    relatedContent: ({ node }) => <RelatedContentBlock className="col-start-2" {...node.fields} />,
   },
 })
 

@@ -27,27 +27,45 @@ export const MediaBlock: React.FC<Props> = (props) => {
     media,
     staticImage,
     disableInnerContainer,
+    variant = 'bordered',
+    width = 'md',
+    align = 'center',
   } = props
 
   let caption
   if (media && typeof media === 'object') caption = media.caption
 
+  const widthClasses =
+    width === 'sm'
+      ? 'max-w-[36rem]'
+      : width === 'md'
+        ? 'max-w-[48rem]'
+        : width === 'lg'
+          ? 'max-w-[64rem]'
+          : width === 'xl'
+            ? 'max-w-[80rem]'
+            : 'max-w-none'
+
+  const alignClasses =
+    align === 'left' ? 'ml-0 mr-auto' : align === 'right' ? 'ml-auto mr-0' : 'mx-auto'
+
+  const imageDecorationClasses =
+    variant === 'shadowed'
+      ? 'shadow-xl rounded-[0.8rem]'
+      : variant === 'frameless'
+        ? ''
+        : 'border border-border rounded-[0.8rem]'
+
   return (
-    <div
-      className={cn(
-        '',
-        {
-          container: enableGutter,
-        },
-        className,
-      )}
-    >
+    <div className={cn('', { container: enableGutter }, className)}>
       {(media || staticImage) && (
-        <Media
-          imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}
-          resource={media}
-          src={staticImage}
-        />
+        <div className={cn(widthClasses, alignClasses)}>
+          <Media
+            imgClassName={cn(imageDecorationClasses, imgClassName)}
+            resource={media}
+            src={staticImage}
+          />
+        </div>
       )}
       {caption && (
         <div
@@ -59,7 +77,9 @@ export const MediaBlock: React.FC<Props> = (props) => {
             captionClassName,
           )}
         >
-          <RichText data={caption} enableGutter={false} />
+          <div className={cn(widthClasses, alignClasses)}>
+            <RichText data={caption} enableGutter={false} />
+          </div>
         </div>
       )}
     </div>

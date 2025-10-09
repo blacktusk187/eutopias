@@ -48,7 +48,6 @@
     "dotenv": "16.4.7",
     "geist": "^1.3.0",
     "graphql": "^16.8.2",
-    "lucide-react": "^0.378.0",
     "next": "15.4.4",
     "next-sitemap": "^4.2.3",
     "payload": "3.59.1",
@@ -56,6 +55,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hook-form": "7.45.4",
+    "react-icons": "^5.5.0",
     "rg": "^0.0.2",
     "sharp": "0.34.2",
     "tailwind-merge": "^2.3.0",
@@ -67,7 +67,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@testing-library/react": "16.3.0",
     "@types/escape-html": "^1.0.2",
-    "@types/node": "22.5.4",
+    "@types/node": "22.13.1",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react": "4.5.2",
@@ -94,6 +94,13 @@
       "sharp",
       "esbuild",
       "unrs-resolver"
-    ]
+    ],
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "^16 || ^17 || ^18 || ^19",
+        "react-dom": "^16 || ^17 || ^18 || ^19",
+        "@types/node": ">=22.12.0 || ^20.19.0"
+      }
+    }
   }
 }
