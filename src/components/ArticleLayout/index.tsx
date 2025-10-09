@@ -37,7 +37,7 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
         <div className="container px-4">
           <div className="max-w-4xl mx-auto">
             {/* Hero Image */}
-            {heroImage && typeof heroImage !== 'string' && (
+            {heroImage && typeof heroImage === 'object' && (
               <div className="mb-6">
                 <Media
                   resource={heroImage}
@@ -49,7 +49,7 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
             )}
 
             {/* Caption and Attribution */}
-            {heroImage && typeof heroImage !== 'string' && heroImage.caption && (
+            {heroImage && typeof heroImage === 'object' && heroImage.caption && (
               <div className="mb-6">
                 <div className="flex items-start gap-3">
                   {/* Small colored vertical divider */}
