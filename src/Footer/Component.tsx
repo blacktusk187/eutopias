@@ -70,7 +70,7 @@ export async function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={s?.label || s?.platform || 'social link'}
-                      className="hover:text-yellow-400 transition-colors"
+                      className="text-white hover:text-yellow-400 transition-colors"
                     >
                       {Icon ? (
                         <Icon className="w-5 h-5" />
