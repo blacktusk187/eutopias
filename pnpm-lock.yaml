@@ -110,6 +110,9 @@ importers:
       react-hook-form:
         specifier: 7.45.4
         version: 7.45.4(react@19.1.0)
+      rg:
+        specifier: ^0.0.2
+        version: 0.0.2
       sharp:
         specifier: 0.34.2
         version: 0.34.2
@@ -4791,6 +4794,10 @@ packages:
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  rg@0.0.2:
+    resolution: {integrity: sha512-mDR+iODuzY3LJj6dMxwhYmylHAnh050edYRsSRcCR+jZx7Pacz+VVAwqGTOFAV+058N53504CglWitWZ16/yQg==}
+    hasBin: true
 
   rollup@4.52.4:
     resolution: {integrity: sha512-CLEVl+MnPAiKh5pl4dEWSyMTpuflgNQiLGhMv8ezD5W/qP8AKvmYpCOKRRNOh7oRKnauBZ4SyeYkMS+1VSyKwQ==}
@@ -10994,6 +11001,8 @@ snapshots:
       supports-preserve-symlinks-flag: 1.0.0
 
   reusify@1.1.0: {}
+
+  rg@0.0.2: {}
 
   rollup@4.52.4:
     dependencies:
