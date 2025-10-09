@@ -1799,6 +1799,42 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  linkGroups?:
+    | {
+        title: string;
+        links?:
+          | {
+              link: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+                label: string;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  followTitle?: string | null;
+  socialLinks?:
+    | {
+        platform: 'instagram' | 'facebook' | 'x' | 'youtube' | 'linkedin' | 'tiktok' | 'reddit' | 'custom';
+        url: string;
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1844,6 +1880,36 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  linkGroups?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                    label?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  followTitle?: T;
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        label?: T;
+        id?: T;
+      };
+  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

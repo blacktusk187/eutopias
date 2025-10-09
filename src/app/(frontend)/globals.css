@@ -142,6 +142,16 @@
     color: #EEBC2A;
   }
 
+  /* Wordmark styling closer to CeraGR Bold specimen */
+  .eutopias-wordmark {
+    font-family: 'CeraPro', var(--font-cera-pro), sans-serif;
+    font-weight: 800; /* slightly heavier than bold */
+    letter-spacing: 0.03em; /* a little tighter for a denser appearance */
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
   /* Geist-style focus states */
   *:focus-visible {
     outline: 2px solid hsl(var(--ring));
