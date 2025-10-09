@@ -13,18 +13,18 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
 
   return (
     <div className="relative -mt-[10.4rem] flex items-end">
+      {/* Content */}
       <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-white pb-8">
         <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
           <div className="uppercase text-sm mb-6">
             {categories?.map((category, index) => {
               if (typeof category === 'object' && category !== null) {
-                const { title: categoryTitle } = category
-                const titleToUse = categoryTitle || 'Untitled category'
+                const titleToUse = category.title || 'Untitled category'
                 const isLast = index === categories.length - 1
                 return (
                   <React.Fragment key={index}>
                     {titleToUse}
-                    {!isLast && <>, &nbsp;</>}
+                    {!isLast && <React.Fragment>, &nbsp;</React.Fragment>}
                   </React.Fragment>
                 )
               }
@@ -53,18 +53,18 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
         </div>
       </div>
 
-      {/* Hero Image wrapper */}
-      <div className="relative w-full min-h-[80vh] select-none">
+      {/* Background image + gradient */}
+      <div className="relative w-full min-h-[70vh] md:min-h-[80vh] select-none">
         {heroImage && typeof heroImage !== 'string' && (
           <Media
+            resource={heroImage}
             fill
             priority
-            pictureClassName="absolute inset-0"
+            pictureClassName="absolute inset-0 z-0"
             imgClassName="object-cover"
-            resource={heroImage}
           />
         )}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent z-[1]" />
+        <div className="absolute left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-[1]" />
       </div>
     </div>
   )
