@@ -10,5 +10,46 @@ export const MediaBlock: Block = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'variant',
+      type: 'select',
+      defaultValue: 'bordered',
+      options: [
+        { label: 'Bordered (default)', value: 'bordered' },
+        { label: 'Shadowed', value: 'shadowed' },
+        { label: 'Frameless', value: 'frameless' },
+      ],
+      admin: {
+        description: 'Visual style of the image',
+      },
+    },
+    {
+      name: 'width',
+      type: 'select',
+      defaultValue: 'md',
+      options: [
+        { label: 'Small', value: 'sm' },
+        { label: 'Medium (default)', value: 'md' },
+        { label: 'Large', value: 'lg' },
+        { label: 'XL', value: 'xl' },
+        { label: 'Full', value: 'full' },
+      ],
+      admin: {
+        description: 'Content width of the image block',
+      },
+    },
+    {
+      name: 'align',
+      type: 'select',
+      defaultValue: 'center',
+      options: [
+        { label: 'Left', value: 'left' },
+        { label: 'Center (default)', value: 'center' },
+        { label: 'Right', value: 'right' },
+      ],
+      admin: {
+        description: 'Horizontal alignment within the content',
+      },
+    },
   ],
 }

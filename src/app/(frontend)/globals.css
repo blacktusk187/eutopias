@@ -220,3 +220,80 @@ html[data-theme='light'] {
 .trending-banner-shadow {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
+
+/* Article Layout Styles */
+.article-content {
+  @apply text-foreground;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  @apply text-foreground font-bold;
+  letter-spacing: -0.025em;
+}
+
+.article-content h1 {
+  @apply text-4xl md:text-5xl mb-6;
+}
+
+.article-content h2 {
+  @apply text-3xl md:text-4xl mb-5;
+}
+
+.article-content h3 {
+  @apply text-2xl md:text-3xl mb-4;
+}
+
+.article-content h4 {
+  @apply text-xl md:text-2xl mb-3;
+}
+
+.article-content p {
+  @apply text-lg leading-relaxed mb-6 text-foreground/90;
+}
+
+.article-content blockquote {
+  @apply border-l-4 border-eutopias-gold pl-6 py-2 my-8 italic text-foreground/80;
+}
+
+.article-content ul,
+.article-content ol {
+  @apply mb-6 pl-6;
+}
+
+.article-content li {
+  @apply mb-2 text-foreground/90;
+}
+
+.article-content a {
+  @apply text-eutopias-blue hover:text-eutopias-gold transition-colors duration-200;
+}
+
+.article-content img {
+  @apply rounded-lg shadow-lg my-8;
+}
+
+.article-content figure {
+  @apply my-8;
+}
+
+.article-content figcaption {
+  @apply text-sm text-foreground/70 mt-2 text-center italic;
+}
+
+/* Hero Image Caption Styles */
+.hero-caption {
+  @apply text-foreground/90;
+}
+
+.hero-caption p {
+  @apply text-lg leading-relaxed mb-2;
+}
+
+.hero-caption p:last-child {
+  @apply text-sm text-foreground/70 font-medium mb-0;
+}
