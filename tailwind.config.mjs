@@ -98,6 +98,7 @@ const config = {
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
+        cera: ['var(--font-cera-pro)'],
       },
       keyframes: {
         'accordion-down': {

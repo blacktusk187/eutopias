@@ -7,10 +7,17 @@ interface Props {
   loading?: 'lazy' | 'eager'
   priority?: boolean
   weightClass?: string
+  colorClass?: string
 }
 
-export const LogoHeader = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className, weightClass } = props
+export const LogoFooter = (props: Props) => {
+  const {
+    loading: loadingFromProps,
+    priority: priorityFromProps,
+    className,
+    weightClass,
+    colorClass,
+  } = props
 
   const loading = loadingFromProps || 'lazy'
   const priority = priorityFromProps || false
@@ -28,15 +35,15 @@ export const LogoHeader = (props: Props) => {
           priority={priority}
         />
       </div>
-      <h1
+      <span
         className={clsx(
-          'eutopias-wordmark font-cera text-lg sm:text-xl md:text-2xl lg:text-3xl transition-colors hover:text-[#eebc2a] whitespace-nowrap',
+          'eutopias-wordmark font-cera text-lg sm:text-xl md:text-2xl lg:text-3xl whitespace-nowrap',
+          colorClass || 'text-white',
           weightClass,
         )}
-        style={{ color: '#003366' }}
       >
         EUTOPIAS
-      </h1>
+      </span>
     </div>
   )
 }
