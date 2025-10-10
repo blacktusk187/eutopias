@@ -1,4 +1,5 @@
 import { Banner } from '@payloadcms/ui/elements/Banner'
+import { useAuth } from '@payloadcms/ui'
 import Link from 'next/link'
 import React from 'react'
 
@@ -8,10 +9,17 @@ import './index.scss'
 const baseClass = 'before-dashboard'
 
 const BeforeDashboard: React.FC = () => {
+  const { user } = useAuth()
+
+  const displayName =
+    (user as { name?: string; email?: string } | undefined)?.name ||
+    (user as { name?: string; email?: string } | undefined)?.email ||
+    'there'
+
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Welcome to the Eutopias admin</h4>
+        <h4>Welcome {displayName} to the Eutopias admin</h4>
       </Banner>
       Here&apos;s what to do next:
       <ul className={`${baseClass}__instructions`}>
@@ -59,25 +67,29 @@ const BeforeDashboard: React.FC = () => {
           Commit and push your changes to the repository to trigger a redeployment of your project.
         </li>
       </ul>
-      <div className={`${baseClass}__quick-actions`}>
-        <h5>Quick actions</h5>
-        <ul>
-          <li>
-            <Link href="/admin/collections/posts/create">Create a new Post</Link>
-          </li>
-          <li>
-            <Link href="/admin/collections/pages/create">Create a new Page</Link>
-          </li>
-          <li>
-            <Link href="/admin/collections/media">Manage Media</Link>
-          </li>
-          <li>
-            <a href="/" target="_blank" rel="noopener noreferrer">
-              View site
-            </a>
-          </li>
-        </ul>
-      </div>
+      <section className={`${baseClass}__quick-menu`} aria-labelledby="quick-actions-heading">
+        <h5 id="quick-actions-heading" className={`${baseClass}__heading`}>
+          Quick actions
+        </h5>
+        <div className={`${baseClass}__tiles`}>
+          <Link className={`${baseClass}__tile`} href="/admin/collections/posts/create">
+            <span className={`${baseClass}__tileTitle`}>Create a new Post</span>
+            <span className={`${baseClass}__tileDesc`}>Publish a story in minutes</span>
+          </Link>
+          <Link className={`${baseClass}__tile`} href="/admin/collections/pages/create">
+            <span className={`${baseClass}__tileTitle`}>Create a new Page</span>
+            <span className={`${baseClass}__tileDesc`}>Add static pages like About</span>
+          </Link>
+          <Link className={`${baseClass}__tile`} href="/admin/collections/media">
+            <span className={`${baseClass}__tileTitle`}>Manage Media</span>
+            <span className={`${baseClass}__tileDesc`}>Upload and organize assets</span>
+          </Link>
+          <a className={`${baseClass}__tile`} href="/" target="_blank" rel="noopener noreferrer">
+            <span className={`${baseClass}__tileTitle`}>View Site</span>
+            <span className={`${baseClass}__tileDesc`}>Open the public website</span>
+          </a>
+        </div>
+      </section>
       {'Pro Tip: This block is a '}
       <a
         href="https://payloadcms.com/docs/custom-components/overview"

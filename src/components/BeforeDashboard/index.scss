@@ -21,4 +21,45 @@
   & a:hover {
     opacity: 0.85;
   }
+
+  &__heading {
+    margin: base(1) 0 base(0.5);
+    font-size: 1rem; // match Collections section heading size
+    font-weight: 600;
+  }
+
+  &__tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: base(0.5);
+  }
+
+  &__tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--theme-elevation-100);
+    background: var(--theme-elevation-0);
+    border-radius: 6px;
+    padding: base(0.75);
+    min-height: 110px; // approximate size of collection cards
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      background: var(--theme-elevation-50);
+      border-color: var(--theme-elevation-200);
+    }
+  }
+
+  &__tileTitle {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  &__tileDesc {
+    font-size: 0.85rem;
+    color: var(--theme-elevation-600);
+  }
 }
