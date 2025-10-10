@@ -15,7 +15,8 @@
     font-size: 0.875rem; // match Collections/Globals heading size
     line-height: 1.4;
     font-weight: 600;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em; // tighter to match
+    text-transform: none; // ensure same casing as headings
     text-align: left;
     cursor: pointer;
   }

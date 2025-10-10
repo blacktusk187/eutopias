@@ -43,20 +43,54 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     fetchCategories()
   }, [])
 
+  const parents = categories.filter((c) => !c.parent)
+  const childrenByParentId = categories.reduce<Record<number, Category[]>>((acc, c) => {
+    const p = typeof c.parent === 'object' ? c.parent?.id : c.parent
+    if (p) {
+      acc[p] = acc[p] || []
+      acc[p].push(c)
+    }
+    return acc
+  }, {})
+
   return (
     <nav className="flex items-center">
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 items-center">
-        {categories.map((category) => (
-          <Link
-            key={category.id}
-            href={`/posts/category/${category.slug}`}
-            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
-          >
-            {category.title}
-            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
-          </Link>
-        ))}
+        {parents.map((parent) => {
+          const children = childrenByParentId[parent.id] || []
+          const hasChildren = children.length > 0
+          if (!hasChildren) {
+            return (
+              <Link
+                key={parent.id}
+                href={`/posts/category/${parent.slug}`}
+                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+              >
+                {parent.title}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            )
+          }
+          return (
+            <div key={parent.id} className="relative group">
+              <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
+                {parent.title}
+              </button>
+              <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                {children.map((child) => (
+                  <Link
+                    key={child.id}
+                    href={`/posts/category/${child.slug}`}
+                    className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                  >
+                    {child.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )
+        })}
         {moreItems.length > 0 && (
           <div className="relative group">
             <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
