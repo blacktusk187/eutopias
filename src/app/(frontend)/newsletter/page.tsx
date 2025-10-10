@@ -20,8 +20,8 @@ export default function NewsletterPage() {
           <div className="bg-card border border-border rounded-lg p-8 mb-8">
             <h2 className="text-2xl font-semibold mb-4">Newsletter Coming Soon</h2>
             <p className="text-muted-foreground mb-6">
-              We're working on setting up our newsletter subscription system. In the meantime, you
-              can follow us on social media or check back later.
+              We&apos;re working on setting up our newsletter subscription system. In the meantime,
+              you can follow us on social media or check back later.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
