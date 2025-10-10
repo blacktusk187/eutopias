@@ -7,11 +7,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    justify-content: space-between; // place chevron on the right
     width: 100%;
     background: transparent;
     border: 0;
     padding: base(0.25) base(0.25);
-    color: var(--theme-elevation-800); // dark grey like section headings
+    color: var(--theme-elevation-800); // dark grey
     font-size: 0.875rem; // match Collections/Globals heading size
     line-height: 1.4;
     font-weight: 600;
@@ -19,6 +20,7 @@
     text-transform: none; // ensure same casing as headings
     text-align: left;
     cursor: pointer;
+    background-color: var(--theme-elevation-0); // black/near-black background in nav
   }
 
   &__chevron {
@@ -32,10 +34,10 @@
   }
 
   &__list {
-    list-style: none; // remove bullets
-    list-style-type: none; // ensure no bullets across browsers
+    list-style: none !important; // remove bullets
+    list-style-type: none !important; // ensure no bullets across browsers
     margin: base(0.25) 0 0 0;
-    padding: 0; // remove default left indent
+    padding: 0 !important; // remove default left indent
   }
 
   &__item {
@@ -46,8 +48,8 @@
     display: block;
     padding: base(0.25) base(0.5);
     border-radius: 6px;
-    color: inherit;
-    text-decoration: none; // remove underline
+    color: inherit !important;
+    text-decoration: none !important; // remove underline
 
     &:hover {
       background: var(--theme-elevation-50);

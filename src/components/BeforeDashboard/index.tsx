@@ -22,7 +22,7 @@ const BeforeDashboard: React.FC = () => {
         <h4>Welcome {displayName} to the Eutopias admin</h4>
       </Banner>
       <section className={`${baseClass}__quick-menu`} aria-labelledby="quick-actions-heading">
-        <h5 id="quick-actions-heading" className={`${baseClass}__heading`}>
+        <h5 id="quick-actions-heading" className={`${baseClass}__heading dashboard_label`}>
           Quick actions
         </h5>
         <div className={`${baseClass}__tiles`}>

@@ -19,6 +19,7 @@ const AdminQuickActions: React.FC = () => {
         aria-expanded={isOpen}
         onClick={() => setIsOpen((prev) => !prev)}
       >
+        Quick actions
         <svg
           className={`${baseClass}__chevron`}
           viewBox="0 0 24 24"
@@ -29,7 +30,6 @@ const AdminQuickActions: React.FC = () => {
         >
           <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor" />
         </svg>
-        Quick actions
       </button>
       {isOpen && (
         <ul className={`${baseClass}__list`}>
