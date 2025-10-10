@@ -1,3 +1,5 @@
+'use client'
+
 import { Banner } from '@payloadcms/ui/elements/Banner'
 import { useAuth } from '@payloadcms/ui'
 import Link from 'next/link'
