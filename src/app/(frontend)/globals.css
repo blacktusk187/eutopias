@@ -136,9 +136,7 @@
   }
 }
 
-html {
-  opacity: 0;
-}
+/* Removed problematic opacity rule that was hiding all content */
 
 
 /* Auto-scrolling trending banner styles */
