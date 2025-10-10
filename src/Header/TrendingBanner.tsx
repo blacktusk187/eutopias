@@ -59,7 +59,7 @@ export const TrendingBanner: React.FC = () => {
   }
 
   return (
-    <div className="bg-card py-1 md:py-2 border-t border-b border-border">
+    <div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow">
       <div className="container">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-sm font-medium shrink-0">
