@@ -11,26 +11,30 @@ const AdminQuickActions: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true)
 
   return (
-    <nav className={baseClass} aria-labelledby="quick-actions-nav-heading">
-      <button
-        type="button"
-        className={`${baseClass}__heading`}
-        id="quick-actions-nav-heading"
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        Quick actions
+    <nav className={`${baseClass} nav-group`} aria-labelledby="quick-actions-nav-heading">
+      <div className="flex items-center justify-between">
+        <button
+          type="button"
+          className="nav-group__label"
+          id="quick-actions-nav-heading"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          Quick actions
+        </button>
         <svg
-          className={`${baseClass}__chevron`}
-          viewBox="0 0 24 24"
+          className="icon icon--chevron nav-group__indicator"
+          viewBox="0 0 20 20"
           width="16"
           height="16"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
           aria-hidden="true"
           focusable="false"
         >
-          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor" />
+          <path className="stroke" d="M14 8L10 12L6 8" strokeLinecap="square" />
         </svg>
-      </button>
+      </div>
       {isOpen && (
         <ul className={`${baseClass}__list`}>
           <li className={`${baseClass}__item`}>
