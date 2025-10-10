@@ -24,13 +24,13 @@
 
   &__heading {
     margin: base(1) 0 base(0.5);
-    font-size: 1rem; // match Collections section heading size
-    font-weight: 600;
+    font-size: 17px; // requested size
+    font-weight: 500; // requested weight
   }
 
   &__tiles {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: base(0.5);
   }
 
@@ -38,16 +38,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid var(--theme-elevation-100);
-    background: var(--theme-elevation-0);
+    border: 1px solid var(--theme-elevation-150); // closer to Collections cards
+    background: var(--theme-elevation-50); // match subtle background
     border-radius: 6px;
     padding: base(0.75);
-    min-height: 110px; // approximate size of collection cards
+    min-height: 124px; // closer to collection tile size
     text-decoration: none;
     color: inherit;
 
     &:hover {
-      background: var(--theme-elevation-50);
+      background: var(--theme-elevation-100);
       border-color: var(--theme-elevation-200);
     }
   }
