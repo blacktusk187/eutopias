@@ -23,7 +23,13 @@ export const TrendingBanner: React.FC = () => {
           throw new Error(`Failed to fetch trending articles: ${response.status}`)
         }
         const data = await response.json()
-        setTrendingArticles(data.slice(0, 5))
+        console.log('Trending articles data:', data)
+        if (Array.isArray(data) && data.length > 0) {
+          setTrendingArticles(data.slice(0, 5))
+        } else {
+          console.warn('No trending articles found or invalid data format')
+          setTrendingArticles([])
+        }
       } catch (error) {
         console.error('Error fetching trending articles:', error)
         setError('Failed to load trending articles')
