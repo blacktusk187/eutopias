@@ -13,6 +13,28 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './[slug]/page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
+const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
+  const { isEnabled: draft } = await draftMode()
+
+  const payload = await getPayload({ config: configPromise })
+
+  const result = await payload.find({
+    collection: 'pages',
+    draft,
+    limit: 1,
+    overrideAccess: draft,
+    pagination: false,
+    depth: 3,
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  })
+
+  return result.docs?.[0] || null
+})
+
 export default async function Page() {
   const { isEnabled: draft } = await draftMode()
   const slug = 'home'
@@ -62,25 +84,3 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return generateMeta({ doc: page })
 }
-
-const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
-  const { isEnabled: draft } = await draftMode()
-
-  const payload = await getPayload({ config: configPromise })
-
-  const result = await payload.find({
-    collection: 'pages',
-    draft,
-    limit: 1,
-    overrideAccess: draft,
-    pagination: false,
-    depth: 3,
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-  })
-
-  return result.docs?.[0] || null
-})
