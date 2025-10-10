@@ -34,6 +34,9 @@ export default buildConfig({
       beforeDashboard: ['@/components/BeforeDashboard'],
       // Add quick actions into the left navigation pane
       beforeNavLinks: ['@/components/AdminQuickActions'],
+      graphics: {
+        Logo: '@/components/AdminLogo#default',
+      },
     },
     importMap: {
       baseDir: path.resolve(dirname),

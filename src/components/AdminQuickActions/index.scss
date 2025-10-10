@@ -10,29 +10,31 @@
     width: 100%;
     background: transparent;
     border: 0;
-    padding: 0 base(0.25);
+    padding: base(0.25) base(0.25);
     color: var(--theme-elevation-800); // dark grey like section headings
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.875rem; // match Collections/Globals heading size
+    line-height: 1.4;
     font-weight: 600;
+    letter-spacing: 0.02em;
     text-align: left;
     cursor: pointer;
   }
 
   &__chevron {
-    transform: rotate(0deg);
+    transform: rotate(90deg); // open state points down
     transition: transform 120ms ease;
   }
 
   // Rotate chevron when collapsed/expanded via aria-expanded
   &__heading[aria-expanded='false'] .admin-quick-actions__chevron {
-    transform: rotate(-90deg);
+    transform: rotate(0deg); // closed state points right
   }
 
   &__list {
     list-style: none; // remove bullets
+    list-style-type: none; // ensure no bullets across browsers
     margin: base(0.25) 0 0 0;
-    padding: 0;
+    padding: 0; // remove default left indent
   }
 
   &__item {
