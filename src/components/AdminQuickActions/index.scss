@@ -2,6 +2,26 @@
 
 .admin .nav .admin-quick-actions {
   margin-top: base(1);
+
+  // Make the group heading background transparent
+  .nav-group__label {
+    background: transparent;
+  }
+
+  // Ensure no bullets on the Quick actions list or items
+  .nav-group__list {
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      list-style: none;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
 }
 
 
