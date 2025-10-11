@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
 import type { Header as HeaderType, Category } from '@/payload-types'
 import Link from 'next/link'
+import { CMSLink } from '@/components/Link'
 
 interface HeaderNavProps {
   data: HeaderType
@@ -18,6 +19,10 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
+
+  // Curated header links from global config (preferred)
+  const headerLinks = (_data?.navItems || []).map((item) => item.link).filter(Boolean)
+  const useHeaderLinks = headerLinks.length > 0
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -47,16 +52,24 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     <nav className="flex items-center">
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 items-center">
-        {categories.map((category) => (
-          <Link
-            key={category.id}
-            href={`/posts/category/${category.slug}`}
-            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
-          >
-            {category.title}
-            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
-          </Link>
-        ))}
+        {useHeaderLinks
+          ? headerLinks.map((link, idx) => (
+              <CMSLink
+                key={idx}
+                {...link}
+                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+              />
+            ))
+          : categories.map((category) => (
+              <Link
+                key={category.id}
+                href={`/posts/category/${category.slug}`}
+                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+              >
+                {category.title}
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+              </Link>
+            ))}
         {moreItems.length > 0 && (
           <div className="relative group">
             <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
@@ -102,16 +115,25 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-card text-card-foreground shadow-md py-4 px-6 md:hidden z-50 border border-border">
           <div className="flex flex-col gap-4">
-            {categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/posts/category/${category.slug}`}
-                className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {category.title}
-              </Link>
-            ))}
+            {useHeaderLinks
+              ? headerLinks.map((link, idx) => (
+                  <CMSLink
+                    key={idx}
+                    {...link}
+                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
+                    onClick={() => setIsMenuOpen(false)}
+                  />
+                ))
+              : categories.map((category) => (
+                  <Link
+                    key={category.id}
+                    href={`/posts/category/${category.slug}`}
+                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {category.title}
+                  </Link>
+                ))}
             {moreItems.length > 0 && (
               <div className="border-t border-border pt-4 mt-2">
                 <div className="text-sm font-medium text-muted-foreground mb-2">More</div>
