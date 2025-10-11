@@ -12,16 +12,14 @@ const AdminQuickActions: React.FC = () => {
 
   return (
     <nav className={`${baseClass} nav-group`} aria-labelledby="quick-actions-nav-heading">
-      <div className="flex items-center justify-between">
-        <button
-          type="button"
-          className="nav-group__label"
-          id="quick-actions-nav-heading"
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((prev) => !prev)}
-        >
-          Quick actions
-        </button>
+      <button
+        type="button"
+        className="nav-group__label flex items-center justify-between w-full"
+        id="quick-actions-nav-heading"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <span>Quick actions</span>
         <svg
           className="icon icon--chevron nav-group__indicator"
           viewBox="0 0 20 20"
@@ -34,7 +32,7 @@ const AdminQuickActions: React.FC = () => {
         >
           <path className="stroke" d="M14 8L10 12L6 8" strokeLinecap="square" />
         </svg>
-      </div>
+      </button>
       {isOpen && (
         <ul className="nav-group__list">
           <li className="nav__item">

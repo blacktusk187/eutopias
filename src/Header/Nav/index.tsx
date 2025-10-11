@@ -18,6 +18,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
+  const [openParents, setOpenParents] = useState<Record<number, boolean>>({})
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -135,17 +136,61 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-card text-card-foreground shadow-md py-4 px-6 md:hidden z-50 border border-border">
-          <div className="flex flex-col gap-4">
-            {categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/posts/category/${category.slug}`}
-                className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {category.title}
-              </Link>
-            ))}
+          <div className="flex flex-col gap-2">
+            {parents.map((parent) => {
+              const children = childrenByParentId[parent.id] || []
+              const hasChildren = children.length > 0
+              const isOpen = openParents[parent.id]
+              if (!hasChildren) {
+                return (
+                  <Link
+                    key={parent.id}
+                    href={`/posts/category/${parent.slug}`}
+                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {parent.title}
+                  </Link>
+                )
+              }
+              return (
+                <div key={parent.id} className="border-b border-border pb-2">
+                  <button
+                    className="w-full flex items-center justify-between text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"
+                    onClick={() =>
+                      setOpenParents((prev) => ({ ...prev, [parent.id]: !prev[parent.id] }))
+                    }
+                    aria-expanded={Boolean(isOpen)}
+                    aria-controls={`mobile-children-${parent.id}`}
+                  >
+                    <span>{parent.title}</span>
+                    <svg
+                      className="h-4 w-4 transition-transform"
+                      style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path d="M14 8L10 12L6 8" stroke="currentColor" strokeLinecap="square" />
+                    </svg>
+                  </button>
+                  {isOpen && (
+                    <div id={`mobile-children-${parent.id}`} className="pl-3 flex flex-col">
+                      {children.map((child) => (
+                        <Link
+                          key={child.id}
+                          href={`/posts/category/${child.slug}`}
+                          className="py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {child.title}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
             {moreItems.length > 0 && (
               <div className="border-t border-border pt-4 mt-2">
                 <div className="text-sm font-medium text-muted-foreground mb-2">More</div>
