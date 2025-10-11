@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
 import type { Header as HeaderType, Category } from '@/payload-types'
 import Link from 'next/link'
-import { CMSLink } from '@/components/Link'
 
 interface HeaderNavProps {
   data: HeaderType
@@ -20,10 +19,6 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
 
-  // Curated header links from global config (preferred)
-  const headerLinks = (_data?.navItems || []).map((item) => item.link).filter(Boolean)
-  const useHeaderLinks = headerLinks.length > 0
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -35,10 +30,29 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     // Fetch categories from Payload's built-in API
     const fetchCategories = async () => {
       try {
+        console.log('Fetching categories...')
         const response = await fetch('/api/categories?limit=100&sort=title')
+        console.log('Response status:', response.status)
+
         if (response.ok) {
           const data = await response.json()
-          setCategories(data.docs || [])
+          console.log('Raw categories data:', data)
+          console.log('Total categories:', data.docs?.length || 0)
+
+          // Filter for only main categories (those without a parent)
+          const mainCategories = (data.docs || []).filter((category: Category) => {
+            console.log('Category:', category.title, 'Parent:', category.parent)
+            return !category.parent
+          })
+
+          console.log('Main categories loaded:', mainCategories.length, 'categories')
+          console.log(
+            'Main categories:',
+            mainCategories.map((c) => c.title),
+          )
+          setCategories(mainCategories)
+        } else {
+          console.error('Failed to fetch categories:', response.status)
         }
       } catch (error) {
         console.error('Error fetching categories:', error)
@@ -52,24 +66,20 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     <nav className="flex items-center">
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 items-center">
-        {useHeaderLinks
-          ? headerLinks.map((link, idx) => (
-              <CMSLink
-                key={idx}
-                {...link}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
-              />
-            ))
-          : categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/posts/category/${category.slug}`}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
-              >
-                {category.title}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
-              </Link>
-            ))}
+        {categories.length > 0 ? (
+          categories.map((category) => (
+            <Link
+              key={category.id}
+              href={`/posts/category/${category.slug}`}
+              className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+            >
+              {category.title}
+              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+            </Link>
+          ))
+        ) : (
+          <div className="text-sm text-muted-foreground">Loading categories...</div>
+        )}
         {moreItems.length > 0 && (
           <div className="relative group">
             <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
@@ -115,25 +125,20 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-card text-card-foreground shadow-md py-4 px-6 md:hidden z-50 border border-border">
           <div className="flex flex-col gap-4">
-            {useHeaderLinks
-              ? headerLinks.map((link, idx) => (
-                  <CMSLink
-                    key={idx}
-                    {...link}
-                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
-                    onClick={() => setIsMenuOpen(false)}
-                  />
-                ))
-              : categories.map((category) => (
-                  <Link
-                    key={category.id}
-                    href={`/posts/category/${category.slug}`}
-                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {category.title}
-                  </Link>
-                ))}
+            {categories.length > 0 ? (
+              categories.map((category) => (
+                <Link
+                  key={category.id}
+                  href={`/posts/category/${category.slug}`}
+                  className="text-card-foreground hover:text-accent-foreground transition-colors text-base"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {category.title}
+                </Link>
+              ))
+            ) : (
+              <div className="text-sm text-muted-foreground">Loading categories...</div>
+            )}
             {moreItems.length > 0 && (
               <div className="border-t border-border pt-4 mt-2">
                 <div className="text-sm font-medium text-muted-foreground mb-2">More</div>
