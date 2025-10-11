@@ -13,7 +13,6 @@ import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
 
-import { Analytics } from '@vercel/analytics/next'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -80,7 +79,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header />
           {children}
-          <Analytics />
           <Footer />
         </Providers>
       </body>
