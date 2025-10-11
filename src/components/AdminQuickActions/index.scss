@@ -1,0 +1,46 @@
+@import '~@payloadcms/ui/scss';
+
+.admin .nav .admin-quick-actions {
+  margin-top: base(1);
+
+  // Make the group heading background transparent
+  .nav-group__label {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 32px;
+
+    // Ensure the chevron icon aligns to the far right like Collections/Globals
+    > svg,
+    .icon {
+      margin-left: auto;
+    }
+
+    // Fallback to push the final child (chevron) to the right in case of DOM changes
+    > *:last-child {
+      margin-left: auto;
+    }
+  }
+
+  // Ensure no bullets on the Quick actions list or items
+  .nav-group__list {
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      list-style: none;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // Removed .quick-actions-heading in favor of styling the label directly
+}
+
+

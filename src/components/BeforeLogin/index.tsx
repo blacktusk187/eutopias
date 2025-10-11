@@ -1,11 +1,12 @@
 import React from 'react'
+import './index.scss'
 
 const BeforeLogin: React.FC = () => {
   return (
-    <div>
+    <div className="before-login">
       <p>
-        <b>Welcome to your dashboard!</b>
-        {' This is where site admins will log in to manage your website.'}
+        <b>Welcome to Eutopias Admin</b>
+        {' — sign in to manage content and settings.'}
       </p>
     </div>
   )
