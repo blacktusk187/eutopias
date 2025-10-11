@@ -2,23 +2,6 @@
 
 .admin .nav .admin-quick-actions {
   margin-top: base(1);
-
-  // Rely on native nav-group/nav classes for list and link styling
-  .nav-group__list {
-    list-style: none !important; // ensure no bullets
-    list-style-type: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  // Extra hardening in case of nested lists or admin defaults
-  .nav-group__list ul,
-  .nav-group__list li {
-    list-style: none !important;
-    list-style-type: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
 }
 
 
