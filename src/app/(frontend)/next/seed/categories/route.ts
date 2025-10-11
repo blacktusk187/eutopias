@@ -16,7 +16,8 @@ export async function POST(): Promise<Response> {
   if (!user && !cronOk) return new Response('Action forbidden.', { status: 403 })
 
   try {
-    const payloadReq = await createLocalReq({ user }, payload)
+    const context = user ? { user } : {}
+    const payloadReq = await createLocalReq(context as any, payload)
     const summary = await seedNestedCategories(payload, payloadReq)
     return Response.json({ success: true, summary })
   } catch (e) {
