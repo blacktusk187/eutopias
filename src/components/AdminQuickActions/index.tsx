@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const AdminQuickActions: React.FC = () => {
   return (
-    <NavGroup label="Quick actions" collapsible>
+    <NavGroup label="Quick actions">
       <ul className="nav-group__list">
         <li className="nav__item">
           <Link className="nav__link" href="/admin/collections/posts/create">
