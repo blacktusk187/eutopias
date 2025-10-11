@@ -19,7 +19,10 @@ const BeforeDashboard: React.FC = () => {
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Welcome {displayName} to the Eutopias admin</h4>
+        <h4>
+          Welcome <span className={`${baseClass}__userName`}>{displayName}</span> to the Eutopias
+          admin
+        </h4>
       </Banner>
       <section className={`${baseClass}__quick-menu`} aria-labelledby="quick-actions-heading">
         <h5 id="quick-actions-heading" className={`${baseClass}__heading dashboard_label`}>

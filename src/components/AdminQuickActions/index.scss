@@ -3,30 +3,7 @@
 .admin .nav .admin-quick-actions {
   margin-top: base(1);
 
-  // Use native nav-group label/indicator styles; no overrides here
-
-  &__list {
-    list-style: none !important; // remove bullets
-    list-style-type: none !important; // ensure no bullets across browsers
-    margin: base(0.25) 0 0 0;
-    padding: 0 !important; // remove default left indent
-  }
-
-  &__item {
-    margin: 0;
-  }
-
-  &__link {
-    display: block;
-    padding: base(0.25) base(0.5);
-    border-radius: 6px;
-    color: inherit !important;
-    text-decoration: none !important; // remove underline
-
-    &:hover {
-      background: var(--theme-elevation-50);
-    }
-  }
+  // Rely on native nav-group/nav classes for list and link styling
 }
 
 

@@ -36,24 +36,24 @@ const AdminQuickActions: React.FC = () => {
         </svg>
       </div>
       {isOpen && (
-        <ul className={`${baseClass}__list`}>
-          <li className={`${baseClass}__item`}>
-            <Link className={`${baseClass}__link`} href="/admin/collections/posts/create">
+        <ul className="nav-group__list">
+          <li className="nav__item">
+            <Link className="nav__link" href="/admin/collections/posts/create">
               Create a new Post
             </Link>
           </li>
-          <li className={`${baseClass}__item`}>
-            <Link className={`${baseClass}__link`} href="/admin/collections/pages/create">
+          <li className="nav__item">
+            <Link className="nav__link" href="/admin/collections/pages/create">
               Create a new Page
             </Link>
           </li>
-          <li className={`${baseClass}__item`}>
-            <Link className={`${baseClass}__link`} href="/admin/collections/media">
+          <li className="nav__item">
+            <Link className="nav__link" href="/admin/collections/media">
               Manage Media
             </Link>
           </li>
-          <li className={`${baseClass}__item`}>
-            <a className={`${baseClass}__link`} href="/" target="_blank" rel="noopener noreferrer">
+          <li className="nav__item">
+            <a className="nav__link" href="/" target="_blank" rel="noopener noreferrer">
               View Site
             </a>
           </li>
