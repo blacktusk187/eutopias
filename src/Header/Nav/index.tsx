@@ -48,7 +48,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           console.log('Main categories loaded:', mainCategories.length, 'categories')
           console.log(
             'Main categories:',
-            mainCategories.map((c) => c.title),
+            mainCategories.map((c: Category) => c.title),
           )
           setCategories(mainCategories)
         } else {
