@@ -39,7 +39,7 @@ export async function Footer() {
     <footer className="mt-auto border-t border-gray-500 bg-black text-white">
       {/* Top section: link groups + follow column */}
       <div className="container py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-8">
           {linkGroups.map((group, idx) => (
             <div key={idx}>
               {group?.title && (

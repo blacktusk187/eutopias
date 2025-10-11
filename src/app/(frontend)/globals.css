@@ -71,6 +71,7 @@
     --eutopias-gold: 45 85% 55%; /* #eebc2a */
   }
 
+  /* Dark theme removed - only light theme supported */
 }
 
 @layer base {
@@ -136,8 +137,19 @@
   }
 }
 
-/* Removed problematic opacity rule that was hiding all content */
+html {
+  opacity: 0;
+}
 
+/* Always use light theme */
+html[data-theme='light'] {
+  opacity: initial;
+}
+
+/* Force light theme if no theme is set */
+html:not([data-theme]) {
+  opacity: initial;
+}
 
 /* Auto-scrolling trending banner styles */
 .trending-scroll-container {
