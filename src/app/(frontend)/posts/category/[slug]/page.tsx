@@ -48,6 +48,9 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
     notFound()
   }
 
+  // Debug: Log the category data to see what we're getting
+  console.log('Category data:', JSON.stringify(category, null, 2))
+
   // Get posts for this category
   const posts = await payload.find({
     collection: 'posts',
