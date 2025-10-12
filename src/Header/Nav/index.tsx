@@ -79,10 +79,20 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           }
           return (
             <div key={parent.id} className="relative group">
-              <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
+              <Link
+                href={`/posts/category/${parent.slug}`}
+                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group/link"
+              >
                 {parent.title}
-              </button>
+                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover/link:w-full transition-all duration-300"></span>
+              </Link>
               <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <Link
+                  href={`/posts/category/${parent.slug}`}
+                  className="block px-4 py-2 text-sm font-medium text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border"
+                >
+                  All {parent.title}
+                </Link>
                 {children.map((child) => (
                   <Link
                     key={child.id}
@@ -170,27 +180,42 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               }
               return (
                 <div key={parent.id} className="border-b border-border pb-2">
-                  <button
-                    className="w-full flex items-center justify-between text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"
-                    onClick={() =>
-                      setOpenParents((prev) => ({ ...prev, [parent.id]: !prev[parent.id] }))
-                    }
-                    aria-expanded={Boolean(isOpen)}
-                    aria-controls={`mobile-children-${parent.id}`}
-                  >
-                    <span>{parent.title}</span>
-                    <svg
-                      className="h-4 w-4 transition-transform"
-                      style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={`/posts/category/${parent.slug}`}
+                      className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2 flex-1"
+                      onClick={() => setIsMenuOpen(false)}
                     >
-                      <path d="M14 8L10 12L6 8" stroke="currentColor" strokeLinecap="square" />
-                    </svg>
-                  </button>
+                      {parent.title}
+                    </Link>
+                    <button
+                      className="p-2 text-card-foreground hover:text-accent-foreground transition-colors"
+                      onClick={() =>
+                        setOpenParents((prev) => ({ ...prev, [parent.id]: !prev[parent.id] }))
+                      }
+                      aria-expanded={Boolean(isOpen)}
+                      aria-controls={`mobile-children-${parent.id}`}
+                    >
+                      <svg
+                        className="h-4 w-4 transition-transform"
+                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path d="M14 8L10 12L6 8" stroke="currentColor" strokeLinecap="square" />
+                      </svg>
+                    </button>
+                  </div>
                   {isOpen && (
                     <div id={`mobile-children-${parent.id}`} className="pl-3 flex flex-col">
+                      <Link
+                        href={`/posts/category/${parent.slug}`}
+                        className="py-1.5 text-sm font-medium text-card-foreground hover:text-accent-foreground transition-colors border-b border-border mb-2"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        All {parent.title}
+                      </Link>
                       {children.map((child) => (
                         <Link
                           key={child.id}
