@@ -389,6 +389,10 @@ export interface Category {
    */
   generateSlug?: boolean | null;
   slug: string;
+  /**
+   * Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.
+   */
+  bannerImage?: (number | null) | Media;
   parent?: (number | null) | Category;
   breadcrumbs?:
     | {
@@ -1416,6 +1420,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
   generateSlug?: T;
   slug?: T;
+  bannerImage?: T;
   parent?: T;
   breadcrumbs?:
     | T

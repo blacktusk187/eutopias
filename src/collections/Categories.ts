@@ -24,5 +24,15 @@ export const Categories: CollectionConfig = {
     slugField({
       position: undefined,
     }),
+    {
+      name: 'bannerImage',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Banner Background Image',
+      admin: {
+        description:
+          'Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.',
+      },
+    },
   ],
 }
