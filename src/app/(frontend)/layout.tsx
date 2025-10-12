@@ -12,17 +12,10 @@ import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
-
+import { SITE_NAME, DEFAULT_TITLE, DEFAULT_DESC, DEFAULT_OG_IMAGE } from '@/constants'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
-
-// --- Defaults (exported for reuse in pages like posts/[slug]) ---
-export const SITE_NAME = 'Eutopias'
-export const DEFAULT_TITLE = 'Eutopias | Mission-driven storytelling'
-export const DEFAULT_DESC =
-  'Mission-driven storytelling that elevates real-world solutions through multimedia. Discover inspiring stories, innovative ideas, and transformative content.'
-export const DEFAULT_OG_IMAGE = '/og-default.jpg' // add this file under /public
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),

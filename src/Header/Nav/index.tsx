@@ -54,11 +54,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
     return acc
   }, {})
 
+  // Separate Featured from other parents and add it at the end
+  const featuredCategory = parents.find((c) => c.slug === 'featured')
+  const otherParents = parents.filter((c) => c.slug !== 'featured')
+
   return (
     <nav className="flex items-center">
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 items-center">
-        {parents.map((parent) => {
+        {otherParents.map((parent) => {
           const children = childrenByParentId[parent.id] || []
           const hasChildren = children.length > 0
           if (!hasChildren) {
@@ -92,6 +96,17 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             </div>
           )
         })}
+        {/* Featured category at the end */}
+        {featuredCategory && (
+          <Link
+            key={featuredCategory.id}
+            href={`/posts/category/${featuredCategory.slug}`}
+            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+          >
+            {featuredCategory.title}
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+          </Link>
+        )}
         {moreItems.length > 0 && (
           <div className="relative group">
             <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
@@ -137,7 +152,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
       {isMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-card text-card-foreground shadow-md py-4 px-6 md:hidden z-50 border border-border">
           <div className="flex flex-col gap-2">
-            {parents.map((parent) => {
+            {otherParents.map((parent) => {
               const children = childrenByParentId[parent.id] || []
               const hasChildren = children.length > 0
               const isOpen = openParents[parent.id]
@@ -191,6 +206,17 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 </div>
               )
             })}
+            {/* Featured category at the end */}
+            {featuredCategory && (
+              <Link
+                key={featuredCategory.id}
+                href={`/posts/category/${featuredCategory.slug}`}
+                className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {featuredCategory.title}
+              </Link>
+            )}
             {moreItems.length > 0 && (
               <div className="border-t border-border pt-4 mt-2">
                 <div className="text-sm font-medium text-muted-foreground mb-2">More</div>

@@ -14,8 +14,8 @@ import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { ArticleViewTracker } from '@/components/ArticleViewTracker'
 
-// Fallbacks exported from layout.tsx
-import { DEFAULT_DESC, DEFAULT_OG_IMAGE } from '@/app/(frontend)/layout'
+// Fallbacks from constants
+import { DEFAULT_DESC, DEFAULT_OG_IMAGE } from '@/constants'
 // -------------------- SSG params --------------------
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
