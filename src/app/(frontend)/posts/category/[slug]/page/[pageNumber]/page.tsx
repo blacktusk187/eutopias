@@ -133,6 +133,16 @@ const queryCategoryBySlug = cache(async ({ slug }: { slug: string }) => {
         equals: slug,
       },
     },
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      bannerImage: true,
+      parent: true,
+      breadcrumbs: true,
+      updatedAt: true,
+      createdAt: true,
+    },
   })
 
   return result.docs?.[0] || null
