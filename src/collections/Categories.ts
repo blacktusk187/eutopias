@@ -21,9 +21,6 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    slugField({
-      position: undefined,
-    }),
     {
       name: 'bannerImage',
       type: 'upload',
@@ -35,5 +32,8 @@ export const Categories: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    slugField({
+      position: undefined,
+    }),
   ],
 }
