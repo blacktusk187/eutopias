@@ -29,7 +29,6 @@ export const Categories: CollectionConfig = {
       admin: {
         description:
           'Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.',
-        position: 'sidebar',
       },
     },
     slugField({
