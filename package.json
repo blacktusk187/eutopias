@@ -95,7 +95,8 @@
     "onlyBuiltDependencies": [
       "sharp",
       "esbuild",
-      "unrs-resolver"
+      "unrs-resolver",
+      "@vercel/speed-insights"
     ],
     "peerDependencyRules": {
       "allowedVersions": {
