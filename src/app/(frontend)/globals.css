@@ -256,6 +256,11 @@ html:not([data-theme]) {
   @apply text-eutopias-blue hover:text-eutopias-gold transition-colors duration-200;
 }
 
+.article-content strong,
+.article-content b {
+  @apply text-foreground font-bold;
+}
+
 .article-content img {
   @apply rounded-lg shadow-lg my-8;
 }
