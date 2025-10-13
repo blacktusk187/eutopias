@@ -1,6 +1,7 @@
 import * as migration_20251012_194200_add_banner_image from './20251012_194200_add_banner_image'
 import * as migration_20251012_202500_fix_banner_constraint from './20251012_202500_fix_banner_constraint'
 import * as migration_20251013_230000_add_media_block_columns from './20251013_230000_add_media_block_columns'
+import * as migration_20251013_234500 from './20251013_234500'
 
 export const migrations = [
   {
@@ -17,5 +18,10 @@ export const migrations = [
     up: migration_20251013_230000_add_media_block_columns.up,
     down: migration_20251013_230000_add_media_block_columns.down,
     name: '20251013_230000_add_media_block_columns',
+  },
+  {
+    up: migration_20251013_234500.up,
+    down: migration_20251013_234500.down,
+    name: '20251013_234500',
   },
 ]
