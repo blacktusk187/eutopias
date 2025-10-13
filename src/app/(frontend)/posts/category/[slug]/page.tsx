@@ -5,7 +5,7 @@ import { getPayload } from 'payload'
 import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
 
-import { CategoryPostsLayout } from '@/components/CategoryPostsLayout'
+import { CategoryFeaturedSection } from '@/components/CategoryFeaturedSection'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -59,12 +59,6 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
         contains: category.id,
       },
     },
-    select: {
-      title: true,
-      slug: true,
-      categories: true,
-      meta: true,
-    },
   })
 
   return (
@@ -84,7 +78,7 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
         />
       </div>
 
-      <CategoryPostsLayout posts={posts.docs} />
+      <CategoryFeaturedSection posts={posts.docs} />
 
       <div className="container">
         {posts.totalPages > 1 && posts.page && (
