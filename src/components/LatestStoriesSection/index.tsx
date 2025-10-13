@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
@@ -11,12 +13,32 @@ interface LatestStoriesSectionProps {
   featuredSub2?: Post | null
 }
 
+const INITIAL_VISIBLE_PICKS = 5
+const PICK_INCREMENT = 5
+
 export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
   todaysPicks,
   featuredMain,
   featuredSub1,
   featuredSub2,
 }) => {
+  const [visibleCount, setVisibleCount] = React.useState(() =>
+    Math.min(INITIAL_VISIBLE_PICKS, todaysPicks.length),
+  )
+
+  React.useEffect(() => {
+    setVisibleCount((current) =>
+      Math.min(Math.max(INITIAL_VISIBLE_PICKS, current), todaysPicks.length),
+    )
+  }, [todaysPicks])
+
+  const displayedPicks = React.useMemo(
+    () => todaysPicks.slice(0, visibleCount),
+    [todaysPicks, visibleCount],
+  )
+
+  const canShowMore = visibleCount < todaysPicks.length
+
   const getCategoryTitle = (post: Post): string => {
     if (post.categories && post.categories.length > 0) {
       const category = post.categories[0]
@@ -39,7 +61,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
           <div className="h-full flex flex-col">
             <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
             <div className="flex-1 space-y-6">
-              {todaysPicks.map((article) => {
+              {displayedPicks.map((article) => {
                 const category = getCategoryTitle(article)
 
                 return (
@@ -74,7 +96,20 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                 )
               })}
             </div>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col gap-2">
+              {canShowMore && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setVisibleCount((current) =>
+                      Math.min(current + PICK_INCREMENT, todaysPicks.length),
+                    )
+                  }
+                  className="text-sm font-medium text-foreground hover:text-accent-foreground transition-colors underline text-left"
+                >
+                  Show More Articles
+                </button>
+              )}
               <Link
                 href="/posts"
                 className="text-sm font-medium text-foreground hover:text-accent-foreground transition-colors underline"
