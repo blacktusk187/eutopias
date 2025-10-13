@@ -13,10 +13,10 @@ export const MediaBlock: Block = {
     {
       name: 'variant',
       type: 'select',
-      defaultValue: 'bordered',
+      defaultValue: 'shadowed',
       options: [
-        { label: 'Bordered (default)', value: 'bordered' },
-        { label: 'Shadowed', value: 'shadowed' },
+        { label: 'Bordered', value: 'bordered' },
+        { label: 'Shadowed (default)', value: 'shadowed' },
         { label: 'Frameless', value: 'frameless' },
       ],
       admin: {
@@ -26,10 +26,10 @@ export const MediaBlock: Block = {
     {
       name: 'width',
       type: 'select',
-      defaultValue: 'md',
+      defaultValue: 'sm',
       options: [
-        { label: 'Small', value: 'sm' },
-        { label: 'Medium (default)', value: 'md' },
+        { label: 'Small (default)', value: 'sm' },
+        { label: 'Medium', value: 'md' },
         { label: 'Large', value: 'lg' },
         { label: 'XL', value: 'xl' },
         { label: 'Full', value: 'full' },
