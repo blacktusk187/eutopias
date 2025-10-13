@@ -1,11 +1,14 @@
-'use client'
-
+import Image from 'next/image'
 import React from 'react'
+
+import type { Media } from '@/payload-types'
+
 import { cn } from '@/utilities/ui'
+import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 interface CategoryBannerProps {
   title: string
-  backgroundImage?: string
+  backgroundImage?: Media | string | null
   className?: string
 }
 
@@ -14,22 +17,33 @@ export const CategoryBanner: React.FC<CategoryBannerProps> = ({
   backgroundImage,
   className,
 }) => {
-  const backgroundStyle = backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}
+  const imageUrl = getMediaUrl(backgroundImage)
+  const imageAlt =
+    typeof backgroundImage === 'object' && backgroundImage && 'alt' in backgroundImage
+      ? backgroundImage.alt || `${title} category background`
+      : `${title} category background`
 
   return (
     <div
       className={cn(
-        'relative w-full h-48 md:h-64 bg-cover bg-center bg-no-repeat flex items-center justify-center',
-        'before:absolute before:inset-0 before:bg-black/40 before:z-0',
-        !backgroundImage && 'bg-gradient-to-br from-eutopias-blue to-eutopias-gold',
+        'relative flex h-48 w-full items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat md:h-64',
+        !imageUrl && 'bg-gradient-to-br from-eutopias-blue to-eutopias-gold',
         className,
       )}
-      style={backgroundStyle}
     >
+      {imageUrl ? (
+        <Image
+          alt={imageAlt}
+          className="object-cover"
+          fill
+          priority
+          sizes="100vw"
+          src={imageUrl}
+        />
+      ) : null}
+      <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
       <div className="relative z-10 text-center">
-        <h1 className="font-cera text-4xl md:text-6xl font-bold text-white uppercase tracking-wide">
-          {title}
-        </h1>
+        <h1 className="font-cera text-4xl font-bold uppercase tracking-wide text-white md:text-6xl">{title}</h1>
       </div>
     </div>
   )
