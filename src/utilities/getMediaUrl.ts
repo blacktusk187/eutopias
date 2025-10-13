@@ -1,54 +1,83 @@
-import { getClientSideURL } from '@/utilities/getURL'
+import type { Config, Media } from '@/payload-types'
 
-/**
- * Processes media resource URL to ensure proper formatting
- * Enforces all S3 objects to live under /uploads/
- *
- * @param url The original URL from the resource
- * @param cacheTag Optional cache tag to append to the URL
- * @returns Properly formatted URL with cache tag if provided
- */
-export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | null): string => {
-  if (!url) return ''
+type MediaInput =
+  | Media
+  | Config['db']['defaultIDType']
+  | string
+  | null
+  | undefined
+
+type Options = {
+  /** Optional size key to prefer when resolving responsive media */
+  size?: keyof NonNullable<Media['sizes']>
+  /** Fallback URL to return when a media URL cannot be resolved */
+  fallback?: string
+  /** Optional cache-busting tag appended as a query string */
+  cacheTag?: string | null
+}
+
+const isMediaObject = (value: MediaInput): value is Media => {
+  return typeof value === 'object' && value !== null && 'url' in value
+}
+
+const toS3Url = (url: string | null | undefined, cacheTag?: string | null): string | undefined => {
+  if (!url) return undefined
 
   const bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
   const region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'
-
-  // Normalize cache tag
   const tag = cacheTag && cacheTag !== '' ? encodeURIComponent(cacheTag) : null
 
-  // Case 1: Already an absolute S3/HTTP URL
-  if (url.startsWith('http://') || url.startsWith('https://')) {
-    const u = new URL(url)
+  const appendTag = (value: string) => (tag ? `${value}?${tag}` : value)
 
-    // If the absolute URL points to the Payload media proxy, treat it the same as the
-    // relative variant below so we always resolve to the S3 object instead of the proxy.
-    const pathname = u.pathname.replace(/^\/+/, '')
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    const parsed = new URL(url)
+    const pathname = parsed.pathname.replace(/^\/+/, '')
+
     if (pathname.startsWith('api/media/file/')) {
       const filename = pathname.replace('api/media/file/', '').replace(/^\/+/, '')
-      const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`
-      return tag ? `${s3Url}?${tag}` : s3Url
+      return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)
     }
 
-    // Ensure it points into /uploads/
-    let normalizedPath = pathname
-    if (!normalizedPath.startsWith('uploads/')) {
-      normalizedPath = `uploads/${normalizedPath}`
-    }
-    const s3Url = `https://${u.hostname}/${normalizedPath}`
-    return tag ? `${s3Url}?${tag}` : s3Url
+    const normalizedPath = pathname.startsWith('uploads/') ? pathname : `uploads/${pathname}`
+    return appendTag(`https://${parsed.hostname}/${normalizedPath}`)
   }
 
-  // Case 2: Payload CMS API proxy (/api/media/file/:filename)
   if (url.startsWith('/api/media/file/')) {
     const filename = url.replace('/api/media/file/', '').replace(/^\/+/, '')
-    const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`
-    return tag ? `${s3Url}?${tag}` : s3Url
+    return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)
   }
 
-  // Case 3: Relative path or bare filename
   const file = url.replace(/^\/+/, '')
   const withUploads = file.startsWith('uploads/') ? file : `uploads/${file}`
-  const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/${withUploads}`
-  return tag ? `${s3Url}?${tag}` : s3Url
+  return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/${withUploads}`)
+}
+
+const normalizeOptions = (options?: Options | string | null): Options => {
+  if (typeof options === 'string' || typeof options === 'undefined' || options === null) {
+    return { cacheTag: options ?? undefined }
+  }
+
+  return options
+}
+
+export const getMediaUrl = (media: MediaInput, options?: Options | string | null): string => {
+  const { size, fallback, cacheTag } = normalizeOptions(options)
+  const fallbackUrl = fallback ?? ''
+
+  if (!media) {
+    return fallbackUrl
+  }
+
+  if (typeof media === 'string') {
+    return toS3Url(media, cacheTag) ?? fallbackUrl
+  }
+
+  if (isMediaObject(media)) {
+    const sizedUrl = size ? media.sizes?.[size]?.url : undefined
+    const urlToUse = sizedUrl || media.url
+
+    return toS3Url(urlToUse ?? undefined, cacheTag) ?? fallbackUrl
+  }
+
+  return fallbackUrl
 }

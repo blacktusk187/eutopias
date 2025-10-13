@@ -59,16 +59,7 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
   return (
     <div className="pb-24">
       <PageClient />
-      <CategoryBanner
-        title={category.title}
-        backgroundImage={
-          category.bannerImage
-            ? typeof category.bannerImage === 'object'
-              ? String(category.bannerImage.url)
-              : String(category.bannerImage)
-            : undefined
-        }
-      />
+      <CategoryBanner title={category.title} backgroundImage={category.bannerImage} />
       <div className="container mb-8 mt-4">
         <Breadcrumbs
           items={[
