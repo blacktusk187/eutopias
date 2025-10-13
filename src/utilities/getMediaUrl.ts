@@ -19,13 +19,23 @@ export const getMediaUrl = (url: string | null | undefined, cacheTag?: string | 
 
   // Case 1: Already an absolute S3/HTTP URL
   if (url.startsWith('http://') || url.startsWith('https://')) {
-    // Ensure it points into /uploads/
     const u = new URL(url)
-    let pathname = u.pathname.replace(/^\/+/, '')
-    if (!pathname.startsWith('uploads/')) {
-      pathname = `uploads/${pathname}`
+
+    // If the absolute URL points to the Payload media proxy, treat it the same as the
+    // relative variant below so we always resolve to the S3 object instead of the proxy.
+    const pathname = u.pathname.replace(/^\/+/, '')
+    if (pathname.startsWith('api/media/file/')) {
+      const filename = pathname.replace('api/media/file/', '').replace(/^\/+/, '')
+      const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`
+      return tag ? `${s3Url}?${tag}` : s3Url
     }
-    const s3Url = `https://${u.hostname}/${pathname}`
+
+    // Ensure it points into /uploads/
+    let normalizedPath = pathname
+    if (!normalizedPath.startsWith('uploads/')) {
+      normalizedPath = `uploads/${normalizedPath}`
+    }
+    const s3Url = `https://${u.hostname}/${normalizedPath}`
     return tag ? `${s3Url}?${tag}` : s3Url
   }
 
