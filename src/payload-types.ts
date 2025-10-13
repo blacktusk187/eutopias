@@ -385,14 +385,14 @@ export interface Category {
   id: number;
   title: string;
   /**
+   * Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.
+   */
+  bannerImage?: (number | null) | Media;
+  /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
   generateSlug?: boolean | null;
   slug: string;
-  /**
-   * Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.
-   */
-  bannerImage?: (number | null) | Media;
   parent?: (number | null) | Category;
   breadcrumbs?:
     | {
@@ -1418,9 +1418,9 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  bannerImage?: T;
   generateSlug?: T;
   slug?: T;
-  bannerImage?: T;
   parent?: T;
   breadcrumbs?:
     | T

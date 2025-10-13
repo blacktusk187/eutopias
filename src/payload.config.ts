@@ -116,4 +116,5 @@ export default buildConfig({
     },
     tasks: [],
   },
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co',
 })
