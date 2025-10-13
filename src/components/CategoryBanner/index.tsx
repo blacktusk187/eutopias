@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 import type { Config, Media } from '@/payload-types'
@@ -25,13 +26,11 @@ export const CategoryBanner: React.FC<CategoryBannerProps> = ({
   backgroundImage,
   className,
 }) => {
-  const cacheTag = getCacheTag(backgroundImage)
-  const imageUrl = getMediaUrl(backgroundImage ?? null, {
-    size: 'xlarge',
-    cacheTag,
-  })
-
-  const backgroundStyle = imageUrl ? { backgroundImage: `url(${imageUrl})` } : undefined
+  const imageUrl = getMediaUrl(backgroundImage)
+  const imageAlt =
+    typeof backgroundImage === 'object' && backgroundImage && 'alt' in backgroundImage
+      ? backgroundImage.alt || `${title} category background`
+      : `${title} category background`
 
   return (
     <div
@@ -40,8 +39,17 @@ export const CategoryBanner: React.FC<CategoryBannerProps> = ({
         !imageUrl && 'bg-gradient-to-br from-eutopias-blue to-eutopias-gold',
         className,
       )}
-      style={backgroundStyle}
     >
+      {imageUrl ? (
+        <Image
+          alt={imageAlt}
+          className="object-cover"
+          fill
+          priority
+          sizes="100vw"
+          src={imageUrl}
+        />
+      ) : null}
       <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
       <div className="relative z-10 text-center">
         <h1 className="font-cera text-4xl font-bold uppercase tracking-wide text-white md:text-6xl">{title}</h1>

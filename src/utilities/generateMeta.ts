@@ -13,16 +13,11 @@ export const generateMeta = async (args: {
   const serverUrl = getServerSideURL()
   const fallbackImage = `${serverUrl}/website-template-OG.webp`
 
-  const metaImage = doc?.meta?.image
-  const hasResolvedImage =
-    typeof metaImage === 'object' && metaImage !== null && 'url' in metaImage
-
-  const ogImage = hasResolvedImage
-    ? getMediaUrl(metaImage, {
-        size: 'og',
-        fallback: fallbackImage,
-      }) || fallbackImage
-    : fallbackImage
+  const ogImage =
+    getMediaUrl(doc?.meta?.image, {
+      size: 'og',
+      fallback: fallbackImage,
+    }) || fallbackImage
 
   const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias'
 
