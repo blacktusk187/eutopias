@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { TrendingUp } from 'lucide-react'
+import { FiTrendingUp } from 'react-icons/fi'
 import { Post } from '@/payload-types'
 
 export const TrendingBanner: React.FC = () => {
@@ -42,7 +42,7 @@ export const TrendingBanner: React.FC = () => {
         <div className="container">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm font-medium shrink-0">
-              <TrendingUp className="w-4 h-4 text-card-foreground" />
+              <FiTrendingUp className="w-4 h-4 text-card-foreground" />
               <span className="text-card-foreground hidden md:inline">TRENDING</span>
             </div>
             <div className="text-sm text-muted-foreground leading-tight">
@@ -63,7 +63,7 @@ export const TrendingBanner: React.FC = () => {
       <div className="container">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-sm font-medium shrink-0">
-            <TrendingUp className="w-4 h-4 text-card-foreground" />
+            <FiTrendingUp className="w-4 h-4 text-card-foreground" />
             <span className="text-card-foreground hidden md:inline">TRENDING</span>
           </div>
           <div className="trending-scroll-container flex-1">

@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, X } from 'lucide-react'
+import { FiSearch, FiX } from 'react-icons/fi'
 import { Input } from '@/components/ui/input'
 import React, { useState, useEffect, useRef } from 'react'
 import { useDebounce } from '@/utilities/useDebounce'
@@ -86,7 +86,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ isExpanded, onToggle, isMo
             className="p-2 text-foreground hover:text-accent-foreground transition-colors"
             aria-label="Search"
           >
-            <Search className="h-5 w-5" />
+            <FiSearch className="h-5 w-5" />
           </button>
         ) : (
           // Show the full-width search bar that covers nav items
@@ -97,10 +97,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({ isExpanded, onToggle, isMo
               className="p-1 text-muted-foreground hover:text-foreground transition-colors flex-shrink-0"
               aria-label="Close search"
             >
-              <X className="h-5 w-5" />
+              <FiX className="h-5 w-5" />
             </button>
             <form onSubmit={handleSubmit} className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 ref={inputRef}
                 value={value}
@@ -126,7 +126,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ isExpanded, onToggle, isMo
           className="p-2 text-foreground hover:text-accent-foreground transition-colors"
           aria-label="Search"
         >
-          <Search className="h-5 w-5" />
+          <FiSearch className="h-5 w-5" />
         </button>
       ) : (
         // Show the full-width search bar that maintains nav height
@@ -138,10 +138,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({ isExpanded, onToggle, isMo
               className="mr-3 p-1 text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Close search"
             >
-              <X className="h-5 w-5" />
+              <FiX className="h-5 w-5" />
             </button>
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 ref={inputRef}
                 value={value}

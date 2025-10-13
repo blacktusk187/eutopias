@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { FaArrowRight } from 'react-icons/fa'
 import { Media } from '@/components/Media'
 import { Post } from '@/payload-types'
 
@@ -249,7 +249,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                           className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#EEBC2A] transition-colors"
                         >
                           Read More
-                          <ArrowRight className="w-4 h-4" />
+                          <FaArrowRight className="w-4 h-4" />
                         </Link>
                       </div>
                     </>

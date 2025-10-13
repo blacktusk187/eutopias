@@ -1,0 +1,25 @@
+{
+  "name": "react-icons",
+  "version": "5.4.0",
+  "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "exports": {
+    "./fi": {
+      "types": "./fi.d.ts",
+      "default": "./fi.js"
+    },
+    "./fa": {
+      "types": "./fa.d.ts",
+      "default": "./fa.js"
+    },
+    "./io5": {
+      "types": "./io5.d.ts",
+      "default": "./io5.js"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
+  }
+}
