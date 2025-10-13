@@ -23,6 +23,9 @@ import { getServerSideURL } from './utilities/getURL'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co'
+const URL_FIXED = RAW.replace(/^http:\/\//, 'https://').replace('eutopias.co', 'www.eutopias.co')
+
 export default buildConfig({
   admin: {
     components: {
@@ -65,6 +68,10 @@ export default buildConfig({
       ],
     },
   },
+  serverURL: URL_FIXED,
+  cors: ['https://www.eutopias.co', 'https://eutopias.co'],
+  csrf: ['https://www.eutopias.co', 'https://eutopias.co'],
+
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
   db: vercelPostgresAdapter({
@@ -73,7 +80,7 @@ export default buildConfig({
     },
   }),
   collections: [Pages, Posts, Media, Categories, Tags, Users, Authors],
-  cors: [getServerSideURL()].filter(Boolean),
+  // cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
     ...plugins,
@@ -116,5 +123,5 @@ export default buildConfig({
     },
     tasks: [],
   },
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co',
+  // serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co',
 })
