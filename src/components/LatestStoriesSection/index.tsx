@@ -1,6 +1,8 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { FaArrowRight } from 'react-icons/fa'
 import { Media } from '@/components/Media'
 import { Post } from '@/payload-types'
 
@@ -17,6 +19,11 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
   featuredSub1,
   featuredSub2,
 }) => {
+  const displayedPicks = React.useMemo(
+    () => todaysPicks.slice(0, Math.min(8, todaysPicks.length)),
+    [todaysPicks],
+  )
+
   const getCategoryTitle = (post: Post): string => {
     if (post.categories && post.categories.length > 0) {
       const category = post.categories[0]
@@ -37,9 +44,11 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
         {/* Today's Picks - Left Column (1/3) */}
         <div className="lg:col-span-4 order-2 lg:order-1">
           <div className="h-full flex flex-col">
-            <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
-            <div className="flex-1 space-y-6">
-              {todaysPicks.map((article) => {
+            <div>
+              <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
+            </div>
+            <div className="flex-1 space-y-6 overflow-hidden">
+              {displayedPicks.map((article) => {
                 const category = getCategoryTitle(article)
 
                 return (
@@ -74,7 +83,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                 )
               })}
             </div>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col gap-2">
               <Link
                 href="/posts"
                 className="text-sm font-medium text-foreground hover:text-accent-foreground transition-colors underline"
@@ -115,7 +124,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                           className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#EEBC2A] transition-colors"
                         >
                           Read More
-                          <ArrowRight className="w-4 h-4" />
+                          <FaArrowRight className="w-4 h-4" />
                         </Link>
                       </div>
                     </>

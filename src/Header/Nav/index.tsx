@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Menu, X, Search } from 'lucide-react'
+import { FiMenu, FiSearch, FiX } from 'react-icons/fi'
 import type { Header as HeaderType, Category } from '@/payload-types'
 import Link from 'next/link'
 
@@ -79,7 +79,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           href="/search"
           className="p-2 text-foreground hover:text-accent-foreground transition-colors"
         >
-          <Search className="h-5 w-5" />
+          <FiSearch className="h-5 w-5" />
         </Link>
         <Link
           href="/newsletter"
@@ -95,7 +95,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         aria-label="Toggle Menu"
         onClick={toggleMenu}
       >
-        {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        {isMenuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
       </button>
 
       {/* Mobile Menu */}
@@ -133,7 +133,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 className="flex items-center gap-2 text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <Search className="h-5 w-5" />
+                <FiSearch className="h-5 w-5" />
                 Search
               </Link>
               <Link
