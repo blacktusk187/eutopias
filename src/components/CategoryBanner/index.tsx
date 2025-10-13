@@ -12,6 +12,15 @@ interface CategoryBannerProps {
   className?: string
 }
 
+const getCacheTag = (media: CategoryBannerProps['backgroundImage']): string | undefined => {
+  if (typeof media === 'object' && media && 'updatedAt' in media) {
+    const updatedAt = media.updatedAt
+    return typeof updatedAt === 'string' && updatedAt.trim() ? updatedAt : undefined
+  }
+
+  return undefined
+}
+
 export const CategoryBanner: React.FC<CategoryBannerProps> = ({
   title,
   backgroundImage,
