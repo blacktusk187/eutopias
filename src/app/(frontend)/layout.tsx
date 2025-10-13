@@ -18,8 +18,18 @@ import { SITE_NAME, DEFAULT_TITLE, DEFAULT_DESC, DEFAULT_OG_IMAGE } from '@/cons
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 
+const metadataBase = new URL(getServerSideURL())
+const LOCAL_DEV_HOSTNAMES = new Set(['localhost', '127.0.0.1', '0.0.0.0'])
+const enableSpeedInsightsEnv = process.env.NEXT_PUBLIC_ENABLE_SPEED_INSIGHTS
+const shouldRenderSpeedInsights =
+  enableSpeedInsightsEnv === 'true'
+    ? true
+    : enableSpeedInsightsEnv === 'false'
+      ? false
+      : process.env.NODE_ENV === 'production' && !LOCAL_DEV_HOSTNAMES.has(metadataBase.hostname)
+
 export const metadata: Metadata = {
-  metadataBase: new URL(getServerSideURL()),
+  metadataBase,
 
   // Title template: pages that set `title: "Article Title"` will render as "Article Title | Eutopias"
   title: {
@@ -73,7 +83,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <AdminBar adminBarProps={{ preview: isEnabled }} />
           <Header />
           {children}
-          <SpeedInsights />
+          {shouldRenderSpeedInsights ? <SpeedInsights /> : null}
           <Footer />
         </Providers>
       </body>
