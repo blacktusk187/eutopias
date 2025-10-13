@@ -6,7 +6,7 @@ type Props = SubheadingBlock & {
   className?: string
 }
 
-export const SubheadingBlock: React.FC<Props> = ({ text, level = 'h2', className }) => {
+export const Subheading: React.FC<Props> = ({ text, level = 'h2', className }) => {
   const Tag = level as 'h2' | 'h3'
   return (
     <Tag
