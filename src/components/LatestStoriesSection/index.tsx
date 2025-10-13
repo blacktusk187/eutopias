@@ -19,121 +19,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
   featuredSub1,
   featuredSub2,
 }) => {
-  const [visibleCount, setVisibleCount] = React.useState(todaysPicks.length)
-  const [measurementSignal, setMeasurementSignal] = React.useState(0)
-  const headingRef = React.useRef<HTMLDivElement | null>(null)
-  const footerRef = React.useRef<HTMLDivElement | null>(null)
-  const listRef = React.useRef<HTMLDivElement | null>(null)
-  const featuredColumnRef = React.useRef<HTMLDivElement | null>(null)
-
   const displayedPicks = React.useMemo(
-    () => todaysPicks.slice(0, visibleCount),
-    [todaysPicks, visibleCount],
+    () => todaysPicks.slice(0, Math.min(8, todaysPicks.length)),
+    [todaysPicks],
   )
-
-  React.useEffect(() => {
-    setVisibleCount(todaysPicks.length)
-    setMeasurementSignal((signal) => signal + 1)
-  }, [todaysPicks])
-
-  React.useEffect(() => {
-    if (typeof window === 'undefined') {
-      return
-    }
-
-    const handleResize = () => {
-      setVisibleCount(todaysPicks.length)
-      setMeasurementSignal((signal) => signal + 1)
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [todaysPicks.length])
-
-  React.useEffect(() => {
-    if (typeof ResizeObserver === 'undefined') {
-      return
-    }
-
-    const target = featuredColumnRef.current
-
-    if (!target) {
-      return
-    }
-
-    const observer = new ResizeObserver(() => {
-      setVisibleCount(todaysPicks.length)
-      setMeasurementSignal((signal) => signal + 1)
-    })
-
-    observer.observe(target)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [todaysPicks.length])
-
-  React.useLayoutEffect(() => {
-    const featuredHeight = featuredColumnRef.current?.offsetHeight ?? 0
-    const headingHeight = headingRef.current?.offsetHeight ?? 0
-    const footerHeight = footerRef.current?.offsetHeight ?? 0
-    const availableHeight = featuredHeight - headingHeight - footerHeight
-
-    const listElement = listRef.current
-
-    if (!listElement) {
-      return
-    }
-
-    const items = Array.from(listElement.children) as HTMLElement[]
-
-    if (!items.length) {
-      if (visibleCount !== 0) {
-        setVisibleCount(0)
-      }
-      return
-    }
-
-    if (availableHeight <= 0) {
-      if (visibleCount !== Math.min(1, items.length)) {
-        setVisibleCount(Math.min(1, items.length))
-      }
-      return
-    }
-
-    let totalHeight = 0
-    let nextCount = 0
-
-    for (const item of items) {
-      const itemHeight = item.offsetHeight
-
-      if (itemHeight === 0) {
-        continue
-      }
-
-      if (nextCount > 0 && totalHeight + itemHeight > availableHeight) {
-        break
-      }
-
-      totalHeight += itemHeight
-      nextCount += 1
-
-      if (totalHeight >= availableHeight) {
-        break
-      }
-    }
-
-    if (nextCount === 0) {
-      nextCount = Math.min(1, items.length)
-    }
-
-    if (nextCount !== visibleCount) {
-      setVisibleCount(nextCount)
-    }
-  }, [measurementSignal, todaysPicks.length, visibleCount])
 
   const getCategoryTitle = (post: Post): string => {
     if (post.categories && post.categories.length > 0) {
@@ -155,10 +44,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
         {/* Today's Picks - Left Column (1/3) */}
         <div className="lg:col-span-4 order-2 lg:order-1">
           <div className="h-full flex flex-col">
-            <div ref={headingRef}>
+            <div>
               <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
             </div>
-            <div ref={listRef} className="flex-1 space-y-6 overflow-hidden">
+            <div className="flex-1 space-y-6 overflow-hidden">
               {displayedPicks.map((article) => {
                 const category = getCategoryTitle(article)
 
@@ -194,7 +83,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                 )
               })}
             </div>
-            <div ref={footerRef} className="mt-6 flex flex-col gap-2">
+            <div className="mt-6 flex flex-col gap-2">
               <Link
                 href="/posts"
                 className="text-sm font-medium text-foreground hover:text-accent-foreground transition-colors underline"
@@ -206,7 +95,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
         </div>
 
         {/* Featured Articles - Right Column (2/3) */}
-        <div className="lg:col-span-8 order-1 lg:order-2" ref={featuredColumnRef}>
+        <div className="lg:col-span-8 order-1 lg:order-2">
           <div className="space-y-6">
             {/* Main Featured Article */}
             {featuredMain && (
