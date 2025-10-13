@@ -49,26 +49,29 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
             )}
 
             {/* Caption and Attribution */}
-            {heroImage && typeof heroImage !== 'string' && heroImage.caption && (
-              <div className="mb-6">
-                <div className="flex items-start gap-3">
-                  {/* Small colored vertical divider */}
-                  <div className="w-1 h-16 bg-eutopias-gold mt-1 flex-shrink-0"></div>
-                  <div className="flex-1">
-                    <div className="hero-caption">
-                      <RichText
-                        data={heroImage.caption}
-                        enableGutter={false}
-                        className="prose prose-sm max-w-none"
-                      />
+            {heroImage &&
+              typeof heroImage !== 'string' &&
+              typeof heroImage !== 'number' &&
+              heroImage.caption && (
+                <div className="mb-6">
+                  <div className="flex items-start gap-3">
+                    {/* Small colored vertical divider */}
+                    <div className="w-1 h-16 bg-eutopias-gold mt-1 flex-shrink-0"></div>
+                    <div className="flex-1">
+                      <div className="hero-caption">
+                        <RichText
+                          data={heroImage.caption}
+                          enableGutter={false}
+                          className="prose prose-sm max-w-none"
+                        />
+                      </div>
+                      {heroImage.alt && (
+                        <p className="text-sm text-foreground/70 font-medium">{heroImage.alt}</p>
+                      )}
                     </div>
-                    {heroImage.alt && (
-                      <p className="text-sm text-foreground/70 font-medium">{heroImage.alt}</p>
-                    )}
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {/* Category Badge */}
             {categories && categories.length > 0 && (
