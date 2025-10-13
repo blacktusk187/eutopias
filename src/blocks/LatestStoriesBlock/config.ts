@@ -11,10 +11,10 @@ export const LatestStoriesBlock: Block = {
       hasMany: true,
       required: true,
       minRows: 3,
-      maxRows: 5,
+      maxRows: 8,
       label: "Today's Picks",
       admin: {
-        description: 'Select 3-5 posts to display in the left column',
+        description: 'Select 3-8 posts to display in the left column',
       },
       maxDepth: 3,
     },
