@@ -168,7 +168,7 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
       </div>
 
       {/* Article Content */}
-      <div className="pt-2 pb-16 bg-background">
+      <div className="pb-16 bg-background">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto">
             {/* Article Body */}
