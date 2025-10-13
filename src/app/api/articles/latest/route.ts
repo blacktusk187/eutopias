@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
 
     const payload = await getPayload({ config: configPromise })
 
-    const where: Record<string, unknown> = {
+    const where: NonNullable<Parameters<typeof payload.find>[0]['where']> = {
       _status: { equals: 'published' },
     }
 
