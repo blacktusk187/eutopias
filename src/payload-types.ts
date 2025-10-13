@@ -550,6 +550,10 @@ export interface ContentBlock {
 export interface MediaBlock {
   media: number | Media;
   /**
+   * Optional second image for side-by-side layouts
+   */
+  media2?: (number | null) | Media;
+  /**
    * Visual style of the image
    */
   variant?: ('bordered' | 'shadowed' | 'frameless') | null;
@@ -561,6 +565,10 @@ export interface MediaBlock {
    * Horizontal alignment within the content
    */
   align?: ('left' | 'center' | 'right') | null;
+  /**
+   * Layout for multiple images
+   */
+  layout?: ('single' | 'side-by-side-vertical' | 'side-by-side-horizontal') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -805,7 +813,7 @@ export interface Form {
  */
 export interface LatestStoriesBlock {
   /**
-   * Select 3-5 posts to display in the left column
+   * Select 3-8 posts to display in the left column
    */
   todaysPicks: (number | Post)[];
   /**
@@ -1241,9 +1249,11 @@ export interface ContentBlockSelect<T extends boolean = true> {
  */
 export interface MediaBlockSelect<T extends boolean = true> {
   media?: T;
+  media2?: T;
   variant?: T;
   width?: T;
   align?: T;
+  layout?: T;
   id?: T;
   blockName?: T;
 }

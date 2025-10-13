@@ -11,6 +11,14 @@ export const MediaBlock: Block = {
       required: true,
     },
     {
+      name: 'media2',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Optional second image for side-by-side layouts',
+      },
+    },
+    {
       name: 'variant',
       type: 'select',
       defaultValue: 'shadowed',
@@ -49,6 +57,20 @@ export const MediaBlock: Block = {
       ],
       admin: {
         description: 'Horizontal alignment within the content',
+      },
+    },
+    {
+      name: 'layout',
+      type: 'select',
+      defaultValue: 'single',
+      options: [
+        { label: 'Single image (default)', value: 'single' },
+        { label: 'Two images side by side (vertical)', value: 'side-by-side-vertical' },
+        { label: 'Two images side by side (horizontal)', value: 'side-by-side-horizontal' },
+      ],
+      admin: {
+        description: 'Layout for multiple images',
+        condition: (data) => data.media2,
       },
     },
   ],
