@@ -23,8 +23,9 @@ export const Categories: CollectionConfig = {
     },
     {
       name: 'bannerImage',
-      type: 'upload',
+      type: 'relationship',
       relationTo: 'media',
+      hasMany: false,
       label: 'Banner Background Image',
       admin: {
         description:
