@@ -71,39 +71,7 @@
     --eutopias-gold: 45 85% 55%; /* #eebc2a */
   }
 
-  [data-theme='dark'] {
-    --background: 0 0% 3%;
-    --foreground: 0 0% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-
-    --secondary: 0 0% 6%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 64%;
-
-    --accent: 0 0% 6%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 0 0% 12%;
-    --input: 0 0% 6%;
-    --ring: 0 0% 83%;
-
-    --success: 142 76% 36%;
-    --warning: 38 92% 50%;
-    --error: 0 84% 60%;
-  }
+  /* Dark theme removed - only light theme supported */
 }
 
 @layer base {
@@ -142,6 +110,16 @@
     color: #EEBC2A;
   }
 
+  /* Wordmark styling closer to CeraGR Bold specimen */
+  .eutopias-wordmark {
+    font-family: 'CeraPro', var(--font-cera-pro), sans-serif;
+    font-weight: 800; /* slightly heavier than bold */
+    letter-spacing: 0.03em; /* a little tighter for a denser appearance */
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
   /* Geist-style focus states */
   *:focus-visible {
     outline: 2px solid hsl(var(--ring));
@@ -163,8 +141,13 @@ html {
   opacity: 0;
 }
 
-html[data-theme='dark'],
+/* Always use light theme */
 html[data-theme='light'] {
+  opacity: initial;
+}
+
+/* Force light theme if no theme is set */
+html:not([data-theme]) {
   opacity: initial;
 }
 

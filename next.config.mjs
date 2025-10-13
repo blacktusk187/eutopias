@@ -1,18 +1,30 @@
+// next.config.mjs
 import { withPayload } from '@payloadcms/next/withPayload'
 import redirects from './redirects.js'
 
-function resolvePublicURL() {
-  const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  const origin = prod
-    ? `https://${prod}`
-    : process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
-
+function normalizeHost(urlStr) {
   try {
-    const u = new URL(origin)
-    return { protocol: u.protocol.replace(':', ''), hostname: u.hostname }
+    const u = new URL(urlStr)
+    // force https + www (canonical)
+    u.protocol = 'https:'
+    if (u.hostname === 'eutopias.co') u.hostname = 'www.eutopias.co'
+    return u
   } catch {
-    return { protocol: 'http', hostname: 'localhost' }
+    const u = new URL('https://www.eutopias.co')
+    return u
   }
+}
+
+function resolvePublicURL() {
+  // 1) explicit override wins
+  const fromEnv = process.env.NEXT_PUBLIC_SERVER_URL
+  // 2) vercel prod domain (can be apex or *.vercel.app)
+  const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  // 3) next private origin (dev)
+  const fallback = process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
+
+  const chosen = normalizeHost(fromEnv || (prod ? `https://${prod}` : fallback))
+  return { protocol: chosen.protocol.replace(':', ''), hostname: chosen.hostname }
 }
 
 const S3_BUCKET = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'
@@ -24,23 +36,19 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        ...resolvePublicURL(),
+        ...resolvePublicURL(), // now guaranteed https + www
         pathname: '/**',
       },
-      {
-        protocol: 'https',
-        hostname: S3_HOST,
-        pathname: '/**', // strict policy, but URLs must already include /uploads/
-      },
+      { protocol: 'https', hostname: S3_HOST, pathname: '/**' },
     ],
   },
-  webpack: (webpackConfig) => {
-    webpackConfig.resolve.extensionAlias = {
+  webpack: (cfg) => {
+    cfg.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],
       '.js': ['.ts', '.tsx', '.js', '.jsx'],
       '.mjs': ['.mts', '.mjs'],
     }
-    return webpackConfig
+    return cfg
   },
   reactStrictMode: true,
   redirects,

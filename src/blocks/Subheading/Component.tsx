@@ -1,8 +1,8 @@
 import React from 'react'
-import type { SubheadingBlock } from '@/payload-types'
+import type { SubheadingBlock as SubheadingBlockProps } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 
-type Props = SubheadingBlock & {
+type Props = SubheadingBlockProps & {
   className?: string
 }
 

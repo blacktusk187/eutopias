@@ -1,9 +1,9 @@
 import React from 'react'
 import RichText from '@/components/RichText'
-import type { PullQuoteBlock } from '@/payload-types'
+import type { PullQuoteBlock as PullQuoteBlockProps } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 
-type Props = PullQuoteBlock & {
+type Props = PullQuoteBlockProps & {
   className?: string
 }
 

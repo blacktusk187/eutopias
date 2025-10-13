@@ -1,8 +1,8 @@
 import React from 'react'
-import type { RelatedContentBlock } from '@/payload-types'
+import type { RelatedContentBlock as RelatedContentBlockProps } from '@/payload-types'
 import { Card } from '@/components/Card'
 
-type Props = RelatedContentBlock & {
+type Props = RelatedContentBlockProps & {
   className?: string
 }
 

@@ -14,7 +14,7 @@ export const PostHero: React.FC<{ post: Post }> = ({ post }) => {
   return (
     <div className="relative -mt-[10.4rem] min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-white">
       {/* Background image (absolute) */}
-      {heroImage && typeof heroImage !== 'string' && (
+      {heroImage && typeof heroImage === 'object' && (
         <div className="absolute inset-0 z-0">
           <Media
             resource={heroImage}

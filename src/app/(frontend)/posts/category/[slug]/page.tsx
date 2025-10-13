@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 
-import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
 
-import { CollectionArchive } from '@/components/CollectionArchive'
+import { CategoryPostsLayout } from '@/components/CategoryPostsLayout'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { CategoryBanner } from '@/components/CategoryBanner'
 import PageClient from './page.client'
 
 export const revalidate = 600
@@ -68,15 +68,11 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
   })
 
   return (
-    <div className="pt-24 pb-24">
+    <div className="pb-24">
       <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>{category.title}</h1>
-          <p className="text-muted-foreground">
-            {posts.totalDocs} {posts.totalDocs === 1 ? 'post' : 'posts'} in this category
-          </p>
-        </div>
+      <CategoryBanner title={category.title} backgroundImage={category.bannerImage} />
+      <div className="container mb-8 mt-4">
+        <Breadcrumbs items={[{ label: 'Posts', href: '/posts' }, { label: category.title }]} />
       </div>
 
       <div className="container mb-8">
@@ -88,11 +84,15 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
         />
       </div>
 
-      <CollectionArchive posts={posts.docs} />
+      <CategoryPostsLayout posts={posts.docs} />
 
       <div className="container">
         {posts.totalPages > 1 && posts.page && (
-          <Pagination page={posts.page} totalPages={posts.totalPages} />
+          <Pagination
+            page={posts.page}
+            totalPages={posts.totalPages}
+            basePath={`/posts/category/${category.slug}`}
+          />
         )}
       </div>
     </div>
@@ -123,10 +123,21 @@ const queryCategoryBySlug = cache(async ({ slug }: { slug: string }) => {
     limit: 1,
     overrideAccess: false,
     pagination: false,
+    depth: 1,
     where: {
       slug: {
         equals: slug,
       },
+    },
+    select: {
+      id: true,
+      title: true,
+      slug: true,
+      bannerImage: true,
+      parent: true,
+      breadcrumbs: true,
+      updatedAt: true,
+      createdAt: true,
     },
   })
 

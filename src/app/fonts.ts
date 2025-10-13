@@ -28,7 +28,7 @@ export const generalSans = localFont({
     'Roboto',
     'sans-serif',
   ],
-  preload: true, // Preload the primary font
+  preload: false, // Defer preload to avoid unused CSS warnings
 })
 
 export const ceraPro = localFont({

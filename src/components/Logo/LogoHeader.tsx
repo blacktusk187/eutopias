@@ -6,10 +6,11 @@ interface Props {
   className?: string
   loading?: 'lazy' | 'eager'
   priority?: boolean
+  weightClass?: string
 }
 
 export const LogoHeader = (props: Props) => {
-  const { loading: loadingFromProps, priority: priorityFromProps, className } = props
+  const { loading: loadingFromProps, priority: priorityFromProps, className, weightClass } = props
 
   const loading = loadingFromProps || 'lazy'
   const priority = priorityFromProps || false
@@ -28,7 +29,10 @@ export const LogoHeader = (props: Props) => {
         />
       </div>
       <h1
-        className="font-cera font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-tight transition-colors hover:text-[#eebc2a] hover:font-bold whitespace-nowrap"
+        className={clsx(
+          'eutopias-wordmark font-cera text-lg sm:text-xl md:text-2xl lg:text-3xl transition-colors hover:text-[#eebc2a] whitespace-nowrap',
+          weightClass,
+        )}
         style={{ color: '#003366' }}
       >
         EUTOPIAS

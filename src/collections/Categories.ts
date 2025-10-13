@@ -21,6 +21,17 @@ export const Categories: CollectionConfig = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'bannerImage',
+      type: 'relationship',
+      relationTo: 'media',
+      hasMany: false,
+      label: 'Banner Background Image',
+      admin: {
+        description:
+          'Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.',
+      },
+    },
     slugField({
       position: undefined,
     }),
