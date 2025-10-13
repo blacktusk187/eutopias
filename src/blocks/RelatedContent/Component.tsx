@@ -6,7 +6,7 @@ type Props = RelatedContentBlockProps & {
   className?: string
 }
 
-export const RelatedContentBlock: React.FC<Props> = ({ title = 'You may also like', posts }) => {
+export const RelatedContent: React.FC<Props> = ({ title = 'You may also like', posts }) => {
   const items = (posts || []).filter((p) => typeof p === 'object')
 
   if (!items.length) return null
