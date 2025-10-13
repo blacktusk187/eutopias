@@ -168,11 +168,11 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
       </div>
 
       {/* Article Content */}
-      <div className="pt-8 pb-16 bg-background">
+      <div className="pt-2 pb-16 bg-background">
         <div className="container px-4">
           <div className="max-w-4xl mx-auto">
             {/* Article Body */}
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+            <div className="prose prose-lg max-w-none">
               <RichText data={content} enableGutter={false} className="article-content" />
             </div>
 
