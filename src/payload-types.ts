@@ -222,6 +222,10 @@ export interface Post {
   id: number;
   title: string;
   heroImage?: (number | null) | Media;
+  /**
+   * Choose which part of the hero image to display when the image is taller than the display area.
+   */
+  imagePosition?: ('top' | 'center' | 'bottom') | null;
   deck?: {
     root: {
       type: string;
@@ -393,6 +397,10 @@ export interface Category {
    * Background image for the category banner. Recommended size: 1920x400px or similar aspect ratio.
    */
   bannerImage?: (number | null) | Media;
+  /**
+   * Choose which part of the image to display when the image is taller than the banner area.
+   */
+  imagePosition?: ('top' | 'center' | 'bottom') | null;
   parent?: (number | null) | Category;
   breadcrumbs?:
     | {
@@ -1291,6 +1299,7 @@ export interface LatestStoriesBlockSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   heroImage?: T;
+  imagePosition?: T;
   deck?: T;
   content?: T;
   relatedPosts?: T;
@@ -1421,6 +1430,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   bannerImage?: T;
+  imagePosition?: T;
   parent?: T;
   breadcrumbs?:
     | T

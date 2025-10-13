@@ -53,6 +53,8 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
       slug: true,
       categories: true,
       meta: true,
+      heroImage: true,
+      imagePosition: true,
     },
   })
 
@@ -68,6 +70,7 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
               : String(category.bannerImage)
             : undefined
         }
+        imagePosition={category.imagePosition as 'top' | 'center' | 'bottom'}
       />
       <div className="container mb-8 mt-4">
         <Breadcrumbs

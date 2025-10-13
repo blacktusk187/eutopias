@@ -86,6 +86,30 @@ export const Posts: CollectionConfig<'posts'> = {
               relationTo: 'media',
             },
             {
+              name: 'imagePosition',
+              type: 'select',
+              label: 'Hero Image Position',
+              options: [
+                {
+                  label: 'Top',
+                  value: 'top',
+                },
+                {
+                  label: 'Middle',
+                  value: 'center',
+                },
+                {
+                  label: 'Bottom',
+                  value: 'bottom',
+                },
+              ],
+              defaultValue: 'center',
+              admin: {
+                description:
+                  'Choose which part of the hero image to display when the image is taller than the display area.',
+              },
+            },
+            {
               name: 'deck',
               label: 'Deck (Subhead)',
               type: 'richText',

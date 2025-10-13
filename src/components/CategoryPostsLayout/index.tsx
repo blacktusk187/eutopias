@@ -6,7 +6,10 @@ import { Post } from '@/payload-types'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 // Define a partial Post type for the layout component
-type PartialPost = Pick<Post, 'id' | 'title' | 'slug' | 'categories' | 'meta' | 'heroImage'>
+type PartialPost = Pick<
+  Post,
+  'id' | 'title' | 'slug' | 'categories' | 'meta' | 'heroImage' | 'imagePosition'
+>
 
 interface CategoryPostsLayoutProps {
   posts: PartialPost[]
@@ -69,6 +72,9 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                   fill
                                   pictureClassName="absolute inset-0"
                                   imgClassName="object-cover"
+                                  objectPosition={
+                                    article.imagePosition as 'top' | 'center' | 'bottom'
+                                  }
                                 />
                               ) : (
                                 <Media
@@ -76,6 +82,9 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                   fill
                                   pictureClassName="absolute inset-0"
                                   imgClassName="object-cover"
+                                  objectPosition={
+                                    article.imagePosition as 'top' | 'center' | 'bottom'
+                                  }
                                 />
                               )}
                             </div>
@@ -128,6 +137,9 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                            objectPosition={
+                              featuredPosts[0].imagePosition as 'top' | 'center' | 'bottom'
+                            }
                           />
                         ) : (
                           <Media
@@ -135,6 +147,9 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                            objectPosition={
+                              featuredPosts[0].imagePosition as 'top' | 'center' | 'bottom'
+                            }
                           />
                         )}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -180,6 +195,9 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                                objectPosition={
+                                  article.imagePosition as 'top' | 'center' | 'bottom'
+                                }
                               />
                             ) : (
                               <Media
@@ -187,6 +205,9 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                                objectPosition={
+                                  article.imagePosition as 'top' | 'center' | 'bottom'
+                                }
                               />
                             )}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

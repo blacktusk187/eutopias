@@ -6,15 +6,22 @@ import { cn } from '@/utilities/ui'
 interface CategoryBannerProps {
   title: string
   backgroundImage?: string
+  imagePosition?: 'top' | 'center' | 'bottom'
   className?: string
 }
 
 export const CategoryBanner: React.FC<CategoryBannerProps> = ({
   title,
   backgroundImage,
+  imagePosition = 'center',
   className,
 }) => {
-  const backgroundStyle = backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}
+  const backgroundStyle = backgroundImage
+    ? {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundPosition: `center ${imagePosition}`,
+      }
+    : {}
 
   return (
     <div
