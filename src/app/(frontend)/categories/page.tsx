@@ -35,6 +35,7 @@ export default async function CategoriesPage() {
     categories.docs.map(async (category) => {
       const { totalDocs } = await payload.count({
         collection: 'posts',
+        overrideAccess: false,
         where: {
           categories: {
             contains: category.id,
