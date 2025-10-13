@@ -21,15 +21,20 @@ export default async function CategoriesPage() {
     overrideAccess: false,
     pagination: false,
     sort: 'title',
+    depth: 1,
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      parent: true,
+    },
   })
 
   // Get post counts for each category
   const categoriesWithCounts = await Promise.all(
     categories.docs.map(async (category) => {
-      const posts = await payload.find({
+      const { totalDocs } = await payload.count({
         collection: 'posts',
-        limit: 0,
-        overrideAccess: false,
         where: {
           categories: {
             contains: category.id,
@@ -38,7 +43,7 @@ export default async function CategoriesPage() {
       })
       return {
         ...category,
-        postCount: posts.totalDocs,
+        postCount: totalDocs,
       }
     }),
   )
@@ -48,13 +53,19 @@ export default async function CategoriesPage() {
   const childCategories = categoriesWithCounts.filter((cat) => cat.parent)
 
   // Group children by parent
-  const childrenByParent = childCategories.reduce<Record<number, typeof childCategories>>(
+  const childrenByParent = childCategories.reduce<Record<string, typeof childCategories>>(
     (acc, child) => {
-      const parentId = typeof child.parent === 'object' ? child.parent?.id : child.parent
-      if (parentId) {
-        acc[parentId] = acc[parentId] || []
-        acc[parentId].push(child)
+      const rawParentId = typeof child.parent === 'object' ? child.parent?.id : child.parent
+
+      if (!rawParentId) {
+        return acc
       }
+
+      const parentId = String(rawParentId)
+
+      acc[parentId] = acc[parentId] || []
+      acc[parentId].push(child)
+
       return acc
     },
     {},
@@ -77,7 +88,7 @@ export default async function CategoriesPage() {
       <div className="container">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {parentCategories.map((category) => {
-            const children = childrenByParent[category.id] || []
+            const children = childrenByParent[String(category.id)] || []
             return (
               <Card key={category.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
