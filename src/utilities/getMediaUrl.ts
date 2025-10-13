@@ -17,7 +17,7 @@ type Options = {
 }
 
 const isMediaObject = (value: MediaInput): value is Media => {
-  return Boolean(value) && typeof value === 'object' && 'url' in value
+  return typeof value === 'object' && value !== null && 'url' in value
 }
 
 const toS3Url = (url: string | null | undefined, cacheTag?: string | null): string | undefined => {

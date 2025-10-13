@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import React from 'react'
 
-import type { Media } from '@/payload-types'
+import type { Config, Media } from '@/payload-types'
 
 import { cn } from '@/utilities/ui'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 interface CategoryBannerProps {
   title: string
-  backgroundImage?: Media | string | null
+  backgroundImage?: Media | Config['db']['defaultIDType'] | string | null
   className?: string
 }
 
