@@ -7,7 +7,7 @@ type Props = PullQuoteBlock & {
   className?: string
 }
 
-export const PullQuoteBlock: React.FC<Props> = (props) => {
+export const PullQuote: React.FC<Props> = (props) => {
   const { quote, attribution, align = 'center', className } = props
 
   return (

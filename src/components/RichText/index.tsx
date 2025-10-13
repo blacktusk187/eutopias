@@ -12,7 +12,7 @@ import {
 } from '@payloadcms/richtext-lexical/react'
 
 import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
-import { PullQuoteBlock } from '@/blocks/PullQuote/Component'
+import { PullQuote } from '@/blocks/PullQuote/Component'
 import { SubheadingBlock } from '@/blocks/Subheading/Component'
 import { RelatedContentBlock } from '@/blocks/RelatedContent/Component'
 
@@ -63,7 +63,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
-    pullQuote: ({ node }) => <PullQuoteBlock className="col-start-2" {...node.fields} />,
+    pullQuote: ({ node }) => <PullQuote className="col-start-2" {...node.fields} />,
     subheading: ({ node }) => <SubheadingBlock className="col-start-2" {...node.fields} />,
     relatedContent: ({ node }) => <RelatedContentBlock className="col-start-2" {...node.fields} />,
   },
