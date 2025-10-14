@@ -28,15 +28,33 @@ export const NewsletterForm: React.FC<{ className?: string }> = ({ className }) 
         const data = await res.json().catch(() => ({}))
         const msg = data?.error || 'Subscription failed. Please try again later.'
         setError(msg)
-        toast.error(msg)
+        toast.error(msg, {
+          style: {
+            background: '#692725',
+            color: '#ffffff',
+            border: '1px solid #40201D',
+          },
+        })
       } else {
         setMessage('Thanks for subscribing! Please check your inbox.')
-        toast.success('Subscribed successfully')
+        toast.success('Subscribed successfully', {
+          style: {
+            background: '#12425A',
+            color: '#ffffff',
+            border: '1px solid #132C3A',
+          },
+        })
         setEmail('')
       }
     } catch (e) {
       setError('Network error. Please try again.')
-      toast.error('Network error. Please try again.')
+      toast.error('Network error. Please try again.', {
+        style: {
+          background: '#692725',
+          color: '#ffffff',
+          border: '1px solid #40201D',
+        },
+      })
     } finally {
       setIsSubmitting(false)
     }
