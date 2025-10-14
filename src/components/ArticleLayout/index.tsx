@@ -4,6 +4,7 @@ import { formatAuthors } from '@/utilities/formatAuthors'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
 import { RelatedPosts } from '@/blocks/RelatedPosts/Component'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import type { Post, Media as MediaType } from '@/payload-types'
 import { calculateReadingTimeFromRichText } from '@/utilities/readingTime'
 import { SocialShare } from '@/components/ui/SocialShare'
@@ -29,6 +30,23 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
   const readingStats = content ? calculateReadingTimeFromRichText(content as any) : null
+
+  // Generate breadcrumbs
+  const breadcrumbItems = [{ label: 'Posts', href: '/posts' }]
+
+  // Add category breadcrumb if available
+  if (categories && categories.length > 0) {
+    const category = categories[0]
+    if (typeof category === 'object' && category.title) {
+      breadcrumbItems.push({
+        label: category.title,
+        href: `/posts/category/${category.slug}`,
+      })
+    }
+  }
+
+  // Add current article (no href for current page)
+  breadcrumbItems.push({ label: title })
 
   return (
     <article className="min-h-screen bg-background">
@@ -98,8 +116,12 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
 
             {/* Deck / Subhead */}
             {deck && (
-              <div className="mb-8 text-lg md:text-xl text-foreground/80">
-                <RichText data={deck as any} enableGutter={false} />
+              <div className="mb-8 text-xl md:text-2xl lg:text-3xl text-foreground/80">
+                <RichText
+                  data={deck as any}
+                  enableGutter={false}
+                  className="prose-xl md:prose-2xl"
+                />
               </div>
             )}
 
@@ -163,6 +185,16 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
               </div>
             </div>
             <div className="mt-6 h-px bg-border" />
+          </div>
+        </div>
+      </div>
+
+      {/* Breadcrumbs */}
+      <div className="bg-background">
+        <div className="container px-4">
+          <div className="max-w-4xl mx-auto py-4">
+            <Breadcrumbs items={breadcrumbItems} />
+            <div className="h-px bg-border mt-4" />
           </div>
         </div>
       </div>
