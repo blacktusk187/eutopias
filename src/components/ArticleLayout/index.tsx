@@ -32,7 +32,7 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
   const readingStats = content ? calculateReadingTimeFromRichText(content as any) : null
 
   // Generate breadcrumbs
-  const breadcrumbItems = [{ label: 'Posts', href: '/posts' }]
+  const breadcrumbItems: { label: string; href?: string }[] = [{ label: 'Posts', href: '/posts' }]
 
   // Add category breadcrumb if available
   if (categories && categories.length > 0) {
