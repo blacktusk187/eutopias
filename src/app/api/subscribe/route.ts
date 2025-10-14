@@ -6,8 +6,34 @@ export async function POST(request: Request) {
   try {
     const { email } = await request.json()
 
-    if (typeof email !== 'string' || !email.includes('@')) {
-      return NextResponse.json({ error: 'Invalid email' }, { status: 400 })
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : ''
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(normalizedEmail)) {
+      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
+    }
+
+    // Heuristic: catch common domain typos for popular providers (e.g., gmail.om → gmail.com)
+    const domain = normalizedEmail.split('@')[1]
+    const labels = domain?.split('.') || []
+    const sld = labels.length >= 2 ? labels[labels.length - 2] : undefined
+    const tld = labels.length >= 1 ? labels[labels.length - 1] : undefined
+    const commonProviders: Record<string, string> = {
+      gmail: 'com',
+      outlook: 'com',
+      hotmail: 'com',
+      yahoo: 'com',
+      icloud: 'com',
+      proton: 'me',
+    }
+    if (sld && tld) {
+      const expectedTld = commonProviders[sld]
+      if (expectedTld && tld !== expectedTld) {
+        const suggested = `${normalizedEmail.split('@')[0]}@${sld}.${expectedTld}`
+        return NextResponse.json(
+          { error: `That looks like a typo. Did you mean ${suggested}?` },
+          { status: 400 },
+        )
+      }
     }
 
     const apiKey = process.env.RESEND_API_KEY
@@ -15,6 +41,41 @@ export async function POST(request: Request) {
 
     if (!apiKey || !audienceId) {
       return NextResponse.json({ error: 'Server not configured' }, { status: 500 })
+    }
+
+    // 1) Pre-check if contact already exists in this audience
+    try {
+      const checkRes = await fetch(
+        `https://api.resend.com/audiences/${audienceId}/contacts?email=${encodeURIComponent(normalizedEmail)}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            Accept: 'application/json',
+          },
+          cache: 'no-store',
+        },
+      )
+      if (checkRes.ok) {
+        const checkType = checkRes.headers.get('content-type') || ''
+        const checkBody = checkType.includes('application/json') ? await checkRes.json() : null
+        const candidates = Array.isArray(checkBody)
+          ? checkBody
+          : checkBody && Array.isArray(checkBody.data)
+            ? checkBody.data
+            : []
+        const exists = candidates.some(
+          (c: any) => typeof c?.email === 'string' && c.email.toLowerCase() === normalizedEmail,
+        )
+        if (exists) {
+          return NextResponse.json(
+            { error: 'You are already subscribed with this email.' },
+            { status: 409 },
+          )
+        }
+      }
+    } catch (e) {
+      // If the existence check fails for any reason, fall back to attempting the subscribe
     }
 
     // Docs: POST https://api.resend.com/audiences/{audience_id}/contacts
@@ -25,7 +86,7 @@ export async function POST(request: Request) {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email: normalizedEmail }),
       cache: 'no-store',
     })
 
@@ -38,9 +99,12 @@ export async function POST(request: Request) {
       // Log upstream error for server diagnostics
       console.error('Resend subscribe error:', res.status, responseBody)
 
-      // Treat contact already existing as success to keep UX smooth
+      // Contact already exists -> return 409 so client can show a proper error
       if (res.status === 409) {
-        return NextResponse.json({ success: true, alreadySubscribed: true })
+        return NextResponse.json(
+          { error: 'You are already subscribed with this email.' },
+          { status: 409 },
+        )
       }
 
       // Provide clearer hint when audience id is invalid
@@ -59,6 +123,10 @@ export async function POST(request: Request) {
           },
           { status: 400 },
         )
+      }
+
+      if (res.status === 422 && /email/i.test(errorMessage) && /valid/i.test(errorMessage)) {
+        return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
       }
 
       return NextResponse.json(
