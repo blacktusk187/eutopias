@@ -9,7 +9,10 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     `)
     console.log('Added media2_id column to _pages_v_blocks_media_block')
   } catch (error) {
-    console.log('media2_id column may already exist:', error.message)
+    console.log(
+      'media2_id column may already exist:',
+      error instanceof Error ? error.message : String(error),
+    )
   }
 
   // Force add layout column to _pages_v_blocks_media_block table
@@ -20,7 +23,10 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     `)
     console.log('Added layout column to _pages_v_blocks_media_block')
   } catch (error) {
-    console.log('layout column may already exist:', error.message)
+    console.log(
+      'layout column may already exist:',
+      error instanceof Error ? error.message : String(error),
+    )
   }
 
   // Add foreign key constraint for media2_id in version table
@@ -33,7 +39,10 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     `)
     console.log('Added foreign key constraint for media2_id')
   } catch (error) {
-    console.log('Foreign key constraint may already exist:', error.message)
+    console.log(
+      'Foreign key constraint may already exist:',
+      error instanceof Error ? error.message : String(error),
+    )
   }
 
   // Add index for media2_id in version table
@@ -44,7 +53,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
     `)
     console.log('Added index for media2_id')
   } catch (error) {
-    console.log('Index may already exist:', error.message)
+    console.log('Index may already exist:', error instanceof Error ? error.message : String(error))
   }
 }
 
