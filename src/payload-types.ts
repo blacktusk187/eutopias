@@ -566,7 +566,7 @@ export interface MediaBlock {
    */
   align?: ('left' | 'center' | 'right') | null;
   /**
-   * Layout for multiple images
+   * Layout for multiple images - only applies when media2 is uploaded
    */
   layout?: ('single' | 'side-by-side-vertical' | 'side-by-side-horizontal') | null;
   id?: string | null;

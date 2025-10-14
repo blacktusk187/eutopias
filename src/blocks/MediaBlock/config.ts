@@ -69,8 +69,7 @@ export const MediaBlock: Block = {
         { label: 'Two images side by side (horizontal)', value: 'side-by-side-horizontal' },
       ],
       admin: {
-        description: 'Layout for multiple images',
-        condition: (data) => data.media2,
+        description: 'Layout for multiple images - only applies when media2 is uploaded',
       },
     },
   ],
