@@ -24,5 +24,15 @@ export const Categories: CollectionConfig = {
     slugField({
       position: undefined,
     }),
+    {
+      name: 'parent',
+      type: 'relationship',
+      relationTo: 'categories',
+    },
+    {
+      name: 'banner_image',
+      type: 'relationship',
+      relationTo: 'media',
+    },
   ],
 }

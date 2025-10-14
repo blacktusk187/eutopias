@@ -390,6 +390,7 @@ export interface Category {
   generateSlug?: boolean | null;
   slug: string;
   parent?: (number | null) | Category;
+  banner_image?: (number | null) | Media;
   breadcrumbs?:
     | {
         doc?: (number | null) | Category;
@@ -1417,6 +1418,7 @@ export interface CategoriesSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   parent?: T;
+  banner_image?: T;
   breadcrumbs?:
     | T
     | {

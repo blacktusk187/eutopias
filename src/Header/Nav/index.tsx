@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
+import { FiMenu, FiX, FiSearch, FiChevronDown } from 'react-icons/fi'
 import type { Header as HeaderType, Category } from '@/payload-types'
 import Link from 'next/link'
 
@@ -81,9 +81,13 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             <div key={parent.id} className="relative group">
               <Link
                 href={`/posts/category/${parent.slug}`}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group/link"
+                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group/link flex items-center gap-1"
               >
-                {parent.title}
+                <span>{parent.title}</span>
+                <FiChevronDown
+                  className="ml-0.5 h-4 w-4 transition-transform group-hover/link:rotate-180"
+                  aria-hidden="true"
+                />
                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover/link:w-full transition-all duration-300"></span>
               </Link>
               <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
