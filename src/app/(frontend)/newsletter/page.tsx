@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import { NewsletterForm } from '@/components/NewsletterForm'
 
 export const metadata: Metadata = {
   title: 'Newsletter | Eutopias',
@@ -18,31 +18,12 @@ export default function NewsletterPage() {
           </p>
 
           <div className="bg-card border border-border rounded-lg p-8 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Newsletter Coming Soon</h2>
-            <p className="text-muted-foreground mb-6">
-              We&apos;re working on setting up our newsletter subscription system. In the meantime,
-              you can follow us on social media or check back later.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/"
-                className="bg-[#003366] text-white px-6 py-3 rounded-md font-medium hover:bg-[#002244] transition-colors"
-              >
-                Back to Home
-              </Link>
-              <Link
-                href="/posts"
-                className="border border-border text-foreground px-6 py-3 rounded-md font-medium hover:bg-accent transition-colors"
-              >
-                Read Our Stories
-              </Link>
-            </div>
+            <h2 className="text-2xl font-semibold mb-4">Subscribe to our newsletter</h2>
+            <p className="text-muted-foreground mb-6">Get new stories and updates in your inbox.</p>
+            <NewsletterForm />
           </div>
 
-          <div className="text-sm text-muted-foreground">
-            <p>Thank you for your interest in Eutopias!</p>
-          </div>
+          {/* Removed closing note */}
         </div>
       </div>
     </div>
