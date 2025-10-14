@@ -7,6 +7,7 @@ import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 interface CategoryFeaturedSectionProps {
   posts: Post[]
+  sidebarPosts?: Post[] // Optional sidebar posts from other categories
 }
 
 // Normalize a post's image (meta.image → heroImage) as object or string URL
@@ -18,7 +19,10 @@ const getPostImage = (post: Post): { resource?: any; src?: string } | null => {
   return null
 }
 
-export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = ({ posts }) => {
+export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = ({
+  posts,
+  sidebarPosts = [],
+}) => {
   const getCategoryTitle = (post: Post): string => {
     if (post.categories && post.categories.length > 0) {
       const category = post.categories[0]
@@ -37,11 +41,9 @@ export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = (
     )
   }
 
-  // Split posts into featured (first 3) and sidebar (remaining)
   const featuredMain = posts[0]
   const featuredSub1 = posts[1]
   const featuredSub2 = posts[2]
-  const sidebarPosts = posts.slice(3)
 
   return (
     <div className="container mb-20 mt-16">
@@ -50,7 +52,6 @@ export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = (
         {sidebarPosts.length > 0 && (
           <div className="lg:col-span-4 order-2 lg:order-1">
             <div className="h-full flex flex-col">
-              <h3 className="text-2xl font-bold mb-6 text-foreground">MORE ARTICLES</h3>
               <div className="flex-1 space-y-6">
                 {sidebarPosts.map((article) => {
                   const category = getCategoryTitle(article)
