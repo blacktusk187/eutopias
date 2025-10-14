@@ -6,7 +6,6 @@ import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
 
 import { CategoryFeaturedSection } from '@/components/CategoryFeaturedSection'
-import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { CategoryBanner } from '@/components/CategoryBanner'
@@ -61,6 +60,19 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
     },
   })
 
+  // Get additional posts from the same category for sidebar
+  const sidebarPosts = await payload.find({
+    collection: 'posts',
+    depth: 1,
+    limit: 8,
+    overrideAccess: false,
+    where: {
+      categories: {
+        contains: category.id,
+      },
+    },
+  })
+
   return (
     <div className="pb-24">
       <PageClient />
@@ -69,16 +81,7 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
         <Breadcrumbs items={[{ label: 'Posts', href: '/posts' }, { label: category.title }]} />
       </div>
 
-      <div className="container mb-8">
-        <PageRange
-          collection="posts"
-          currentPage={posts.page}
-          limit={12}
-          totalDocs={posts.totalDocs}
-        />
-      </div>
-
-      <CategoryFeaturedSection posts={posts.docs} />
+      <CategoryFeaturedSection posts={posts.docs} sidebarPosts={sidebarPosts.docs} />
 
       <div className="container">
         {posts.totalPages > 1 && posts.page && (
