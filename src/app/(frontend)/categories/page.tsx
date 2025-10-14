@@ -10,8 +10,20 @@ import { Breadcrumbs } from '@/components/Breadcrumbs'
 import PageClient from './page.client'
 
 export const revalidate = 600
+export const dynamic = 'force-dynamic'
 
 export default async function CategoriesPage() {
+  if (process.env.CI === '1') {
+    return (
+      <div className="pt-24 pb-24">
+        <PageClient />
+        <div className="container mb-8">
+          <Breadcrumbs items={[{ label: 'Categories' }]} />
+        </div>
+        <div className="container">Build-time fetch disabled in CI.</div>
+      </div>
+    )
+  }
   const payload = await getPayload({ config: configPromise })
 
   // Get all categories with their post counts

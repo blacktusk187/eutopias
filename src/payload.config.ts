@@ -19,6 +19,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -78,6 +79,9 @@ export default buildConfig({
     pool: {
       connectionString: process.env.POSTGRES_URL || '',
     },
+    // Disable dev-time schema pushes during build to avoid interactive prompts
+    push: false,
+    prodMigrations: migrations,
   }),
   collections: [Pages, Posts, Media, Categories, Tags, Users, Authors],
   // cors: [getServerSideURL()].filter(Boolean),
