@@ -18,7 +18,6 @@ import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
-import { getServerSideURL } from './utilities/getURL'
 import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
@@ -80,7 +79,7 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
     // Disable dev-time schema pushes during build to avoid interactive prompts
-    push: false,
+    push: process.env.NODE_ENV !== 'production' && process.env.VERCEL !== '1',
     // Only provide migrations when explicitly requested. This avoids
     // the interactive migration prompt during CI / Next.js builds.
     prodMigrations: process.env.RUN_MIGRATIONS === 'true' ? migrations : undefined,
