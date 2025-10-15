@@ -81,7 +81,20 @@ export default async function CategoryPage({ params: paramsPromise }: Args) {
         <Breadcrumbs items={[{ label: 'Posts', href: '/posts' }, { label: category.title }]} />
       </div>
 
+<<<<<<< HEAD
       <CategoryFeaturedSection posts={posts.docs} sidebarPosts={sidebarPosts.docs} />
+=======
+      <div className="container mb-8">
+        <PageRange
+          collection="posts"
+          currentPage={posts.page}
+          limit={12}
+          totalDocs={posts.totalDocs}
+        />
+      </div>
+
+      <CollectionArchive posts={posts.docs as any} />
+>>>>>>> c5c8096 (Nav drawer updates)
 
       <div className="container">
         {posts.totalPages > 1 && posts.page && (

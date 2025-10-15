@@ -37,17 +37,34 @@ const toS3Url = (url: string | null | undefined, cacheTag?: string | null): stri
       const filename = pathname.replace('api/media/file/', '').replace(/^\/+/, '')
       return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)
     }
+<<<<<<< HEAD
 
     const normalizedPath = pathname.startsWith('uploads/') ? pathname : `uploads/${pathname}`
     return appendTag(`https://${parsed.hostname}/${normalizedPath}`)
+=======
+    // Re-attach hash fragment as encoded path if present
+    const hashSuffix = u.hash ? `%23${u.hash.slice(1)}` : ''
+    const s3Url = `https://${u.hostname}/${pathname}${hashSuffix}`
+    return tag ? `${s3Url}?${tag}` : s3Url
+>>>>>>> c5c8096 (Nav drawer updates)
   }
 
   if (url.startsWith('/api/media/file/')) {
+<<<<<<< HEAD
     const filename = url.replace('/api/media/file/', '').replace(/^\/+/, '')
     return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)
   }
 
   const file = url.replace(/^\/+/, '')
+=======
+    const filename = url.replace('/api/media/file/', '').replace(/^\/+/, '').replace(/#/g, '%23')
+    const s3Url = `https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`
+    return tag ? `${s3Url}?${tag}` : s3Url
+  }
+
+  // Case 3: Relative path or bare filename
+  const file = url.replace(/^\/+/, '').replace(/#/g, '%23')
+>>>>>>> c5c8096 (Nav drawer updates)
   const withUploads = file.startsWith('uploads/') ? file : `uploads/${file}`
   return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/${withUploads}`)
 }
