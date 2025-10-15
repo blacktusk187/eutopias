@@ -25,7 +25,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co'
-const URL_FIXED = RAW.replace(/^http:\/\//, 'https://').replace('eutopias.co', 'www.eutopias.co')
+const URL_FIXED = RAW.replace(/^http:\/\//, 'https://') // only enforce HTTPS
 
 export default buildConfig({
   admin: {
@@ -81,7 +81,9 @@ export default buildConfig({
     },
     // Disable dev-time schema pushes during build to avoid interactive prompts
     push: false,
-    prodMigrations: migrations,
+    // Only provide migrations when explicitly requested. This avoids
+    // the interactive migration prompt during CI / Next.js builds.
+    prodMigrations: process.env.RUN_MIGRATIONS === 'true' ? migrations : undefined,
   }),
   collections: [Pages, Posts, Media, Categories, Tags, Users, Authors],
   // cors: [getServerSideURL()].filter(Boolean),

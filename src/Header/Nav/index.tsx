@@ -1,9 +1,12 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { FiMenu, FiX, FiSearch, FiChevronDown } from 'react-icons/fi'
-import type { Header as HeaderType, Category } from '@/payload-types'
+import React, { useState, useEffect, useRef } from 'react'
+import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
+import type { Header as HeaderType, Category, Post, Media } from '@/payload-types'
 import Link from 'next/link'
+import { Drawer, DrawerHeader, DrawerContent } from '@/components/ui/drawer'
+import Image from 'next/image'
+import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 interface HeaderNavProps {
   data: HeaderType
@@ -19,6 +22,12 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [categories, setCategories] = useState<Category[]>([])
   const [openParents, setOpenParents] = useState<Record<number, boolean>>({})
+  const [hoveredParentId, setHoveredParentId] = useState<number | null>(null)
+  const [postsByParentId, setPostsByParentId] = useState<Record<number, Post[]>>({})
+  const [isFetchingPosts, setIsFetchingPosts] = useState<Record<number, boolean>>({})
+  const [drawerTop, setDrawerTop] = useState<number>(0)
+  const closeTimerRef = useRef<number | null>(null)
+  const navRef = useRef<HTMLElement | null>(null)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -58,8 +67,71 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
   const featuredCategory = parents.find((c) => c.slug === 'featured')
   const otherParents = parents.filter((c) => c.slug !== 'featured')
 
+  const ensurePostsForParent = async (parentId: number) => {
+    if (postsByParentId[parentId] || isFetchingPosts[parentId]) return
+    setIsFetchingPosts((prev) => ({ ...prev, [parentId]: true }))
+    try {
+      const res = await fetch(
+        `/api/posts?limit=3&depth=1&sort=-publishedAt&where[categories][contains]=${parentId}`,
+      )
+      if (res.ok) {
+        const data = await res.json()
+        setPostsByParentId((prev) => ({ ...prev, [parentId]: data.docs || [] }))
+      }
+    } catch (e) {
+      console.error('Failed fetching posts for parent', parentId, e)
+    } finally {
+      setIsFetchingPosts((prev) => ({ ...prev, [parentId]: false }))
+    }
+  }
+
+  const getPostThumbUrl = (post: Post): string => {
+    const metaImage = post.meta?.image
+    let candidate: string | undefined
+    if (metaImage && typeof metaImage === 'object') {
+      const media = metaImage as Media
+      candidate = media.sizes?.thumbnail?.url || media.sizes?.small?.url || media.url || undefined
+    }
+    return getMediaUrl(candidate || '')
+  }
+
+  const recalcDrawerTop = () => {
+    const el = navRef.current
+    if (el) {
+      const headerEl = el.closest('header') as HTMLElement | null
+      const rect = (headerEl || el).getBoundingClientRect()
+      setDrawerTop(rect.bottom + window.scrollY)
+    }
+  }
+
+  useEffect(() => {
+    if (hoveredParentId) {
+      recalcDrawerTop()
+      const onScroll = () => recalcDrawerTop()
+      const onResize = () => recalcDrawerTop()
+      window.addEventListener('scroll', onScroll, { passive: true })
+      window.addEventListener('resize', onResize)
+      return () => {
+        window.removeEventListener('scroll', onScroll)
+        window.removeEventListener('resize', onResize)
+      }
+    }
+  }, [hoveredParentId])
+
+  const scheduleClose = () => {
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current)
+    closeTimerRef.current = window.setTimeout(() => setHoveredParentId(null), 120)
+  }
+
+  const cancelClose = () => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+  }
+
   return (
-    <nav className="flex items-center">
+    <nav ref={navRef} className="flex items-center">
       {/* Desktop Navigation */}
       <div className="hidden md:flex gap-6 items-center">
         {otherParents.map((parent) => {
@@ -78,35 +150,114 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             )
           }
           return (
-            <div key={parent.id} className="relative group">
+            <div
+              key={parent.id}
+              className=""
+              onMouseEnter={() => {
+                cancelClose()
+                setHoveredParentId(parent.id)
+                void ensurePostsForParent(parent.id)
+              }}
+              onMouseLeave={scheduleClose}
+            >
               <Link
                 href={`/posts/category/${parent.slug}`}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group/link flex items-center gap-1"
+                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group z-[60]"
               >
                 <span>{parent.title}</span>
-                <FiChevronDown
-                  className="ml-0.5 h-4 w-4 transition-transform group-hover/link:rotate-180"
-                  aria-hidden="true"
+                <span
+                  className={
+                    `pointer-events-none absolute -bottom-[2px] left-0 h-[2px] bg-foreground transition-all duration-300 ` +
+                    (hoveredParentId === parent.id ? 'w-full' : 'w-0 group-hover:w-full')
+                  }
                 />
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover/link:w-full transition-all duration-300"></span>
               </Link>
-              <div className="absolute top-full left-0 mt-2 w-56 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <Link
-                  href={`/posts/category/${parent.slug}`}
-                  className="block px-4 py-2 text-sm font-medium text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border"
+
+              {hoveredParentId === parent.id && (
+                <div
+                  className="fixed left-1/2 -translate-x-1/2 bg-card shadow-lg z-50 w-screen border-t border-border"
+                  style={{ top: drawerTop }}
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
                 >
-                  All {parent.title}
-                </Link>
-                {children.map((child) => (
-                  <Link
-                    key={child.id}
-                    href={`/posts/category/${child.slug}`}
-                    className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
-                  >
-                    {child.title}
-                  </Link>
-                ))}
-              </div>
+                  <div className="container">
+                    <div className="grid grid-cols-12 gap-8 p-8">
+                      {/* Left: subcategories */}
+                      <div className="col-span-12 md:col-span-3 bg-card">
+                        <div className="block px-2 py-1.5 text-sm font-medium text-card-foreground border-b border-border mb-2">
+                          Topics
+                        </div>
+                        <div className="flex flex-col">
+                          {children.map((child) => (
+                            <Link
+                              key={child.id}
+                              href={`/posts/category/${child.slug}`}
+                              className="px-2 py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"
+                            >
+                              {child.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right: 3 latest posts */}
+                      <div className="col-span-12 md:col-span-9">
+                        <div className="p-6 border-l border-border">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            {(postsByParentId[parent.id] || new Array(3).fill(null)).map(
+                              (post, idx) => {
+                                if (!post) {
+                                  return (
+                                    <div
+                                      key={`skeleton-${idx}`}
+                                      className="animate-pulse flex gap-3"
+                                    >
+                                      <div className="w-24 h-16 bg-muted rounded" />
+                                      <div className="flex-1 space-y-2">
+                                        <div className="h-4 bg-muted rounded w-3/4" />
+                                        <div className="h-4 bg-muted rounded w-2/5" />
+                                      </div>
+                                    </div>
+                                  )
+                                }
+                                const imgUrl = getPostThumbUrl(post)
+                                return (
+                                  <Link
+                                    key={post.id}
+                                    href={`/posts/${post.slug}`}
+                                    className="group"
+                                  >
+                                    <div className="flex items-start gap-3">
+                                      <div className="relative w-24 h-16 overflow-hidden rounded border border-border flex-shrink-0">
+                                        {imgUrl ? (
+                                          <Image
+                                            src={imgUrl}
+                                            alt={post.title || ''}
+                                            fill
+                                            className="object-cover"
+                                            sizes="96px"
+                                          />
+                                        ) : (
+                                          <div className="w-full h-full bg-muted" />
+                                        )}
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <div className="text-sm font-medium text-foreground group-hover:text-accent-foreground transition-colors line-clamp-3">
+                                          {post.title}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Link>
+                                )
+                              },
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )
         })}
@@ -162,9 +313,21 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         {isMenuOpen ? <FiX className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
       </button>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-card text-card-foreground shadow-md py-4 px-6 md:hidden z-50 border border-border">
+      {/* Mobile Drawer */}
+      <Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen} side="left">
+        <DrawerHeader>
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-medium">Menu</span>
+            <button
+              className="p-2 text-card-foreground hover:text-accent-foreground transition-colors"
+              aria-label="Close Menu"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <FiX className="h-5 w-5" />
+            </button>
+          </div>
+        </DrawerHeader>
+        <DrawerContent>
           <div className="flex flex-col gap-2">
             {otherParents.map((parent) => {
               const children = childrenByParentId[parent.id] || []
@@ -235,7 +398,6 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                 </div>
               )
             })}
-            {/* Featured category at the end */}
             {featuredCategory && (
               <Link
                 key={featuredCategory.id}
@@ -279,8 +441,8 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               </Link>
             </div>
           </div>
-        </div>
-      )}
+        </DrawerContent>
+      </Drawer>
     </nav>
   )
 }
