@@ -25,7 +25,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co'
-const URL_FIXED = RAW.replace(/^http:\/\//, 'https://').replace('eutopias.co', 'www.eutopias.co')
+const URL_FIXED = RAW.replace(/^http:\/\//, 'https://') // only enforce HTTPS
 
 export default buildConfig({
   admin: {
