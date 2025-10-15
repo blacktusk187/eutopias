@@ -11,14 +11,6 @@ export const MediaBlock: Block = {
       required: true,
     },
     {
-      name: 'media2',
-      type: 'upload',
-      relationTo: 'media',
-      admin: {
-        description: 'Optional second image for side-by-side layouts',
-      },
-    },
-    {
       name: 'variant',
       type: 'select',
       defaultValue: 'shadowed',
@@ -65,12 +57,9 @@ export const MediaBlock: Block = {
       defaultValue: 'single',
       options: [
         { label: 'Single image (default)', value: 'single' },
-        { label: 'Two images side by side (vertical)', value: 'side-by-side-vertical' },
-        { label: 'Two images side by side (horizontal)', value: 'side-by-side-horizontal' },
+        // To support multi-image layouts in future, add an additional field and DB migration first
       ],
-      admin: {
-        description: 'Layout for multiple images - only applies when media2 is uploaded',
-      },
+      admin: {},
     },
   ],
 }

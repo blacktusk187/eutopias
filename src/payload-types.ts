@@ -551,10 +551,6 @@ export interface ContentBlock {
 export interface MediaBlock {
   media: number | Media;
   /**
-   * Optional second image for side-by-side layouts
-   */
-  media2?: (number | null) | Media;
-  /**
    * Visual style of the image
    */
   variant?: ('bordered' | 'shadowed' | 'frameless') | null;
@@ -566,10 +562,7 @@ export interface MediaBlock {
    * Horizontal alignment within the content
    */
   align?: ('left' | 'center' | 'right') | null;
-  /**
-   * Layout for multiple images - only applies when media2 is uploaded
-   */
-  layout?: ('single' | 'side-by-side-vertical' | 'side-by-side-horizontal') | null;
+  layout?: 'single' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -1250,7 +1243,6 @@ export interface ContentBlockSelect<T extends boolean = true> {
  */
 export interface MediaBlockSelect<T extends boolean = true> {
   media?: T;
-  media2?: T;
   variant?: T;
   width?: T;
   align?: T;
