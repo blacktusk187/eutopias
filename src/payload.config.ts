@@ -24,19 +24,8 @@ import { migrations } from './migrations'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-<<<<<<< Updated upstream
 const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co'
 const URL_FIXED = RAW.replace(/^http:\/\//, 'https://').replace('eutopias.co', 'www.eutopias.co')
-=======
-const URL_FIXED = normalizePublicURL(process.env.NEXT_PUBLIC_SERVER_URL)
-
-function normalizePublicURL(raw?: string) {
-  let s = (raw || '').trim()
-  if (!s) return 'https://www.eutopias.co'
-  if (!/^https?:\/\//i.test(s)) s = 'https://' + s // add scheme if missing
-  return s.replace(/^http:\/\//i, 'https://') // force https
-}
->>>>>>> Stashed changes
 
 export default buildConfig({
   admin: {
