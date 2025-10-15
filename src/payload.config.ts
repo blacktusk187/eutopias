@@ -81,7 +81,9 @@ export default buildConfig({
     },
     // Disable dev-time schema pushes during build to avoid interactive prompts
     push: false,
-    prodMigrations: migrations,
+    // Only provide migrations when explicitly requested. This avoids
+    // the interactive migration prompt during CI / Next.js builds.
+    prodMigrations: process.env.RUN_MIGRATIONS === 'true' ? migrations : undefined,
   }),
   collections: [Pages, Posts, Media, Categories, Tags, Users, Authors],
   // cors: [getServerSideURL()].filter(Boolean),
