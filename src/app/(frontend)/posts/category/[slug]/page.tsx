@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 
-import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React, { cache } from 'react'
 import { notFound } from 'next/navigation'
@@ -14,7 +13,7 @@ import PageClient from './page.client'
 export const revalidate = 600
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: (await import('@/payload.config')).default })
   const categories = await payload.find({
     collection: 'categories',
     limit: 1000,
@@ -38,7 +37,7 @@ type Args = {
 
 export default async function CategoryPage({ params: paramsPromise }: Args) {
   const { slug } = await paramsPromise
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: (await import('@/payload.config')).default })
 
   // First, get the category to verify it exists
   const category = await queryCategoryBySlug({ slug })
@@ -113,7 +112,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 }
 
 const queryCategoryBySlug = cache(async ({ slug }: { slug: string }) => {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: (await import('@/payload.config')).default })
 
   const result = await payload.find({
     collection: 'categories',

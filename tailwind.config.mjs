@@ -9,6 +9,7 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+  darkMode: ['selector', '[data-theme="dark"]'],
   plugins: [tailwindcssAnimate, typography],
   prefix: '',
   safelist: [
@@ -53,6 +54,7 @@ const config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        6: '0.375rem', // 6px for consistent rounded corners
       },
       colors: {
         accent: {
@@ -91,13 +93,11 @@ const config = {
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
-        'eutopias-blue': 'hsl(var(--eutopias-blue))',
-        'eutopias-gold': 'hsl(var(--eutopias-gold))',
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
         sans: ['var(--font-geist-sans)'],
-        cera: ['var(--font-cera-pro)'],
+        vanitas: ['var(--font-vanitas)'],
       },
       keyframes: {
         'accordion-down': {

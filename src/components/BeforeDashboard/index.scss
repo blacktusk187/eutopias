@@ -7,9 +7,6 @@
     & h4 {
       margin: 0;
     }
-    .before-dashboard__userName {
-      font-weight: 600; // semi-bold the user name
-    }
   }
 
   &__instructions {
@@ -23,46 +20,5 @@
 
   & a:hover {
     opacity: 0.85;
-  }
-
-  &__heading {
-    margin: base(1) 0 base(0.5);
-    font-size: 19px; // increased size
-    font-weight: 600; // increased weight
-  }
-
-  &__tiles {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: base(0.5);
-  }
-
-  &__tile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid var(--theme-elevation-150); // closer to Collections cards
-    background: var(--theme-elevation-50); // match subtle background
-    border-radius: 6px;
-    padding: base(0.75);
-    min-height: 124px; // closer to collection tile size
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      background: var(--theme-elevation-100);
-      border-color: var(--theme-elevation-200);
-    }
-  }
-
-  &__tileTitle {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  &__tileDesc {
-    font-size: 0.85rem;
-    color: var(--theme-elevation-600);
   }
 }

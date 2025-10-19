@@ -562,7 +562,6 @@ export interface MediaBlock {
    * Horizontal alignment within the content
    */
   align?: ('left' | 'center' | 'right') | null;
-  layout?: 'single' | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -1246,7 +1245,6 @@ export interface MediaBlockSelect<T extends boolean = true> {
   variant?: T;
   width?: T;
   align?: T;
-  layout?: T;
   id?: T;
   blockName?: T;
 }

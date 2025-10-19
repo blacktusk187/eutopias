@@ -4,18 +4,14 @@ import { Banner } from '@payloadcms/ui/elements/Banner'
 import { useAuth } from '@payloadcms/ui'
 import Link from 'next/link'
 import React from 'react'
+
 import './index.scss'
 
 const baseClass = 'before-dashboard'
 
 const BeforeDashboard: React.FC = () => {
   const { user } = useAuth()
-
-  const displayName =
-    (user as { name?: string; email?: string } | undefined)?.name ||
-    (user as { name?: string; email?: string } | undefined)?.email ||
-    'there'
-
+  const displayName = (user as { name?: string; email?: string })?.name || user?.email
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">

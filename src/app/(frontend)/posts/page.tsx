@@ -58,6 +58,6 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: `Eutopias | Mission-driven storytelling`,
+    title: `Payload Website Template Posts`,
   }
 }

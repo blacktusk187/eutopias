@@ -1,0 +1,3978 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Blocks Diff Report</title>
+<style>
+  :root { --bg:#0b0f14; --panel:#0f1520; --text:#e6e9ef; --muted:#a0a6b0; --add:#0f3; --rem:#f33; --unch:#2a2f3a; --only:#d99600; }
+  body { margin:0; font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background: var(--bg); color: var(--text); }
+  header { position: sticky; top:0; background: rgba(15,21,32,.95); padding:12px 20px; border-bottom:1px solid #1d2533; z-index:10; }
+  header h1 { margin:0; font-size:16px; }
+  main { padding: 16px 20px 40px; }
+  table.idx { width:100%; border-collapse: collapse; margin: 12px 0 24px; }
+  table.idx td, table.idx th { padding:8px 10px; border-bottom: 1px solid #1d2533; }
+  .badge { padding:2px 8px; border-radius: 10px; font-size: 12px; }
+  .badge.changed { background:#1d3a24; color:#8fffab; border:1px solid #2f5a39; }
+  .badge.only { background:#3a2a1d; color:#ffd18f; border:1px solid #5a3f2f; }
+  .badge.unchanged { background:#1b2230; color:#a0a6b0; border:1px solid #2b3547; }
+  section { margin:26px 0 40px; }
+  h3 { margin: 0 0 10px; font-size: 15px; }
+  table.sbs { width:100%; border-collapse: collapse; table-layout: fixed; border:1px solid #1d2533; }
+  table.sbs thead th { background:#141b28; color:#a0a6b0; padding:6px 8px; border-bottom:1px solid #1d2533; }
+  table.sbs td { vertical-align: top; }
+  .gutter { width:48px; text-align:right; color:#8b93a1; background:#121826; border-right:1px solid #1d2533; padding:4px 6px; }
+  .code { font-family: inherit; white-space: pre; overflow-wrap: anywhere; padding:4px 8px; border-right:1px solid #1d2533; background:#101726; }
+  .code:last-child, .gutter:last-child { border-right:none; }
+  .code.added { background: #0f1a13; box-shadow: inset 3px 0 0 #2d7f47; }
+  .code.removed { background: #1a0f0f; box-shadow: inset 3px 0 0 #7f2d2d; }
+  .code.unchanged { background:#101726; }
+  .code.empty { background:#0d1320; color:#4b5567; }
+  .empty-msg { color:#8b93a1; text-align:center; padding:12px; }
+  a { color:#9fc6ff; text-decoration:none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <header><h1>Blocks Diff Report</h1></header>
+  <main>
+    <h2>Index</h2>
+    <table class="idx">
+      <thead><tr><th>Status</th><th>Path</th></tr></thead>
+      <tbody>
+        
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1742392030">canUseDOM.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-461651711">deepMerge.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-2015490364">formatAuthors.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1502183739">formatDateTime.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-1842909139">generateMeta.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-736476373">generatePreviewPath.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-133638404">getDocument.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-1155648525">getGlobals.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1994012692">getMeUser.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-922258644">getMediaUrl.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-1716699604">getRedirects.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-828699220">getURL.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-123808799">mergeOpenGraph.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1977488108">readingTime.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1122075793">toKebabCase.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-111227929">ui.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-616816770">useClickableCard.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-292373565">useDebounce.ts</a></td>
+    </tr>
+      </tbody>
+    </table>
+
+    
+    <section id="file-1742392030">
+      <h3>canUseDOM.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">export default !!(typeof window !== 'undefined' &amp;&amp; window.document &amp;&amp; window.document.createElement)</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">export default !!(typeof window !== 'undefined' &amp;&amp; window.document &amp;&amp; window.document.createElement)</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-461651711">
+      <h3>deepMerge.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">// eslint-disable-next-line @typescript-eslint/ban-ts-comment</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">// eslint-disable-next-line @typescript-eslint/ban-ts-comment</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">// @ts-nocheck</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">// @ts-nocheck</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged"> * Simple object check.</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged"> * Simple object check.</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged"> * @param item</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged"> * @param item</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged"> * @returns {boolean}</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged"> * @returns {boolean}</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">export function isObject(item: unknown): item is object {</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">export function isObject(item: unknown): item is object {</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  return typeof item === 'object' &amp;&amp; !Array.isArray(item)</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  return typeof item === 'object' &amp;&amp; !Array.isArray(item)</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged"> * Deep merge two objects.</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged"> * Deep merge two objects.</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged"> * @param target</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged"> * @param target</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged"> * @param ...sources</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged"> * @param ...sources</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">export default function deepMerge&lt;T, R&gt;(target: T, source: R): T {</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">export default function deepMerge&lt;T, R&gt;(target: T, source: R): T {</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  const output = { ...target }</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  const output = { ...target }</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  if (isObject(target) &amp;&amp; isObject(source)) {</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  if (isObject(target) &amp;&amp; isObject(source)) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">    Object.keys(source).forEach((key) =&gt; {</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">    Object.keys(source).forEach((key) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">      if (isObject(source[key])) {</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">      if (isObject(source[key])) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">        if (!(key in target)) {</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">        if (!(key in target)) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">          Object.assign(output, { [key]: source[key] })</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">          Object.assign(output, { [key]: source[key] })</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">        } else {</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">        } else {</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">          output[key] = deepMerge(target[key], source[key])</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">          output[key] = deepMerge(target[key], source[key])</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">        }</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">        }</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">      } else {</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">      } else {</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">        Object.assign(output, { [key]: source[key] })</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">        Object.assign(output, { [key]: source[key] })</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">    })</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">    })</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">  return output</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">  return output</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-2015490364">
+      <h3>formatAuthors.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { Post } from '@/payload-types'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { Post } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged"> * Formats an array of populatedAuthors from Posts into a prettified string.</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged"> * Formats an array of populatedAuthors from Posts into a prettified string.</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged"> * @param authors - The populatedAuthors array from a Post.</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged"> * @param authors - The populatedAuthors array from a Post.</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged"> * @returns A prettified string of authors.</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged"> * @returns A prettified string of authors.</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged"> * @example</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged"> * @example</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged"> *</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged"> *</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged"> * [Author1, Author2] becomes 'Author1 and Author2'</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged"> * [Author1, Author2] becomes 'Author1 and Author2'</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged"> * [Author1, Author2, Author3] becomes 'Author1, Author2, and Author3'</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged"> * [Author1, Author2, Author3] becomes 'Author1, Author2, and Author3'</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged"> *</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged"> *</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">export const formatAuthors = (</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">export const formatAuthors = (</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  authors: NonNullable&lt;NonNullable&lt;Post['populatedAuthors']&gt;[number]&gt;[],</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  authors: NonNullable&lt;NonNullable&lt;Post['populatedAuthors']&gt;[number]&gt;[],</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">) =&gt; {</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  // Ensure we don't have any authors without a name</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  // Ensure we don't have any authors without a name</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  const authorNames = authors.map((author) =&gt; author.name).filter(Boolean)</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  const authorNames = authors.map((author) =&gt; author.name).filter(Boolean)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  if (authorNames.length === 0) return ''</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  if (authorNames.length === 0) return ''</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  if (authorNames.length === 1) return authorNames[0]</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  if (authorNames.length === 1) return authorNames[0]</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  if (authorNames.length === 2) return `${authorNames[0]} and ${authorNames[1]}`</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  if (authorNames.length === 2) return `${authorNames[0]} and ${authorNames[1]}`</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  return `${authorNames.slice(0, -1).join(', ')} and ${authorNames[authorNames.length - 1]}`</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  return `${authorNames.slice(0, -1).join(', ')} and ${authorNames[authorNames.length - 1]}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1502183739">
+      <h3>formatDateTime.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">export const formatDateTime = (timestamp: string): string =&gt; {</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">export const formatDateTime = (timestamp: string): string =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">  const now = new Date()</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">  const now = new Date()</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  let date = now</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  let date = now</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  if (timestamp) date = new Date(timestamp)</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  if (timestamp) date = new Date(timestamp)</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  const months = date.getMonth()</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  const months = date.getMonth()</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  const days = date.getDate()</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  const days = date.getDate()</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  // const hours = date.getHours();</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  // const hours = date.getHours();</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  // const minutes = date.getMinutes();</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  // const minutes = date.getMinutes();</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  // const seconds = date.getSeconds();</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  // const seconds = date.getSeconds();</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  const MM = months + 1 &lt; 10 ? `0${months + 1}` : months + 1</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  const MM = months + 1 &lt; 10 ? `0${months + 1}` : months + 1</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  const DD = days &lt; 10 ? `0${days}` : days</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  const DD = days &lt; 10 ? `0${days}` : days</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  const YYYY = date.getFullYear()</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  const YYYY = date.getFullYear()</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  // const AMPM = hours &lt; 12 ? 'AM' : 'PM';</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  // const AMPM = hours &lt; 12 ? 'AM' : 'PM';</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  // const HH = hours &gt; 12 ? hours - 12 : hours;</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  // const HH = hours &gt; 12 ? hours - 12 : hours;</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  // const MinMin = (minutes &lt; 10) ? `0${minutes}` : minutes;</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  // const MinMin = (minutes &lt; 10) ? `0${minutes}` : minutes;</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  // const SS = (seconds &lt; 10) ? `0${seconds}` : seconds;</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  // const SS = (seconds &lt; 10) ? `0${seconds}` : seconds;</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  return `${MM}/${DD}/${YYYY}`</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  return `${MM}/${DD}/${YYYY}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1842909139">
+      <h3>generateMeta.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Metadata } from 'next'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Metadata } from 'next'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code removed">import type { Page, Post } from '../payload-types'</td>
+        <td class="gutter">2</td>
+        <td class="code added">import type { Media, Page, Post, Config } from '../payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { mergeOpenGraph } from './mergeOpenGraph'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { mergeOpenGraph } from './mergeOpenGraph'</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { getServerSideURL } from './getURL'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { getServerSideURL } from './getURL'</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import { getMediaUrl } from './getMediaUrl'</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import { getMediaUrl } from './getMediaUrl'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">6</td>
+        <td class="code added">const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">7</td>
+        <td class="code added">  const serverUrl = getServerSideURL()</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">8</td>
+        <td class="code added">  let url = serverUrl + '/website-template-OG.webp'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">9</td>
+        <td class="code added">  if (image &amp;&amp; typeof image === 'object' &amp;&amp; 'url' in image) {</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">10</td>
+        <td class="code added">    const ogUrl = image.sizes?.og?.url</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">11</td>
+        <td class="code added">    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">12</td>
+        <td class="code added">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">13</td>
+        <td class="code added">  return url</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">14</td>
+        <td class="code added">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">export const generateMeta = async (args: {</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">export const generateMeta = async (args: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  doc: Partial&lt;Page&gt; | Partial&lt;Post&gt; | null</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  doc: Partial&lt;Page&gt; | Partial&lt;Post&gt; | null</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">}): Promise&lt;Metadata&gt; =&gt; {</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">}): Promise&lt;Metadata&gt; =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  const { doc } = args</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  const { doc } = args</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  const serverUrl = getServerSideURL()</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  const serverUrl = getServerSideURL()</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code removed">  const fallbackImage = `${serverUrl}/website-template-OG.webp`</td>
+        <td class="gutter">20</td>
+        <td class="code added">  const ogImage = getImageURL(doc?.meta?.image)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code removed">  const ogImage =</td>
+        <td class="gutter">21</td>
+        <td class="code added">  const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias Magazine'</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code removed">    getMediaUrl(doc?.meta?.image, {</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code removed">      size: 'og',</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code removed">      fallback: fallbackImage,</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code removed">    }) || fallbackImage</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code removed">  const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias'</td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code removed"></td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code removed">  // Create a better fallback description</td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code removed">  const defaultDescription =</td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code removed">    'Mission-driven storytelling that elevates real-world solutions through multimedia. Discover inspiring stories, innovative ideas, and transformative content.'</td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code removed">  const description = doc?.meta?.description || defaultDescription</td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code removed"></td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  return {</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  return {</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code removed">    description,</td>
+        <td class="gutter">23</td>
+        <td class="code added">    description: doc?.meta?.description,</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">    openGraph: mergeOpenGraph({</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">    openGraph: mergeOpenGraph({</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code removed">      description,</td>
+        <td class="gutter">25</td>
+        <td class="code added">      description: doc?.meta?.description || '',</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">      images: ogImage</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">      images: ogImage</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">        ? [</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">        ? [</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">            {</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">            {</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">              url: ogImage,</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">              url: ogImage,</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">            },</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">            },</td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">          ]</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">          ]</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">        : undefined,</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">        : undefined,</td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">      title,</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">      title,</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',</td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">    }),</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">    }),</td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">    title,</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">    title,</td>
+      </tr>
+      <tr>
+        <td class="gutter">37</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">37</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">38</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">38</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-736476373">
+      <h3>generatePreviewPath.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { PayloadRequest, CollectionSlug } from 'payload'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { PayloadRequest, CollectionSlug } from 'payload'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">const collectionPrefixMap: Partial&lt;Record&lt;CollectionSlug, string&gt;&gt; = {</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">const collectionPrefixMap: Partial&lt;Record&lt;CollectionSlug, string&gt;&gt; = {</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  posts: '/posts',</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  posts: '/posts',</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  pages: '',</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  pages: '',</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">type Props = {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">type Props = {</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  collection: keyof typeof collectionPrefixMap</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  collection: keyof typeof collectionPrefixMap</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  slug: string</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  slug: string</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  req: PayloadRequest</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  req: PayloadRequest</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">export const generatePreviewPath = ({ collection, slug }: Props) =&gt; {</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">export const generatePreviewPath = ({ collection, slug }: Props) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  // Allow empty strings, e.g. for the homepage</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  // Allow empty strings, e.g. for the homepage</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  if (slug === undefined || slug === null) {</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  if (slug === undefined || slug === null) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">    return null</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">    return null</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">16</td>
+        <td class="code added">  // Encode to support slugs with special characters</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">17</td>
+        <td class="code added">  const encodedSlug = encodeURIComponent(slug)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  const encodedParams = new URLSearchParams({</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  const encodedParams = new URLSearchParams({</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code removed">    slug,</td>
+        <td class="gutter">19</td>
+        <td class="code added">    slug: encodedSlug,</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    collection,</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">    collection,</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code removed">    path: `${collectionPrefixMap[collection]}/${slug}`,</td>
+        <td class="gutter">21</td>
+        <td class="code added">    path: `${collectionPrefixMap[collection]}/${encodedSlug}`,</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">    previewSecret: process.env.PREVIEW_SECRET || '',</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">    previewSecret: process.env.PREVIEW_SECRET || '',</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  const url = `/next/preview?${encodedParams.toString()}`</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const url = `/next/preview?${encodedParams.toString()}`</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  return url</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  return url</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-133638404">
+      <h3>getDocument.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Config } from 'src/payload-types'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Config } from 'src/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code removed">import { getPayloadClient } from '@/lib/payloadClient'</td>
+        <td class="gutter">2</td>
+        <td class="code added">import configPromise from '@payload-config'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code removed"></td>
+        <td class="gutter">3</td>
+        <td class="code added">import { getPayload } from 'payload'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { unstable_cache } from 'next/cache'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { unstable_cache } from 'next/cache'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">type Collection = keyof Config['collections']</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">type Collection = keyof Config['collections']</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">async function getDocument(collection: Collection, slug: string, depth = 0) {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">async function getDocument(collection: Collection, slug: string, depth = 0) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code removed">  const payload = await getPayloadClient()</td>
+        <td class="gutter">7</td>
+        <td class="code added">  const payload = await getPayload({ config: configPromise })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  const page = await payload.find({</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  const page = await payload.find({</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    collection,</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    collection,</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    depth,</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    depth,</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    where: {</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">    where: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      slug: {</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">      slug: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">        equals: slug,</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">        equals: slug,</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">      },</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">      },</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  return page.docs[0]</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  return page.docs[0]</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged"> * Returns a unstable_cache function mapped with the cache tag for the slug</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged"> * Returns a unstable_cache function mapped with the cache tag for the slug</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">export const getCachedDocument = (collection: Collection, slug: string) =&gt;</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">export const getCachedDocument = (collection: Collection, slug: string) =&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  unstable_cache(async () =&gt; getDocument(collection, slug), [collection, slug], {</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  unstable_cache(async () =&gt; getDocument(collection, slug), [collection, slug], {</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">    tags: [`${collection}_${slug}`],</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">    tags: [`${collection}_${slug}`],</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1155648525">
+      <h3>getGlobals.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Config } from 'src/payload-types'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Config } from 'src/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code removed">import { getPayloadClient } from '@/lib/payloadClient'</td>
+        <td class="gutter">2</td>
+        <td class="code added">import configPromise from '@payload-config'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code removed"></td>
+        <td class="gutter">3</td>
+        <td class="code added">import { getPayload } from 'payload'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { unstable_cache } from 'next/cache'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { unstable_cache } from 'next/cache'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">type Global = keyof Config['globals']</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">type Global = keyof Config['globals']</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">async function getGlobal(slug: Global, depth = 0) {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">async function getGlobal(slug: Global, depth = 0) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code removed">  const payload = await getPayloadClient()</td>
+        <td class="gutter">7</td>
+        <td class="code added">  const payload = await getPayload({ config: configPromise })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  const global = await payload.findGlobal({</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  const global = await payload.findGlobal({</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    slug,</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    slug,</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    depth,</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    depth,</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  return global</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  return global</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged"> * Returns a unstable_cache function mapped with the cache tag for the slug</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged"> * Returns a unstable_cache function mapped with the cache tag for the slug</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">export const getCachedGlobal = (slug: Global, depth = 0) =&gt;</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">export const getCachedGlobal = (slug: Global, depth = 0) =&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code removed">  unstable_cache(async () =&gt; getGlobal(slug, depth), [slug, String(depth)], {</td>
+        <td class="gutter">18</td>
+        <td class="code added">  unstable_cache(async () =&gt; getGlobal(slug, depth), [slug], {</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    tags: [`global_${slug}`],</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">    tags: [`global_${slug}`],</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1994012692">
+      <h3>getMeUser.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { cookies } from 'next/headers'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { cookies } from 'next/headers'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { redirect } from 'next/navigation'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { redirect } from 'next/navigation'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import type { User } from '../payload-types'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import type { User } from '../payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { getClientSideURL } from './getURL'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { getClientSideURL } from './getURL'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">export const getMeUser = async (args?: {</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">export const getMeUser = async (args?: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  nullUserRedirect?: string</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  nullUserRedirect?: string</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  validUserRedirect?: string</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  validUserRedirect?: string</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">}): Promise&lt;{</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">}): Promise&lt;{</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  token: string</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  token: string</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  user: User</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  user: User</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">}&gt; =&gt; {</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">}&gt; =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  const { nullUserRedirect, validUserRedirect } = args || {}</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  const { nullUserRedirect, validUserRedirect } = args || {}</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  const cookieStore = await cookies()</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  const cookieStore = await cookies()</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  const token = cookieStore.get('payload-token')?.value</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  const token = cookieStore.get('payload-token')?.value</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  const meUserReq = await fetch(`${getClientSideURL()}/api/users/me`, {</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  const meUserReq = await fetch(`${getClientSideURL()}/api/users/me`, {</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">    headers: {</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">    headers: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">      Authorization: `JWT ${token}`,</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">      Authorization: `JWT ${token}`,</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  const {</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  const {</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">    user,</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">    user,</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  }: {</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  }: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">    user: User</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">    user: User</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  } = await meUserReq.json()</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  } = await meUserReq.json()</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  if (validUserRedirect &amp;&amp; meUserReq.ok &amp;&amp; user) {</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  if (validUserRedirect &amp;&amp; meUserReq.ok &amp;&amp; user) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">    redirect(validUserRedirect)</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">    redirect(validUserRedirect)</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">  if (nullUserRedirect &amp;&amp; (!meUserReq.ok || !user)) {</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">  if (nullUserRedirect &amp;&amp; (!meUserReq.ok || !user)) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">    redirect(nullUserRedirect)</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">    redirect(nullUserRedirect)</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">  // Token will exist here because if it doesn't the user will be redirected</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">  // Token will exist here because if it doesn't the user will be redirected</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">  return {</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">  return {</td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">    token: token!,</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">    token: token!,</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">    user,</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">    user,</td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-922258644">
+      <h3>getMediaUrl.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Config, Media } from '@/payload-types'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Config, Media } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code removed">type MediaInput =</td>
+        <td class="gutter">2</td>
+        <td class="code added">type MediaInput = Media | Config['db']['defaultIDType'] | string | null | undefined</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code removed">  | Media</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code removed">  | Config['db']['defaultIDType']</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code removed">  | string</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code removed">  | null</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code removed">  | undefined</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">type Options = {</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">type Options = {</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  /** Optional size key to prefer when resolving responsive media */</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  /** Optional size key to prefer when resolving responsive media */</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  size?: keyof NonNullable&lt;Media['sizes']&gt;</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  size?: keyof NonNullable&lt;Media['sizes']&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  /** Fallback URL to return when a media URL cannot be resolved */</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  /** Fallback URL to return when a media URL cannot be resolved */</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  fallback?: string</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  fallback?: string</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  /** Optional cache-busting tag appended as a query string */</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  /** Optional cache-busting tag appended as a query string */</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  cacheTag?: string | null</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  cacheTag?: string | null</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">const isMediaObject = (value: MediaInput): value is Media =&gt; {</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">const isMediaObject = (value: MediaInput): value is Media =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  return typeof value === 'object' &amp;&amp; value !== null &amp;&amp; 'url' in value</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  return typeof value === 'object' &amp;&amp; value !== null &amp;&amp; 'url' in value</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">const toS3Url = (url: string | null | undefined, cacheTag?: string | null): string | undefined =&gt; {</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">const toS3Url = (url: string | null | undefined, cacheTag?: string | null): string | undefined =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  if (!url) return undefined</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  if (!url) return undefined</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  const bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  const bucket = process.env.NEXT_PUBLIC_S3_BUCKET_NAME || 'eutopias-magazine-media'</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  const region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  const region = process.env.NEXT_PUBLIC_S3_REGION || 'us-east-2'</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const tag = cacheTag &amp;&amp; cacheTag !== '' ? encodeURIComponent(cacheTag) : null</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">  const tag = cacheTag &amp;&amp; cacheTag !== '' ? encodeURIComponent(cacheTag) : null</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const appendTag = (value: string) =&gt; (tag ? `${value}?${tag}` : value)</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  const appendTag = (value: string) =&gt; (tag ? `${value}?${tag}` : value)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  if (url.startsWith('http://') || url.startsWith('https://')) {</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  if (url.startsWith('http://') || url.startsWith('https://')) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">    const parsed = new URL(url)</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">    const parsed = new URL(url)</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">    const pathname = parsed.pathname.replace(/^\/+/, '')</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">    const pathname = parsed.pathname.replace(/^\/+/, '')</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">    if (pathname.startsWith('api/media/file/')) {</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">    if (pathname.startsWith('api/media/file/')) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">      const filename = pathname.replace('api/media/file/', '').replace(/^\/+/, '')</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">      const filename = pathname.replace('api/media/file/', '').replace(/^\/+/, '')</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">      return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">      return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)</td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">    const normalizedPath = pathname.startsWith('uploads/') ? pathname : `uploads/${pathname}`</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">    const normalizedPath = pathname.startsWith('uploads/') ? pathname : `uploads/${pathname}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">    return appendTag(`https://${parsed.hostname}/${normalizedPath}`)</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">    return appendTag(`https://${parsed.hostname}/${normalizedPath}`)</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">  if (url.startsWith('/api/media/file/')) {</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  if (url.startsWith('/api/media/file/')) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">    const filename = url.replace('/api/media/file/', '').replace(/^\/+/, '')</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">    const filename = url.replace('/api/media/file/', '').replace(/^\/+/, '')</td>
+      </tr>
+      <tr>
+        <td class="gutter">37</td>
+        <td class="code unchanged">    return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">    return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/uploads/${filename}`)</td>
+      </tr>
+      <tr>
+        <td class="gutter">38</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">39</td>
+        <td class="code unchanged">  const file = url.replace(/^\/+/, '')</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">  const file = url.replace(/^\/+/, '')</td>
+      </tr>
+      <tr>
+        <td class="gutter">40</td>
+        <td class="code unchanged">  const withUploads = file.startsWith('uploads/') ? file : `uploads/${file}`</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">  const withUploads = file.startsWith('uploads/') ? file : `uploads/${file}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">41</td>
+        <td class="code unchanged">  return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/${withUploads}`)</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">  return appendTag(`https://${bucket}.s3.${region}.amazonaws.com/${withUploads}`)</td>
+      </tr>
+      <tr>
+        <td class="gutter">42</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">37</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">43</td>
+        <td class="code unchanged">const normalizeOptions = (options?: Options | string | null): Options =&gt; {</td>
+        <td class="gutter">38</td>
+        <td class="code unchanged">const normalizeOptions = (options?: Options | string | null): Options =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">44</td>
+        <td class="code unchanged">  if (typeof options === 'string' || typeof options === 'undefined' || options === null) {</td>
+        <td class="gutter">39</td>
+        <td class="code unchanged">  if (typeof options === 'string' || typeof options === 'undefined' || options === null) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">45</td>
+        <td class="code unchanged">    return { cacheTag: options ?? undefined }</td>
+        <td class="gutter">40</td>
+        <td class="code unchanged">    return { cacheTag: options ?? undefined }</td>
+      </tr>
+      <tr>
+        <td class="gutter">46</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">41</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">47</td>
+        <td class="code unchanged">  return options</td>
+        <td class="gutter">42</td>
+        <td class="code unchanged">  return options</td>
+      </tr>
+      <tr>
+        <td class="gutter">48</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">43</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">49</td>
+        <td class="code unchanged">export const getMediaUrl = (media: MediaInput, options?: Options | string | null): string =&gt; {</td>
+        <td class="gutter">44</td>
+        <td class="code unchanged">export const getMediaUrl = (media: MediaInput, options?: Options | string | null): string =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">50</td>
+        <td class="code unchanged">  const { size, fallback, cacheTag } = normalizeOptions(options)</td>
+        <td class="gutter">45</td>
+        <td class="code unchanged">  const { size, fallback, cacheTag } = normalizeOptions(options)</td>
+      </tr>
+      <tr>
+        <td class="gutter">51</td>
+        <td class="code unchanged">  const fallbackUrl = fallback ?? ''</td>
+        <td class="gutter">46</td>
+        <td class="code unchanged">  const fallbackUrl = fallback ?? ''</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">52</td>
+        <td class="code unchanged">  if (!media) {</td>
+        <td class="gutter">47</td>
+        <td class="code unchanged">  if (!media) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">53</td>
+        <td class="code unchanged">    return fallbackUrl</td>
+        <td class="gutter">48</td>
+        <td class="code unchanged">    return fallbackUrl</td>
+      </tr>
+      <tr>
+        <td class="gutter">54</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">49</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">55</td>
+        <td class="code unchanged">  if (typeof media === 'string') {</td>
+        <td class="gutter">50</td>
+        <td class="code unchanged">  if (typeof media === 'string') {</td>
+      </tr>
+      <tr>
+        <td class="gutter">56</td>
+        <td class="code unchanged">    return toS3Url(media, cacheTag) ?? fallbackUrl</td>
+        <td class="gutter">51</td>
+        <td class="code unchanged">    return toS3Url(media, cacheTag) ?? fallbackUrl</td>
+      </tr>
+      <tr>
+        <td class="gutter">57</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">52</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">58</td>
+        <td class="code unchanged">  if (isMediaObject(media)) {</td>
+        <td class="gutter">53</td>
+        <td class="code unchanged">  if (isMediaObject(media)) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">59</td>
+        <td class="code unchanged">    const sizedUrl = size ? media.sizes?.[size]?.url : undefined</td>
+        <td class="gutter">54</td>
+        <td class="code unchanged">    const sizedUrl = size ? media.sizes?.[size]?.url : undefined</td>
+      </tr>
+      <tr>
+        <td class="gutter">60</td>
+        <td class="code unchanged">    const urlToUse = sizedUrl || media.url</td>
+        <td class="gutter">55</td>
+        <td class="code unchanged">    const urlToUse = sizedUrl || media.url</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">61</td>
+        <td class="code unchanged">    return toS3Url(urlToUse ?? undefined, cacheTag) ?? fallbackUrl</td>
+        <td class="gutter">56</td>
+        <td class="code unchanged">    return toS3Url(urlToUse ?? undefined, cacheTag) ?? fallbackUrl</td>
+      </tr>
+      <tr>
+        <td class="gutter">62</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">57</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">63</td>
+        <td class="code unchanged">  return fallbackUrl</td>
+        <td class="gutter">58</td>
+        <td class="code unchanged">  return fallbackUrl</td>
+      </tr>
+      <tr>
+        <td class="gutter">64</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">59</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1716699604">
+      <h3>getRedirects.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code removed">import { getPayloadClient } from '@/lib/payloadClient'</td>
+        <td class="gutter">1</td>
+        <td class="code added">import configPromise from '@payload-config'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code removed"></td>
+        <td class="gutter">2</td>
+        <td class="code added">import { getPayload } from 'payload'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { unstable_cache } from 'next/cache'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { unstable_cache } from 'next/cache'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">export async function getRedirects(depth = 1) {</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">export async function getRedirects(depth = 1) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code removed">  const payload = await getPayloadClient()</td>
+        <td class="gutter">5</td>
+        <td class="code added">  const payload = await getPayload({ config: configPromise })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  const { docs: redirects } = await payload.find({</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  const { docs: redirects } = await payload.find({</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    collection: 'redirects',</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    collection: 'redirects',</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    depth,</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    depth,</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    limit: 0,</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    limit: 0,</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    pagination: false,</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    pagination: false,</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  return redirects</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  return redirects</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged"> * Returns a unstable_cache function mapped with the cache tag for 'redirects'.</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged"> * Returns a unstable_cache function mapped with the cache tag for 'redirects'.</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged"> *</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged"> *</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged"> * Cache all redirects together to avoid multiple fetches.</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged"> * Cache all redirects together to avoid multiple fetches.</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">export const getCachedRedirects = () =&gt;</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">export const getCachedRedirects = () =&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  unstable_cache(async () =&gt; getRedirects(), ['redirects'], {</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  unstable_cache(async () =&gt; getRedirects(), ['redirects'], {</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">    tags: ['redirects'],</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">    tags: ['redirects'],</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  })</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  })</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-828699220">
+      <h3>getURL.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import canUseDOM from './canUseDOM'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import canUseDOM from './canUseDOM'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code removed">export const getServerSideURL = (): string =&gt; {</td>
+        <td class="gutter">2</td>
+        <td class="code added">export const getServerSideURL = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  return (</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">    process.env.NEXT_PUBLIC_SERVER_URL ||</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">    process.env.NEXT_PUBLIC_SERVER_URL ||</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    (process.env.VERCEL_PROJECT_PRODUCTION_URL</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    (process.env.VERCEL_PROJECT_PRODUCTION_URL</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">      : 'http://localhost:3000')</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">      : 'http://localhost:3000')</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code removed">export const getClientSideURL = (): string =&gt; {</td>
+        <td class="gutter">10</td>
+        <td class="code added">export const getClientSideURL = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  if (canUseDOM) {</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  if (canUseDOM) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">    const protocol = window.location.protocol</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">    const protocol = window.location.protocol</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">    const domain = window.location.hostname</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">    const domain = window.location.hostname</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">    const port = window.location.port</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">    const port = window.location.port</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">    return `${protocol}//${domain}${port ? `:${port}` : ''}`</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">    return `${protocol}//${domain}${port ? `:${port}` : ''}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  return process.env.NEXT_PUBLIC_SERVER_URL || ''</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  return process.env.NEXT_PUBLIC_SERVER_URL || ''</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-123808799">
+      <h3>mergeOpenGraph.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Metadata } from 'next'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { Metadata } from 'next'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { getServerSideURL } from './getURL'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { getServerSideURL } from './getURL'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">const defaultOpenGraph: Metadata['openGraph'] = {</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">const defaultOpenGraph: Metadata['openGraph'] = {</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  type: 'website',</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  type: 'website',</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  description:</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  description:</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    'Mission-driven storytelling that elevates real-world solutions through multimedia. Discover inspiring stories, innovative ideas, and transformative content.',</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    'Mission-driven storytelling that elevates real-world solutions through multimedia. Discover inspiring stories, innovative ideas, and transformative content.',</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  images: [</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  images: [</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    {</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    {</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">      url: `${getServerSideURL()}/website-template-OG.webp`,</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">      url: `${getServerSideURL()}/website-template-OG.webp`,</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  ],</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  ],</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  siteName: 'Eutopias',</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  siteName: 'Eutopias',</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  title: 'Eutopias',</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  title: 'Eutopias',</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] =&gt; {</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  return {</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  return {</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">    ...defaultOpenGraph,</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">    ...defaultOpenGraph,</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    ...og,</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">    ...og,</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">    images: og?.images ? og.images : defaultOpenGraph.images,</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">    images: og?.images ? og.images : defaultOpenGraph.images,</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1977488108">
+      <h3>readingTime.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">function extractPlainTextFromLexical(state: DefaultTypedEditorState): string {</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">function extractPlainTextFromLexical(state: DefaultTypedEditorState): string {</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  try {</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  try {</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">    const root = (state as any)?.root</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">    const root = (state as any)?.root</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    if (!root) return ''</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    if (!root) return ''</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    const walk = (node: any): string =&gt; {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    const walk = (node: any): string =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">      if (!node) return ''</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">      if (!node) return ''</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">      const type = node.type</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">      const type = node.type</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">      if (type === 'text') return node.text || ''</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">      if (type === 'text') return node.text || ''</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">      if (Array.isArray(node.children)) return node.children.map(walk).join(' ')</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">      if (Array.isArray(node.children)) return node.children.map(walk).join(' ')</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      return ''</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      return ''</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">    return walk(root)</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">    return walk(root)</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  } catch {</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  } catch {</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">    return ''</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">    return ''</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">export function calculateReadingTimeFromRichText(state?: DefaultTypedEditorState | null): {</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">export function calculateReadingTimeFromRichText(state?: DefaultTypedEditorState | null): {</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  minutes: number</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  minutes: number</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  words: number</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  words: number</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">} {</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">} {</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  if (!state) return { minutes: 0, words: 0 }</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  if (!state) return { minutes: 0, words: 0 }</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const text = extractPlainTextFromLexical(state)</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const text = extractPlainTextFromLexical(state)</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const words = (text.trim().match(/\S+/g) || []).length</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const words = (text.trim().match(/\S+/g) || []).length</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  const wordsPerMinute = 225</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  const wordsPerMinute = 225</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  const minutes = Math.max(1, Math.ceil(words / wordsPerMinute))</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  const minutes = Math.max(1, Math.ceil(words / wordsPerMinute))</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  return { minutes, words }</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  return { minutes, words }</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1122075793">
+      <h3>toKebabCase.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">export const toKebabCase = (string: string): string =&gt;</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">export const toKebabCase = (string: string): string =&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">  string</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">  string</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">    ?.replace(/([a-z])([A-Z])/g, '$1-$2')</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">    ?.replace(/([a-z])([A-Z])/g, '$1-$2')</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">    .replace(/\s+/g, '-')</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">    .replace(/\s+/g, '-')</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    .toLowerCase()</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    .toLowerCase()</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-111227929">
+      <h3>ui.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">/**</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">/**</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged"> * Utility functions for UI components automatically added by ShadCN and used in a few of our frontend components and blocks.</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged"> * Utility functions for UI components automatically added by ShadCN and used in a few of our frontend components and blocks.</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged"> *</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged"> *</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged"> * Other functions may be exported from here in the future or by installing other shadcn components.</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged"> * Other functions may be exported from here in the future or by installing other shadcn components.</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged"> */</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged"> */</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">import { type ClassValue, clsx } from 'clsx'</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">import { type ClassValue, clsx } from 'clsx'</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">import { twMerge } from 'tailwind-merge'</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">import { twMerge } from 'tailwind-merge'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">export function cn(...inputs: ClassValue[]) {</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">export function cn(...inputs: ClassValue[]) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  return twMerge(clsx(inputs))</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  return twMerge(clsx(inputs))</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-616816770">
+      <h3>useClickableCard.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import type { RefObject } from 'react'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import type { RefObject } from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { useRouter } from 'next/navigation'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { useRouter } from 'next/navigation'</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { useCallback, useEffect, useRef } from 'react'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { useCallback, useEffect, useRef } from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">type UseClickableCardType&lt;T extends HTMLElement&gt; = {</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">type UseClickableCardType&lt;T extends HTMLElement&gt; = {</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  card: {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  card: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    ref: RefObject&lt;T | null&gt;</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    ref: RefObject&lt;T | null&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  link: {</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  link: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    ref: RefObject&lt;HTMLAnchorElement | null&gt;</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    ref: RefObject&lt;HTMLAnchorElement | null&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">interface Props {</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">interface Props {</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  external?: boolean</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  external?: boolean</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  newTab?: boolean</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  newTab?: boolean</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  scroll?: boolean</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  scroll?: boolean</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">function useClickableCard&lt;T extends HTMLElement&gt;({</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">function useClickableCard&lt;T extends HTMLElement&gt;({</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  external = false,</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  external = false,</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  newTab = false,</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  newTab = false,</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  scroll = true,</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  scroll = true,</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">}: Props): UseClickableCardType&lt;T&gt; {</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">}: Props): UseClickableCardType&lt;T&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const router = useRouter()</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const router = useRouter()</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const card = useRef&lt;T&gt;(null)</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const card = useRef&lt;T&gt;(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  const link = useRef&lt;HTMLAnchorElement&gt;(null)</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  const link = useRef&lt;HTMLAnchorElement&gt;(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  const timeDown = useRef&lt;number&gt;(0)</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  const timeDown = useRef&lt;number&gt;(0)</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  const hasActiveParent = useRef&lt;boolean&gt;(false)</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  const hasActiveParent = useRef&lt;boolean&gt;(false)</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">  const pressedButton = useRef&lt;number&gt;(0)</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">  const pressedButton = useRef&lt;number&gt;(0)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">  const handleMouseDown = useCallback(</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">  const handleMouseDown = useCallback(</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">    (e: MouseEvent) =&gt; {</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">    (e: MouseEvent) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">      if (e.target) {</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">      if (e.target) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">        const target = e.target as Element</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">        const target = e.target as Element</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">        const timeNow = +new Date()</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">        const timeNow = +new Date()</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">        const parent = target?.closest('a')</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">        const parent = target?.closest('a')</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">        pressedButton.current = e.button</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">        pressedButton.current = e.button</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">        if (!parent) {</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">        if (!parent) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">37</td>
+        <td class="code unchanged">          hasActiveParent.current = false</td>
+        <td class="gutter">37</td>
+        <td class="code unchanged">          hasActiveParent.current = false</td>
+      </tr>
+      <tr>
+        <td class="gutter">38</td>
+        <td class="code unchanged">          timeDown.current = timeNow</td>
+        <td class="gutter">38</td>
+        <td class="code unchanged">          timeDown.current = timeNow</td>
+      </tr>
+      <tr>
+        <td class="gutter">39</td>
+        <td class="code unchanged">        } else {</td>
+        <td class="gutter">39</td>
+        <td class="code unchanged">        } else {</td>
+      </tr>
+      <tr>
+        <td class="gutter">40</td>
+        <td class="code unchanged">          hasActiveParent.current = true</td>
+        <td class="gutter">40</td>
+        <td class="code unchanged">          hasActiveParent.current = true</td>
+      </tr>
+      <tr>
+        <td class="gutter">41</td>
+        <td class="code unchanged">        }</td>
+        <td class="gutter">41</td>
+        <td class="code unchanged">        }</td>
+      </tr>
+      <tr>
+        <td class="gutter">42</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">42</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">43</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">43</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">44</td>
+        <td class="code unchanged">    // eslint-disable-next-line react-hooks/exhaustive-deps</td>
+        <td class="gutter">44</td>
+        <td class="code unchanged">    // eslint-disable-next-line react-hooks/exhaustive-deps</td>
+      </tr>
+      <tr>
+        <td class="gutter">45</td>
+        <td class="code unchanged">    [router, card, link, timeDown],</td>
+        <td class="gutter">45</td>
+        <td class="code unchanged">    [router, card, link, timeDown],</td>
+      </tr>
+      <tr>
+        <td class="gutter">46</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">46</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">47</td>
+        <td class="code unchanged">  const handleMouseUp = useCallback(</td>
+        <td class="gutter">47</td>
+        <td class="code unchanged">  const handleMouseUp = useCallback(</td>
+      </tr>
+      <tr>
+        <td class="gutter">48</td>
+        <td class="code unchanged">    (e: MouseEvent) =&gt; {</td>
+        <td class="gutter">48</td>
+        <td class="code unchanged">    (e: MouseEvent) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">49</td>
+        <td class="code unchanged">      if (link.current?.href) {</td>
+        <td class="gutter">49</td>
+        <td class="code unchanged">      if (link.current?.href) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">50</td>
+        <td class="code unchanged">        const timeNow = +new Date()</td>
+        <td class="gutter">50</td>
+        <td class="code unchanged">        const timeNow = +new Date()</td>
+      </tr>
+      <tr>
+        <td class="gutter">51</td>
+        <td class="code unchanged">        const difference = timeNow - timeDown.current</td>
+        <td class="gutter">51</td>
+        <td class="code unchanged">        const difference = timeNow - timeDown.current</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">52</td>
+        <td class="code unchanged">        if (link.current?.href &amp;&amp; difference &lt;= 250) {</td>
+        <td class="gutter">52</td>
+        <td class="code unchanged">        if (link.current?.href &amp;&amp; difference &lt;= 250) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">53</td>
+        <td class="code unchanged">          if (!hasActiveParent.current &amp;&amp; pressedButton.current === 0 &amp;&amp; !e.ctrlKey) {</td>
+        <td class="gutter">53</td>
+        <td class="code unchanged">          if (!hasActiveParent.current &amp;&amp; pressedButton.current === 0 &amp;&amp; !e.ctrlKey) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">54</td>
+        <td class="code unchanged">            if (external) {</td>
+        <td class="gutter">54</td>
+        <td class="code unchanged">            if (external) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">55</td>
+        <td class="code unchanged">              const target = newTab ? '_blank' : '_self'</td>
+        <td class="gutter">55</td>
+        <td class="code unchanged">              const target = newTab ? '_blank' : '_self'</td>
+      </tr>
+      <tr>
+        <td class="gutter">56</td>
+        <td class="code unchanged">              window.open(link.current.href, target)</td>
+        <td class="gutter">56</td>
+        <td class="code unchanged">              window.open(link.current.href, target)</td>
+      </tr>
+      <tr>
+        <td class="gutter">57</td>
+        <td class="code unchanged">            } else {</td>
+        <td class="gutter">57</td>
+        <td class="code unchanged">            } else {</td>
+      </tr>
+      <tr>
+        <td class="gutter">58</td>
+        <td class="code unchanged">              router.push(link.current.href, { scroll })</td>
+        <td class="gutter">58</td>
+        <td class="code unchanged">              router.push(link.current.href, { scroll })</td>
+      </tr>
+      <tr>
+        <td class="gutter">59</td>
+        <td class="code unchanged">            }</td>
+        <td class="gutter">59</td>
+        <td class="code unchanged">            }</td>
+      </tr>
+      <tr>
+        <td class="gutter">60</td>
+        <td class="code unchanged">          }</td>
+        <td class="gutter">60</td>
+        <td class="code unchanged">          }</td>
+      </tr>
+      <tr>
+        <td class="gutter">61</td>
+        <td class="code unchanged">        }</td>
+        <td class="gutter">61</td>
+        <td class="code unchanged">        }</td>
+      </tr>
+      <tr>
+        <td class="gutter">62</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">62</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">63</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">63</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">64</td>
+        <td class="code unchanged">    // eslint-disable-next-line react-hooks/exhaustive-deps</td>
+        <td class="gutter">64</td>
+        <td class="code unchanged">    // eslint-disable-next-line react-hooks/exhaustive-deps</td>
+      </tr>
+      <tr>
+        <td class="gutter">65</td>
+        <td class="code unchanged">    [router, card, link, timeDown],</td>
+        <td class="gutter">65</td>
+        <td class="code unchanged">    [router, card, link, timeDown],</td>
+      </tr>
+      <tr>
+        <td class="gutter">66</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">66</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">67</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+        <td class="gutter">67</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">68</td>
+        <td class="code unchanged">    const cardNode = card.current</td>
+        <td class="gutter">68</td>
+        <td class="code unchanged">    const cardNode = card.current</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">69</td>
+        <td class="code unchanged">    const abortController = new AbortController()</td>
+        <td class="gutter">69</td>
+        <td class="code unchanged">    const abortController = new AbortController()</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">70</td>
+        <td class="code unchanged">    if (cardNode) {</td>
+        <td class="gutter">70</td>
+        <td class="code unchanged">    if (cardNode) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">71</td>
+        <td class="code unchanged">      cardNode.addEventListener('mousedown', handleMouseDown, {</td>
+        <td class="gutter">71</td>
+        <td class="code unchanged">      cardNode.addEventListener('mousedown', handleMouseDown, {</td>
+      </tr>
+      <tr>
+        <td class="gutter">72</td>
+        <td class="code unchanged">        signal: abortController.signal,</td>
+        <td class="gutter">72</td>
+        <td class="code unchanged">        signal: abortController.signal,</td>
+      </tr>
+      <tr>
+        <td class="gutter">73</td>
+        <td class="code unchanged">      })</td>
+        <td class="gutter">73</td>
+        <td class="code unchanged">      })</td>
+      </tr>
+      <tr>
+        <td class="gutter">74</td>
+        <td class="code unchanged">      cardNode.addEventListener('mouseup', handleMouseUp, {</td>
+        <td class="gutter">74</td>
+        <td class="code unchanged">      cardNode.addEventListener('mouseup', handleMouseUp, {</td>
+      </tr>
+      <tr>
+        <td class="gutter">75</td>
+        <td class="code unchanged">        signal: abortController.signal,</td>
+        <td class="gutter">75</td>
+        <td class="code unchanged">        signal: abortController.signal,</td>
+      </tr>
+      <tr>
+        <td class="gutter">76</td>
+        <td class="code unchanged">      })</td>
+        <td class="gutter">76</td>
+        <td class="code unchanged">      })</td>
+      </tr>
+      <tr>
+        <td class="gutter">77</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">77</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">78</td>
+        <td class="code unchanged">    return () =&gt; {</td>
+        <td class="gutter">78</td>
+        <td class="code unchanged">    return () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">79</td>
+        <td class="code unchanged">      abortController.abort()</td>
+        <td class="gutter">79</td>
+        <td class="code unchanged">      abortController.abort()</td>
+      </tr>
+      <tr>
+        <td class="gutter">80</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">80</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">81</td>
+        <td class="code unchanged">    // eslint-disable-next-line react-hooks/exhaustive-deps</td>
+        <td class="gutter">81</td>
+        <td class="code unchanged">    // eslint-disable-next-line react-hooks/exhaustive-deps</td>
+      </tr>
+      <tr>
+        <td class="gutter">82</td>
+        <td class="code unchanged">  }, [card, link, router])</td>
+        <td class="gutter">82</td>
+        <td class="code unchanged">  }, [card, link, router])</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">83</td>
+        <td class="code unchanged">  return {</td>
+        <td class="gutter">83</td>
+        <td class="code unchanged">  return {</td>
+      </tr>
+      <tr>
+        <td class="gutter">84</td>
+        <td class="code unchanged">    card: {</td>
+        <td class="gutter">84</td>
+        <td class="code unchanged">    card: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">85</td>
+        <td class="code unchanged">      ref: card,</td>
+        <td class="gutter">85</td>
+        <td class="code unchanged">      ref: card,</td>
+      </tr>
+      <tr>
+        <td class="gutter">86</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">86</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">87</td>
+        <td class="code unchanged">    link: {</td>
+        <td class="gutter">87</td>
+        <td class="code unchanged">    link: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">88</td>
+        <td class="code unchanged">      ref: link,</td>
+        <td class="gutter">88</td>
+        <td class="code unchanged">      ref: link,</td>
+      </tr>
+      <tr>
+        <td class="gutter">89</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">89</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">90</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">90</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">91</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">91</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">92</td>
+        <td class="code unchanged">export default useClickableCard</td>
+        <td class="gutter">92</td>
+        <td class="code unchanged">export default useClickableCard</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-292373565">
+      <h3>useDebounce.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { useState, useEffect } from 'react'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { useState, useEffect } from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">export function useDebounce&lt;T&gt;(value: T, delay = 200): T {</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">export function useDebounce&lt;T&gt;(value: T, delay = 200): T {</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  const [debouncedValue, setDebouncedValue] = useState&lt;T&gt;(value)</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">  const [debouncedValue, setDebouncedValue] = useState&lt;T&gt;(value)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    const handler = setTimeout(() =&gt; {</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    const handler = setTimeout(() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">      setDebouncedValue(value)</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">      setDebouncedValue(value)</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    }, delay)</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    }, delay)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    return () =&gt; {</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    return () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">      clearTimeout(handler)</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">      clearTimeout(handler)</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  }, [value, delay])</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  }, [value, delay])</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  return debouncedValue</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  return debouncedValue</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+  </main>
+</body>
+</html>

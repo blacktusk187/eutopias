@@ -1,101 +1,137 @@
 import { getCachedGlobal } from '@/utilities/getGlobals'
 import Link from 'next/link'
 import React from 'react'
-import {
-  FaInstagram,
-  FaFacebookF,
-  FaXTwitter,
-  FaYoutube,
-  FaLinkedinIn,
-  FaRedditAlien,
-} from 'react-icons/fa6'
-import { SiTiktok } from 'react-icons/si'
+import { FiInstagram, FiFacebook, FiTwitter, FiYoutube, FiLinkedin, FiLink } from 'react-icons/fi'
 
 import type { Footer } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
-import { LogoFooter } from '@/components/Logo/LogoFooter'
-
-type SocialIconProps = { className?: string }
-const SocialIconMap: Record<string, React.ComponentType<SocialIconProps>> = {
-  instagram: FaInstagram,
-  facebook: FaFacebookF,
-  x: FaXTwitter,
-  youtube: FaYoutube,
-  linkedin: FaLinkedinIn,
-  tiktok: SiTiktok,
-  reddit: FaRedditAlien,
-}
+import { Logo } from '@/components/Logo/Logo'
 
 export async function Footer() {
-  const footerData: Footer = await getCachedGlobal('footer', 1)()
+  let footerData: Footer | null = null
 
-  const linkGroups = footerData?.linkGroups || []
-  const socialLinks = footerData?.socialLinks || []
-  const followTitle = footerData?.followTitle || 'Follow us'
-  const copyright = footerData?.copyright
+  try {
+    footerData = await getCachedGlobal('footer', 2)()
+  } catch (error) {
+    console.error('Error fetching footer data:', error)
+  }
+
+  // Fallback data if footer global is not found
+  const fallbackData = {
+    linkGroups: [
+      {
+        title: 'Legal',
+        links: [
+          { link: { type: 'custom', url: '/terms', label: 'Terms Of Use' } },
+          { link: { type: 'custom', url: '/privacy', label: 'Privacy Policy' } },
+        ],
+      },
+      {
+        title: 'Our Sites',
+        links: [
+          { link: { type: 'custom', url: 'https://ecofarmfinder.com/', label: 'Eco Farm Finder' } },
+          {
+            link: {
+              type: 'custom',
+              url: 'https://www.linkedin.com/company/arcliving-co/',
+              label: 'Arc Living',
+            },
+          },
+        ],
+      },
+      {
+        title: 'Join Us',
+        links: [{ link: { type: 'custom', url: '/newsletter', label: 'Subscribe' } }],
+      },
+    ],
+    socialLinks: [
+      { platform: 'instagram', url: 'https://www.instagram.com/eutopias_co/' },
+      { platform: 'facebook', url: 'https://www.facebook.com/EutopiasCo' },
+      { platform: 'linkedin', url: 'https://www.linkedin.com/company/eutopias-co/' },
+    ],
+    followTitle: 'Follow us',
+    copyright: 'Copyright © 2025 Eutopias. All rights reserved.',
+  }
+
+  const linkGroups = footerData?.linkGroups || fallbackData.linkGroups
+  const socialLinks = footerData?.socialLinks || fallbackData.socialLinks
+  const followTitle = footerData?.followTitle || fallbackData.followTitle
+  const copyright = footerData?.copyright || fallbackData.copyright
+
+  // Debug logging (can be removed in production)
+  // console.log('Footer data:', footerData)
+  // console.log('Using fallback:', !footerData)
+  // console.log('Link groups:', linkGroups)
 
   return (
-    <footer className="mt-auto border-t border-gray-500 bg-black text-white">
-      {/* Top section: link groups + follow column */}
-      <div className="container py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-8">
-          {linkGroups.map((group, idx) => (
-            <div key={idx}>
-              {group?.title && (
-                <div className="uppercase tracking-wide text-xs text-neutral-300 mb-3">
+    <footer className="mt-auto bg-[#003366] text-white">
+      <div className="container pt-8 pb-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          {linkGroups.length > 0 ? (
+            linkGroups.map((group, groupIndex) => (
+              <div key={groupIndex} className="space-y-4">
+                <h3 className="text-sm font-bold text-white uppercase tracking-extra-wide">
                   {group.title}
-                </div>
-              )}
-              <nav className="flex flex-col gap-2">
-                {group?.links?.map(({ link }, i) => (
-                  <CMSLink key={i} className="text-white hover:text-yellow-400" {...link} />
-                ))}
-              </nav>
-            </div>
-          ))}
-
-          {socialLinks?.length > 0 && (
-            <div>
-              <div className="uppercase tracking-wide text-xs text-neutral-300 mb-3">
-                {followTitle}
+                </h3>
+                <ul className="space-y-2">
+                  {group.links?.map(({ link }, linkIndex) => (
+                    <li key={linkIndex}>
+                      <CMSLink
+                        className="text-white/80 hover:text-white transition-colors text-sm"
+                        {...link}
+                        type={link.type as 'custom' | 'reference' | null}
+                      />
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="flex items-center gap-4 text-white">
-                {socialLinks.map((s, i) => {
-                  const Icon = (s?.platform && SocialIconMap[s.platform]) || null
-                  return (
-                    <a
-                      key={i}
-                      href={s?.url || '#'}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={s?.label || s?.platform || 'social link'}
-                      className="text-white hover:text-yellow-400 transition-colors"
-                    >
-                      {Icon ? (
-                        <Icon className="w-5 h-5" />
-                      ) : (
-                        <span className="text-sm">{s?.label || 'Link'}</span>
-                      )}
-                    </a>
-                  )
-                })}
+            ))
+          ) : (
+            <div className="col-span-full text-center text-white/60">
+              <p>Footer content is loading... (Link groups: {linkGroups.length})</p>
+              <p className="text-xs mt-2">Check console for debug info</p>
+            </div>
+          )}
+
+          {/* Follow Us - 4th Column */}
+          {socialLinks.length > 0 && (
+            <div className="space-y-4">
+              <h3 className="text-sm font-bold text-white uppercase tracking-extra-wide">
+                {followTitle}
+              </h3>
+              <div className="flex flex-wrap gap-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-white/80 transition-colors"
+                    aria-label={social.platform}
+                  >
+                    {social.platform === 'instagram' && <FiInstagram className="w-5 h-5" />}
+                    {social.platform === 'facebook' && <FiFacebook className="w-5 h-5" />}
+                    {social.platform === 'x' && <FiTwitter className="w-5 h-5" />}
+                    {social.platform === 'youtube' && <FiYoutube className="w-5 h-5" />}
+                    {social.platform === 'linkedin' && <FiLinkedin className="w-5 h-5" />}
+                    {social.platform === 'tiktok' && <FiLink className="w-5 h-5" />}
+                    {social.platform === 'reddit' && <FiLink className="w-5 h-5" />}
+                    {social.platform === 'custom' && <FiLink className="w-5 h-5" />}
+                  </a>
+                ))}
               </div>
             </div>
           )}
         </div>
-      </div>
 
-      {/* Bottom bar: logo + copyright */}
-      <div className="border-t border-gray-500 bg-white text-black">
-        <div className="container py-6 flex items-center justify-between gap-4">
-          <Link href="/" className="inline-flex">
-            <LogoFooter colorClass="text-eutopias-blue" />
-          </Link>
-          <div className="text-xs text-neutral-700">
-            {copyright || 'Copyright © 2025 Eutopias'}
+        {/* Copyright */}
+        {copyright && (
+          <div className="border-t border-white/20 pt-8">
+            <div className="text-sm text-white/60 text-center">{copyright}</div>
           </div>
-        </div>
+        )}
       </div>
     </footer>
   )

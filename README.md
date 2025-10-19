@@ -23,27 +23,6 @@ Core features:
 - [Jobs and Scheduled Publishing](#jobs-and-scheduled-publish)
 - [Website](#website)
 
-## Environment Variables
-
-This project requires the following environment variables to be set:
-
-### Required Variables
-- `PAYLOAD_SECRET` - Secret key for Payload CMS
-- `DATABASE_URI` - Database connection string
-- `NEXT_PUBLIC_SERVER_URL` - Public server URL (e.g., http://localhost:3000)
-
-### S3 Storage Configuration
-- `S3_BUCKET_NAME` - S3 bucket name for server-side operations
-- `S3_REGION` - S3 region for server-side operations  
-- `S3_ACCESS_KEY_ID` - S3 access key ID
-- `S3_SECRET_ACCESS_KEY` - S3 secret access key
-- `NEXT_PUBLIC_S3_BUCKET_NAME` - S3 bucket name for client-side operations
-- `NEXT_PUBLIC_S3_REGION` - S3 region for client-side operations
-
-### Optional Variables
-- `CLOUDFRONT_DOMAIN` - CloudFront distribution domain
-- `CRON_SECRET` - Secret for scheduled tasks
-
 ## Quick Start
 
 To spin up this example locally, follow these steps:

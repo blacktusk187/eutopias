@@ -68,7 +68,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                               />
                             ) : (
                               <Media
-                                src={img.src as string}
+                                resource={img.src}
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover"
@@ -132,7 +132,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                           />
                         ) : (
                           <Media
-                            src={img.src as string}
+                            resource={img.src}
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -184,7 +184,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                             />
                           ) : (
                             <Media
-                              src={img.src as string}
+                              resource={img.src}
                               fill
                               pictureClassName="absolute inset-0"
                               imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"

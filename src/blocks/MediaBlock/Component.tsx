@@ -16,6 +16,7 @@ type Props = MediaBlockProps & {
   imgClassName?: string
   staticImage?: StaticImageData
   disableInnerContainer?: boolean
+  layout?: 'single' | 'side-by-side-vertical' | 'side-by-side-horizontal'
 }
 
 export const MediaBlock: React.FC<Props> = (props) => {
@@ -25,7 +26,6 @@ export const MediaBlock: React.FC<Props> = (props) => {
     enableGutter = true,
     imgClassName,
     media,
-    media2,
     staticImage,
     disableInnerContainer,
     variant = 'bordered',
@@ -53,13 +53,13 @@ export const MediaBlock: React.FC<Props> = (props) => {
 
   const imageDecorationClasses =
     variant === 'shadowed'
-      ? 'shadow-xl rounded-[0.8rem]'
+      ? 'shadow-xl rounded-lg'
       : variant === 'frameless'
-        ? ''
-        : 'border border-border rounded-[0.8rem]'
+        ? 'rounded-lg'
+        : 'border border-border rounded-lg'
 
   // Determine if we have multiple images
-  const hasMultipleImages = media2 && (media || staticImage)
+  const hasMultipleImages = media && (media || staticImage)
 
   // Layout classes for side-by-side images
   const getLayoutClasses = () => {
@@ -94,7 +94,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
           resource={media}
           src={staticImage}
         />
-        <Media imgClassName={cn(imageDecorationClasses, imgClassName)} resource={media2} />
+        <Media imgClassName={cn(imageDecorationClasses, imgClassName)} resource={media} />
       </div>
     )
   }

@@ -142,10 +142,10 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               <Link
                 key={parent.id}
                 href={`/posts/category/${parent.slug}`}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+                className="text-gray-700 hover:text-accent-foreground transition-colors font-medium relative group text-base"
               >
                 {parent.title}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#003366] group-hover:w-full transition-all duration-300"></span>
               </Link>
             )
           }
@@ -162,12 +162,12 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
             >
               <Link
                 href={`/posts/category/${parent.slug}`}
-                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group z-[60]"
+                className="text-gray-700 hover:text-accent-foreground transition-colors font-medium text-base relative group z-[60]"
               >
                 <span>{parent.title}</span>
                 <span
                   className={
-                    `pointer-events-none absolute -bottom-[2px] left-0 h-[2px] bg-foreground transition-all duration-300 ` +
+                    `pointer-events-none absolute -bottom-[2px] left-0 h-[0.5px] bg-[#003366] transition-all duration-300 ` +
                     (hoveredParentId === parent.id ? 'w-full' : 'w-0 group-hover:w-full')
                   }
                 />
@@ -184,7 +184,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                     <div className="grid grid-cols-12 gap-8 p-8">
                       {/* Left: subcategories */}
                       <div className="col-span-12 md:col-span-3 bg-card">
-                        <div className="block px-2 py-1.5 text-sm font-medium text-card-foreground border-b border-border mb-2">
+                        <div className="block px-2 py-1.5 text-sm font-medium text-[#003366] border-b border-border mb-2">
                           Topics
                         </div>
                         <div className="flex flex-col">
@@ -266,15 +266,15 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
           <Link
             key={featuredCategory.id}
             href={`/posts/category/${featuredCategory.slug}`}
-            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"
+            className="text-gray-700 hover:text-accent-foreground transition-colors font-medium relative group text-base"
           >
             {featuredCategory.title}
-            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"></span>
+            <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#003366] group-hover:w-full transition-all duration-300"></span>
           </Link>
         )}
         {moreItems.length > 0 && (
           <div className="relative group">
-            <button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base">
+            <button className="text-gray-700 hover:text-accent-foreground transition-colors font-medium text-base">
               More
             </button>
             <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
@@ -292,13 +292,13 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         )}
         <Link
           href="/search"
-          className="p-2 text-foreground hover:text-accent-foreground transition-colors"
+          className="p-2 text-gray-700 hover:text-accent-foreground transition-colors"
         >
           <FiSearch className="h-5 w-5" />
         </Link>
         <Link
           href="/newsletter"
-          className="bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors"
+          className="bg-[#003366] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#002244] transition-colors"
         >
           Subscribe
         </Link>
@@ -306,7 +306,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
 
       {/* Mobile Menu Button */}
       <button
-        className="md:hidden transition-colors text-foreground hover:text-accent-foreground relative z-50 flex-shrink-0"
+        className="md:hidden transition-colors text-gray-700 hover:text-accent-foreground relative z-50 flex-shrink-0"
         aria-label="Toggle Menu"
         onClick={toggleMenu}
       >
@@ -434,7 +434,7 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
               </Link>
               <Link
                 href="/newsletter"
-                className="block bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors text-center mt-4"
+                className="block bg-[#003366] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#002244] transition-colors text-center mt-4"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Subscribe

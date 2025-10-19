@@ -1,0 +1,4511 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Blocks Diff Report</title>
+<style>
+  :root { --bg:#0b0f14; --panel:#0f1520; --text:#e6e9ef; --muted:#a0a6b0; --add:#0f3; --rem:#f33; --unch:#2a2f3a; --only:#d99600; }
+  body { margin:0; font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; background: var(--bg); color: var(--text); }
+  header { position: sticky; top:0; background: rgba(15,21,32,.95); padding:12px 20px; border-bottom:1px solid #1d2533; z-index:10; }
+  header h1 { margin:0; font-size:16px; }
+  main { padding: 16px 20px 40px; }
+  table.idx { width:100%; border-collapse: collapse; margin: 12px 0 24px; }
+  table.idx td, table.idx th { padding:8px 10px; border-bottom: 1px solid #1d2533; }
+  .badge { padding:2px 8px; border-radius: 10px; font-size: 12px; }
+  .badge.changed { background:#1d3a24; color:#8fffab; border:1px solid #2f5a39; }
+  .badge.only { background:#3a2a1d; color:#ffd18f; border:1px solid #5a3f2f; }
+  .badge.unchanged { background:#1b2230; color:#a0a6b0; border:1px solid #2b3547; }
+  section { margin:26px 0 40px; }
+  h3 { margin: 0 0 10px; font-size: 15px; }
+  table.sbs { width:100%; border-collapse: collapse; table-layout: fixed; border:1px solid #1d2533; }
+  table.sbs thead th { background:#141b28; color:#a0a6b0; padding:6px 8px; border-bottom:1px solid #1d2533; }
+  table.sbs td { vertical-align: top; }
+  .gutter { width:48px; text-align:right; color:#8b93a1; background:#121826; border-right:1px solid #1d2533; padding:4px 6px; }
+  .code { font-family: inherit; white-space: pre; overflow-wrap: anywhere; padding:4px 8px; border-right:1px solid #1d2533; background:#101726; }
+  .code:last-child, .gutter:last-child { border-right:none; }
+  .code.added { background: #0f1a13; box-shadow: inset 3px 0 0 #2d7f47; }
+  .code.removed { background: #1a0f0f; box-shadow: inset 3px 0 0 #7f2d2d; }
+  .code.unchanged { background:#101726; }
+  .code.empty { background:#0d1320; color:#4b5567; }
+  .empty-msg { color:#8b93a1; text-align:center; padding:12px; }
+  a { color:#9fc6ff; text-decoration:none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <header><h1>Blocks Diff Report</h1></header>
+  <main>
+    <h2>Index</h2>
+    <table class="idx">
+      <thead><tr><th>Status</th><th>Path</th></tr></thead>
+      <tbody>
+        
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1262085863">Component.client.tsx</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1790693048">Component.tsx</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-521213775">Nav/index.tsx</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-413417659">RowLabel.tsx</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-2074921156">TrendingBanner.tsx</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge changed">changed</span></td>
+      <td><a href="#file-804497237">config.ts</a></td>
+    </tr>
+    <tr>
+      <td><span class="badge unchanged">unchanged</span></td>
+      <td><a href="#file-1014669912">hooks/revalidateHeader.ts</a></td>
+    </tr>
+      </tbody>
+    </table>
+
+    
+    <section id="file-1262085863">
+      <h3>Component.client.tsx <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import Link from 'next/link'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import Link from 'next/link'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import React, { useState } from 'react'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import React, { useState } from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import type { Header } from '@/payload-types'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import type { Header } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import { LogoHeader } from '@/components/Logo/LogoHeader'</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import { LogoHeader } from '@/components/Logo/LogoHeader'</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">import { HeaderNav } from './Nav'</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">import { HeaderNav } from './Nav'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">interface HeaderClientProps {</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">interface HeaderClientProps {</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  data: Header</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  data: Header</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">export const HeaderClient: React.FC&lt;HeaderClientProps&gt; = ({ data }) =&gt; {</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">export const HeaderClient: React.FC&lt;HeaderClientProps&gt; = ({ data }) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  const [isSearchExpanded, setIsSearchExpanded] = useState(false)</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  const [isSearchExpanded, setIsSearchExpanded] = useState(false)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  const handleSearchToggle = (expanded: boolean) =&gt; {</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  const handleSearchToggle = (expanded: boolean) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">    setIsSearchExpanded(expanded)</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">    setIsSearchExpanded(expanded)</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  return (</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">    &lt;header className="container relative z-20"&gt;</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">    &lt;header className="container relative z-20"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">      &lt;div className="py-4 md:py-8"&gt;</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">      &lt;div className="py-4 md:py-8"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">        {/* Mobile Layout: Hamburger - Logo - Search */}</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">        {/* Mobile Layout: Hamburger - Logo - Search */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">        &lt;div className="md:hidden"&gt;</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">        &lt;div className="md:hidden"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">          {!isSearchExpanded ? (</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">          {!isSearchExpanded ? (</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">            &lt;div className="flex items-center justify-between"&gt;</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">            &lt;div className="flex items-center justify-between"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">              &lt;HeaderNav</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">              &lt;HeaderNav</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">                data={data}</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">                data={data}</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">                isSearchExpanded={isSearchExpanded}</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">                isSearchExpanded={isSearchExpanded}</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">                onSearchToggle={handleSearchToggle}</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">                onSearchToggle={handleSearchToggle}</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">              /&gt;</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">              /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">              &lt;Link href="/" className="block flex-shrink-0"&gt;</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">              &lt;Link href="/" className="block flex-shrink-0"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">                &lt;LogoHeader /&gt;</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">                &lt;LogoHeader /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">              &lt;div className="flex-shrink-0"&gt;{/* Search handled in HeaderNav component */}&lt;/div&gt;</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">              &lt;div className="flex-shrink-0"&gt;{/* Search handled in HeaderNav component */}&lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">          ) : (</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">          ) : (</td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">            &lt;div className="w-full"&gt;{/* Search handled in HeaderNav component */}&lt;/div&gt;</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">            &lt;div className="w-full"&gt;{/* Search handled in HeaderNav component */}&lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">          )}</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">          )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">        {/* Desktop Layout: Logo - Navigation */}</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">        {/* Desktop Layout: Logo - Navigation */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">37</td>
+        <td class="code unchanged">        &lt;div className="hidden md:flex justify-between items-center gap-4"&gt;</td>
+        <td class="gutter">37</td>
+        <td class="code unchanged">        &lt;div className="hidden md:flex justify-between items-center gap-4"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">38</td>
+        <td class="code unchanged">          &lt;Link href="/" className="block flex-shrink-0 min-w-0"&gt;</td>
+        <td class="gutter">38</td>
+        <td class="code unchanged">          &lt;Link href="/" className="block flex-shrink-0 min-w-0"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">39</td>
+        <td class="code unchanged">            &lt;LogoHeader /&gt;</td>
+        <td class="gutter">39</td>
+        <td class="code unchanged">            &lt;LogoHeader /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">40</td>
+        <td class="code unchanged">          &lt;/Link&gt;</td>
+        <td class="gutter">40</td>
+        <td class="code unchanged">          &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">41</td>
+        <td class="code unchanged">          &lt;div className="flex items-center gap-4"&gt;</td>
+        <td class="gutter">41</td>
+        <td class="code unchanged">          &lt;div className="flex items-center gap-4"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">42</td>
+        <td class="code unchanged">            &lt;HeaderNav</td>
+        <td class="gutter">42</td>
+        <td class="code unchanged">            &lt;HeaderNav</td>
+      </tr>
+      <tr>
+        <td class="gutter">43</td>
+        <td class="code unchanged">              data={data}</td>
+        <td class="gutter">43</td>
+        <td class="code unchanged">              data={data}</td>
+      </tr>
+      <tr>
+        <td class="gutter">44</td>
+        <td class="code unchanged">              isSearchExpanded={isSearchExpanded}</td>
+        <td class="gutter">44</td>
+        <td class="code unchanged">              isSearchExpanded={isSearchExpanded}</td>
+      </tr>
+      <tr>
+        <td class="gutter">45</td>
+        <td class="code unchanged">              onSearchToggle={handleSearchToggle}</td>
+        <td class="gutter">45</td>
+        <td class="code unchanged">              onSearchToggle={handleSearchToggle}</td>
+      </tr>
+      <tr>
+        <td class="gutter">46</td>
+        <td class="code unchanged">            /&gt;</td>
+        <td class="gutter">46</td>
+        <td class="code unchanged">            /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">47</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">47</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">48</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+        <td class="gutter">48</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">49</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+        <td class="gutter">49</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">50</td>
+        <td class="code unchanged">    &lt;/header&gt;</td>
+        <td class="gutter">50</td>
+        <td class="code unchanged">    &lt;/header&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">51</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">51</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter">52</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">52</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1790693048">
+      <h3>Component.tsx <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { HeaderClient } from './Component.client'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import { HeaderClient } from './Component.client'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { TrendingBanner } from './TrendingBanner'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { TrendingBanner } from './TrendingBanner'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { getCachedGlobal } from '@/utilities/getGlobals'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { getCachedGlobal } from '@/utilities/getGlobals'</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import React from 'react'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import React from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import type { Header } from '@/payload-types'</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import type { Header } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">export async function Header() {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">export async function Header() {</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  const headerData: Header = await getCachedGlobal('header', 1)()</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  const headerData: Header = await getCachedGlobal('header', 1)()</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  return (</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    &lt;&gt;</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    &lt;&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">      &lt;HeaderClient data={headerData} /&gt;</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">      &lt;HeaderClient data={headerData} /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      &lt;TrendingBanner /&gt;</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      &lt;TrendingBanner /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">    &lt;/&gt;</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">    &lt;/&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-521213775">
+      <h3>Nav/index.tsx <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import React, { useState, useEffect, useRef } from 'react'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import React, { useState, useEffect, useRef } from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { FiMenu, FiX, FiSearch } from 'react-icons/fi'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { FiMenu, FiX, FiSearch } from 'react-icons/fi'</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import type { Header as HeaderType, Category, Post, Media } from '@/payload-types'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import type { Header as HeaderType, Category, Post, Media } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import Link from 'next/link'</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import Link from 'next/link'</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">import { Drawer, DrawerHeader, DrawerContent } from '@/components/ui/drawer'</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">import { Drawer, DrawerHeader, DrawerContent } from '@/components/ui/drawer'</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">import Image from 'next/image'</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">import Image from 'next/image'</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">import { getMediaUrl } from '@/utilities/getMediaUrl'</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">import { getMediaUrl } from '@/utilities/getMediaUrl'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">interface HeaderNavProps {</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">interface HeaderNavProps {</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  data: HeaderType</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  data: HeaderType</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  isSearchExpanded?: boolean</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">  isSearchExpanded?: boolean</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  onSearchToggle?: (expanded: boolean) =&gt; void</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">  onSearchToggle?: (expanded: boolean) =&gt; void</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">}</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">export const HeaderNav: React.FC&lt;HeaderNavProps&gt; = ({</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">export const HeaderNav: React.FC&lt;HeaderNavProps&gt; = ({</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  data: _data,</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">  data: _data,</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  isSearchExpanded: _isSearchExpanded = false,</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">  isSearchExpanded: _isSearchExpanded = false,</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  onSearchToggle: _onSearchToggle = () =&gt; {},</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">  onSearchToggle: _onSearchToggle = () =&gt; {},</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">}) =&gt; {</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">}) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  const [isMenuOpen, setIsMenuOpen] = useState(false)</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">  const [isMenuOpen, setIsMenuOpen] = useState(false)</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  const [categories, setCategories] = useState&lt;Category[]&gt;([])</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">  const [categories, setCategories] = useState&lt;Category[]&gt;([])</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  const [openParents, setOpenParents] = useState&lt;Record&lt;number, boolean&gt;&gt;({})</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  const [openParents, setOpenParents] = useState&lt;Record&lt;number, boolean&gt;&gt;({})</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  const [hoveredParentId, setHoveredParentId] = useState&lt;number | null&gt;(null)</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  const [hoveredParentId, setHoveredParentId] = useState&lt;number | null&gt;(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const [postsByParentId, setPostsByParentId] = useState&lt;Record&lt;number, Post[]&gt;&gt;({})</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">  const [postsByParentId, setPostsByParentId] = useState&lt;Record&lt;number, Post[]&gt;&gt;({})</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const [isFetchingPosts, setIsFetchingPosts] = useState&lt;Record&lt;number, boolean&gt;&gt;({})</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">  const [isFetchingPosts, setIsFetchingPosts] = useState&lt;Record&lt;number, boolean&gt;&gt;({})</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  const [drawerTop, setDrawerTop] = useState&lt;number&gt;(0)</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">  const [drawerTop, setDrawerTop] = useState&lt;number&gt;(0)</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  const closeTimerRef = useRef&lt;number | null&gt;(null)</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  const closeTimerRef = useRef&lt;number | null&gt;(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  const navRef = useRef&lt;HTMLElement | null&gt;(null)</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  const navRef = useRef&lt;HTMLElement | null&gt;(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">  const toggleMenu = () =&gt; {</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">  const toggleMenu = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">    setIsMenuOpen(!isMenuOpen)</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">    setIsMenuOpen(!isMenuOpen)</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">  // Define the More dropdown items</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">  // Define the More dropdown items</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">  const moreItems: { href: string; label: string }[] = []</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">  const moreItems: { href: string; label: string }[] = []</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">    // Fetch categories from Payload's built-in API</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">    // Fetch categories from Payload's built-in API</td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">    const fetchCategories = async () =&gt; {</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">    const fetchCategories = async () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">      try {</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">      try {</td>
+      </tr>
+      <tr>
+        <td class="gutter">37</td>
+        <td class="code unchanged">        const response = await fetch('/api/categories?limit=100&amp;sort=title')</td>
+        <td class="gutter">37</td>
+        <td class="code unchanged">        const response = await fetch('/api/categories?limit=100&amp;sort=title')</td>
+      </tr>
+      <tr>
+        <td class="gutter">38</td>
+        <td class="code unchanged">        if (response.ok) {</td>
+        <td class="gutter">38</td>
+        <td class="code unchanged">        if (response.ok) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">39</td>
+        <td class="code unchanged">          const data = await response.json()</td>
+        <td class="gutter">39</td>
+        <td class="code unchanged">          const data = await response.json()</td>
+      </tr>
+      <tr>
+        <td class="gutter">40</td>
+        <td class="code unchanged">          setCategories(data.docs || [])</td>
+        <td class="gutter">40</td>
+        <td class="code unchanged">          setCategories(data.docs || [])</td>
+      </tr>
+      <tr>
+        <td class="gutter">41</td>
+        <td class="code unchanged">        }</td>
+        <td class="gutter">41</td>
+        <td class="code unchanged">        }</td>
+      </tr>
+      <tr>
+        <td class="gutter">42</td>
+        <td class="code unchanged">      } catch (error) {</td>
+        <td class="gutter">42</td>
+        <td class="code unchanged">      } catch (error) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">43</td>
+        <td class="code unchanged">        console.error('Error fetching categories:', error)</td>
+        <td class="gutter">43</td>
+        <td class="code unchanged">        console.error('Error fetching categories:', error)</td>
+      </tr>
+      <tr>
+        <td class="gutter">44</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">44</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">45</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">45</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">46</td>
+        <td class="code unchanged">    fetchCategories()</td>
+        <td class="gutter">46</td>
+        <td class="code unchanged">    fetchCategories()</td>
+      </tr>
+      <tr>
+        <td class="gutter">47</td>
+        <td class="code unchanged">  }, [])</td>
+        <td class="gutter">47</td>
+        <td class="code unchanged">  }, [])</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">48</td>
+        <td class="code unchanged">  const parents = categories.filter((c) =&gt; !c.parent)</td>
+        <td class="gutter">48</td>
+        <td class="code unchanged">  const parents = categories.filter((c) =&gt; !c.parent)</td>
+      </tr>
+      <tr>
+        <td class="gutter">49</td>
+        <td class="code unchanged">  const childrenByParentId = categories.reduce&lt;Record&lt;number, Category[]&gt;&gt;((acc, c) =&gt; {</td>
+        <td class="gutter">49</td>
+        <td class="code unchanged">  const childrenByParentId = categories.reduce&lt;Record&lt;number, Category[]&gt;&gt;((acc, c) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">50</td>
+        <td class="code unchanged">    const p = typeof c.parent === 'object' ? c.parent?.id : c.parent</td>
+        <td class="gutter">50</td>
+        <td class="code unchanged">    const p = typeof c.parent === 'object' ? c.parent?.id : c.parent</td>
+      </tr>
+      <tr>
+        <td class="gutter">51</td>
+        <td class="code unchanged">    if (p) {</td>
+        <td class="gutter">51</td>
+        <td class="code unchanged">    if (p) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">52</td>
+        <td class="code unchanged">      acc[p] = acc[p] || []</td>
+        <td class="gutter">52</td>
+        <td class="code unchanged">      acc[p] = acc[p] || []</td>
+      </tr>
+      <tr>
+        <td class="gutter">53</td>
+        <td class="code unchanged">      acc[p].push(c)</td>
+        <td class="gutter">53</td>
+        <td class="code unchanged">      acc[p].push(c)</td>
+      </tr>
+      <tr>
+        <td class="gutter">54</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">54</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">55</td>
+        <td class="code unchanged">    return acc</td>
+        <td class="gutter">55</td>
+        <td class="code unchanged">    return acc</td>
+      </tr>
+      <tr>
+        <td class="gutter">56</td>
+        <td class="code unchanged">  }, {})</td>
+        <td class="gutter">56</td>
+        <td class="code unchanged">  }, {})</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">57</td>
+        <td class="code unchanged">  // Separate Featured from other parents and add it at the end</td>
+        <td class="gutter">57</td>
+        <td class="code unchanged">  // Separate Featured from other parents and add it at the end</td>
+      </tr>
+      <tr>
+        <td class="gutter">58</td>
+        <td class="code unchanged">  const featuredCategory = parents.find((c) =&gt; c.slug === 'featured')</td>
+        <td class="gutter">58</td>
+        <td class="code unchanged">  const featuredCategory = parents.find((c) =&gt; c.slug === 'featured')</td>
+      </tr>
+      <tr>
+        <td class="gutter">59</td>
+        <td class="code unchanged">  const otherParents = parents.filter((c) =&gt; c.slug !== 'featured')</td>
+        <td class="gutter">59</td>
+        <td class="code unchanged">  const otherParents = parents.filter((c) =&gt; c.slug !== 'featured')</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">60</td>
+        <td class="code unchanged">  const ensurePostsForParent = async (parentId: number) =&gt; {</td>
+        <td class="gutter">60</td>
+        <td class="code unchanged">  const ensurePostsForParent = async (parentId: number) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">61</td>
+        <td class="code unchanged">    if (postsByParentId[parentId] || isFetchingPosts[parentId]) return</td>
+        <td class="gutter">61</td>
+        <td class="code unchanged">    if (postsByParentId[parentId] || isFetchingPosts[parentId]) return</td>
+      </tr>
+      <tr>
+        <td class="gutter">62</td>
+        <td class="code unchanged">    setIsFetchingPosts((prev) =&gt; ({ ...prev, [parentId]: true }))</td>
+        <td class="gutter">62</td>
+        <td class="code unchanged">    setIsFetchingPosts((prev) =&gt; ({ ...prev, [parentId]: true }))</td>
+      </tr>
+      <tr>
+        <td class="gutter">63</td>
+        <td class="code unchanged">    try {</td>
+        <td class="gutter">63</td>
+        <td class="code unchanged">    try {</td>
+      </tr>
+      <tr>
+        <td class="gutter">64</td>
+        <td class="code unchanged">      const res = await fetch(</td>
+        <td class="gutter">64</td>
+        <td class="code unchanged">      const res = await fetch(</td>
+      </tr>
+      <tr>
+        <td class="gutter">65</td>
+        <td class="code unchanged">        `/api/posts?limit=3&amp;depth=1&amp;sort=-publishedAt&amp;where[categories][contains]=${parentId}`,</td>
+        <td class="gutter">65</td>
+        <td class="code unchanged">        `/api/posts?limit=3&amp;depth=1&amp;sort=-publishedAt&amp;where[categories][contains]=${parentId}`,</td>
+      </tr>
+      <tr>
+        <td class="gutter">66</td>
+        <td class="code unchanged">      )</td>
+        <td class="gutter">66</td>
+        <td class="code unchanged">      )</td>
+      </tr>
+      <tr>
+        <td class="gutter">67</td>
+        <td class="code unchanged">      if (res.ok) {</td>
+        <td class="gutter">67</td>
+        <td class="code unchanged">      if (res.ok) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">68</td>
+        <td class="code unchanged">        const data = await res.json()</td>
+        <td class="gutter">68</td>
+        <td class="code unchanged">        const data = await res.json()</td>
+      </tr>
+      <tr>
+        <td class="gutter">69</td>
+        <td class="code unchanged">        setPostsByParentId((prev) =&gt; ({ ...prev, [parentId]: data.docs || [] }))</td>
+        <td class="gutter">69</td>
+        <td class="code unchanged">        setPostsByParentId((prev) =&gt; ({ ...prev, [parentId]: data.docs || [] }))</td>
+      </tr>
+      <tr>
+        <td class="gutter">70</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">70</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">71</td>
+        <td class="code unchanged">    } catch (e) {</td>
+        <td class="gutter">71</td>
+        <td class="code unchanged">    } catch (e) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">72</td>
+        <td class="code unchanged">      console.error('Failed fetching posts for parent', parentId, e)</td>
+        <td class="gutter">72</td>
+        <td class="code unchanged">      console.error('Failed fetching posts for parent', parentId, e)</td>
+      </tr>
+      <tr>
+        <td class="gutter">73</td>
+        <td class="code unchanged">    } finally {</td>
+        <td class="gutter">73</td>
+        <td class="code unchanged">    } finally {</td>
+      </tr>
+      <tr>
+        <td class="gutter">74</td>
+        <td class="code unchanged">      setIsFetchingPosts((prev) =&gt; ({ ...prev, [parentId]: false }))</td>
+        <td class="gutter">74</td>
+        <td class="code unchanged">      setIsFetchingPosts((prev) =&gt; ({ ...prev, [parentId]: false }))</td>
+      </tr>
+      <tr>
+        <td class="gutter">75</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">75</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">76</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">76</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">77</td>
+        <td class="code unchanged">  const getPostThumbUrl = (post: Post): string =&gt; {</td>
+        <td class="gutter">77</td>
+        <td class="code unchanged">  const getPostThumbUrl = (post: Post): string =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">78</td>
+        <td class="code unchanged">    const metaImage = post.meta?.image</td>
+        <td class="gutter">78</td>
+        <td class="code unchanged">    const metaImage = post.meta?.image</td>
+      </tr>
+      <tr>
+        <td class="gutter">79</td>
+        <td class="code unchanged">    let candidate: string | undefined</td>
+        <td class="gutter">79</td>
+        <td class="code unchanged">    let candidate: string | undefined</td>
+      </tr>
+      <tr>
+        <td class="gutter">80</td>
+        <td class="code unchanged">    if (metaImage &amp;&amp; typeof metaImage === 'object') {</td>
+        <td class="gutter">80</td>
+        <td class="code unchanged">    if (metaImage &amp;&amp; typeof metaImage === 'object') {</td>
+      </tr>
+      <tr>
+        <td class="gutter">81</td>
+        <td class="code unchanged">      const media = metaImage as Media</td>
+        <td class="gutter">81</td>
+        <td class="code unchanged">      const media = metaImage as Media</td>
+      </tr>
+      <tr>
+        <td class="gutter">82</td>
+        <td class="code unchanged">      candidate = media.sizes?.thumbnail?.url || media.sizes?.small?.url || media.url || undefined</td>
+        <td class="gutter">82</td>
+        <td class="code unchanged">      candidate = media.sizes?.thumbnail?.url || media.sizes?.small?.url || media.url || undefined</td>
+      </tr>
+      <tr>
+        <td class="gutter">83</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">83</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">84</td>
+        <td class="code unchanged">    return getMediaUrl(candidate || '')</td>
+        <td class="gutter">84</td>
+        <td class="code unchanged">    return getMediaUrl(candidate || '')</td>
+      </tr>
+      <tr>
+        <td class="gutter">85</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">85</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">86</td>
+        <td class="code unchanged">  const recalcDrawerTop = () =&gt; {</td>
+        <td class="gutter">86</td>
+        <td class="code unchanged">  const recalcDrawerTop = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">87</td>
+        <td class="code unchanged">    const el = navRef.current</td>
+        <td class="gutter">87</td>
+        <td class="code unchanged">    const el = navRef.current</td>
+      </tr>
+      <tr>
+        <td class="gutter">88</td>
+        <td class="code unchanged">    if (el) {</td>
+        <td class="gutter">88</td>
+        <td class="code unchanged">    if (el) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">89</td>
+        <td class="code unchanged">      const headerEl = el.closest('header') as HTMLElement | null</td>
+        <td class="gutter">89</td>
+        <td class="code unchanged">      const headerEl = el.closest('header') as HTMLElement | null</td>
+      </tr>
+      <tr>
+        <td class="gutter">90</td>
+        <td class="code unchanged">      const rect = (headerEl || el).getBoundingClientRect()</td>
+        <td class="gutter">90</td>
+        <td class="code unchanged">      const rect = (headerEl || el).getBoundingClientRect()</td>
+      </tr>
+      <tr>
+        <td class="gutter">91</td>
+        <td class="code unchanged">      setDrawerTop(rect.bottom + window.scrollY)</td>
+        <td class="gutter">91</td>
+        <td class="code unchanged">      setDrawerTop(rect.bottom + window.scrollY)</td>
+      </tr>
+      <tr>
+        <td class="gutter">92</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">92</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">93</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">93</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">94</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+        <td class="gutter">94</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">95</td>
+        <td class="code unchanged">    if (hoveredParentId) {</td>
+        <td class="gutter">95</td>
+        <td class="code unchanged">    if (hoveredParentId) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">96</td>
+        <td class="code unchanged">      recalcDrawerTop()</td>
+        <td class="gutter">96</td>
+        <td class="code unchanged">      recalcDrawerTop()</td>
+      </tr>
+      <tr>
+        <td class="gutter">97</td>
+        <td class="code unchanged">      const onScroll = () =&gt; recalcDrawerTop()</td>
+        <td class="gutter">97</td>
+        <td class="code unchanged">      const onScroll = () =&gt; recalcDrawerTop()</td>
+      </tr>
+      <tr>
+        <td class="gutter">98</td>
+        <td class="code unchanged">      const onResize = () =&gt; recalcDrawerTop()</td>
+        <td class="gutter">98</td>
+        <td class="code unchanged">      const onResize = () =&gt; recalcDrawerTop()</td>
+      </tr>
+      <tr>
+        <td class="gutter">99</td>
+        <td class="code unchanged">      window.addEventListener('scroll', onScroll, { passive: true })</td>
+        <td class="gutter">99</td>
+        <td class="code unchanged">      window.addEventListener('scroll', onScroll, { passive: true })</td>
+      </tr>
+      <tr>
+        <td class="gutter">100</td>
+        <td class="code unchanged">      window.addEventListener('resize', onResize)</td>
+        <td class="gutter">100</td>
+        <td class="code unchanged">      window.addEventListener('resize', onResize)</td>
+      </tr>
+      <tr>
+        <td class="gutter">101</td>
+        <td class="code unchanged">      return () =&gt; {</td>
+        <td class="gutter">101</td>
+        <td class="code unchanged">      return () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">102</td>
+        <td class="code unchanged">        window.removeEventListener('scroll', onScroll)</td>
+        <td class="gutter">102</td>
+        <td class="code unchanged">        window.removeEventListener('scroll', onScroll)</td>
+      </tr>
+      <tr>
+        <td class="gutter">103</td>
+        <td class="code unchanged">        window.removeEventListener('resize', onResize)</td>
+        <td class="gutter">103</td>
+        <td class="code unchanged">        window.removeEventListener('resize', onResize)</td>
+      </tr>
+      <tr>
+        <td class="gutter">104</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">104</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">105</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">105</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">106</td>
+        <td class="code unchanged">  }, [hoveredParentId])</td>
+        <td class="gutter">106</td>
+        <td class="code unchanged">  }, [hoveredParentId])</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">107</td>
+        <td class="code unchanged">  const scheduleClose = () =&gt; {</td>
+        <td class="gutter">107</td>
+        <td class="code unchanged">  const scheduleClose = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">108</td>
+        <td class="code unchanged">    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current)</td>
+        <td class="gutter">108</td>
+        <td class="code unchanged">    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current)</td>
+      </tr>
+      <tr>
+        <td class="gutter">109</td>
+        <td class="code unchanged">    closeTimerRef.current = window.setTimeout(() =&gt; setHoveredParentId(null), 120)</td>
+        <td class="gutter">109</td>
+        <td class="code unchanged">    closeTimerRef.current = window.setTimeout(() =&gt; setHoveredParentId(null), 120)</td>
+      </tr>
+      <tr>
+        <td class="gutter">110</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">110</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">111</td>
+        <td class="code unchanged">  const cancelClose = () =&gt; {</td>
+        <td class="gutter">111</td>
+        <td class="code unchanged">  const cancelClose = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">112</td>
+        <td class="code unchanged">    if (closeTimerRef.current) {</td>
+        <td class="gutter">112</td>
+        <td class="code unchanged">    if (closeTimerRef.current) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">113</td>
+        <td class="code unchanged">      window.clearTimeout(closeTimerRef.current)</td>
+        <td class="gutter">113</td>
+        <td class="code unchanged">      window.clearTimeout(closeTimerRef.current)</td>
+      </tr>
+      <tr>
+        <td class="gutter">114</td>
+        <td class="code unchanged">      closeTimerRef.current = null</td>
+        <td class="gutter">114</td>
+        <td class="code unchanged">      closeTimerRef.current = null</td>
+      </tr>
+      <tr>
+        <td class="gutter">115</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">115</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter">116</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">116</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">117</td>
+        <td class="code unchanged">  return (</td>
+        <td class="gutter">117</td>
+        <td class="code unchanged">  return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">118</td>
+        <td class="code unchanged">    &lt;nav ref={navRef} className="flex items-center"&gt;</td>
+        <td class="gutter">118</td>
+        <td class="code unchanged">    &lt;nav ref={navRef} className="flex items-center"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">119</td>
+        <td class="code unchanged">      {/* Desktop Navigation */}</td>
+        <td class="gutter">119</td>
+        <td class="code unchanged">      {/* Desktop Navigation */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">120</td>
+        <td class="code unchanged">      &lt;div className="hidden md:flex gap-6 items-center"&gt;</td>
+        <td class="gutter">120</td>
+        <td class="code unchanged">      &lt;div className="hidden md:flex gap-6 items-center"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">121</td>
+        <td class="code unchanged">        {otherParents.map((parent) =&gt; {</td>
+        <td class="gutter">121</td>
+        <td class="code unchanged">        {otherParents.map((parent) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">122</td>
+        <td class="code unchanged">          const children = childrenByParentId[parent.id] || []</td>
+        <td class="gutter">122</td>
+        <td class="code unchanged">          const children = childrenByParentId[parent.id] || []</td>
+      </tr>
+      <tr>
+        <td class="gutter">123</td>
+        <td class="code unchanged">          const hasChildren = children.length &gt; 0</td>
+        <td class="gutter">123</td>
+        <td class="code unchanged">          const hasChildren = children.length &gt; 0</td>
+      </tr>
+      <tr>
+        <td class="gutter">124</td>
+        <td class="code unchanged">          if (!hasChildren) {</td>
+        <td class="gutter">124</td>
+        <td class="code unchanged">          if (!hasChildren) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">125</td>
+        <td class="code unchanged">            return (</td>
+        <td class="gutter">125</td>
+        <td class="code unchanged">            return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">126</td>
+        <td class="code unchanged">              &lt;Link</td>
+        <td class="gutter">126</td>
+        <td class="code unchanged">              &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">127</td>
+        <td class="code unchanged">                key={parent.id}</td>
+        <td class="gutter">127</td>
+        <td class="code unchanged">                key={parent.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">128</td>
+        <td class="code unchanged">                href={`/posts/category/${parent.slug}`}</td>
+        <td class="gutter">128</td>
+        <td class="code unchanged">                href={`/posts/category/${parent.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">129</td>
+        <td class="code unchanged">                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"</td>
+        <td class="gutter">129</td>
+        <td class="code unchanged">                className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"</td>
+      </tr>
+      <tr>
+        <td class="gutter">130</td>
+        <td class="code unchanged">              &gt;</td>
+        <td class="gutter">130</td>
+        <td class="code unchanged">              &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">131</td>
+        <td class="code unchanged">                {parent.title}</td>
+        <td class="gutter">131</td>
+        <td class="code unchanged">                {parent.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">132</td>
+        <td class="code unchanged">                &lt;span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"&gt;&lt;/span&gt;</td>
+        <td class="gutter">132</td>
+        <td class="code unchanged">                &lt;span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"&gt;&lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">133</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+        <td class="gutter">133</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">134</td>
+        <td class="code unchanged">            )</td>
+        <td class="gutter">134</td>
+        <td class="code unchanged">            )</td>
+      </tr>
+      <tr>
+        <td class="gutter">135</td>
+        <td class="code unchanged">          }</td>
+        <td class="gutter">135</td>
+        <td class="code unchanged">          }</td>
+      </tr>
+      <tr>
+        <td class="gutter">136</td>
+        <td class="code unchanged">          return (</td>
+        <td class="gutter">136</td>
+        <td class="code unchanged">          return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">137</td>
+        <td class="code unchanged">            &lt;div</td>
+        <td class="gutter">137</td>
+        <td class="code unchanged">            &lt;div</td>
+      </tr>
+      <tr>
+        <td class="gutter">138</td>
+        <td class="code unchanged">              key={parent.id}</td>
+        <td class="gutter">138</td>
+        <td class="code unchanged">              key={parent.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">139</td>
+        <td class="code unchanged">              className=""</td>
+        <td class="gutter">139</td>
+        <td class="code unchanged">              className=""</td>
+      </tr>
+      <tr>
+        <td class="gutter">140</td>
+        <td class="code unchanged">              onMouseEnter={() =&gt; {</td>
+        <td class="gutter">140</td>
+        <td class="code unchanged">              onMouseEnter={() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">141</td>
+        <td class="code unchanged">                cancelClose()</td>
+        <td class="gutter">141</td>
+        <td class="code unchanged">                cancelClose()</td>
+      </tr>
+      <tr>
+        <td class="gutter">142</td>
+        <td class="code unchanged">                setHoveredParentId(parent.id)</td>
+        <td class="gutter">142</td>
+        <td class="code unchanged">                setHoveredParentId(parent.id)</td>
+      </tr>
+      <tr>
+        <td class="gutter">143</td>
+        <td class="code unchanged">                void ensurePostsForParent(parent.id)</td>
+        <td class="gutter">143</td>
+        <td class="code unchanged">                void ensurePostsForParent(parent.id)</td>
+      </tr>
+      <tr>
+        <td class="gutter">144</td>
+        <td class="code unchanged">              }}</td>
+        <td class="gutter">144</td>
+        <td class="code unchanged">              }}</td>
+      </tr>
+      <tr>
+        <td class="gutter">145</td>
+        <td class="code unchanged">              onMouseLeave={scheduleClose}</td>
+        <td class="gutter">145</td>
+        <td class="code unchanged">              onMouseLeave={scheduleClose}</td>
+      </tr>
+      <tr>
+        <td class="gutter">146</td>
+        <td class="code unchanged">            &gt;</td>
+        <td class="gutter">146</td>
+        <td class="code unchanged">            &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">147</td>
+        <td class="code unchanged">              &lt;Link</td>
+        <td class="gutter">147</td>
+        <td class="code unchanged">              &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">148</td>
+        <td class="code unchanged">                href={`/posts/category/${parent.slug}`}</td>
+        <td class="gutter">148</td>
+        <td class="code unchanged">                href={`/posts/category/${parent.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">149</td>
+        <td class="code unchanged">                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group z-[60]"</td>
+        <td class="gutter">149</td>
+        <td class="code unchanged">                className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base relative group z-[60]"</td>
+      </tr>
+      <tr>
+        <td class="gutter">150</td>
+        <td class="code unchanged">              &gt;</td>
+        <td class="gutter">150</td>
+        <td class="code unchanged">              &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">151</td>
+        <td class="code unchanged">                &lt;span&gt;{parent.title}&lt;/span&gt;</td>
+        <td class="gutter">151</td>
+        <td class="code unchanged">                &lt;span&gt;{parent.title}&lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">152</td>
+        <td class="code unchanged">                &lt;span</td>
+        <td class="gutter">152</td>
+        <td class="code unchanged">                &lt;span</td>
+      </tr>
+      <tr>
+        <td class="gutter">153</td>
+        <td class="code unchanged">                  className={</td>
+        <td class="gutter">153</td>
+        <td class="code unchanged">                  className={</td>
+      </tr>
+      <tr>
+        <td class="gutter">154</td>
+        <td class="code unchanged">                    `pointer-events-none absolute -bottom-[2px] left-0 h-[2px] bg-foreground transition-all duration-300 ` +</td>
+        <td class="gutter">154</td>
+        <td class="code unchanged">                    `pointer-events-none absolute -bottom-[2px] left-0 h-[2px] bg-foreground transition-all duration-300 ` +</td>
+      </tr>
+      <tr>
+        <td class="gutter">155</td>
+        <td class="code unchanged">                    (hoveredParentId === parent.id ? 'w-full' : 'w-0 group-hover:w-full')</td>
+        <td class="gutter">155</td>
+        <td class="code unchanged">                    (hoveredParentId === parent.id ? 'w-full' : 'w-0 group-hover:w-full')</td>
+      </tr>
+      <tr>
+        <td class="gutter">156</td>
+        <td class="code unchanged">                  }</td>
+        <td class="gutter">156</td>
+        <td class="code unchanged">                  }</td>
+      </tr>
+      <tr>
+        <td class="gutter">157</td>
+        <td class="code unchanged">                /&gt;</td>
+        <td class="gutter">157</td>
+        <td class="code unchanged">                /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">158</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+        <td class="gutter">158</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">159</td>
+        <td class="code unchanged">              {hoveredParentId === parent.id &amp;&amp; (</td>
+        <td class="gutter">159</td>
+        <td class="code unchanged">              {hoveredParentId === parent.id &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">160</td>
+        <td class="code unchanged">                &lt;div</td>
+        <td class="gutter">160</td>
+        <td class="code unchanged">                &lt;div</td>
+      </tr>
+      <tr>
+        <td class="gutter">161</td>
+        <td class="code unchanged">                  className="fixed left-1/2 -translate-x-1/2 bg-card shadow-lg z-50 w-screen border-t border-border"</td>
+        <td class="gutter">161</td>
+        <td class="code unchanged">                  className="fixed left-1/2 -translate-x-1/2 bg-card shadow-lg z-50 w-screen border-t border-border"</td>
+      </tr>
+      <tr>
+        <td class="gutter">162</td>
+        <td class="code unchanged">                  style={{ top: drawerTop }}</td>
+        <td class="gutter">162</td>
+        <td class="code unchanged">                  style={{ top: drawerTop }}</td>
+      </tr>
+      <tr>
+        <td class="gutter">163</td>
+        <td class="code unchanged">                  onMouseEnter={cancelClose}</td>
+        <td class="gutter">163</td>
+        <td class="code unchanged">                  onMouseEnter={cancelClose}</td>
+      </tr>
+      <tr>
+        <td class="gutter">164</td>
+        <td class="code unchanged">                  onMouseLeave={scheduleClose}</td>
+        <td class="gutter">164</td>
+        <td class="code unchanged">                  onMouseLeave={scheduleClose}</td>
+      </tr>
+      <tr>
+        <td class="gutter">165</td>
+        <td class="code unchanged">                &gt;</td>
+        <td class="gutter">165</td>
+        <td class="code unchanged">                &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">166</td>
+        <td class="code unchanged">                  &lt;div className="container"&gt;</td>
+        <td class="gutter">166</td>
+        <td class="code unchanged">                  &lt;div className="container"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">167</td>
+        <td class="code unchanged">                    &lt;div className="grid grid-cols-12 gap-8 p-8"&gt;</td>
+        <td class="gutter">167</td>
+        <td class="code unchanged">                    &lt;div className="grid grid-cols-12 gap-8 p-8"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">168</td>
+        <td class="code unchanged">                      {/* Left: subcategories */}</td>
+        <td class="gutter">168</td>
+        <td class="code unchanged">                      {/* Left: subcategories */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">169</td>
+        <td class="code unchanged">                      &lt;div className="col-span-12 md:col-span-3 bg-card"&gt;</td>
+        <td class="gutter">169</td>
+        <td class="code unchanged">                      &lt;div className="col-span-12 md:col-span-3 bg-card"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">170</td>
+        <td class="code unchanged">                        &lt;div className="block px-2 py-1.5 text-sm font-medium text-card-foreground border-b border-border mb-2"&gt;</td>
+        <td class="gutter">170</td>
+        <td class="code unchanged">                        &lt;div className="block px-2 py-1.5 text-sm font-medium text-card-foreground border-b border-border mb-2"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">171</td>
+        <td class="code unchanged">                          Topics</td>
+        <td class="gutter">171</td>
+        <td class="code unchanged">                          Topics</td>
+      </tr>
+      <tr>
+        <td class="gutter">172</td>
+        <td class="code unchanged">                        &lt;/div&gt;</td>
+        <td class="gutter">172</td>
+        <td class="code unchanged">                        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">173</td>
+        <td class="code unchanged">                        &lt;div className="flex flex-col"&gt;</td>
+        <td class="gutter">173</td>
+        <td class="code unchanged">                        &lt;div className="flex flex-col"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">174</td>
+        <td class="code unchanged">                          {children.map((child) =&gt; (</td>
+        <td class="gutter">174</td>
+        <td class="code unchanged">                          {children.map((child) =&gt; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">175</td>
+        <td class="code unchanged">                            &lt;Link</td>
+        <td class="gutter">175</td>
+        <td class="code unchanged">                            &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">176</td>
+        <td class="code unchanged">                              key={child.id}</td>
+        <td class="gutter">176</td>
+        <td class="code unchanged">                              key={child.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">177</td>
+        <td class="code unchanged">                              href={`/posts/category/${child.slug}`}</td>
+        <td class="gutter">177</td>
+        <td class="code unchanged">                              href={`/posts/category/${child.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">178</td>
+        <td class="code unchanged">                              className="px-2 py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"</td>
+        <td class="gutter">178</td>
+        <td class="code unchanged">                              className="px-2 py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">179</td>
+        <td class="code unchanged">                            &gt;</td>
+        <td class="gutter">179</td>
+        <td class="code unchanged">                            &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">180</td>
+        <td class="code unchanged">                              {child.title}</td>
+        <td class="gutter">180</td>
+        <td class="code unchanged">                              {child.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">181</td>
+        <td class="code unchanged">                            &lt;/Link&gt;</td>
+        <td class="gutter">181</td>
+        <td class="code unchanged">                            &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">182</td>
+        <td class="code unchanged">                          ))}</td>
+        <td class="gutter">182</td>
+        <td class="code unchanged">                          ))}</td>
+      </tr>
+      <tr>
+        <td class="gutter">183</td>
+        <td class="code unchanged">                        &lt;/div&gt;</td>
+        <td class="gutter">183</td>
+        <td class="code unchanged">                        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">184</td>
+        <td class="code unchanged">                      &lt;/div&gt;</td>
+        <td class="gutter">184</td>
+        <td class="code unchanged">                      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">185</td>
+        <td class="code unchanged">                      {/* Right: 3 latest posts */}</td>
+        <td class="gutter">185</td>
+        <td class="code unchanged">                      {/* Right: 3 latest posts */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">186</td>
+        <td class="code unchanged">                      &lt;div className="col-span-12 md:col-span-9"&gt;</td>
+        <td class="gutter">186</td>
+        <td class="code unchanged">                      &lt;div className="col-span-12 md:col-span-9"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">187</td>
+        <td class="code unchanged">                        &lt;div className="p-6 border-l border-border"&gt;</td>
+        <td class="gutter">187</td>
+        <td class="code unchanged">                        &lt;div className="p-6 border-l border-border"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">188</td>
+        <td class="code unchanged">                          &lt;div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"&gt;</td>
+        <td class="gutter">188</td>
+        <td class="code unchanged">                          &lt;div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">189</td>
+        <td class="code unchanged">                            {(postsByParentId[parent.id] || new Array(3).fill(null)).map(</td>
+        <td class="gutter">189</td>
+        <td class="code unchanged">                            {(postsByParentId[parent.id] || new Array(3).fill(null)).map(</td>
+      </tr>
+      <tr>
+        <td class="gutter">190</td>
+        <td class="code unchanged">                              (post, idx) =&gt; {</td>
+        <td class="gutter">190</td>
+        <td class="code unchanged">                              (post, idx) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">191</td>
+        <td class="code unchanged">                                if (!post) {</td>
+        <td class="gutter">191</td>
+        <td class="code unchanged">                                if (!post) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">192</td>
+        <td class="code unchanged">                                  return (</td>
+        <td class="gutter">192</td>
+        <td class="code unchanged">                                  return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">193</td>
+        <td class="code unchanged">                                    &lt;div</td>
+        <td class="gutter">193</td>
+        <td class="code unchanged">                                    &lt;div</td>
+      </tr>
+      <tr>
+        <td class="gutter">194</td>
+        <td class="code unchanged">                                      key={`skeleton-${idx}`}</td>
+        <td class="gutter">194</td>
+        <td class="code unchanged">                                      key={`skeleton-${idx}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">195</td>
+        <td class="code unchanged">                                      className="animate-pulse flex gap-3"</td>
+        <td class="gutter">195</td>
+        <td class="code unchanged">                                      className="animate-pulse flex gap-3"</td>
+      </tr>
+      <tr>
+        <td class="gutter">196</td>
+        <td class="code unchanged">                                    &gt;</td>
+        <td class="gutter">196</td>
+        <td class="code unchanged">                                    &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">197</td>
+        <td class="code unchanged">                                      &lt;div className="w-24 h-16 bg-muted rounded" /&gt;</td>
+        <td class="gutter">197</td>
+        <td class="code unchanged">                                      &lt;div className="w-24 h-16 bg-muted rounded" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">198</td>
+        <td class="code unchanged">                                      &lt;div className="flex-1 space-y-2"&gt;</td>
+        <td class="gutter">198</td>
+        <td class="code unchanged">                                      &lt;div className="flex-1 space-y-2"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">199</td>
+        <td class="code unchanged">                                        &lt;div className="h-4 bg-muted rounded w-3/4" /&gt;</td>
+        <td class="gutter">199</td>
+        <td class="code unchanged">                                        &lt;div className="h-4 bg-muted rounded w-3/4" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">200</td>
+        <td class="code unchanged">                                        &lt;div className="h-4 bg-muted rounded w-2/5" /&gt;</td>
+        <td class="gutter">200</td>
+        <td class="code unchanged">                                        &lt;div className="h-4 bg-muted rounded w-2/5" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">201</td>
+        <td class="code unchanged">                                      &lt;/div&gt;</td>
+        <td class="gutter">201</td>
+        <td class="code unchanged">                                      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">202</td>
+        <td class="code unchanged">                                    &lt;/div&gt;</td>
+        <td class="gutter">202</td>
+        <td class="code unchanged">                                    &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">203</td>
+        <td class="code unchanged">                                  )</td>
+        <td class="gutter">203</td>
+        <td class="code unchanged">                                  )</td>
+      </tr>
+      <tr>
+        <td class="gutter">204</td>
+        <td class="code unchanged">                                }</td>
+        <td class="gutter">204</td>
+        <td class="code unchanged">                                }</td>
+      </tr>
+      <tr>
+        <td class="gutter">205</td>
+        <td class="code unchanged">                                const imgUrl = getPostThumbUrl(post)</td>
+        <td class="gutter">205</td>
+        <td class="code unchanged">                                const imgUrl = getPostThumbUrl(post)</td>
+      </tr>
+      <tr>
+        <td class="gutter">206</td>
+        <td class="code unchanged">                                return (</td>
+        <td class="gutter">206</td>
+        <td class="code unchanged">                                return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">207</td>
+        <td class="code unchanged">                                  &lt;Link</td>
+        <td class="gutter">207</td>
+        <td class="code unchanged">                                  &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">208</td>
+        <td class="code unchanged">                                    key={post.id}</td>
+        <td class="gutter">208</td>
+        <td class="code unchanged">                                    key={post.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">209</td>
+        <td class="code unchanged">                                    href={`/posts/${post.slug}`}</td>
+        <td class="gutter">209</td>
+        <td class="code unchanged">                                    href={`/posts/${post.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">210</td>
+        <td class="code unchanged">                                    className="group"</td>
+        <td class="gutter">210</td>
+        <td class="code unchanged">                                    className="group"</td>
+      </tr>
+      <tr>
+        <td class="gutter">211</td>
+        <td class="code unchanged">                                  &gt;</td>
+        <td class="gutter">211</td>
+        <td class="code unchanged">                                  &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">212</td>
+        <td class="code unchanged">                                    &lt;div className="flex items-start gap-3"&gt;</td>
+        <td class="gutter">212</td>
+        <td class="code unchanged">                                    &lt;div className="flex items-start gap-3"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">213</td>
+        <td class="code unchanged">                                      &lt;div className="relative w-24 h-16 overflow-hidden rounded border border-border flex-shrink-0"&gt;</td>
+        <td class="gutter">213</td>
+        <td class="code unchanged">                                      &lt;div className="relative w-24 h-16 overflow-hidden rounded border border-border flex-shrink-0"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">214</td>
+        <td class="code unchanged">                                        {imgUrl ? (</td>
+        <td class="gutter">214</td>
+        <td class="code unchanged">                                        {imgUrl ? (</td>
+      </tr>
+      <tr>
+        <td class="gutter">215</td>
+        <td class="code unchanged">                                          &lt;Image</td>
+        <td class="gutter">215</td>
+        <td class="code unchanged">                                          &lt;Image</td>
+      </tr>
+      <tr>
+        <td class="gutter">216</td>
+        <td class="code unchanged">                                            src={imgUrl}</td>
+        <td class="gutter">216</td>
+        <td class="code unchanged">                                            src={imgUrl}</td>
+      </tr>
+      <tr>
+        <td class="gutter">217</td>
+        <td class="code unchanged">                                            alt={post.title || ''}</td>
+        <td class="gutter">217</td>
+        <td class="code unchanged">                                            alt={post.title || ''}</td>
+      </tr>
+      <tr>
+        <td class="gutter">218</td>
+        <td class="code unchanged">                                            fill</td>
+        <td class="gutter">218</td>
+        <td class="code unchanged">                                            fill</td>
+      </tr>
+      <tr>
+        <td class="gutter">219</td>
+        <td class="code unchanged">                                            className="object-cover"</td>
+        <td class="gutter">219</td>
+        <td class="code unchanged">                                            className="object-cover"</td>
+      </tr>
+      <tr>
+        <td class="gutter">220</td>
+        <td class="code unchanged">                                            sizes="96px"</td>
+        <td class="gutter">220</td>
+        <td class="code unchanged">                                            sizes="96px"</td>
+      </tr>
+      <tr>
+        <td class="gutter">221</td>
+        <td class="code unchanged">                                          /&gt;</td>
+        <td class="gutter">221</td>
+        <td class="code unchanged">                                          /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">222</td>
+        <td class="code unchanged">                                        ) : (</td>
+        <td class="gutter">222</td>
+        <td class="code unchanged">                                        ) : (</td>
+      </tr>
+      <tr>
+        <td class="gutter">223</td>
+        <td class="code unchanged">                                          &lt;div className="w-full h-full bg-muted" /&gt;</td>
+        <td class="gutter">223</td>
+        <td class="code unchanged">                                          &lt;div className="w-full h-full bg-muted" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">224</td>
+        <td class="code unchanged">                                        )}</td>
+        <td class="gutter">224</td>
+        <td class="code unchanged">                                        )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">225</td>
+        <td class="code unchanged">                                      &lt;/div&gt;</td>
+        <td class="gutter">225</td>
+        <td class="code unchanged">                                      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">226</td>
+        <td class="code unchanged">                                      &lt;div className="flex-1 min-w-0"&gt;</td>
+        <td class="gutter">226</td>
+        <td class="code unchanged">                                      &lt;div className="flex-1 min-w-0"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">227</td>
+        <td class="code unchanged">                                        &lt;div className="text-sm font-medium text-foreground group-hover:text-accent-foreground transition-colors line-clamp-3"&gt;</td>
+        <td class="gutter">227</td>
+        <td class="code unchanged">                                        &lt;div className="text-sm font-medium text-foreground group-hover:text-accent-foreground transition-colors line-clamp-3"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">228</td>
+        <td class="code unchanged">                                          {post.title}</td>
+        <td class="gutter">228</td>
+        <td class="code unchanged">                                          {post.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">229</td>
+        <td class="code unchanged">                                        &lt;/div&gt;</td>
+        <td class="gutter">229</td>
+        <td class="code unchanged">                                        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">230</td>
+        <td class="code unchanged">                                      &lt;/div&gt;</td>
+        <td class="gutter">230</td>
+        <td class="code unchanged">                                      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">231</td>
+        <td class="code unchanged">                                    &lt;/div&gt;</td>
+        <td class="gutter">231</td>
+        <td class="code unchanged">                                    &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">232</td>
+        <td class="code unchanged">                                  &lt;/Link&gt;</td>
+        <td class="gutter">232</td>
+        <td class="code unchanged">                                  &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">233</td>
+        <td class="code unchanged">                                )</td>
+        <td class="gutter">233</td>
+        <td class="code unchanged">                                )</td>
+      </tr>
+      <tr>
+        <td class="gutter">234</td>
+        <td class="code unchanged">                              },</td>
+        <td class="gutter">234</td>
+        <td class="code unchanged">                              },</td>
+      </tr>
+      <tr>
+        <td class="gutter">235</td>
+        <td class="code unchanged">                            )}</td>
+        <td class="gutter">235</td>
+        <td class="code unchanged">                            )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">236</td>
+        <td class="code unchanged">                          &lt;/div&gt;</td>
+        <td class="gutter">236</td>
+        <td class="code unchanged">                          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">237</td>
+        <td class="code unchanged">                        &lt;/div&gt;</td>
+        <td class="gutter">237</td>
+        <td class="code unchanged">                        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">238</td>
+        <td class="code unchanged">                      &lt;/div&gt;</td>
+        <td class="gutter">238</td>
+        <td class="code unchanged">                      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">239</td>
+        <td class="code unchanged">                    &lt;/div&gt;</td>
+        <td class="gutter">239</td>
+        <td class="code unchanged">                    &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">240</td>
+        <td class="code unchanged">                  &lt;/div&gt;</td>
+        <td class="gutter">240</td>
+        <td class="code unchanged">                  &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">241</td>
+        <td class="code unchanged">                &lt;/div&gt;</td>
+        <td class="gutter">241</td>
+        <td class="code unchanged">                &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">242</td>
+        <td class="code unchanged">              )}</td>
+        <td class="gutter">242</td>
+        <td class="code unchanged">              )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">243</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">243</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">244</td>
+        <td class="code unchanged">          )</td>
+        <td class="gutter">244</td>
+        <td class="code unchanged">          )</td>
+      </tr>
+      <tr>
+        <td class="gutter">245</td>
+        <td class="code unchanged">        })}</td>
+        <td class="gutter">245</td>
+        <td class="code unchanged">        })}</td>
+      </tr>
+      <tr>
+        <td class="gutter">246</td>
+        <td class="code unchanged">        {/* Featured category at the end */}</td>
+        <td class="gutter">246</td>
+        <td class="code unchanged">        {/* Featured category at the end */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">247</td>
+        <td class="code unchanged">        {featuredCategory &amp;&amp; (</td>
+        <td class="gutter">247</td>
+        <td class="code unchanged">        {featuredCategory &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">248</td>
+        <td class="code unchanged">          &lt;Link</td>
+        <td class="gutter">248</td>
+        <td class="code unchanged">          &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">249</td>
+        <td class="code unchanged">            key={featuredCategory.id}</td>
+        <td class="gutter">249</td>
+        <td class="code unchanged">            key={featuredCategory.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">250</td>
+        <td class="code unchanged">            href={`/posts/category/${featuredCategory.slug}`}</td>
+        <td class="gutter">250</td>
+        <td class="code unchanged">            href={`/posts/category/${featuredCategory.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">251</td>
+        <td class="code unchanged">            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"</td>
+        <td class="gutter">251</td>
+        <td class="code unchanged">            className="text-foreground hover:text-accent-foreground transition-colors font-medium relative group text-base"</td>
+      </tr>
+      <tr>
+        <td class="gutter">252</td>
+        <td class="code unchanged">          &gt;</td>
+        <td class="gutter">252</td>
+        <td class="code unchanged">          &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">253</td>
+        <td class="code unchanged">            {featuredCategory.title}</td>
+        <td class="gutter">253</td>
+        <td class="code unchanged">            {featuredCategory.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">254</td>
+        <td class="code unchanged">            &lt;span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"&gt;&lt;/span&gt;</td>
+        <td class="gutter">254</td>
+        <td class="code unchanged">            &lt;span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground group-hover:w-full transition-all duration-300"&gt;&lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">255</td>
+        <td class="code unchanged">          &lt;/Link&gt;</td>
+        <td class="gutter">255</td>
+        <td class="code unchanged">          &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">256</td>
+        <td class="code unchanged">        )}</td>
+        <td class="gutter">256</td>
+        <td class="code unchanged">        )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">257</td>
+        <td class="code unchanged">        {moreItems.length &gt; 0 &amp;&amp; (</td>
+        <td class="gutter">257</td>
+        <td class="code unchanged">        {moreItems.length &gt; 0 &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">258</td>
+        <td class="code unchanged">          &lt;div className="relative group"&gt;</td>
+        <td class="gutter">258</td>
+        <td class="code unchanged">          &lt;div className="relative group"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">259</td>
+        <td class="code unchanged">            &lt;button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base"&gt;</td>
+        <td class="gutter">259</td>
+        <td class="code unchanged">            &lt;button className="text-foreground hover:text-accent-foreground transition-colors font-medium text-base"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">260</td>
+        <td class="code unchanged">              More</td>
+        <td class="gutter">260</td>
+        <td class="code unchanged">              More</td>
+      </tr>
+      <tr>
+        <td class="gutter">261</td>
+        <td class="code unchanged">            &lt;/button&gt;</td>
+        <td class="gutter">261</td>
+        <td class="code unchanged">            &lt;/button&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">262</td>
+        <td class="code unchanged">            &lt;div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"&gt;</td>
+        <td class="gutter">262</td>
+        <td class="code unchanged">            &lt;div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">263</td>
+        <td class="code unchanged">              {moreItems.map((item, index) =&gt; (</td>
+        <td class="gutter">263</td>
+        <td class="code unchanged">              {moreItems.map((item, index) =&gt; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">264</td>
+        <td class="code unchanged">                &lt;Link</td>
+        <td class="gutter">264</td>
+        <td class="code unchanged">                &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">265</td>
+        <td class="code unchanged">                  key={index}</td>
+        <td class="gutter">265</td>
+        <td class="code unchanged">                  key={index}</td>
+      </tr>
+      <tr>
+        <td class="gutter">266</td>
+        <td class="code unchanged">                  href={item.href}</td>
+        <td class="gutter">266</td>
+        <td class="code unchanged">                  href={item.href}</td>
+      </tr>
+      <tr>
+        <td class="gutter">267</td>
+        <td class="code unchanged">                  className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"</td>
+        <td class="gutter">267</td>
+        <td class="code unchanged">                  className="block px-4 py-2 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">268</td>
+        <td class="code unchanged">                &gt;</td>
+        <td class="gutter">268</td>
+        <td class="code unchanged">                &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">269</td>
+        <td class="code unchanged">                  {item.label}</td>
+        <td class="gutter">269</td>
+        <td class="code unchanged">                  {item.label}</td>
+      </tr>
+      <tr>
+        <td class="gutter">270</td>
+        <td class="code unchanged">                &lt;/Link&gt;</td>
+        <td class="gutter">270</td>
+        <td class="code unchanged">                &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">271</td>
+        <td class="code unchanged">              ))}</td>
+        <td class="gutter">271</td>
+        <td class="code unchanged">              ))}</td>
+      </tr>
+      <tr>
+        <td class="gutter">272</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">272</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">273</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">273</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">274</td>
+        <td class="code unchanged">        )}</td>
+        <td class="gutter">274</td>
+        <td class="code unchanged">        )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">275</td>
+        <td class="code unchanged">        &lt;Link</td>
+        <td class="gutter">275</td>
+        <td class="code unchanged">        &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">276</td>
+        <td class="code unchanged">          href="/search"</td>
+        <td class="gutter">276</td>
+        <td class="code unchanged">          href="/search"</td>
+      </tr>
+      <tr>
+        <td class="gutter">277</td>
+        <td class="code unchanged">          className="p-2 text-foreground hover:text-accent-foreground transition-colors"</td>
+        <td class="gutter">277</td>
+        <td class="code unchanged">          className="p-2 text-foreground hover:text-accent-foreground transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">278</td>
+        <td class="code unchanged">        &gt;</td>
+        <td class="gutter">278</td>
+        <td class="code unchanged">        &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">279</td>
+        <td class="code unchanged">          &lt;FiSearch className="h-5 w-5" /&gt;</td>
+        <td class="gutter">279</td>
+        <td class="code unchanged">          &lt;FiSearch className="h-5 w-5" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">280</td>
+        <td class="code unchanged">        &lt;/Link&gt;</td>
+        <td class="gutter">280</td>
+        <td class="code unchanged">        &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">281</td>
+        <td class="code unchanged">        &lt;Link</td>
+        <td class="gutter">281</td>
+        <td class="code unchanged">        &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">282</td>
+        <td class="code unchanged">          href="/newsletter"</td>
+        <td class="gutter">282</td>
+        <td class="code unchanged">          href="/newsletter"</td>
+      </tr>
+      <tr>
+        <td class="gutter">283</td>
+        <td class="code unchanged">          className="bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors"</td>
+        <td class="gutter">283</td>
+        <td class="code unchanged">          className="bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">284</td>
+        <td class="code unchanged">        &gt;</td>
+        <td class="gutter">284</td>
+        <td class="code unchanged">        &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">285</td>
+        <td class="code unchanged">          Subscribe</td>
+        <td class="gutter">285</td>
+        <td class="code unchanged">          Subscribe</td>
+      </tr>
+      <tr>
+        <td class="gutter">286</td>
+        <td class="code unchanged">        &lt;/Link&gt;</td>
+        <td class="gutter">286</td>
+        <td class="code unchanged">        &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">287</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+        <td class="gutter">287</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">288</td>
+        <td class="code unchanged">      {/* Mobile Menu Button */}</td>
+        <td class="gutter">288</td>
+        <td class="code unchanged">      {/* Mobile Menu Button */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">289</td>
+        <td class="code unchanged">      &lt;button</td>
+        <td class="gutter">289</td>
+        <td class="code unchanged">      &lt;button</td>
+      </tr>
+      <tr>
+        <td class="gutter">290</td>
+        <td class="code unchanged">        className="md:hidden transition-colors text-foreground hover:text-accent-foreground relative z-50 flex-shrink-0"</td>
+        <td class="gutter">290</td>
+        <td class="code unchanged">        className="md:hidden transition-colors text-foreground hover:text-accent-foreground relative z-50 flex-shrink-0"</td>
+      </tr>
+      <tr>
+        <td class="gutter">291</td>
+        <td class="code unchanged">        aria-label="Toggle Menu"</td>
+        <td class="gutter">291</td>
+        <td class="code unchanged">        aria-label="Toggle Menu"</td>
+      </tr>
+      <tr>
+        <td class="gutter">292</td>
+        <td class="code unchanged">        onClick={toggleMenu}</td>
+        <td class="gutter">292</td>
+        <td class="code unchanged">        onClick={toggleMenu}</td>
+      </tr>
+      <tr>
+        <td class="gutter">293</td>
+        <td class="code unchanged">      &gt;</td>
+        <td class="gutter">293</td>
+        <td class="code unchanged">      &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">294</td>
+        <td class="code unchanged">        {isMenuOpen ? &lt;FiX className="h-6 w-6" /&gt; : &lt;FiMenu className="h-6 w-6" /&gt;}</td>
+        <td class="gutter">294</td>
+        <td class="code unchanged">        {isMenuOpen ? &lt;FiX className="h-6 w-6" /&gt; : &lt;FiMenu className="h-6 w-6" /&gt;}</td>
+      </tr>
+      <tr>
+        <td class="gutter">295</td>
+        <td class="code unchanged">      &lt;/button&gt;</td>
+        <td class="gutter">295</td>
+        <td class="code unchanged">      &lt;/button&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">296</td>
+        <td class="code unchanged">      {/* Mobile Drawer */}</td>
+        <td class="gutter">296</td>
+        <td class="code unchanged">      {/* Mobile Drawer */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">297</td>
+        <td class="code unchanged">      &lt;Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen} side="left"&gt;</td>
+        <td class="gutter">297</td>
+        <td class="code unchanged">      &lt;Drawer open={isMenuOpen} onOpenChange={setIsMenuOpen} side="left"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">298</td>
+        <td class="code unchanged">        &lt;DrawerHeader&gt;</td>
+        <td class="gutter">298</td>
+        <td class="code unchanged">        &lt;DrawerHeader&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">299</td>
+        <td class="code unchanged">          &lt;div className="flex items-center justify-between"&gt;</td>
+        <td class="gutter">299</td>
+        <td class="code unchanged">          &lt;div className="flex items-center justify-between"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">300</td>
+        <td class="code unchanged">            &lt;span className="text-sm font-medium"&gt;Menu&lt;/span&gt;</td>
+        <td class="gutter">300</td>
+        <td class="code unchanged">            &lt;span className="text-sm font-medium"&gt;Menu&lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">301</td>
+        <td class="code unchanged">            &lt;button</td>
+        <td class="gutter">301</td>
+        <td class="code unchanged">            &lt;button</td>
+      </tr>
+      <tr>
+        <td class="gutter">302</td>
+        <td class="code unchanged">              className="p-2 text-card-foreground hover:text-accent-foreground transition-colors"</td>
+        <td class="gutter">302</td>
+        <td class="code unchanged">              className="p-2 text-card-foreground hover:text-accent-foreground transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">303</td>
+        <td class="code unchanged">              aria-label="Close Menu"</td>
+        <td class="gutter">303</td>
+        <td class="code unchanged">              aria-label="Close Menu"</td>
+      </tr>
+      <tr>
+        <td class="gutter">304</td>
+        <td class="code unchanged">              onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">304</td>
+        <td class="code unchanged">              onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">305</td>
+        <td class="code unchanged">            &gt;</td>
+        <td class="gutter">305</td>
+        <td class="code unchanged">            &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">306</td>
+        <td class="code unchanged">              &lt;FiX className="h-5 w-5" /&gt;</td>
+        <td class="gutter">306</td>
+        <td class="code unchanged">              &lt;FiX className="h-5 w-5" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">307</td>
+        <td class="code unchanged">            &lt;/button&gt;</td>
+        <td class="gutter">307</td>
+        <td class="code unchanged">            &lt;/button&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">308</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">308</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">309</td>
+        <td class="code unchanged">        &lt;/DrawerHeader&gt;</td>
+        <td class="gutter">309</td>
+        <td class="code unchanged">        &lt;/DrawerHeader&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">310</td>
+        <td class="code unchanged">        &lt;DrawerContent&gt;</td>
+        <td class="gutter">310</td>
+        <td class="code unchanged">        &lt;DrawerContent&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">311</td>
+        <td class="code unchanged">          &lt;div className="flex flex-col gap-2"&gt;</td>
+        <td class="gutter">311</td>
+        <td class="code unchanged">          &lt;div className="flex flex-col gap-2"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">312</td>
+        <td class="code unchanged">            {otherParents.map((parent) =&gt; {</td>
+        <td class="gutter">312</td>
+        <td class="code unchanged">            {otherParents.map((parent) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">313</td>
+        <td class="code unchanged">              const children = childrenByParentId[parent.id] || []</td>
+        <td class="gutter">313</td>
+        <td class="code unchanged">              const children = childrenByParentId[parent.id] || []</td>
+      </tr>
+      <tr>
+        <td class="gutter">314</td>
+        <td class="code unchanged">              const hasChildren = children.length &gt; 0</td>
+        <td class="gutter">314</td>
+        <td class="code unchanged">              const hasChildren = children.length &gt; 0</td>
+      </tr>
+      <tr>
+        <td class="gutter">315</td>
+        <td class="code unchanged">              const isOpen = openParents[parent.id]</td>
+        <td class="gutter">315</td>
+        <td class="code unchanged">              const isOpen = openParents[parent.id]</td>
+      </tr>
+      <tr>
+        <td class="gutter">316</td>
+        <td class="code unchanged">              if (!hasChildren) {</td>
+        <td class="gutter">316</td>
+        <td class="code unchanged">              if (!hasChildren) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">317</td>
+        <td class="code unchanged">                return (</td>
+        <td class="gutter">317</td>
+        <td class="code unchanged">                return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">318</td>
+        <td class="code unchanged">                  &lt;Link</td>
+        <td class="gutter">318</td>
+        <td class="code unchanged">                  &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">319</td>
+        <td class="code unchanged">                    key={parent.id}</td>
+        <td class="gutter">319</td>
+        <td class="code unchanged">                    key={parent.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">320</td>
+        <td class="code unchanged">                    href={`/posts/category/${parent.slug}`}</td>
+        <td class="gutter">320</td>
+        <td class="code unchanged">                    href={`/posts/category/${parent.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">321</td>
+        <td class="code unchanged">                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"</td>
+        <td class="gutter">321</td>
+        <td class="code unchanged">                    className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"</td>
+      </tr>
+      <tr>
+        <td class="gutter">322</td>
+        <td class="code unchanged">                    onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">322</td>
+        <td class="code unchanged">                    onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">323</td>
+        <td class="code unchanged">                  &gt;</td>
+        <td class="gutter">323</td>
+        <td class="code unchanged">                  &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">324</td>
+        <td class="code unchanged">                    {parent.title}</td>
+        <td class="gutter">324</td>
+        <td class="code unchanged">                    {parent.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">325</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+        <td class="gutter">325</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">326</td>
+        <td class="code unchanged">                )</td>
+        <td class="gutter">326</td>
+        <td class="code unchanged">                )</td>
+      </tr>
+      <tr>
+        <td class="gutter">327</td>
+        <td class="code unchanged">              }</td>
+        <td class="gutter">327</td>
+        <td class="code unchanged">              }</td>
+      </tr>
+      <tr>
+        <td class="gutter">328</td>
+        <td class="code unchanged">              return (</td>
+        <td class="gutter">328</td>
+        <td class="code unchanged">              return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">329</td>
+        <td class="code unchanged">                &lt;div key={parent.id} className="border-b border-border pb-2"&gt;</td>
+        <td class="gutter">329</td>
+        <td class="code unchanged">                &lt;div key={parent.id} className="border-b border-border pb-2"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">330</td>
+        <td class="code unchanged">                  &lt;div className="flex items-center justify-between"&gt;</td>
+        <td class="gutter">330</td>
+        <td class="code unchanged">                  &lt;div className="flex items-center justify-between"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">331</td>
+        <td class="code unchanged">                    &lt;Link</td>
+        <td class="gutter">331</td>
+        <td class="code unchanged">                    &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">332</td>
+        <td class="code unchanged">                      href={`/posts/category/${parent.slug}`}</td>
+        <td class="gutter">332</td>
+        <td class="code unchanged">                      href={`/posts/category/${parent.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">333</td>
+        <td class="code unchanged">                      className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2 flex-1"</td>
+        <td class="gutter">333</td>
+        <td class="code unchanged">                      className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2 flex-1"</td>
+      </tr>
+      <tr>
+        <td class="gutter">334</td>
+        <td class="code unchanged">                      onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">334</td>
+        <td class="code unchanged">                      onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">335</td>
+        <td class="code unchanged">                    &gt;</td>
+        <td class="gutter">335</td>
+        <td class="code unchanged">                    &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">336</td>
+        <td class="code unchanged">                      {parent.title}</td>
+        <td class="gutter">336</td>
+        <td class="code unchanged">                      {parent.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">337</td>
+        <td class="code unchanged">                    &lt;/Link&gt;</td>
+        <td class="gutter">337</td>
+        <td class="code unchanged">                    &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">338</td>
+        <td class="code unchanged">                    &lt;button</td>
+        <td class="gutter">338</td>
+        <td class="code unchanged">                    &lt;button</td>
+      </tr>
+      <tr>
+        <td class="gutter">339</td>
+        <td class="code unchanged">                      className="p-2 text-card-foreground hover:text-accent-foreground transition-colors"</td>
+        <td class="gutter">339</td>
+        <td class="code unchanged">                      className="p-2 text-card-foreground hover:text-accent-foreground transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">340</td>
+        <td class="code unchanged">                      onClick={() =&gt;</td>
+        <td class="gutter">340</td>
+        <td class="code unchanged">                      onClick={() =&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">341</td>
+        <td class="code unchanged">                        setOpenParents((prev) =&gt; ({ ...prev, [parent.id]: !prev[parent.id] }))</td>
+        <td class="gutter">341</td>
+        <td class="code unchanged">                        setOpenParents((prev) =&gt; ({ ...prev, [parent.id]: !prev[parent.id] }))</td>
+      </tr>
+      <tr>
+        <td class="gutter">342</td>
+        <td class="code unchanged">                      }</td>
+        <td class="gutter">342</td>
+        <td class="code unchanged">                      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">343</td>
+        <td class="code unchanged">                      aria-expanded={Boolean(isOpen)}</td>
+        <td class="gutter">343</td>
+        <td class="code unchanged">                      aria-expanded={Boolean(isOpen)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">344</td>
+        <td class="code unchanged">                      aria-controls={`mobile-children-${parent.id}`}</td>
+        <td class="gutter">344</td>
+        <td class="code unchanged">                      aria-controls={`mobile-children-${parent.id}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">345</td>
+        <td class="code unchanged">                    &gt;</td>
+        <td class="gutter">345</td>
+        <td class="code unchanged">                    &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">346</td>
+        <td class="code unchanged">                      &lt;svg</td>
+        <td class="gutter">346</td>
+        <td class="code unchanged">                      &lt;svg</td>
+      </tr>
+      <tr>
+        <td class="gutter">347</td>
+        <td class="code unchanged">                        className="h-4 w-4 transition-transform"</td>
+        <td class="gutter">347</td>
+        <td class="code unchanged">                        className="h-4 w-4 transition-transform"</td>
+      </tr>
+      <tr>
+        <td class="gutter">348</td>
+        <td class="code unchanged">                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}</td>
+        <td class="gutter">348</td>
+        <td class="code unchanged">                        style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}</td>
+      </tr>
+      <tr>
+        <td class="gutter">349</td>
+        <td class="code unchanged">                        viewBox="0 0 20 20"</td>
+        <td class="gutter">349</td>
+        <td class="code unchanged">                        viewBox="0 0 20 20"</td>
+      </tr>
+      <tr>
+        <td class="gutter">350</td>
+        <td class="code unchanged">                        xmlns="http://www.w3.org/2000/svg"</td>
+        <td class="gutter">350</td>
+        <td class="code unchanged">                        xmlns="http://www.w3.org/2000/svg"</td>
+      </tr>
+      <tr>
+        <td class="gutter">351</td>
+        <td class="code unchanged">                        aria-hidden="true"</td>
+        <td class="gutter">351</td>
+        <td class="code unchanged">                        aria-hidden="true"</td>
+      </tr>
+      <tr>
+        <td class="gutter">352</td>
+        <td class="code unchanged">                      &gt;</td>
+        <td class="gutter">352</td>
+        <td class="code unchanged">                      &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">353</td>
+        <td class="code unchanged">                        &lt;path d="M14 8L10 12L6 8" stroke="currentColor" strokeLinecap="square" /&gt;</td>
+        <td class="gutter">353</td>
+        <td class="code unchanged">                        &lt;path d="M14 8L10 12L6 8" stroke="currentColor" strokeLinecap="square" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">354</td>
+        <td class="code unchanged">                      &lt;/svg&gt;</td>
+        <td class="gutter">354</td>
+        <td class="code unchanged">                      &lt;/svg&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">355</td>
+        <td class="code unchanged">                    &lt;/button&gt;</td>
+        <td class="gutter">355</td>
+        <td class="code unchanged">                    &lt;/button&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">356</td>
+        <td class="code unchanged">                  &lt;/div&gt;</td>
+        <td class="gutter">356</td>
+        <td class="code unchanged">                  &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">357</td>
+        <td class="code unchanged">                  {isOpen &amp;&amp; (</td>
+        <td class="gutter">357</td>
+        <td class="code unchanged">                  {isOpen &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">358</td>
+        <td class="code unchanged">                    &lt;div id={`mobile-children-${parent.id}`} className="pl-3 flex flex-col"&gt;</td>
+        <td class="gutter">358</td>
+        <td class="code unchanged">                    &lt;div id={`mobile-children-${parent.id}`} className="pl-3 flex flex-col"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">359</td>
+        <td class="code unchanged">                      &lt;Link</td>
+        <td class="gutter">359</td>
+        <td class="code unchanged">                      &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">360</td>
+        <td class="code unchanged">                        href={`/posts/category/${parent.slug}`}</td>
+        <td class="gutter">360</td>
+        <td class="code unchanged">                        href={`/posts/category/${parent.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">361</td>
+        <td class="code unchanged">                        className="py-1.5 text-sm font-medium text-card-foreground hover:text-accent-foreground transition-colors border-b border-border mb-2"</td>
+        <td class="gutter">361</td>
+        <td class="code unchanged">                        className="py-1.5 text-sm font-medium text-card-foreground hover:text-accent-foreground transition-colors border-b border-border mb-2"</td>
+      </tr>
+      <tr>
+        <td class="gutter">362</td>
+        <td class="code unchanged">                        onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">362</td>
+        <td class="code unchanged">                        onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">363</td>
+        <td class="code unchanged">                      &gt;</td>
+        <td class="gutter">363</td>
+        <td class="code unchanged">                      &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">364</td>
+        <td class="code unchanged">                        All {parent.title}</td>
+        <td class="gutter">364</td>
+        <td class="code unchanged">                        All {parent.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">365</td>
+        <td class="code unchanged">                      &lt;/Link&gt;</td>
+        <td class="gutter">365</td>
+        <td class="code unchanged">                      &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">366</td>
+        <td class="code unchanged">                      {children.map((child) =&gt; (</td>
+        <td class="gutter">366</td>
+        <td class="code unchanged">                      {children.map((child) =&gt; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">367</td>
+        <td class="code unchanged">                        &lt;Link</td>
+        <td class="gutter">367</td>
+        <td class="code unchanged">                        &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">368</td>
+        <td class="code unchanged">                          key={child.id}</td>
+        <td class="gutter">368</td>
+        <td class="code unchanged">                          key={child.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">369</td>
+        <td class="code unchanged">                          href={`/posts/category/${child.slug}`}</td>
+        <td class="gutter">369</td>
+        <td class="code unchanged">                          href={`/posts/category/${child.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">370</td>
+        <td class="code unchanged">                          className="py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"</td>
+        <td class="gutter">370</td>
+        <td class="code unchanged">                          className="py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"</td>
+      </tr>
+      <tr>
+        <td class="gutter">371</td>
+        <td class="code unchanged">                          onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">371</td>
+        <td class="code unchanged">                          onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">372</td>
+        <td class="code unchanged">                        &gt;</td>
+        <td class="gutter">372</td>
+        <td class="code unchanged">                        &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">373</td>
+        <td class="code unchanged">                          {child.title}</td>
+        <td class="gutter">373</td>
+        <td class="code unchanged">                          {child.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">374</td>
+        <td class="code unchanged">                        &lt;/Link&gt;</td>
+        <td class="gutter">374</td>
+        <td class="code unchanged">                        &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">375</td>
+        <td class="code unchanged">                      ))}</td>
+        <td class="gutter">375</td>
+        <td class="code unchanged">                      ))}</td>
+      </tr>
+      <tr>
+        <td class="gutter">376</td>
+        <td class="code unchanged">                    &lt;/div&gt;</td>
+        <td class="gutter">376</td>
+        <td class="code unchanged">                    &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">377</td>
+        <td class="code unchanged">                  )}</td>
+        <td class="gutter">377</td>
+        <td class="code unchanged">                  )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">378</td>
+        <td class="code unchanged">                &lt;/div&gt;</td>
+        <td class="gutter">378</td>
+        <td class="code unchanged">                &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">379</td>
+        <td class="code unchanged">              )</td>
+        <td class="gutter">379</td>
+        <td class="code unchanged">              )</td>
+      </tr>
+      <tr>
+        <td class="gutter">380</td>
+        <td class="code unchanged">            })}</td>
+        <td class="gutter">380</td>
+        <td class="code unchanged">            })}</td>
+      </tr>
+      <tr>
+        <td class="gutter">381</td>
+        <td class="code unchanged">            {featuredCategory &amp;&amp; (</td>
+        <td class="gutter">381</td>
+        <td class="code unchanged">            {featuredCategory &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">382</td>
+        <td class="code unchanged">              &lt;Link</td>
+        <td class="gutter">382</td>
+        <td class="code unchanged">              &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">383</td>
+        <td class="code unchanged">                key={featuredCategory.id}</td>
+        <td class="gutter">383</td>
+        <td class="code unchanged">                key={featuredCategory.id}</td>
+      </tr>
+      <tr>
+        <td class="gutter">384</td>
+        <td class="code unchanged">                href={`/posts/category/${featuredCategory.slug}`}</td>
+        <td class="gutter">384</td>
+        <td class="code unchanged">                href={`/posts/category/${featuredCategory.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">385</td>
+        <td class="code unchanged">                className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"</td>
+        <td class="gutter">385</td>
+        <td class="code unchanged">                className="text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"</td>
+      </tr>
+      <tr>
+        <td class="gutter">386</td>
+        <td class="code unchanged">                onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">386</td>
+        <td class="code unchanged">                onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">387</td>
+        <td class="code unchanged">              &gt;</td>
+        <td class="gutter">387</td>
+        <td class="code unchanged">              &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">388</td>
+        <td class="code unchanged">                {featuredCategory.title}</td>
+        <td class="gutter">388</td>
+        <td class="code unchanged">                {featuredCategory.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">389</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+        <td class="gutter">389</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">390</td>
+        <td class="code unchanged">            )}</td>
+        <td class="gutter">390</td>
+        <td class="code unchanged">            )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">391</td>
+        <td class="code unchanged">            {moreItems.length &gt; 0 &amp;&amp; (</td>
+        <td class="gutter">391</td>
+        <td class="code unchanged">            {moreItems.length &gt; 0 &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">392</td>
+        <td class="code unchanged">              &lt;div className="border-t border-border pt-4 mt-2"&gt;</td>
+        <td class="gutter">392</td>
+        <td class="code unchanged">              &lt;div className="border-t border-border pt-4 mt-2"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">393</td>
+        <td class="code unchanged">                &lt;div className="text-sm font-medium text-muted-foreground mb-2"&gt;More&lt;/div&gt;</td>
+        <td class="gutter">393</td>
+        <td class="code unchanged">                &lt;div className="text-sm font-medium text-muted-foreground mb-2"&gt;More&lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">394</td>
+        <td class="code unchanged">                {moreItems.map((item, index) =&gt; (</td>
+        <td class="gutter">394</td>
+        <td class="code unchanged">                {moreItems.map((item, index) =&gt; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">395</td>
+        <td class="code unchanged">                  &lt;Link</td>
+        <td class="gutter">395</td>
+        <td class="code unchanged">                  &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">396</td>
+        <td class="code unchanged">                    key={index}</td>
+        <td class="gutter">396</td>
+        <td class="code unchanged">                    key={index}</td>
+      </tr>
+      <tr>
+        <td class="gutter">397</td>
+        <td class="code unchanged">                    href={item.href}</td>
+        <td class="gutter">397</td>
+        <td class="code unchanged">                    href={item.href}</td>
+      </tr>
+      <tr>
+        <td class="gutter">398</td>
+        <td class="code unchanged">                    className="block text-card-foreground hover:text-accent-foreground transition-colors text-base py-1"</td>
+        <td class="gutter">398</td>
+        <td class="code unchanged">                    className="block text-card-foreground hover:text-accent-foreground transition-colors text-base py-1"</td>
+      </tr>
+      <tr>
+        <td class="gutter">399</td>
+        <td class="code unchanged">                    onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">399</td>
+        <td class="code unchanged">                    onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">400</td>
+        <td class="code unchanged">                  &gt;</td>
+        <td class="gutter">400</td>
+        <td class="code unchanged">                  &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">401</td>
+        <td class="code unchanged">                    {item.label}</td>
+        <td class="gutter">401</td>
+        <td class="code unchanged">                    {item.label}</td>
+      </tr>
+      <tr>
+        <td class="gutter">402</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+        <td class="gutter">402</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">403</td>
+        <td class="code unchanged">                ))}</td>
+        <td class="gutter">403</td>
+        <td class="code unchanged">                ))}</td>
+      </tr>
+      <tr>
+        <td class="gutter">404</td>
+        <td class="code unchanged">              &lt;/div&gt;</td>
+        <td class="gutter">404</td>
+        <td class="code unchanged">              &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">405</td>
+        <td class="code unchanged">            )}</td>
+        <td class="gutter">405</td>
+        <td class="code unchanged">            )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">406</td>
+        <td class="code unchanged">            &lt;div className="border-t border-border pt-4 mt-4"&gt;</td>
+        <td class="gutter">406</td>
+        <td class="code unchanged">            &lt;div className="border-t border-border pt-4 mt-4"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">407</td>
+        <td class="code unchanged">              &lt;Link</td>
+        <td class="gutter">407</td>
+        <td class="code unchanged">              &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">408</td>
+        <td class="code unchanged">                href="/search"</td>
+        <td class="gutter">408</td>
+        <td class="code unchanged">                href="/search"</td>
+      </tr>
+      <tr>
+        <td class="gutter">409</td>
+        <td class="code unchanged">                className="flex items-center gap-2 text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"</td>
+        <td class="gutter">409</td>
+        <td class="code unchanged">                className="flex items-center gap-2 text-card-foreground hover:text-accent-foreground transition-colors text-base py-2"</td>
+      </tr>
+      <tr>
+        <td class="gutter">410</td>
+        <td class="code unchanged">                onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">410</td>
+        <td class="code unchanged">                onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">411</td>
+        <td class="code unchanged">              &gt;</td>
+        <td class="gutter">411</td>
+        <td class="code unchanged">              &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">412</td>
+        <td class="code unchanged">                &lt;FiSearch className="h-5 w-5" /&gt;</td>
+        <td class="gutter">412</td>
+        <td class="code unchanged">                &lt;FiSearch className="h-5 w-5" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">413</td>
+        <td class="code unchanged">                Search</td>
+        <td class="gutter">413</td>
+        <td class="code unchanged">                Search</td>
+      </tr>
+      <tr>
+        <td class="gutter">414</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+        <td class="gutter">414</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">415</td>
+        <td class="code unchanged">              &lt;Link</td>
+        <td class="gutter">415</td>
+        <td class="code unchanged">              &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">416</td>
+        <td class="code unchanged">                href="/newsletter"</td>
+        <td class="gutter">416</td>
+        <td class="code unchanged">                href="/newsletter"</td>
+      </tr>
+      <tr>
+        <td class="gutter">417</td>
+        <td class="code unchanged">                className="block bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors text-center mt-4"</td>
+        <td class="gutter">417</td>
+        <td class="code unchanged">                className="block bg-[#003366] text-white px-4 py-2 rounded-md font-medium hover:bg-[#002244] transition-colors text-center mt-4"</td>
+      </tr>
+      <tr>
+        <td class="gutter">418</td>
+        <td class="code unchanged">                onClick={() =&gt; setIsMenuOpen(false)}</td>
+        <td class="gutter">418</td>
+        <td class="code unchanged">                onClick={() =&gt; setIsMenuOpen(false)}</td>
+      </tr>
+      <tr>
+        <td class="gutter">419</td>
+        <td class="code unchanged">              &gt;</td>
+        <td class="gutter">419</td>
+        <td class="code unchanged">              &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">420</td>
+        <td class="code unchanged">                Subscribe</td>
+        <td class="gutter">420</td>
+        <td class="code unchanged">                Subscribe</td>
+      </tr>
+      <tr>
+        <td class="gutter">421</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+        <td class="gutter">421</td>
+        <td class="code unchanged">              &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">422</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">422</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">423</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">423</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">424</td>
+        <td class="code unchanged">        &lt;/DrawerContent&gt;</td>
+        <td class="gutter">424</td>
+        <td class="code unchanged">        &lt;/DrawerContent&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">425</td>
+        <td class="code unchanged">      &lt;/Drawer&gt;</td>
+        <td class="gutter">425</td>
+        <td class="code unchanged">      &lt;/Drawer&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">426</td>
+        <td class="code unchanged">    &lt;/nav&gt;</td>
+        <td class="gutter">426</td>
+        <td class="code unchanged">    &lt;/nav&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">427</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">427</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter">428</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">428</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-413417659">
+      <h3>RowLabel.tsx <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { Header } from '@/payload-types'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { Header } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { RowLabelProps, useRowLabel } from '@payloadcms/ui'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { RowLabelProps, useRowLabel } from '@payloadcms/ui'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">export const RowLabel: React.FC&lt;RowLabelProps&gt; = () =&gt; {</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">export const RowLabel: React.FC&lt;RowLabelProps&gt; = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  const data = useRowLabel&lt;NonNullable&lt;Header['navItems']&gt;[number]&gt;()</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  const data = useRowLabel&lt;NonNullable&lt;Header['navItems']&gt;[number]&gt;()</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  const label = data?.data?.link?.label</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  const label = data?.data?.link?.label</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    ? `Nav item ${data.rowNumber !== undefined ? data.rowNumber + 1 : ''}: ${data?.data?.link?.label}`</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">    ? `Nav item ${data.rowNumber !== undefined ? data.rowNumber + 1 : ''}: ${data?.data?.link?.label}`</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    : 'Row'</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">    : 'Row'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  return &lt;div&gt;{label}&lt;/div&gt;</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  return &lt;div&gt;{label}&lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-2074921156">
+      <h3>TrendingBanner.tsx <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">'use client'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import React, { useEffect, useState } from 'react'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import React, { useEffect, useState } from 'react'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import Link from 'next/link'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import Link from 'next/link'</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { FiTrendingUp } from 'react-icons/fi'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { FiTrendingUp } from 'react-icons/fi'</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import { Post } from '@/payload-types'</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">import { Post } from '@/payload-types'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">export const TrendingBanner: React.FC = () =&gt; {</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">export const TrendingBanner: React.FC = () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  const [trendingArticles, setTrendingArticles] = useState&lt;Post[]&gt;([])</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  const [trendingArticles, setTrendingArticles] = useState&lt;Post[]&gt;([])</td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  const [isLoading, setIsLoading] = useState(true)</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  const [isLoading, setIsLoading] = useState(true)</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  const [error, setError] = useState&lt;string | null&gt;(null)</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  const [error, setError] = useState&lt;string | null&gt;(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">  useEffect(() =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">    const fetchTrendingArticles = async () =&gt; {</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">    const fetchTrendingArticles = async () =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">      try {</td>
+        <td class="gutter">12</td>
+        <td class="code unchanged">      try {</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code unchanged">        setIsLoading(true)</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">        setIsLoading(true)</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code unchanged">        setError(null)</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">        setError(null)</td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code unchanged">        const response = await fetch('/api/articles/popular', {</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">        const response = await fetch('/api/articles/popular', {</td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code unchanged">          // Add timeout to prevent hanging</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">          // Add timeout to prevent hanging</td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code unchanged">          signal: AbortSignal.timeout(10000), // 10 second timeout</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">          signal: AbortSignal.timeout(10000), // 10 second timeout</td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">        })</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">        })</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">        if (!response.ok) {</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">        if (!response.ok) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">          throw new Error(`Failed to fetch trending articles: ${response.status}`)</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">          throw new Error(`Failed to fetch trending articles: ${response.status}`)</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">        }</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">        }</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">        const data = await response.json()</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">        const data = await response.json()</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">        console.log('Trending articles data:', data)</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">        console.log('Trending articles data:', data)</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">        if (Array.isArray(data) &amp;&amp; data.length &gt; 0) {</td>
+        <td class="gutter">24</td>
+        <td class="code unchanged">        if (Array.isArray(data) &amp;&amp; data.length &gt; 0) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">          setTrendingArticles(data.slice(0, 5))</td>
+        <td class="gutter">25</td>
+        <td class="code unchanged">          setTrendingArticles(data.slice(0, 5))</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">        } else {</td>
+        <td class="gutter">26</td>
+        <td class="code unchanged">        } else {</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">          console.warn('No trending articles found or invalid data format')</td>
+        <td class="gutter">27</td>
+        <td class="code unchanged">          console.warn('No trending articles found or invalid data format')</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">          setTrendingArticles([])</td>
+        <td class="gutter">28</td>
+        <td class="code unchanged">          setTrendingArticles([])</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">        }</td>
+        <td class="gutter">29</td>
+        <td class="code unchanged">        }</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">      } catch (error) {</td>
+        <td class="gutter">30</td>
+        <td class="code unchanged">      } catch (error) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">31</td>
+        <td class="code unchanged">        console.error('Error fetching trending articles:', error)</td>
+        <td class="gutter">31</td>
+        <td class="code unchanged">        console.error('Error fetching trending articles:', error)</td>
+      </tr>
+      <tr>
+        <td class="gutter">32</td>
+        <td class="code unchanged">        setError('Failed to load trending articles')</td>
+        <td class="gutter">32</td>
+        <td class="code unchanged">        setError('Failed to load trending articles')</td>
+      </tr>
+      <tr>
+        <td class="gutter">33</td>
+        <td class="code unchanged">        // Don't block the page if trending articles fail to load</td>
+        <td class="gutter">33</td>
+        <td class="code unchanged">        // Don't block the page if trending articles fail to load</td>
+      </tr>
+      <tr>
+        <td class="gutter">34</td>
+        <td class="code unchanged">      } finally {</td>
+        <td class="gutter">34</td>
+        <td class="code unchanged">      } finally {</td>
+      </tr>
+      <tr>
+        <td class="gutter">35</td>
+        <td class="code unchanged">        setIsLoading(false)</td>
+        <td class="gutter">35</td>
+        <td class="code unchanged">        setIsLoading(false)</td>
+      </tr>
+      <tr>
+        <td class="gutter">36</td>
+        <td class="code unchanged">      }</td>
+        <td class="gutter">36</td>
+        <td class="code unchanged">      }</td>
+      </tr>
+      <tr>
+        <td class="gutter">37</td>
+        <td class="code unchanged">    }</td>
+        <td class="gutter">37</td>
+        <td class="code unchanged">    }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">38</td>
+        <td class="code unchanged">    fetchTrendingArticles()</td>
+        <td class="gutter">38</td>
+        <td class="code unchanged">    fetchTrendingArticles()</td>
+      </tr>
+      <tr>
+        <td class="gutter">39</td>
+        <td class="code unchanged">  }, [])</td>
+        <td class="gutter">39</td>
+        <td class="code unchanged">  }, [])</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">40</td>
+        <td class="code unchanged">  if (isLoading) {</td>
+        <td class="gutter">40</td>
+        <td class="code unchanged">  if (isLoading) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">41</td>
+        <td class="code unchanged">    return (</td>
+        <td class="gutter">41</td>
+        <td class="code unchanged">    return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">42</td>
+        <td class="code unchanged">      &lt;div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow"&gt;</td>
+        <td class="gutter">42</td>
+        <td class="code unchanged">      &lt;div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">43</td>
+        <td class="code unchanged">        &lt;div className="container"&gt;</td>
+        <td class="gutter">43</td>
+        <td class="code unchanged">        &lt;div className="container"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">44</td>
+        <td class="code unchanged">          &lt;div className="flex items-center gap-4"&gt;</td>
+        <td class="gutter">44</td>
+        <td class="code unchanged">          &lt;div className="flex items-center gap-4"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">45</td>
+        <td class="code unchanged">            &lt;div className="flex items-center gap-2 text-sm font-medium shrink-0"&gt;</td>
+        <td class="gutter">45</td>
+        <td class="code unchanged">            &lt;div className="flex items-center gap-2 text-sm font-medium shrink-0"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">46</td>
+        <td class="code unchanged">              &lt;FiTrendingUp className="w-4 h-4 text-card-foreground" /&gt;</td>
+        <td class="gutter">46</td>
+        <td class="code unchanged">              &lt;FiTrendingUp className="w-4 h-4 text-card-foreground" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">47</td>
+        <td class="code unchanged">              &lt;span className="text-card-foreground hidden md:inline"&gt;TRENDING&lt;/span&gt;</td>
+        <td class="gutter">47</td>
+        <td class="code unchanged">              &lt;span className="text-card-foreground hidden md:inline"&gt;TRENDING&lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">48</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">48</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">49</td>
+        <td class="code unchanged">            &lt;div className="text-sm text-muted-foreground leading-tight"&gt;</td>
+        <td class="gutter">49</td>
+        <td class="code unchanged">            &lt;div className="text-sm text-muted-foreground leading-tight"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">50</td>
+        <td class="code unchanged">              Loading trending articles...</td>
+        <td class="gutter">50</td>
+        <td class="code unchanged">              Loading trending articles...</td>
+      </tr>
+      <tr>
+        <td class="gutter">51</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">51</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">52</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">52</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">53</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+        <td class="gutter">53</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">54</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+        <td class="gutter">54</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">55</td>
+        <td class="code unchanged">    )</td>
+        <td class="gutter">55</td>
+        <td class="code unchanged">    )</td>
+      </tr>
+      <tr>
+        <td class="gutter">56</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">56</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">57</td>
+        <td class="code unchanged">  if (error || !trendingArticles.length) {</td>
+        <td class="gutter">57</td>
+        <td class="code unchanged">  if (error || !trendingArticles.length) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">58</td>
+        <td class="code unchanged">    return null</td>
+        <td class="gutter">58</td>
+        <td class="code unchanged">    return null</td>
+      </tr>
+      <tr>
+        <td class="gutter">59</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">59</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">60</td>
+        <td class="code unchanged">  return (</td>
+        <td class="gutter">60</td>
+        <td class="code unchanged">  return (</td>
+      </tr>
+      <tr>
+        <td class="gutter">61</td>
+        <td class="code unchanged">    &lt;div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow"&gt;</td>
+        <td class="gutter">61</td>
+        <td class="code unchanged">    &lt;div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">62</td>
+        <td class="code unchanged">      &lt;div className="container"&gt;</td>
+        <td class="gutter">62</td>
+        <td class="code unchanged">      &lt;div className="container"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">63</td>
+        <td class="code unchanged">        &lt;div className="flex items-center gap-4"&gt;</td>
+        <td class="gutter">63</td>
+        <td class="code unchanged">        &lt;div className="flex items-center gap-4"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">64</td>
+        <td class="code unchanged">          &lt;div className="flex items-center gap-2 text-sm font-medium shrink-0"&gt;</td>
+        <td class="gutter">64</td>
+        <td class="code unchanged">          &lt;div className="flex items-center gap-2 text-sm font-medium shrink-0"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">65</td>
+        <td class="code unchanged">            &lt;FiTrendingUp className="w-4 h-4 text-card-foreground" /&gt;</td>
+        <td class="gutter">65</td>
+        <td class="code unchanged">            &lt;FiTrendingUp className="w-4 h-4 text-card-foreground" /&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">66</td>
+        <td class="code unchanged">            &lt;span className="text-card-foreground hidden md:inline"&gt;TRENDING&lt;/span&gt;</td>
+        <td class="gutter">66</td>
+        <td class="code unchanged">            &lt;span className="text-card-foreground hidden md:inline"&gt;TRENDING&lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">67</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">67</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">68</td>
+        <td class="code unchanged">          &lt;div className="trending-scroll-container flex-1"&gt;</td>
+        <td class="gutter">68</td>
+        <td class="code unchanged">          &lt;div className="trending-scroll-container flex-1"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">69</td>
+        <td class="code unchanged">            &lt;div className="trending-scroll-content"&gt;</td>
+        <td class="gutter">69</td>
+        <td class="code unchanged">            &lt;div className="trending-scroll-content"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">70</td>
+        <td class="code unchanged">              {/* First set of articles */}</td>
+        <td class="gutter">70</td>
+        <td class="code unchanged">              {/* First set of articles */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">71</td>
+        <td class="code unchanged">              {trendingArticles.map((article, index) =&gt; (</td>
+        <td class="gutter">71</td>
+        <td class="code unchanged">              {trendingArticles.map((article, index) =&gt; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">72</td>
+        <td class="code unchanged">                &lt;React.Fragment key={article.id}&gt;</td>
+        <td class="gutter">72</td>
+        <td class="code unchanged">                &lt;React.Fragment key={article.id}&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">73</td>
+        <td class="code unchanged">                  &lt;Link</td>
+        <td class="gutter">73</td>
+        <td class="code unchanged">                  &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">74</td>
+        <td class="code unchanged">                    href={`/posts/${article.slug}`}</td>
+        <td class="gutter">74</td>
+        <td class="code unchanged">                    href={`/posts/${article.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">75</td>
+        <td class="code unchanged">                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight"</td>
+        <td class="gutter">75</td>
+        <td class="code unchanged">                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight"</td>
+      </tr>
+      <tr>
+        <td class="gutter">76</td>
+        <td class="code unchanged">                  &gt;</td>
+        <td class="gutter">76</td>
+        <td class="code unchanged">                  &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">77</td>
+        <td class="code unchanged">                    {article.title}</td>
+        <td class="gutter">77</td>
+        <td class="code unchanged">                    {article.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">78</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+        <td class="gutter">78</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">79</td>
+        <td class="code unchanged">                  {index &lt; trendingArticles.length - 1 &amp;&amp; (</td>
+        <td class="gutter">79</td>
+        <td class="code unchanged">                  {index &lt; trendingArticles.length - 1 &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">80</td>
+        <td class="code unchanged">                    &lt;span className="text-muted-foreground hidden md:inline shrink-0 leading-tight"&gt;</td>
+        <td class="gutter">80</td>
+        <td class="code unchanged">                    &lt;span className="text-muted-foreground hidden md:inline shrink-0 leading-tight"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">81</td>
+        <td class="code unchanged">                      •</td>
+        <td class="gutter">81</td>
+        <td class="code unchanged">                      •</td>
+      </tr>
+      <tr>
+        <td class="gutter">82</td>
+        <td class="code unchanged">                    &lt;/span&gt;</td>
+        <td class="gutter">82</td>
+        <td class="code unchanged">                    &lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">83</td>
+        <td class="code unchanged">                  )}</td>
+        <td class="gutter">83</td>
+        <td class="code unchanged">                  )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">84</td>
+        <td class="code unchanged">                &lt;/React.Fragment&gt;</td>
+        <td class="gutter">84</td>
+        <td class="code unchanged">                &lt;/React.Fragment&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">85</td>
+        <td class="code unchanged">              ))}</td>
+        <td class="gutter">85</td>
+        <td class="code unchanged">              ))}</td>
+      </tr>
+      <tr>
+        <td class="gutter">86</td>
+        <td class="code unchanged">              {/* Duplicate articles for seamless loop */}</td>
+        <td class="gutter">86</td>
+        <td class="code unchanged">              {/* Duplicate articles for seamless loop */}</td>
+      </tr>
+      <tr>
+        <td class="gutter">87</td>
+        <td class="code unchanged">              {trendingArticles.map((article, index) =&gt; (</td>
+        <td class="gutter">87</td>
+        <td class="code unchanged">              {trendingArticles.map((article, index) =&gt; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">88</td>
+        <td class="code unchanged">                &lt;React.Fragment key={`duplicate-${article.id}`}&gt;</td>
+        <td class="gutter">88</td>
+        <td class="code unchanged">                &lt;React.Fragment key={`duplicate-${article.id}`}&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">89</td>
+        <td class="code unchanged">                  &lt;Link</td>
+        <td class="gutter">89</td>
+        <td class="code unchanged">                  &lt;Link</td>
+      </tr>
+      <tr>
+        <td class="gutter">90</td>
+        <td class="code unchanged">                    href={`/posts/${article.slug}`}</td>
+        <td class="gutter">90</td>
+        <td class="code unchanged">                    href={`/posts/${article.slug}`}</td>
+      </tr>
+      <tr>
+        <td class="gutter">91</td>
+        <td class="code unchanged">                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight"</td>
+        <td class="gutter">91</td>
+        <td class="code unchanged">                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight"</td>
+      </tr>
+      <tr>
+        <td class="gutter">92</td>
+        <td class="code unchanged">                  &gt;</td>
+        <td class="gutter">92</td>
+        <td class="code unchanged">                  &gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">93</td>
+        <td class="code unchanged">                    {article.title}</td>
+        <td class="gutter">93</td>
+        <td class="code unchanged">                    {article.title}</td>
+      </tr>
+      <tr>
+        <td class="gutter">94</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+        <td class="gutter">94</td>
+        <td class="code unchanged">                  &lt;/Link&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">95</td>
+        <td class="code unchanged">                  {index &lt; trendingArticles.length - 1 &amp;&amp; (</td>
+        <td class="gutter">95</td>
+        <td class="code unchanged">                  {index &lt; trendingArticles.length - 1 &amp;&amp; (</td>
+      </tr>
+      <tr>
+        <td class="gutter">96</td>
+        <td class="code unchanged">                    &lt;span className="text-muted-foreground hidden md:inline shrink-0 leading-tight"&gt;</td>
+        <td class="gutter">96</td>
+        <td class="code unchanged">                    &lt;span className="text-muted-foreground hidden md:inline shrink-0 leading-tight"&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">97</td>
+        <td class="code unchanged">                      •</td>
+        <td class="gutter">97</td>
+        <td class="code unchanged">                      •</td>
+      </tr>
+      <tr>
+        <td class="gutter">98</td>
+        <td class="code unchanged">                    &lt;/span&gt;</td>
+        <td class="gutter">98</td>
+        <td class="code unchanged">                    &lt;/span&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">99</td>
+        <td class="code unchanged">                  )}</td>
+        <td class="gutter">99</td>
+        <td class="code unchanged">                  )}</td>
+      </tr>
+      <tr>
+        <td class="gutter">100</td>
+        <td class="code unchanged">                &lt;/React.Fragment&gt;</td>
+        <td class="gutter">100</td>
+        <td class="code unchanged">                &lt;/React.Fragment&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">101</td>
+        <td class="code unchanged">              ))}</td>
+        <td class="gutter">101</td>
+        <td class="code unchanged">              ))}</td>
+      </tr>
+      <tr>
+        <td class="gutter">102</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+        <td class="gutter">102</td>
+        <td class="code unchanged">            &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">103</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+        <td class="gutter">103</td>
+        <td class="code unchanged">          &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">104</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+        <td class="gutter">104</td>
+        <td class="code unchanged">        &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">105</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+        <td class="gutter">105</td>
+        <td class="code unchanged">      &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">106</td>
+        <td class="code unchanged">    &lt;/div&gt;</td>
+        <td class="gutter">106</td>
+        <td class="code unchanged">    &lt;/div&gt;</td>
+      </tr>
+      <tr>
+        <td class="gutter">107</td>
+        <td class="code unchanged">  )</td>
+        <td class="gutter">107</td>
+        <td class="code unchanged">  )</td>
+      </tr>
+      <tr>
+        <td class="gutter">108</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">108</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-804497237">
+      <h3>config.ts <span class="badge changed">changed</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">1</td>
+        <td class="code added">// src/Header/config.ts</td>
+      </tr>
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { GlobalConfig } from 'payload'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import type { GlobalConfig } from 'payload'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code removed"></td>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { link } from '@/fields/link'</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { link } from '@/fields/link'</td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">import { revalidateHeader } from './hooks/revalidateHeader'</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">import { revalidateHeader } from './hooks/revalidateHeader'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">export const Header: GlobalConfig = {</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">export const Header: GlobalConfig = {</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">  slug: 'header',</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">  slug: 'header',</td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code removed">  access: {</td>
+        <td class="gutter">7</td>
+        <td class="code added">  access: { read: () =&gt; true },</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code removed">    read: () =&gt; true,</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code removed">  },</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">  fields: [</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  fields: [</td>
+      </tr>
+      <tr>
+        <td class="gutter">10</td>
+        <td class="code unchanged">    {</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">    {</td>
+      </tr>
+      <tr>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      name: 'navItems',</td>
+        <td class="gutter">10</td>
+        <td class="code unchanged">      name: 'navItems',</td>
+      </tr>
+      <tr>
+        <td class="gutter">12</td>
+        <td class="code unchanged">      type: 'array',</td>
+        <td class="gutter">11</td>
+        <td class="code unchanged">      type: 'array',</td>
+      </tr>
+      <tr>
+        <td class="gutter">13</td>
+        <td class="code removed">      fields: [</td>
+        <td class="gutter">12</td>
+        <td class="code added">      fields: [link({ appearances: false })],</td>
+      </tr>
+      <tr>
+        <td class="gutter">14</td>
+        <td class="code removed">        link({</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">15</td>
+        <td class="code removed">          appearances: false,</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">16</td>
+        <td class="code removed">        }),</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">17</td>
+        <td class="code removed">      ],</td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter">18</td>
+        <td class="code unchanged">      maxRows: 6,</td>
+        <td class="gutter">13</td>
+        <td class="code unchanged">      maxRows: 6,</td>
+      </tr>
+      <tr>
+        <td class="gutter">19</td>
+        <td class="code unchanged">      admin: {</td>
+        <td class="gutter">14</td>
+        <td class="code unchanged">      admin: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">20</td>
+        <td class="code unchanged">        initCollapsed: true,</td>
+        <td class="gutter">15</td>
+        <td class="code unchanged">        initCollapsed: true,</td>
+      </tr>
+      <tr>
+        <td class="gutter">21</td>
+        <td class="code unchanged">        components: {</td>
+        <td class="gutter">16</td>
+        <td class="code unchanged">        components: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">22</td>
+        <td class="code unchanged">          RowLabel: '@/Header/RowLabel#RowLabel',</td>
+        <td class="gutter">17</td>
+        <td class="code unchanged">          RowLabel: '@/Header/RowLabel#RowLabel',</td>
+      </tr>
+      <tr>
+        <td class="gutter">23</td>
+        <td class="code unchanged">        },</td>
+        <td class="gutter">18</td>
+        <td class="code unchanged">        },</td>
+      </tr>
+      <tr>
+        <td class="gutter">24</td>
+        <td class="code unchanged">      },</td>
+        <td class="gutter">19</td>
+        <td class="code unchanged">      },</td>
+      </tr>
+      <tr>
+        <td class="gutter">25</td>
+        <td class="code unchanged">    },</td>
+        <td class="gutter">20</td>
+        <td class="code unchanged">    },</td>
+      </tr>
+      <tr>
+        <td class="gutter">26</td>
+        <td class="code unchanged">  ],</td>
+        <td class="gutter">21</td>
+        <td class="code unchanged">  ],</td>
+      </tr>
+      <tr>
+        <td class="gutter">27</td>
+        <td class="code unchanged">  hooks: {</td>
+        <td class="gutter">22</td>
+        <td class="code unchanged">  hooks: {</td>
+      </tr>
+      <tr>
+        <td class="gutter">28</td>
+        <td class="code unchanged">    afterChange: [revalidateHeader],</td>
+        <td class="gutter">23</td>
+        <td class="code unchanged">    afterChange: [revalidateHeader],</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">24</td>
+        <td class="code added">    // ✅ Auto-populate from Categories if Header.navItems is empty</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">25</td>
+        <td class="code added">    afterRead: [</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">26</td>
+        <td class="code added">      async ({ req, doc }) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">27</td>
+        <td class="code added">        if (Array.isArray(doc.navItems) &amp;&amp; doc.navItems.length &gt; 0) return doc</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">28</td>
+        <td class="code added">        const cats = await req.payload.find({</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">29</td>
+        <td class="code added">          collection: 'categories',</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">30</td>
+        <td class="code added">          where: { parent: { exists: false } },</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">31</td>
+        <td class="code added">          select: { title: true, slug: true },</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">32</td>
+        <td class="code added">          limit: 100,</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">33</td>
+        <td class="code added">          depth: 0,</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">34</td>
+        <td class="code added">        })</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">35</td>
+        <td class="code added">        const fallback = cats.docs.map((c: any) =&gt; ({</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">36</td>
+        <td class="code added">          link: {</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">37</td>
+        <td class="code added">            type: 'custom',</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">38</td>
+        <td class="code added">            label: c.title,</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">39</td>
+        <td class="code added">            url: `/category/${c.slug}`,</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">40</td>
+        <td class="code added">            newTab: false,</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">41</td>
+        <td class="code added">          },</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">42</td>
+        <td class="code added">        }))</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter"></td>
+        <td class="code added"></td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">43</td>
+        <td class="code added">        return { ...doc, navItems: fallback }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">44</td>
+        <td class="code added">      },</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code empty"></td>
+        <td class="gutter">45</td>
+        <td class="code added">    ],</td>
+      </tr>
+      <tr>
+        <td class="gutter">29</td>
+        <td class="code unchanged">  },</td>
+        <td class="gutter">46</td>
+        <td class="code unchanged">  },</td>
+      </tr>
+      <tr>
+        <td class="gutter">30</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">47</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+
+    <section id="file-1014669912">
+      <h3>hooks/revalidateHeader.ts <span class="badge unchanged">unchanged</span></h3>
+      <table class="sbs">
+        <thead>
+          <tr><th class="gutter">#</th><th>OLD</th><th class="gutter">#</th><th>NEW</th></tr>
+        </thead>
+        <tbody>
+          
+      <tr>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { GlobalAfterChangeHook } from 'payload'</td>
+        <td class="gutter">1</td>
+        <td class="code unchanged">import type { GlobalAfterChangeHook } from 'payload'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { revalidateTag } from 'next/cache'</td>
+        <td class="gutter">2</td>
+        <td class="code unchanged">import { revalidateTag } from 'next/cache'</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">3</td>
+        <td class="code unchanged">export const revalidateHeader: GlobalAfterChangeHook = ({ doc, req: { payload, context } }) =&gt; {</td>
+        <td class="gutter">3</td>
+        <td class="code unchanged">export const revalidateHeader: GlobalAfterChangeHook = ({ doc, req: { payload, context } }) =&gt; {</td>
+      </tr>
+      <tr>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  if (!context.disableRevalidate) {</td>
+        <td class="gutter">4</td>
+        <td class="code unchanged">  if (!context.disableRevalidate) {</td>
+      </tr>
+      <tr>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    payload.logger.info(`Revalidating header`)</td>
+        <td class="gutter">5</td>
+        <td class="code unchanged">    payload.logger.info(`Revalidating header`)</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    revalidateTag('global_header')</td>
+        <td class="gutter">6</td>
+        <td class="code unchanged">    revalidateTag('global_header')</td>
+      </tr>
+      <tr>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  }</td>
+        <td class="gutter">7</td>
+        <td class="code unchanged">  }</td>
+      </tr>
+      <tr>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+        <td class="gutter"></td>
+        <td class="code unchanged"></td>
+      </tr>
+      <tr>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  return doc</td>
+        <td class="gutter">8</td>
+        <td class="code unchanged">  return doc</td>
+      </tr>
+      <tr>
+        <td class="gutter">9</td>
+        <td class="code unchanged">}</td>
+        <td class="gutter">9</td>
+        <td class="code unchanged">}</td>
+      </tr>
+        </tbody>
+      </table>
+    </section>
+  
+  </main>
+</body>
+</html>

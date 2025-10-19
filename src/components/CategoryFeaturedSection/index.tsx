@@ -72,7 +72,7 @@ export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = (
                                 />
                               ) : (
                                 <Media
-                                  src={img.src as string}
+                                  resource={img.src}
                                   fill
                                   pictureClassName="absolute inset-0"
                                   imgClassName="object-cover"
@@ -131,7 +131,7 @@ export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = (
                           />
                         ) : (
                           <Media
-                            src={img.src as string}
+                            resource={img.src}
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -183,7 +183,7 @@ export const CategoryFeaturedSection: React.FC<CategoryFeaturedSectionProps> = (
                             />
                           ) : (
                             <Media
-                              src={img.src as string}
+                              resource={img.src}
                               fill
                               pictureClassName="absolute inset-0"
                               imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"

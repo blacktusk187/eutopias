@@ -51,15 +51,5 @@ export const MediaBlock: Block = {
         description: 'Horizontal alignment within the content',
       },
     },
-    {
-      name: 'layout',
-      type: 'select',
-      defaultValue: 'single',
-      options: [
-        { label: 'Single image (default)', value: 'single' },
-        // To support multi-image layouts in future, add an additional field and DB migration first
-      ],
-      admin: {},
-    },
   ],
 }

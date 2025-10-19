@@ -1,11 +1,6 @@
 import type { Config, Media } from '@/payload-types'
 
-type MediaInput =
-  | Media
-  | Config['db']['defaultIDType']
-  | string
-  | null
-  | undefined
+type MediaInput = Media | Config['db']['defaultIDType'] | string | null | undefined
 
 type Options = {
   /** Optional size key to prefer when resolving responsive media */

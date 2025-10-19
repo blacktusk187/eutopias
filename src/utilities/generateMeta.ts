@@ -1,35 +1,38 @@
 import type { Metadata } from 'next'
 
-import type { Page, Post } from '../payload-types'
+import type { Media, Page, Post, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 import { getMediaUrl } from './getMediaUrl'
+
+const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
+  const serverUrl = getServerSideURL()
+
+  let url = serverUrl + '/website-template-OG.webp'
+
+  if (image && typeof image === 'object' && 'url' in image) {
+    const ogUrl = image.sizes?.og?.url
+
+    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
+  }
+
+  return url
+}
 
 export const generateMeta = async (args: {
   doc: Partial<Page> | Partial<Post> | null
 }): Promise<Metadata> => {
   const { doc } = args
   const serverUrl = getServerSideURL()
-  const fallbackImage = `${serverUrl}/website-template-OG.webp`
+  const ogImage = getImageURL(doc?.meta?.image)
 
-  const ogImage =
-    getMediaUrl(doc?.meta?.image, {
-      size: 'og',
-      fallback: fallbackImage,
-    }) || fallbackImage
-
-  const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias'
-
-  // Create a better fallback description
-  const defaultDescription =
-    'Mission-driven storytelling that elevates real-world solutions through multimedia. Discover inspiring stories, innovative ideas, and transformative content.'
-  const description = doc?.meta?.description || defaultDescription
+  const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias Magazine'
 
   return {
-    description,
+    description: doc?.meta?.description,
     openGraph: mergeOpenGraph({
-      description,
+      description: doc?.meta?.description || '',
       images: ogImage
         ? [
             {

@@ -1,10 +1,10 @@
 import { getPayload } from 'payload'
-import configPromise from '@payload-config'
 import { NextResponse } from 'next/server'
+import config from '@/payload.config'
 
 export async function GET() {
   try {
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload({ config })
 
     // Try to get popular articles by views, fallback to recent articles
     let result

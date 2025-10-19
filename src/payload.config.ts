@@ -20,10 +20,12 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { migrations } from './migrations'
 
+import { getServerSideURL } from './utilities/getURL'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co'
+const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
 const URL_FIXED = RAW.replace(/^http:\/\//, 'https://').replace('eutopias.co', 'www.eutopias.co')
 
 export default buildConfig({
@@ -31,12 +33,12 @@ export default buildConfig({
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
-      beforeLogin: ['@/components/BeforeLogin'],
+      beforeLogin: ['@/components/BeforeLogin#default'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
-      beforeDashboard: ['@/components/BeforeDashboard'],
+      beforeDashboard: ['@/components/BeforeDashboard#default'],
       // Add quick actions into the left navigation pane
-      beforeNavLinks: ['@/components/AdminQuickActions'],
+      beforeNavLinks: ['@/components/AdminQuickActions#default'],
       graphics: {
         Logo: '@/components/AdminLogo#default',
       },
@@ -68,9 +70,9 @@ export default buildConfig({
       ],
     },
   },
-  serverURL: URL_FIXED,
-  cors: ['https://www.eutopias.co', 'https://eutopias.co'],
-  csrf: ['https://www.eutopias.co', 'https://eutopias.co'],
+  serverURL: getServerSideURL(),
+  cors: ['http://localhost:3000', 'https://www.eutopias.co', 'https://eutopias.co'],
+  csrf: ['http://localhost:3000', 'https://www.eutopias.co', 'https://eutopias.co'],
 
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
@@ -79,7 +81,7 @@ export default buildConfig({
       connectionString: process.env.POSTGRES_URL || '',
     },
     // Disable dev-time schema pushes during build to avoid interactive prompts
-    push: process.env.NODE_ENV !== 'production' && process.env.VERCEL !== '1',
+    push: false,
     // Only provide migrations when explicitly requested. This avoids
     // the interactive migration prompt during CI / Next.js builds.
     prodMigrations: process.env.RUN_MIGRATIONS === 'true' ? migrations : undefined,
@@ -128,5 +130,4 @@ export default buildConfig({
     },
     tasks: [],
   },
-  // serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co',
 })

@@ -44,14 +44,14 @@ export const TrendingBanner: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow">
-        <div className="container">
+      <div className="bg-card py-2 md:py-3 border-t border-b border-border trending-banner-shadow">
+        <div className="container mx-auto px-4">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-sm font-medium shrink-0">
               <FiTrendingUp className="w-4 h-4 text-card-foreground" />
-              <span className="text-card-foreground hidden md:inline">TRENDING</span>
+              <span className="text-card-foreground hidden md:inline font-sans">TRENDING</span>
             </div>
-            <div className="text-sm text-muted-foreground leading-tight">
+            <div className="text-sm text-muted-foreground leading-tight font-sans">
               Loading trending articles...
             </div>
           </div>
@@ -65,12 +65,12 @@ export const TrendingBanner: React.FC = () => {
   }
 
   return (
-    <div className="bg-card py-1 md:py-2 border-t border-b border-border trending-banner-shadow">
-      <div className="container">
+    <div className="bg-card py-2 md:py-3 border-t border-b border-border trending-banner-shadow">
+      <div className="container mx-auto px-4">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-sm font-medium shrink-0">
             <FiTrendingUp className="w-4 h-4 text-card-foreground" />
-            <span className="text-card-foreground hidden md:inline">TRENDING</span>
+            <span className="text-card-foreground hidden md:inline font-sans">TRENDING</span>
           </div>
           <div className="trending-scroll-container flex-1">
             <div className="trending-scroll-content">
@@ -79,12 +79,12 @@ export const TrendingBanner: React.FC = () => {
                 <React.Fragment key={article.id}>
                   <Link
                     href={`/posts/${article.slug}`}
-                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight"
+                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight font-sans"
                   >
                     {article.title}
                   </Link>
                   {index < trendingArticles.length - 1 && (
-                    <span className="text-muted-foreground hidden md:inline shrink-0 leading-tight">
+                    <span className="text-muted-foreground hidden md:inline shrink-0 leading-tight font-sans">
                       •
                     </span>
                   )}
@@ -95,12 +95,12 @@ export const TrendingBanner: React.FC = () => {
                 <React.Fragment key={`duplicate-${article.id}`}>
                   <Link
                     href={`/posts/${article.slug}`}
-                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight"
+                    className="text-sm text-card-foreground hover:text-accent-foreground transition-colors shrink-0 whitespace-nowrap leading-tight font-sans"
                   >
                     {article.title}
                   </Link>
                   {index < trendingArticles.length - 1 && (
-                    <span className="text-muted-foreground hidden md:inline shrink-0 leading-tight">
+                    <span className="text-muted-foreground hidden md:inline shrink-0 leading-tight font-sans">
                       •
                     </span>
                   )}

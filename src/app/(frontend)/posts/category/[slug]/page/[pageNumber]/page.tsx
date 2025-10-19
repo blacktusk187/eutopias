@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
-import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React, { cache } from 'react'
 
@@ -23,7 +22,7 @@ type Args = {
 
 export default async function CategoryPage({ params: paramsPromise }: Args) {
   const { slug, pageNumber } = await paramsPromise
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: (await import('@/payload.config')).default })
 
   const sanitizedPageNumber = Number(pageNumber)
 
@@ -111,7 +110,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
 }
 
 const queryCategoryBySlug = cache(async ({ slug }: { slug: string }) => {
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: (await import('@/payload.config')).default })
 
   const result = await payload.find({
     collection: 'categories',

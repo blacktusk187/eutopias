@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 
-import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import Link from 'next/link'
@@ -24,7 +23,7 @@ export default async function CategoriesPage() {
       </div>
     )
   }
-  const payload = await getPayload({ config: configPromise })
+  const payload = await getPayload({ config: (await import('@/payload.config')).default })
 
   // Get all categories with their post counts
   const categories = await payload.find({

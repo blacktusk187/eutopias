@@ -1,26 +1,28 @@
+// src/utilities/getURL.ts
 import canUseDOM from './canUseDOM'
 
-export const getServerSideURL = (): string => {
-  return (
-    process.env.NEXT_PUBLIC_SERVER_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'http://localhost:3000')
-  )
-}
-
-export const getClientSideURL = (): string => {
-  if (canUseDOM) {
-    const protocol = window.location.protocol
-    const domain = window.location.hostname
-    const port = window.location.port
-
-    return `${protocol}//${domain}${port ? `:${port}` : ''}`
-  }
+export const getServerSideURL = () => {
+  // Prefer explicit env; fall back to Vercel or localhost
+  const env = process.env.NEXT_PUBLIC_SERVER_URL
+  if (env && /^https?:\/\//i.test(env)) return env
 
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   }
 
-  return process.env.NEXT_PUBLIC_SERVER_URL || ''
+  return 'http://localhost:3000'
+}
+
+export const getClientSideURL = () => {
+  // Prefer explicit env in the browser too (prevents ":3000" bugs)
+  const env = process.env.NEXT_PUBLIC_SERVER_URL
+  if (env && /^https?:\/\//i.test(env)) return env
+
+  if (canUseDOM) {
+    // window.location.origin is robust (includes protocol + host + port)
+    return window.location.origin
+  }
+
+  // SSR fallback
+  return getServerSideURL()
 }

@@ -1,5 +1,4 @@
 import { getPayload } from 'payload'
-import configPromise from '@payload-config'
 import { NextRequest, NextResponse } from 'next/server'
 import { Post } from '@/payload-types'
 
@@ -17,7 +16,7 @@ export async function POST(request: NextRequest, context: RouteContext): Promise
       return NextResponse.json({ error: 'Slug is required' }, { status: 400 })
     }
 
-    const payload = await getPayload({ config: configPromise })
+    const payload = await getPayload({ config: (await import('@/payload.config')).default })
 
     // Find the specific article
     const article = await payload.find({
