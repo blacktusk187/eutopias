@@ -1,5 +1,6 @@
 import { formatDateTime } from 'src/utilities/formatDateTime'
 import React from 'react'
+import { FiShare2, FiTwitter, FiFacebook, FiLinkedin } from 'react-icons/fi'
 
 import type { Post } from '@/payload-types'
 
@@ -15,58 +16,77 @@ export const PostHero: React.FC<{
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
   return (
-    <div className="relative -mt-[10.4rem] flex items-end">
-      <div className="container z-10 relative lg:grid lg:grid-cols-[1fr_48rem_1fr] text-white pb-8">
-        <div className="col-start-1 col-span-1 md:col-start-2 md:col-span-2">
-          <div className="uppercase text-sm mb-6">
-            {categories?.map((category, index) => {
-              if (typeof category === 'object' && category !== null) {
-                const { title: categoryTitle } = category
-
-                const titleToUse = categoryTitle || 'Untitled category'
-
-                const isLast = index === categories.length - 1
-
-                return (
-                  <React.Fragment key={index}>
-                    {titleToUse}
-                    {!isLast && <React.Fragment>, &nbsp;</React.Fragment>}
-                  </React.Fragment>
-                )
-              }
-              return null
-            })}
+    <div className="container py-8">
+      <div className="max-w-[48rem] mx-auto">
+        {/* Hero Image - contained to article width */}
+        {heroImage && typeof heroImage !== 'string' && (
+          <div className="mb-8">
+            <Media resource={heroImage} priority imgClassName="w-full h-auto rounded-lg" />
           </div>
+        )}
 
-          <div className="">
-            <h1 className="mb-6 text-3xl md:text-5xl lg:text-6xl">{title}</h1>
-          </div>
+        {/* Category */}
+        <div className="uppercase text-sm text-gray-600 mb-4">
+          {categories?.map((category, index) => {
+            if (typeof category === 'object' && category !== null) {
+              const { title: categoryTitle } = category
+              const titleToUse = categoryTitle || 'Untitled category'
+              const isLast = index === categories.length - 1
 
-          <div className="flex flex-col md:flex-row gap-4 md:gap-16">
+              return (
+                <React.Fragment key={index}>
+                  {titleToUse}
+                  {!isLast && <React.Fragment>, &nbsp;</React.Fragment>}
+                </React.Fragment>
+              )
+            }
+            return null
+          })}
+        </div>
+
+        {/* Title */}
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{title}</h1>
+
+        {/* Author Info with Social Sharing */}
+        <div className="flex items-center justify-between text-sm text-gray-600 mb-6">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8">
             {hasAuthors && (
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <p className="text-sm">Author</p>
-
-                  <p>{formatAuthors(populatedAuthors)}</p>
-                </div>
+              <div className="flex items-center gap-2">
+                <span className="font-medium">By</span>
+                <span>{formatAuthors(populatedAuthors)}</span>
               </div>
             )}
             {publishedAt && (
-              <div className="flex flex-col gap-1">
-                <p className="text-sm">Date Published</p>
-
+              <div className="flex items-center gap-2">
+                <span className="font-medium">Published</span>
                 <time dateTime={publishedAt}>{formatDateTime(publishedAt)}</time>
               </div>
             )}
+            <div className="flex items-center gap-2">
+              <span className="font-medium">Reading time</span>
+              <span>2 min</span>
+            </div>
+          </div>
+
+          {/* Social Sharing Icons */}
+          <div className="flex items-center gap-2">
+            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
+              <FiShare2 className="w-4 h-4" />
+            </button>
+            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
+              <FiTwitter className="w-4 h-4" />
+            </button>
+            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
+              <FiFacebook className="w-4 h-4" />
+            </button>
+            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
+              <FiLinkedin className="w-4 h-4" />
+            </button>
           </div>
         </div>
-      </div>
-      <div className="min-h-[80vh] select-none">
-        {heroImage && typeof heroImage !== 'string' && (
-          <Media fill priority imgClassName="-z-10 object-cover" resource={heroImage} />
-        )}
-        <div className="absolute pointer-events-none left-0 bottom-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent" />
+
+        {/* Line Divider */}
+        <div className="border-t border-gray-200 mb-6"></div>
       </div>
     </div>
   )

@@ -65,7 +65,7 @@ export async function Footer() {
   // console.log('Link groups:', linkGroups)
 
   return (
-    <footer className="mt-auto bg-[#003366] text-white">
+    <footer className="mt-auto bg-gray-800 text-white">
       <div className="container pt-8 pb-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
