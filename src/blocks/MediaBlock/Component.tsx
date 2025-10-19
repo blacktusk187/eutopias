@@ -16,7 +16,7 @@ type Props = MediaBlockProps & {
   imgClassName?: string
   staticImage?: StaticImageData
   disableInnerContainer?: boolean
-  layout?: 'single' | 'side-by-side-vertical' | 'side-by-side-horizontal'
+  layout?: 'single' | 'side-by-side-vertical' | 'side-by-side-horizontal' | null
 }
 
 export const MediaBlock: React.FC<Props> = (props) => {
@@ -60,7 +60,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         : 'border border-border rounded-lg'
 
   // Determine if we have multiple images
-  const hasMultipleImages = layout !== 'single' && media && secondMedia
+  const hasMultipleImages = layout && layout !== 'single' && media && secondMedia
 
   // Layout classes for side-by-side images
   const getLayoutClasses = () => {
