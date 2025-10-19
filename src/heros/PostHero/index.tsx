@@ -30,7 +30,7 @@ export const PostHero: React.FC<{
         }
         return null
       })
-      .filter(Boolean) || []),
+      .filter((item): item is { label: string; href: string } => item !== null) || []),
     { label: title },
   ]
 
