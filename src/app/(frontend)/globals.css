@@ -110,6 +110,29 @@
   html, body {
     background-color: white !important;
   }
+  
+  /* Force light theme colors - override any dark theme variables */
+  :root, [data-theme='light'], [data-theme='dark'] {
+    --background: 0 0% 100% !important;
+    --foreground: 222.2 84% 4.9% !important;
+    --card: 240 5% 96% !important;
+    --card-foreground: 222.2 84% 4.9% !important;
+    --popover: 0 0% 100% !important;
+    --popover-foreground: 222.2 84% 4.9% !important;
+    --primary: 222.2 47.4% 11.2% !important;
+    --primary-foreground: 210 40% 98% !important;
+    --secondary: 210 40% 96.1% !important;
+    --secondary-foreground: 222.2 47.4% 11.2% !important;
+    --muted: 210 40% 96.1% !important;
+    --muted-foreground: 215.4 16.3% 46.9% !important;
+    --accent: 210 40% 96.1% !important;
+    --accent-foreground: 222.2 47.4% 11.2% !important;
+    --destructive: 0 84.2% 60.2% !important;
+    --destructive-foreground: 210 40% 98% !important;
+    --border: 240 6% 80% !important;
+    --input: 214.3 31.8% 91.4% !important;
+    --ring: 222.2 84% 4.9% !important;
+  }
 }
 
 html {
