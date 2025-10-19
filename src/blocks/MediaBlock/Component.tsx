@@ -26,6 +26,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
     enableGutter = true,
     imgClassName,
     media,
+    secondMedia,
     staticImage,
     disableInnerContainer,
     variant = 'bordered',
@@ -59,7 +60,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
         : 'border border-border rounded-lg'
 
   // Determine if we have multiple images
-  const hasMultipleImages = media && (media || staticImage)
+  const hasMultipleImages = layout !== 'single' && media && secondMedia
 
   // Layout classes for side-by-side images
   const getLayoutClasses = () => {
@@ -94,7 +95,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
           resource={media}
           src={staticImage}
         />
-        <Media imgClassName={cn(imageDecorationClasses, imgClassName)} resource={media} />
+        <Media imgClassName={cn(imageDecorationClasses, imgClassName)} resource={secondMedia} />
       </div>
     )
   }
@@ -102,7 +103,9 @@ export const MediaBlock: React.FC<Props> = (props) => {
   return (
     <div className={cn('', { container: enableGutter }, className)}>
       {(media || staticImage) && (
-        <div className={cn(widthClasses, alignClasses)}>{renderMultipleImages()}</div>
+        <div className={cn(widthClasses, alignClasses)}>
+          {hasMultipleImages ? renderMultipleImages() : renderSingleImage()}
+        </div>
       )}
       {caption && (
         <div

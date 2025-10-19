@@ -6,18 +6,41 @@ import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 import { formatAuthors } from '@/utilities/formatAuthors'
+import RichText from '@/components/RichText'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export const PostHero: React.FC<{
   post: Post
 }> = ({ post }) => {
-  const { categories, heroImage, populatedAuthors, publishedAt, title } = post
+  const { categories, heroImage, populatedAuthors, publishedAt, title, deck } = post
 
   const hasAuthors =
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
 
+  // Build breadcrumb items
+  const breadcrumbItems = [
+    { label: 'Posts', href: '/posts' },
+    ...(categories
+      ?.map((category) => {
+        if (typeof category === 'object' && category !== null) {
+          return {
+            label: category.title || 'Untitled category',
+            href: `/posts/category/${category.slug}`,
+          }
+        }
+        return null
+      })
+      .filter(Boolean) || []),
+    { label: title },
+  ]
+
   return (
     <div className="container py-8">
       <div className="max-w-[48rem] mx-auto">
+        {/* Breadcrumbs */}
+        <div className="mb-6">
+          <Breadcrumbs items={breadcrumbItems} />
+        </div>
         {/* Hero Image - contained to article width */}
         {heroImage && typeof heroImage !== 'string' && (
           <div className="mb-8">
@@ -26,7 +49,7 @@ export const PostHero: React.FC<{
         )}
 
         {/* Category */}
-        <div className="uppercase text-sm text-gray-600 mb-4">
+        <div className="mb-4">
           {categories?.map((category, index) => {
             if (typeof category === 'object' && category !== null) {
               const { title: categoryTitle } = category
@@ -35,8 +58,10 @@ export const PostHero: React.FC<{
 
               return (
                 <React.Fragment key={index}>
-                  {titleToUse}
-                  {!isLast && <React.Fragment>, &nbsp;</React.Fragment>}
+                  <span className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide">
+                    {titleToUse}
+                  </span>
+                  {!isLast && <span className="mx-2"> </span>}
                 </React.Fragment>
               )
             }
@@ -46,6 +71,13 @@ export const PostHero: React.FC<{
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{title}</h1>
+
+        {/* Deck/Subheadline */}
+        {deck && (
+          <div className="text-xl md:text-2xl text-gray-600 mb-6">
+            <RichText data={deck} enableGutter={false} />
+          </div>
+        )}
 
         {/* Author Info with Social Sharing */}
         <div className="flex items-center justify-between text-sm text-gray-600 mb-6">

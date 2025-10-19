@@ -51,5 +51,27 @@ export const MediaBlock: Block = {
         description: 'Horizontal alignment within the content',
       },
     },
+    {
+      name: 'layout',
+      type: 'select',
+      defaultValue: 'single',
+      options: [
+        { label: 'Single Image (default)', value: 'single' },
+        { label: 'Side by Side - Vertical', value: 'side-by-side-vertical' },
+        { label: 'Side by Side - Horizontal', value: 'side-by-side-horizontal' },
+      ],
+      admin: {
+        description: 'Layout for multiple images',
+      },
+    },
+    {
+      name: 'secondMedia',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description: 'Second image for side-by-side layouts',
+        condition: (data) => data.layout && data.layout !== 'single',
+      },
+    },
   ],
 }
