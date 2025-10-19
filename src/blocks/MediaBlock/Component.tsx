@@ -64,7 +64,7 @@ export const MediaBlock: React.FC<Props> = (props) => {
 
   // Layout classes for side-by-side images
   const getLayoutClasses = () => {
-    if (!hasMultipleImages || layout === 'single') return ''
+    if (!hasMultipleImages) return ''
 
     if (layout === 'side-by-side-vertical') {
       return 'grid grid-cols-1 md:grid-cols-2 gap-4'
