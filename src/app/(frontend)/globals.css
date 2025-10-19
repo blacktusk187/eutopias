@@ -106,14 +106,9 @@
     @apply bg-background text-foreground min-h-[100vh] flex flex-col;
   }
   
-  /* Force white background */
+  /* Force white background only on page background */
   html, body {
     background-color: white !important;
-  }
-  
-  /* Override any dark theme styles */
-  [data-theme='dark'] {
-    --background: 0 0% 100% !important;
   }
 }
 
@@ -181,17 +176,3 @@ img, .image, [data-image] {
   letter-spacing: 0.2em;
 }
 
-/* Force white background on all elements */
-* {
-  background-color: white !important;
-}
-
-/* Allow specific elements to have their own backgrounds */
-img, video, canvas, svg, picture {
-  background-color: transparent !important;
-}
-
-/* Ensure main content areas maintain white background */
-main, article, section, div {
-  background-color: white !important;
-}
