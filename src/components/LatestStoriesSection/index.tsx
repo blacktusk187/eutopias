@@ -267,7 +267,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
         </div>
 
         {/* Mobile-only divider between Featured and Today's Picks */}
-        <div className="lg:hidden order-2 h-px bg-muted/60 my-2" />
+        <div className="lg:hidden order-2 my-2 border-t border-border w-full" />
       </div>
     </div>
   )
