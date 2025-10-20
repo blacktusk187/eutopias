@@ -18,7 +18,58 @@
     }
   }
 
+  &__quick-menu {
+    margin-top: base(1.5);
+  }
+
+  &__tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: base(1);
+    margin-top: base(0.5);
+  }
+
+  &__tile {
+    display: flex;
+    flex-direction: column;
+    padding: base(1.5);
+    background: var(--theme-elevation-50);
+    border: 1px solid var(--theme-elevation-100);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--theme-text);
+    transition: all 150ms ease-in-out;
+    cursor: pointer;
+    min-height: 120px;
+    justify-content: center;
+
+    &:hover {
+      background: var(--theme-elevation-100);
+      border-color: var(--theme-elevation-200);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+      outline: 2px solid var(--theme-success-500);
+      outline-offset: 2px;
+    }
+  }
+
+  &__tileTitle {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: base(0.25);
+    color: var(--theme-text);
+  }
+
+  &__tileDesc {
+    font-size: 0.875rem;
+    color: var(--theme-elevation-800);
+    line-height: 1.4;
+  }
+
   & a:hover {
-    opacity: 0.85;
+    opacity: 1;
   }
 }

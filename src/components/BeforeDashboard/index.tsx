@@ -26,20 +26,20 @@ const BeforeDashboard: React.FC = () => {
         </h5>
         <div className={`${baseClass}__tiles`}>
           <Link className={`${baseClass}__tile`} href="/admin/collections/posts/create">
-            <span className={`${baseClass}__tileTitle`}>Create a new Post</span>
-            <span className={`${baseClass}__tileDesc`}>Publish a story in minutes</span>
+            <div className={`${baseClass}__tileTitle`}>Create a new Post</div>
+            <div className={`${baseClass}__tileDesc`}>Publish a story in minutes</div>
           </Link>
           <Link className={`${baseClass}__tile`} href="/admin/collections/pages/create">
-            <span className={`${baseClass}__tileTitle`}>Create a new Page</span>
-            <span className={`${baseClass}__tileDesc`}>Add static pages like About</span>
+            <div className={`${baseClass}__tileTitle`}>Create a new Page</div>
+            <div className={`${baseClass}__tileDesc`}>Add static pages like About</div>
           </Link>
           <Link className={`${baseClass}__tile`} href="/admin/collections/media">
-            <span className={`${baseClass}__tileTitle`}>Manage Media</span>
-            <span className={`${baseClass}__tileDesc`}>Upload and organize assets</span>
+            <div className={`${baseClass}__tileTitle`}>Manage Media</div>
+            <div className={`${baseClass}__tileDesc`}>Upload and organize assets</div>
           </Link>
           <a className={`${baseClass}__tile`} href="/" target="_blank" rel="noopener noreferrer">
-            <span className={`${baseClass}__tileTitle`}>View Site</span>
-            <span className={`${baseClass}__tileDesc`}>Open the public website</span>
+            <div className={`${baseClass}__tileTitle`}>View Site</div>
+            <div className={`${baseClass}__tileDesc`}>Open the public website</div>
           </a>
         </div>
       </section>

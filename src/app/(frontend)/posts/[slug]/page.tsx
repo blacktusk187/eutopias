@@ -14,6 +14,7 @@ import { PostHero } from '@/heros/PostHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { ArticleViewTracker } from '@/components/ArticleViewTracker'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -59,6 +60,9 @@ export default async function Post({ params: paramsPromise }: Args) {
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
+
+      {/* Track article views */}
+      <ArticleViewTracker slug={post.slug} />
 
       <PostHero post={post} />
 
