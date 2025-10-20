@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react'
-import { FiMenu, FiX, FiSearch } from 'react-icons/fi'
+import { FiMenu, FiX, FiSearch, FiArrowRight } from 'react-icons/fi'
 import type { Header as HeaderType, Category, Post, Media } from '@/payload-types'
 import Link from 'next/link'
 import { Drawer, DrawerHeader, DrawerContent } from '@/components/ui/drawer'
@@ -263,14 +263,132 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         })}
         {/* Featured category at the end */}
         {featuredCategory && (
-          <Link
+          <div
             key={featuredCategory.id}
-            href={`/posts/category/${featuredCategory.slug}`}
-            className="text-gray-700 hover:text-accent-foreground transition-colors font-medium relative group text-base"
+            className="relative group"
+            onMouseEnter={() => {
+              if (closeTimerRef.current) {
+                clearTimeout(closeTimerRef.current)
+                closeTimerRef.current = null
+              }
+              setHoveredParentId(featuredCategory.id)
+              ensurePostsForParent(featuredCategory.id)
+            }}
+            onMouseLeave={() => {
+              closeTimerRef.current = window.setTimeout(() => {
+                setHoveredParentId(null)
+              }, 150)
+            }}
           >
-            {featuredCategory.title}
-            <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#003366] group-hover:w-full transition-all duration-300"></span>
-          </Link>
+            <Link
+              href={`/posts/category/${featuredCategory.slug}`}
+              className="text-gray-700 hover:text-accent-foreground transition-colors font-medium relative group text-base"
+            >
+              {featuredCategory.title}
+              <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#003366] group-hover:w-full transition-all duration-300"></span>
+            </Link>
+
+            {/* Featured Drawer */}
+            {hoveredParentId === featuredCategory.id && (
+              <div
+                className="absolute top-full left-0 mt-2 w-[800px] bg-card border border-border rounded-lg shadow-xl z-50"
+                style={{ top: `${drawerTop}px` }}
+                onMouseEnter={() => {
+                  if (closeTimerRef.current) {
+                    clearTimeout(closeTimerRef.current)
+                    closeTimerRef.current = null
+                  }
+                }}
+                onMouseLeave={() => {
+                  closeTimerRef.current = window.setTimeout(() => {
+                    setHoveredParentId(null)
+                  }, 150)
+                }}
+              >
+                <div className="p-6">
+                  <div className="grid grid-cols-12 gap-6">
+                    {/* Left: Category info and subcategories */}
+                    <div className="col-span-12 md:col-span-3">
+                      <div className="space-y-4">
+                        <div>
+                          <h3 className="text-lg font-semibold text-foreground mb-2">
+                            {featuredCategory.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            Featured articles and stories
+                          </p>
+                        </div>
+                        <div className="pt-4">
+                          <Link
+                            href={`/posts/category/${featuredCategory.slug}`}
+                            className="inline-flex items-center text-sm font-medium text-accent-foreground hover:text-foreground transition-colors"
+                          >
+                            View all featured articles
+                            <FiArrowRight className="ml-1 h-4 w-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right: 3 latest posts */}
+                    <div className="col-span-12 md:col-span-9">
+                      <div className="p-6 border-l border-border">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                          {(postsByParentId[featuredCategory.id] || new Array(3).fill(null)).map(
+                            (post, idx) => {
+                              if (!post) {
+                                return (
+                                  <div
+                                    key={`skeleton-${idx}`}
+                                    className="animate-pulse flex gap-3"
+                                  >
+                                    <div className="w-24 h-16 bg-muted rounded" />
+                                    <div className="flex-1 space-y-2">
+                                      <div className="h-4 bg-muted rounded w-3/4" />
+                                      <div className="h-4 bg-muted rounded w-2/5" />
+                                    </div>
+                                  </div>
+                                )
+                              }
+                              const imgUrl = getPostThumbUrl(post)
+                              return (
+                                <Link
+                                  key={post.id}
+                                  href={`/posts/${post.slug}`}
+                                  className="group"
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <div className="relative w-24 h-16 overflow-hidden rounded border border-border flex-shrink-0">
+                                      {imgUrl ? (
+                                        <Image
+                                          src={imgUrl}
+                                          alt={post.title || ''}
+                                          fill
+                                          className="object-cover"
+                                          sizes="96px"
+                                        />
+                                      ) : (
+                                        <div className="w-full h-full bg-muted" />
+                                      )}
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="text-sm font-medium text-foreground group-hover:text-accent-foreground transition-colors line-clamp-3">
+                                        {post.title}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </Link>
+                              )
+                            },
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         )}
         {moreItems.length > 0 && (
           <div className="relative group">
