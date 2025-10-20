@@ -83,3 +83,23 @@ params: home,published,1
  ✓ Compiled in 448ms (460 modules)
  ✓ Compiled in 950ms (1890 modules)
  ✓ Compiled in 679ms (1890 modules)
+[Error: ENOENT: no such file or directory, stat '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'
+}
+ ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'
+ ✓ Compiled in 899ms (1890 modules)

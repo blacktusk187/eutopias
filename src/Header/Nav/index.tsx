@@ -265,68 +265,48 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
         {featuredCategory && (
           <div
             key={featuredCategory.id}
-            className="relative group"
+            className=""
             onMouseEnter={() => {
-              if (closeTimerRef.current) {
-                clearTimeout(closeTimerRef.current)
-                closeTimerRef.current = null
-              }
+              cancelClose()
               setHoveredParentId(featuredCategory.id)
-              ensurePostsForParent(featuredCategory.id)
+              void ensurePostsForParent(featuredCategory.id)
             }}
-            onMouseLeave={() => {
-              closeTimerRef.current = window.setTimeout(() => {
-                setHoveredParentId(null)
-              }, 150)
-            }}
+            onMouseLeave={scheduleClose}
           >
             <Link
               href={`/posts/category/${featuredCategory.slug}`}
-              className="text-gray-700 hover:text-accent-foreground transition-colors font-medium relative group text-base"
+              className="text-gray-700 hover:text-accent-foreground transition-colors font-medium text-base relative group z-[60]"
             >
-              {featuredCategory.title}
-              <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#003366] group-hover:w-full transition-all duration-300"></span>
+              <span>{featuredCategory.title}</span>
+              <span
+                className={
+                  `pointer-events-none absolute -bottom-[2px] left-0 h-[0.5px] bg-[#003366] transition-all duration-300 ` +
+                  (hoveredParentId === featuredCategory.id ? 'w-full' : 'w-0 group-hover:w-full')
+                }
+              />
             </Link>
 
-            {/* Featured Drawer */}
             {hoveredParentId === featuredCategory.id && (
               <div
-                className="absolute top-full left-0 mt-2 w-[800px] bg-card border border-border rounded-lg shadow-xl z-50"
-                style={{ top: `${drawerTop}px` }}
-                onMouseEnter={() => {
-                  if (closeTimerRef.current) {
-                    clearTimeout(closeTimerRef.current)
-                    closeTimerRef.current = null
-                  }
-                }}
-                onMouseLeave={() => {
-                  closeTimerRef.current = window.setTimeout(() => {
-                    setHoveredParentId(null)
-                  }, 150)
-                }}
+                className="fixed left-1/2 -translate-x-1/2 bg-card shadow-lg z-50 w-screen border-t border-border"
+                style={{ top: drawerTop }}
+                onMouseEnter={cancelClose}
+                onMouseLeave={scheduleClose}
               >
-                <div className="p-6">
-                  <div className="grid grid-cols-12 gap-6">
-                    {/* Left: Category info and subcategories */}
-                    <div className="col-span-12 md:col-span-3">
-                      <div className="space-y-4">
-                        <div>
-                          <h3 className="text-lg font-semibold text-foreground mb-2">
-                            {featuredCategory.title}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            Featured articles and stories
-                          </p>
-                        </div>
-                        <div className="pt-4">
-                          <Link
-                            href={`/posts/category/${featuredCategory.slug}`}
-                            className="inline-flex items-center text-sm font-medium text-accent-foreground hover:text-foreground transition-colors"
-                          >
-                            View all featured articles
-                            <FiArrowRight className="ml-1 h-4 w-4" />
-                          </Link>
-                        </div>
+                <div className="container">
+                  <div className="grid grid-cols-12 gap-8 p-8">
+                    {/* Left: Featured category info */}
+                    <div className="col-span-12 md:col-span-3 bg-card">
+                      <div className="block px-2 py-1.5 text-sm font-medium text-[#003366] border-b border-border mb-2">
+                        Featured
+                      </div>
+                      <div className="flex flex-col">
+                        <Link
+                          href={`/posts/category/${featuredCategory.slug}`}
+                          className="px-2 py-1.5 text-sm text-card-foreground hover:text-accent-foreground transition-colors"
+                        >
+                          All Featured Articles
+                        </Link>
                       </div>
                     </div>
 
