@@ -103,3 +103,141 @@ params: home,published,1
 }
 <w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/timbarnsley/Documents/GitHub/eutopias/.next/cache/webpack/server-development/1.pack.gz'
  ✓ Compiled in 899ms (1890 modules)
+ ✓ Compiled in 1158ms (1890 modules)
+ ✓ Compiled in 893ms (1890 modules)
+ ✓ Compiled in 680ms (1890 modules)
+ ✓ Compiled in 649ms (1890 modules)
+ ✓ Compiled in 596ms (460 modules)
+ ✓ Compiled in 447ms (460 modules)
+ ⨯ ./src/migrations/src/migrations/20251019_add_layout_to_media_block.ts
+Error: 
+
+Caused by:
+    0: Failed to read source code from /Users/timbarnsley/Documents/GitHub/eutopias/src/migrations/src/migrations/20251019_add_layout_to_media_block.ts
+    1: No such file or directory (os error 2)
+
+Import trace for requested module:
+./src/migrations/src/migrations/20251019_add_layout_to_media_block.ts
+./src/migrations/index.ts
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ✓ Compiled in 286ms (460 modules)
+ ✓ Compiled in 364ms (460 modules)
+ ✓ Compiled in 553ms (460 modules)
+ ✓ Compiled in 345ms (460 modules)
+ ✓ Compiled in 448ms (460 modules)
+ ✓ Compiled in 673ms (460 modules)
+ ✓ Compiled in 640ms (460 modules)
+ ✓ Compiled in 951ms (1890 modules)
+ ✓ Compiled in 606ms (1890 modules)
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ✓ Compiled in 612ms (460 modules)
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ⨯ ./src/migrations/index.ts:2:1
+Module not found: Can't resolve './src/migrations/20251019_add_layout_to_media_block'
+  1 | import type { Migration } from 'payload'
+> 2 | import { addLayoutSecondMediaToMediaBlock } from './src/migrations/20251019_add_layout_to_media_block'
+    | ^
+  3 |
+  4 | export const migrations: Migration[] = [addLayoutSecondMediaToMediaBlock]
+  5 | export default migrations
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(frontend)/[slug]/page.tsx
+./src/app/(frontend)/page.tsx
+ ✓ Compiled in 1173ms (1889 modules)
+ ✓ Compiled in 776ms (1889 modules)
+ ✓ Compiled in 510ms (460 modules)
+ ✓ Compiled in 419ms (460 modules)

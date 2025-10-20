@@ -88,6 +88,23 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                         <h4 className="text-sm font-medium text-foreground leading-tight line-clamp-3 group-hover:text-accent-foreground transition-colors">
                           {article.title}
                         </h4>
+                        {article.deck?.root?.children?.length ? (
+                          <div className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                            {/* Render first paragraph/text node inline */}
+                            {(article.deck.root.children as any[])
+                              .map((n: any) => {
+                                if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                  return n.children
+                                    .filter((c: any) => typeof c.text === 'string' && c.text.trim())
+                                    .map((c: any) => c.text)
+                                    .join(' ')
+                                }
+                                if (typeof n?.text === 'string') return n.text
+                                return ''
+                              })
+                              .join(' ')}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </Link>
@@ -145,9 +162,27 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                               {getCategoryTitle(featuredMain)}
                             </span>
                           </div>
-                          <h3 className="text-2xl font-bold text-white mb-2 line-clamp-2">
+                          <h3 className="text-2xl font-bold text-white mb-1 line-clamp-2">
                             {featuredMain.title}
                           </h3>
+                          {featuredMain.deck?.root?.children?.length ? (
+                            <div className="text-sm text-white/90 mb-2 line-clamp-2">
+                              {(featuredMain.deck.root.children as any[])
+                                .map((n: any) => {
+                                  if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                    return n.children
+                                      .filter(
+                                        (c: any) => typeof c.text === 'string' && c.text.trim(),
+                                      )
+                                      .map((c: any) => c.text)
+                                      .join(' ')
+                                  }
+                                  if (typeof n?.text === 'string') return n.text
+                                  return ''
+                                })
+                                .join(' ')}
+                            </div>
+                          ) : null}
                           <Link
                             href={`/posts/${featuredMain.slug}`}
                             className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#EEBC2A] transition-colors"
@@ -207,6 +242,22 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                       <h4 className="text-lg font-semibold text-foreground leading-tight line-clamp-2 group-hover:text-accent-foreground transition-colors">
                         {article.title}
                       </h4>
+                      {article.deck?.root?.children?.length ? (
+                        <div className="text-sm text-muted-foreground line-clamp-2">
+                          {(article.deck.root.children as any[])
+                            .map((n: any) => {
+                              if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                return n.children
+                                  .filter((c: any) => typeof c.text === 'string' && c.text.trim())
+                                  .map((c: any) => c.text)
+                                  .join(' ')
+                              }
+                              if (typeof n?.text === 'string') return n.text
+                              return ''
+                            })
+                            .join(' ')}
+                        </div>
+                      ) : null}
                     </div>
                   </Link>
                 )
