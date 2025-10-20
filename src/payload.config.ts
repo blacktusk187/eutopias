@@ -20,16 +20,17 @@ import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { migrations } from './migrations'
 
-import { getServerSideURL } from './utilities/getURL'
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
-const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+const RAW = process.env.NEXT_PUBLIC_SERVER_URL || 'https://www.eutopias.co'
 const URL_FIXED = RAW.replace(/^http:\/\//, 'https://').replace('eutopias.co', 'www.eutopias.co')
 
 export default buildConfig({
   admin: {
+    meta: {
+      titleSuffix: ' - Eutopias',
+    },
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
@@ -70,9 +71,9 @@ export default buildConfig({
       ],
     },
   },
-  serverURL: getServerSideURL(),
-  cors: ['http://localhost:3000', 'https://www.eutopias.co', 'https://eutopias.co'],
-  csrf: ['http://localhost:3000', 'https://www.eutopias.co', 'https://eutopias.co'],
+  serverURL: URL_FIXED,
+  cors: ['https://www.eutopias.co', 'https://eutopias.co'],
+  csrf: ['https://www.eutopias.co', 'https://eutopias.co'],
 
   // This config helps us configure global or default features that the other editors can inherit
   editor: defaultLexical,
