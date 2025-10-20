@@ -45,7 +45,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Today's Picks - Left Column (1/3) */}
-        <div className="lg:col-span-4 order-2 lg:order-1">
+        <div className="lg:col-span-4 order-3 lg:order-1">
           <div className="h-full flex flex-col">
             <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
             <div className="flex-1 space-y-6">
@@ -265,6 +265,9 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Mobile-only divider between Featured and Today's Picks */}
+        <div className="lg:hidden order-2 h-px bg-muted/60 my-2" />
       </div>
     </div>
   )
