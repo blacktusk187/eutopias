@@ -562,14 +562,6 @@ export interface MediaBlock {
    * Horizontal alignment within the content
    */
   align?: ('left' | 'center' | 'right') | null;
-  /**
-   * Layout for multiple images
-   */
-  layout?: ('single' | 'side-by-side-vertical' | 'side-by-side-horizontal') | null;
-  /**
-   * Second image for side-by-side layouts
-   */
-  secondMedia?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
@@ -1253,8 +1245,6 @@ export interface MediaBlockSelect<T extends boolean = true> {
   variant?: T;
   width?: T;
   align?: T;
-  layout?: T;
-  secondMedia?: T;
   id?: T;
   blockName?: T;
 }
