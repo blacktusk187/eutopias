@@ -39,9 +39,7 @@ export const Posts: CollectionConfig<'posts'> = {
     read: authenticatedOrPublished,
     update: authenticated,
   },
-  // This config controls what's populated by default when a post is referenced
-  // https://payloadcms.com/docs/queries/select#defaultpopulate-collection-config-property
-  // Type safe if the collection slug generic is passed to `CollectionConfig` - `CollectionConfig<'posts'>
+  // Type-safe default populate
   defaultPopulate: {
     title: true,
     slug: true,
@@ -51,7 +49,7 @@ export const Posts: CollectionConfig<'posts'> = {
       image: true,
       description: true,
     },
-  },
+  } as const,
   admin: {
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
@@ -91,17 +89,16 @@ export const Posts: CollectionConfig<'posts'> = {
               label: 'Deck (Subhead)',
               type: 'richText',
               editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()]
-                },
+                features: ({ rootFeatures }) =>
+                  [...rootFeatures, FixedToolbarFeature(), InlineToolbarFeature()] as const,
               }),
             },
             {
               name: 'content',
               type: 'richText',
               editor: lexicalEditor({
-                features: ({ rootFeatures }) => {
-                  return [
+                features: ({ rootFeatures }) =>
+                  [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
                     BlocksFeature({
@@ -113,13 +110,12 @@ export const Posts: CollectionConfig<'posts'> = {
                         Subheading,
                         RelatedContent,
                         CallToAction,
-                      ],
+                      ] as const,
                     }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),
-                  ]
-                },
+                  ] as const,
               }),
               label: false,
               required: true,
@@ -135,13 +131,7 @@ export const Posts: CollectionConfig<'posts'> = {
               admin: {
                 position: 'sidebar',
               },
-              filterOptions: ({ id }) => {
-                return {
-                  id: {
-                    not_in: [id],
-                  },
-                }
-              },
+              filterOptions: ({ id }) => ({ id: { not_in: [id] } }) as const,
               hasMany: true,
               relationTo: 'posts',
             },
@@ -181,13 +171,9 @@ export const Posts: CollectionConfig<'posts'> = {
             MetaImageField({
               relationTo: 'media',
             }),
-
             MetaDescriptionField({}),
             PreviewField({
-              // if the `generateUrl` function is configured
               hasGenerateFn: true,
-
-              // field paths to match the target field for data
               titlePath: 'meta.title',
               descriptionPath: 'meta.description',
             }),
@@ -234,9 +220,7 @@ export const Posts: CollectionConfig<'posts'> = {
       hasMany: true,
       relationTo: 'users',
     },
-    // This field is only used to populate the user data via the `populateAuthors` hook
-    // This is because the `user` collection has access control locked to protect user privacy
-    // GraphQL will also not return mutated user data that differs from the underlying schema
+    // Populated from hook to expose author names safely
     {
       name: 'populatedAuthors',
       type: 'array',
@@ -248,14 +232,8 @@ export const Posts: CollectionConfig<'posts'> = {
         readOnly: true,
       },
       fields: [
-        {
-          name: 'id',
-          type: 'text',
-        },
-        {
-          name: 'name',
-          type: 'text',
-        },
+        { name: 'id', type: 'text' },
+        { name: 'name', type: 'text' },
       ],
     },
     slugField(),
@@ -268,7 +246,7 @@ export const Posts: CollectionConfig<'posts'> = {
   versions: {
     drafts: {
       autosave: {
-        interval: 100, // We set this interval for optimal live preview
+        interval: 100,
       },
       schedulePublish: true,
     },
