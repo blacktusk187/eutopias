@@ -45,7 +45,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Today's Picks - Left Column (1/3) */}
-        <div className="lg:col-span-4 order-2 lg:order-1">
+        <div className="lg:col-span-4 order-3 lg:order-1">
           <div className="h-full flex flex-col">
             <h3 className="text-2xl font-bold mb-6 text-foreground">TODAY&apos;S PICKS</h3>
             <div className="flex-1 space-y-6">
@@ -88,6 +88,23 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                         <h4 className="text-sm font-medium text-foreground leading-tight line-clamp-3 group-hover:text-accent-foreground transition-colors">
                           {article.title}
                         </h4>
+                        {article.deck?.root?.children?.length ? (
+                          <div className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                            {/* Render first paragraph/text node inline */}
+                            {(article.deck.root.children as any[])
+                              .map((n: any) => {
+                                if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                  return n.children
+                                    .filter((c: any) => typeof c.text === 'string' && c.text.trim())
+                                    .map((c: any) => c.text)
+                                    .join(' ')
+                                }
+                                if (typeof n?.text === 'string') return n.text
+                                return ''
+                              })
+                              .join(' ')}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </Link>
@@ -145,9 +162,27 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                               {getCategoryTitle(featuredMain)}
                             </span>
                           </div>
-                          <h3 className="text-2xl font-bold text-white mb-2 line-clamp-2">
+                          <h3 className="text-2xl font-bold text-white mb-1 line-clamp-2">
                             {featuredMain.title}
                           </h3>
+                          {featuredMain.deck?.root?.children?.length ? (
+                            <div className="text-sm text-white/90 mb-2 line-clamp-2">
+                              {(featuredMain.deck.root.children as any[])
+                                .map((n: any) => {
+                                  if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                    return n.children
+                                      .filter(
+                                        (c: any) => typeof c.text === 'string' && c.text.trim(),
+                                      )
+                                      .map((c: any) => c.text)
+                                      .join(' ')
+                                  }
+                                  if (typeof n?.text === 'string') return n.text
+                                  return ''
+                                })
+                                .join(' ')}
+                            </div>
+                          ) : null}
                           <Link
                             href={`/posts/${featuredMain.slug}`}
                             className="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-[#EEBC2A] transition-colors"
@@ -207,6 +242,22 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                       <h4 className="text-lg font-semibold text-foreground leading-tight line-clamp-2 group-hover:text-accent-foreground transition-colors">
                         {article.title}
                       </h4>
+                      {article.deck?.root?.children?.length ? (
+                        <div className="text-sm text-muted-foreground line-clamp-2">
+                          {(article.deck.root.children as any[])
+                            .map((n: any) => {
+                              if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                return n.children
+                                  .filter((c: any) => typeof c.text === 'string' && c.text.trim())
+                                  .map((c: any) => c.text)
+                                  .join(' ')
+                              }
+                              if (typeof n?.text === 'string') return n.text
+                              return ''
+                            })
+                            .join(' ')}
+                        </div>
+                      ) : null}
                     </div>
                   </Link>
                 )
@@ -214,6 +265,9 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
             </div>
           </div>
         </div>
+
+        {/* Mobile-only divider between Featured and Today's Picks */}
+        <div className="lg:hidden order-2 my-2 border-t border-border w-full" />
       </div>
     </div>
   )
