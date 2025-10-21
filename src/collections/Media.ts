@@ -74,7 +74,6 @@ export const Media: CollectionConfig = {
         height: 630,
         crop: 'center',
       },
-      { name: 'portrait', width: 300, height: 480 },
     ],
   },
 }
