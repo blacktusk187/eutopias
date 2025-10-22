@@ -1,5 +1,4 @@
 // src/app/layout.tsx
-import './(frontend)/globals.css'
 
 export const metadata = {
   title: 'Eutopias',
