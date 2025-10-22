@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-// import './globals.css' // keep if you have Tailwind/global CSS
+import './(frontend)/globals.css'
 
 export const metadata = {
   title: 'Eutopias',
