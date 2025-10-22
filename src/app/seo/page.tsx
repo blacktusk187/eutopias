@@ -1,10 +1,35 @@
 // src/app/seo/page.tsx
 'use client'
+import * as React from 'react'
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import MainSeoDashboard from '@/components/seo/MainSeoDashboard'
 import LastJobRunsWidget from '@/components/seo/LastJobRunsWidget'
 
 export default function SEODashboardPage() {
+  const [gscLoading, setGscLoading] = React.useState(false)
+  const [psiLoading, setPsiLoading] = React.useState(false)
+  const [notice, setNotice] = React.useState<string | null>(null)
+  const [now, setNow] = React.useState<string | null>(null)
+
+  React.useEffect(() => {
+    setNow(new Date().toLocaleString())
+  }, [])
+
+  async function runIngest(kind: 'gsc' | 'psi') {
+    kind === 'gsc' ? setGscLoading(true) : setPsiLoading(true)
+    setNotice(null)
+    try {
+      const res = await fetch(`/api/seo/ingest/${kind}`, { method: 'GET', cache: 'no-store' })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data?.error || 'Request failed')
+      setNotice(`${kind.toUpperCase()} ingest started successfully`)
+    } catch (e: any) {
+      setNotice(`${kind.toUpperCase()} ingest failed: ${e?.message || 'Unknown error'}`)
+    } finally {
+      kind === 'gsc' ? setGscLoading(false) : setPsiLoading(false)
+    }
+  }
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Vercel-style header */}
@@ -36,8 +61,8 @@ export default function SEODashboardPage() {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-500">
-                Last updated: {new Date().toLocaleString()}
+              <div className="text-sm text-gray-500" suppressHydrationWarning>
+                Last updated: {now ?? '—'}
               </div>
             </div>
           </div>
@@ -55,15 +80,29 @@ export default function SEODashboardPage() {
                 Monitor your site&apos;s performance, search rankings, and Core Web Vitals
               </p>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="text-sm text-gray-500">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                  <span className="w-2 h-2 bg-green-400 rounded-full mr-1.5"></span>
-                  Live
-                </span>
-              </div>
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => runIngest('gsc')}
+                disabled={gscLoading}
+                className="bg-black hover:bg-gray-800 text-white px-3 py-2 rounded-md text-sm"
+              >
+                {gscLoading ? 'Running GSC…' : 'Run GSC Ingest'}
+              </Button>
+              <Button
+                onClick={() => runIngest('psi')}
+                disabled={psiLoading}
+                className="bg-black hover:bg-gray-800 text-white px-3 py-2 rounded-md text-sm"
+              >
+                {psiLoading ? 'Running PSI…' : 'Run PSI Ingest'}
+              </Button>
             </div>
           </div>
+
+          {notice && (
+            <div className="mt-3 text-sm px-3 py-2 rounded-md bg-gray-100 text-gray-800 border border-gray-200">
+              {notice}
+            </div>
+          )}
 
           {/* Dashboard content */}
           <LastJobRunsWidget autoRefreshMs={60000} />
