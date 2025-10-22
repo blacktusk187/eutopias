@@ -18,7 +18,7 @@ export async function GET(req: Request) {
     select to_char(date,'YYYY-MM-DD') as date,
            clicks, impressions, ctr::float, position::float
     from seo_search
-    where date >= current_date - interval '${range} days'
+    where date >= current_date - ${range}::integer
     order by date asc
   `
   return NextResponse.json(r.rows)

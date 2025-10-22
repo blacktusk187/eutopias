@@ -23,7 +23,7 @@ export async function GET(req: Request) {
            inp as "INP",
            pages_tested
     from seo_vitals
-    where date >= current_date - interval '${range} days'
+    where date >= current_date - ${range}::integer
     order by date asc
   `
   return NextResponse.json(r.rows)
