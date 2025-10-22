@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Card, CardContent } from '@/components/ui/card'
+// Removed unused Card imports
 import { Button } from '@/components/ui/button'
 import { Gauge, Activity, TrendingUp, Link as LinkIcon, RefreshCcw, BarChart3 } from 'lucide-react'
 import {

@@ -1,5 +1,6 @@
 // src/app/seo/page.tsx
 'use client'
+import Link from 'next/link'
 import MainSeoDashboard from '@/components/seo/MainSeoDashboard'
 import LastJobRunsWidget from '@/components/seo/LastJobRunsWidget'
 
@@ -19,12 +20,18 @@ export default function SEODashboardPage() {
               </div>
               <div className="hidden md:block">
                 <nav className="flex space-x-8">
-                  <a href="/" className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                  <Link
+                    href="/"
+                    className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium"
+                  >
                     Home
-                  </a>
-                  <a href="/seo" className="text-gray-900 bg-gray-100 px-3 py-2 text-sm font-medium rounded-md">
+                  </Link>
+                  <Link
+                    href="/seo"
+                    className="text-gray-900 bg-gray-100 px-3 py-2 text-sm font-medium rounded-md"
+                  >
                     SEO Dashboard
-                  </a>
+                  </Link>
                 </nav>
               </div>
             </div>
@@ -45,7 +52,7 @@ export default function SEODashboardPage() {
             <div>
               <h1 className="text-3xl font-bold text-gray-900">SEO Dashboard</h1>
               <p className="mt-2 text-gray-600">
-                Monitor your site's performance, search rankings, and Core Web Vitals
+                Monitor your site&apos;s performance, search rankings, and Core Web Vitals
               </p>
             </div>
             <div className="flex items-center space-x-3">
