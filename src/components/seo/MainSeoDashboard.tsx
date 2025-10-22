@@ -139,27 +139,31 @@ export default function MainSeoDashboard() {
   }, [search])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Controls */}
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <h2 className="text-xl md:text-2xl font-semibold">KPIs & Trends</h2>
-          <p className="text-sm text-muted-foreground">
+          <h2 className="text-2xl font-bold text-gray-900">Performance Metrics</h2>
+          <p className="text-sm text-gray-600">
             Rolling {range}-day window • Last refresh:{' '}
             {summary?.lastRefreshed ? new Date(summary.lastRefreshed).toLocaleString() : '—'}
           </p>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-3 items-center">
           <select
-            className="border rounded-lg px-3 py-2 text-sm"
+            className="border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             value={range}
             onChange={(e) => setRange(Number(e.target.value) as 7 | 30 | 90)}
           >
-            <option value={7}>7d</option>
-            <option value={30}>30d</option>
-            <option value={90}>90d</option>
+            <option value={7}>7 days</option>
+            <option value={30}>30 days</option>
+            <option value={90}>90 days</option>
           </select>
-          <Button onClick={() => loadAll()} disabled={loading}>
+          <Button 
+            onClick={() => loadAll()} 
+            disabled={loading}
+            className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          >
             <RefreshCcw className="w-4 h-4 mr-2" /> Refresh
           </Button>
         </div>
@@ -214,97 +218,110 @@ export default function MainSeoDashboard() {
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Core Web Vitals line chart */}
-        <Card className="rounded-2xl">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-medium">Core Web Vitals</h3>
-            </div>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={vitalsSeries} margin={{ left: 6, right: 20, top: 10 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                  <YAxis tick={{ fontSize: 12 }} />
-                  <Tooltip />
-                  <Legend />
-                  <Line type="monotone" dataKey="LCP" dot={false} />
-                  <Line type="monotone" dataKey="CLS" dot={false} />
-                  <Line type="monotone" dataKey="TBT" dot={false} />
-                  <Line type="monotone" dataKey="INP" dot={false} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">Core Web Vitals</h3>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={vitalsSeries} margin={{ left: 6, right: 20, top: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
+                <YAxis tick={{ fontSize: 12, fill: '#6b7280' }} />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: 'white', 
+                    border: '1px solid #e5e7eb', 
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                  }} 
+                />
+                <Legend />
+                <Line type="monotone" dataKey="LCP" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="CLS" stroke="#10b981" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="TBT" stroke="#f59e0b" strokeWidth={2} dot={false} />
+                <Line type="monotone" dataKey="INP" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
 
         {/* Search performance chart */}
-        <Card className="rounded-2xl">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-medium">Search Performance</h3>
-            </div>
-            <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={searchSeries} margin={{ left: 6, right: 20, top: 10 }}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                  <YAxis tick={{ fontSize: 12 }} />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="clicks" />
-                  <Bar dataKey="impressions" />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <h3 className="text-lg font-semibold text-gray-900">Search Performance</h3>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={searchSeries} margin={{ left: 6, right: 20, top: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
+                <YAxis tick={{ fontSize: 12, fill: '#6b7280' }} />
+                <Tooltip 
+                  contentStyle={{ 
+                    backgroundColor: 'white', 
+                    border: '1px solid #e5e7eb', 
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                  }} 
+                />
+                <Legend />
+                <Bar dataKey="clicks" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="impressions" fill="#10b981" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
 
       {/* Top pages table */}
-      <Card className="rounded-2xl">
-        <CardContent className="p-4">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="font-medium">Top Pages (latest snapshot)</h3>
-            <span className="text-xs text-muted-foreground">
-              {summary?.lastRefreshed ? new Date(summary.lastRefreshed).toLocaleString() : '—'}
-            </span>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="min-w-full text-sm">
-              <thead>
-                <tr className="text-left border-b">
-                  <th className="py-2 pr-4">Page</th>
-                  <th className="py-2 pr-4">Clicks</th>
-                  <th className="py-2 pr-4">Impr.</th>
-                  <th className="py-2 pr-4">CTR</th>
-                  <th className="py-2 pr-4">Pos.</th>
-                  <th className="py-2 pr-4">LCP</th>
-                  <th className="py-2 pr-4">CLS</th>
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-gray-900">Top Performing Pages</h3>
+          <span className="text-sm text-gray-500">
+            {summary?.lastRefreshed ? new Date(summary.lastRefreshed).toLocaleString() : '—'}
+          </span>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full">
+            <thead>
+              <tr className="border-b border-gray-200">
+                <th className="text-left py-3 px-4 font-medium text-gray-600">Page</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-600">Clicks</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-600">Impressions</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-600">CTR</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-600">Position</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-600">LCP</th>
+                <th className="text-left py-3 px-4 font-medium text-gray-600">CLS</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {topPages.map((p) => (
+                <tr key={p.url} className="hover:bg-gray-50 transition-colors">
+                  <td className="py-4 px-4 max-w-[360px]">
+                    <a 
+                      href={p.url} 
+                      className="text-blue-600 hover:text-blue-800 font-medium truncate block" 
+                      target="_blank" 
+                      rel="noreferrer"
+                    >
+                      {p.title || p.url}
+                    </a>
+                  </td>
+                  <td className="py-4 px-4 text-gray-900 font-medium">{p.clicks ?? '—'}</td>
+                  <td className="py-4 px-4 text-gray-900">{p.impressions ?? '—'}</td>
+                  <td className="py-4 px-4 text-gray-900">{p.ctr != null ? fmtPct(p.ctr) : '—'}</td>
+                  <td className="py-4 px-4 text-gray-900">
+                    {p.position != null ? p.position.toFixed(1) : '—'}
+                  </td>
+                  <td className="py-4 px-4 text-gray-900">{p.lcp != null ? fmtSec(p.lcp) : '—'}</td>
+                  <td className="py-4 px-4 text-gray-900">{p.cls != null ? p.cls.toFixed(2) : '—'}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {topPages.map((p) => (
-                  <tr key={p.url} className="border-b last:border-0">
-                    <td className="py-2 pr-4 max-w-[360px] truncate">
-                      <a href={p.url} className="underline" target="_blank" rel="noreferrer">
-                        {p.title || p.url}
-                      </a>
-                    </td>
-                    <td className="py-2 pr-4">{p.clicks ?? '—'}</td>
-                    <td className="py-2 pr-4">{p.impressions ?? '—'}</td>
-                    <td className="py-2 pr-4">{p.ctr != null ? fmtPct(p.ctr) : '—'}</td>
-                    <td className="py-2 pr-4">
-                      {p.position != null ? p.position.toFixed(1) : '—'}
-                    </td>
-                    <td className="py-2 pr-4">{p.lcp != null ? fmtSec(p.lcp) : '—'}</td>
-                    <td className="py-2 pr-4">{p.cls != null ? p.cls.toFixed(2) : '—'}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
@@ -323,19 +340,17 @@ function KPI({
   ringClass?: string
 }) {
   return (
-    <Card className={`rounded-2xl ring-2 ${ringClass || 'ring-neutral-300/50'}`}>
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <div className="text-xs text-muted-foreground mb-1 flex items-center gap-2">
-              {icon}
-              {label}
-            </div>
-            <div className="text-xl font-semibold">{value}</div>
-            {helper && <div className="text-xs text-muted-foreground mt-1">{helper}</div>}
+    <div className={`bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow ${ringClass || ''}`}>
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-2">
+            {icon}
+            <span className="text-sm font-medium text-gray-600">{label}</span>
           </div>
+          <div className="text-2xl font-bold text-gray-900 mb-1">{value}</div>
+          {helper && <div className="text-xs text-gray-500">{helper}</div>}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
