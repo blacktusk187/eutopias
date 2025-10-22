@@ -222,8 +222,8 @@ export default function MainSeoDashboard() {
           <div className="flex items-center gap-2 mb-4">
             <h3 className="text-lg font-semibold text-gray-900">Core Web Vitals</h3>
           </div>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <LineChart data={vitalsSeries} margin={{ left: 6, right: 20, top: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                 <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
@@ -251,8 +251,8 @@ export default function MainSeoDashboard() {
           <div className="flex items-center gap-2 mb-4">
             <h3 className="text-lg font-semibold text-gray-900">Search Performance</h3>
           </div>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
               <BarChart data={searchSeries} margin={{ left: 6, right: 20, top: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
                 <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
