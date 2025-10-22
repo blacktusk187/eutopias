@@ -87,6 +87,11 @@ export default function MainSeoDashboard() {
   const [topPages, setTopPages] = React.useState<TopPage[]>([])
   const [range, setRange] = React.useState<7 | 30 | 90>(30)
   const [loading, setLoading] = React.useState<boolean>(false)
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   async function loadAll(r: 7 | 30 | 90 = range) {
     setLoading(true)
@@ -222,28 +227,30 @@ export default function MainSeoDashboard() {
           <div className="flex items-center gap-2 mb-4">
             <h3 className="text-lg font-semibold text-gray-900">Core Web Vitals</h3>
           </div>
-          <div className="h-64 w-full" style={{ minHeight: '256px', minWidth: '300px' }}>
-            <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={200}>
-              <LineChart data={vitalsSeries} margin={{ left: 6, right: 20, top: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-                <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
-                <YAxis tick={{ fontSize: 12, fill: '#6b7280' }} />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'white', 
-                    border: '1px solid #e5e7eb', 
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-                  }} 
-                />
-                <Legend />
-                <Line type="monotone" dataKey="LCP" stroke="#3b82f6" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="CLS" stroke="#10b981" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="TBT" stroke="#f59e0b" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="INP" stroke="#8b5cf6" strokeWidth={2} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          {mounted && (
+            <div className="w-full">
+              <ResponsiveContainer width="100%" height={256}>
+                <LineChart data={vitalsSeries} margin={{ left: 6, right: 20, top: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                  <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
+                  <YAxis tick={{ fontSize: 12, fill: '#6b7280' }} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'white',
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                    }}
+                  />
+                  <Legend />
+                  <Line type="monotone" dataKey="LCP" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                  <Line type="monotone" dataKey="CLS" stroke="#10b981" strokeWidth={2} dot={false} />
+                  <Line type="monotone" dataKey="TBT" stroke="#f59e0b" strokeWidth={2} dot={false} />
+                  <Line type="monotone" dataKey="INP" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          )}
         </div>
 
         {/* Search performance chart */}
@@ -251,26 +258,28 @@ export default function MainSeoDashboard() {
           <div className="flex items-center gap-2 mb-4">
             <h3 className="text-lg font-semibold text-gray-900">Search Performance</h3>
           </div>
-          <div className="h-64 w-full" style={{ minHeight: '256px', minWidth: '300px' }}>
-            <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={200}>
-              <BarChart data={searchSeries} margin={{ left: 6, right: 20, top: 10 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-                <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
-                <YAxis tick={{ fontSize: 12, fill: '#6b7280' }} />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'white', 
-                    border: '1px solid #e5e7eb', 
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
-                  }} 
-                />
-                <Legend />
-                <Bar dataKey="clicks" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="impressions" fill="#10b981" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          {mounted && (
+            <div className="w-full">
+              <ResponsiveContainer width="100%" height={256}>
+                <BarChart data={searchSeries} margin={{ left: 6, right: 20, top: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+                  <XAxis dataKey="date" tick={{ fontSize: 12, fill: '#6b7280' }} />
+                  <YAxis tick={{ fontSize: 12, fill: '#6b7280' }} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: 'white',
+                      border: '1px solid #e5e7eb',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                    }}
+                  />
+                  <Legend />
+                  <Bar dataKey="clicks" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="impressions" fill="#10b981" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
         </div>
       </div>
 
