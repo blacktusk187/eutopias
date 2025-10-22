@@ -61,8 +61,14 @@ function fmtPct(v: number | null | undefined, digits = 1) {
   return v == null ? '—' : `${(v * 100).toFixed(digits)}%`
 }
 
-function fmtSec(v: number | null | undefined) {
-  return v == null ? '—' : `${v.toFixed(2)}s`
+function fmtSec(v: number | string | null | undefined) {
+  const n = typeof v === 'string' ? Number(v) : v
+  return typeof n === 'number' && Number.isFinite(n) ? `${n.toFixed(2)}s` : '—'
+}
+
+function fmtNum(v: number | string | null | undefined, digits = 2) {
+  const n = typeof v === 'string' ? Number(v) : v
+  return typeof n === 'number' && Number.isFinite(n) ? n.toFixed(digits) : '—'
 }
 
 // Status coloring for KPI rings
@@ -164,8 +170,8 @@ export default function MainSeoDashboard() {
             <option value={30}>30 days</option>
             <option value={90}>90 days</option>
           </select>
-          <Button 
-            onClick={() => loadAll()} 
+          <Button
+            onClick={() => loadAll()}
             disabled={loading}
             className="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
           >
@@ -185,7 +191,7 @@ export default function MainSeoDashboard() {
         />
         <KPI
           label="Cumulative Layout Shift"
-          value={summary?.cls == null ? '—' : summary.cls.toFixed(2)}
+          value={fmtNum(summary?.cls, 2)}
           helper="Target < 0.10"
           icon={<Activity className="w-4 h-4" />}
           ringClass={statusColor(summary?.cls, 0.1, 0.25)}
@@ -239,14 +245,38 @@ export default function MainSeoDashboard() {
                       backgroundColor: 'white',
                       border: '1px solid #e5e7eb',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                     }}
                   />
                   <Legend />
-                  <Line type="monotone" dataKey="LCP" stroke="#3b82f6" strokeWidth={2} dot={false} />
-                  <Line type="monotone" dataKey="CLS" stroke="#10b981" strokeWidth={2} dot={false} />
-                  <Line type="monotone" dataKey="TBT" stroke="#f59e0b" strokeWidth={2} dot={false} />
-                  <Line type="monotone" dataKey="INP" stroke="#8b5cf6" strokeWidth={2} dot={false} />
+                  <Line
+                    type="monotone"
+                    dataKey="LCP"
+                    stroke="#3b82f6"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="CLS"
+                    stroke="#10b981"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="TBT"
+                    stroke="#f59e0b"
+                    strokeWidth={2}
+                    dot={false}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="INP"
+                    stroke="#8b5cf6"
+                    strokeWidth={2}
+                    dot={false}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -270,7 +300,7 @@ export default function MainSeoDashboard() {
                       backgroundColor: 'white',
                       border: '1px solid #e5e7eb',
                       borderRadius: '8px',
-                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                     }}
                   />
                   <Legend />
@@ -308,10 +338,10 @@ export default function MainSeoDashboard() {
               {topPages.map((p) => (
                 <tr key={p.url} className="hover:bg-gray-50 transition-colors">
                   <td className="py-4 px-4 max-w-[360px]">
-                    <a 
-                      href={p.url} 
-                      className="text-blue-600 hover:text-blue-800 font-medium truncate block" 
-                      target="_blank" 
+                    <a
+                      href={p.url}
+                      className="text-blue-600 hover:text-blue-800 font-medium truncate block"
+                      target="_blank"
                       rel="noreferrer"
                     >
                       {p.title || p.url}
@@ -320,11 +350,9 @@ export default function MainSeoDashboard() {
                   <td className="py-4 px-4 text-gray-900 font-medium">{p.clicks ?? '—'}</td>
                   <td className="py-4 px-4 text-gray-900">{p.impressions ?? '—'}</td>
                   <td className="py-4 px-4 text-gray-900">{p.ctr != null ? fmtPct(p.ctr) : '—'}</td>
-                  <td className="py-4 px-4 text-gray-900">
-                    {p.position != null ? p.position.toFixed(1) : '—'}
-                  </td>
+                  <td className="py-4 px-4 text-gray-900">{fmtNum(p.position, 1)}</td>
                   <td className="py-4 px-4 text-gray-900">{p.lcp != null ? fmtSec(p.lcp) : '—'}</td>
-                  <td className="py-4 px-4 text-gray-900">{p.cls != null ? p.cls.toFixed(2) : '—'}</td>
+                  <td className="py-4 px-4 text-gray-900">{fmtNum(p.cls, 2)}</td>
                 </tr>
               ))}
             </tbody>
@@ -349,7 +377,9 @@ function KPI({
   ringClass?: string
 }) {
   return (
-    <div className={`bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow ${ringClass || ''}`}>
+    <div
+      className={`bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow ${ringClass || ''}`}
+    >
       <div className="flex items-center justify-between">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
