@@ -9,6 +9,7 @@
       "DOM.Iterable",
       "ES2022"
     ],
+    "types": ["node"],
     "allowJs": true,
     "skipLibCheck": true,
     "noEmit": true,
