@@ -14,6 +14,13 @@ const redirects = async () => {
 
   const redirects = [internetExplorerRedirect]
 
+  // Permanent canonicalization: /home -> /
+  redirects.push({
+    source: '/home',
+    destination: '/',
+    permanent: true,
+  })
+
   return redirects
 }
 

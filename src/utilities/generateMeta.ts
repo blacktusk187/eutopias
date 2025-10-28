@@ -29,6 +29,17 @@ export const generateMeta = async (args: {
 
   const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias Magazine'
 
+  // Build canonical URL. If no slug, default to root
+  const slugPath = Array.isArray(doc?.slug)
+    ? `/${doc?.slug.join('/')}`
+    : typeof doc?.slug === 'string'
+      ? `/${doc?.slug}`
+      : '/'
+
+  // Normalize: /home should canonicalize to /
+  const canonicalPath = slugPath === '/home' ? '/' : slugPath
+  const canonicalUrl = new URL(canonicalPath, serverUrl).toString()
+
   return {
     description: doc?.meta?.description,
     openGraph: mergeOpenGraph({
@@ -41,8 +52,11 @@ export const generateMeta = async (args: {
           ]
         : undefined,
       title,
-      url: Array.isArray(doc?.slug) ? doc?.slug.join('/') : '/',
+      url: canonicalPath,
     }),
+    alternates: {
+      canonical: canonicalUrl,
+    },
     title,
   }
 }
