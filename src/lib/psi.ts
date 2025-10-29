@@ -9,6 +9,9 @@ type LighthouseResult = {
 
 type PsiResponse = {
   lighthouseResult?: LighthouseResult
+  // Field (CrUX) data structures are loosely typed; we only read what we need
+  loadingExperience?: any
+  originLoadingExperience?: any
 }
 
 export type Vitals = {
@@ -46,7 +49,12 @@ export async function fetchPsiForUrl(
   // INP may be under experimental key or under 'interactive-to-next-paint' depending on version.
   const inpMs =
     audits['experimental-interaction-to-next-paint']?.numericValue ??
-    audits['interaction-to-next-paint']?.numericValue
+    audits['interaction-to-next-paint']?.numericValue ??
+    // Fallback to field (CrUX) data if lab audit missing
+    json.loadingExperience?.metrics?.INTERACTION_TO_NEXT_PAINT?.percentile ??
+    json.loadingExperience?.metrics?.INTERACTION_TO_NEXT_PAINT?.percentiles?.p75 ??
+    json.originLoadingExperience?.metrics?.INTERACTION_TO_NEXT_PAINT?.percentile ??
+    json.originLoadingExperience?.metrics?.INTERACTION_TO_NEXT_PAINT?.percentiles?.p75
 
   return {
     lcp: typeof lcpMs === 'number' ? lcpMs / 1000 : null,
