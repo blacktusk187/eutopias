@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getServerSideURL } from '@/utilities/getURL'
 
 import { getPayload } from 'payload'
 import React, { cache } from 'react'
@@ -105,9 +106,19 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     }
   }
 
+  const origin = getServerSideURL()
+  const canonical = `${origin}/posts/category/${category.slug}`
+
   return {
     title: `${category.title} - Eutopias`,
     description: `Posts in the ${category.title} category`,
+    alternates: {
+      canonical,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   }
 }
 

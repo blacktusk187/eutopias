@@ -44,7 +44,12 @@ export const PostHero: React.FC<{
         {/* Hero Image - contained to article width */}
         {heroImage && typeof heroImage !== 'string' && (
           <div className="mb-8">
-            <Media resource={heroImage} priority imgClassName="w-full h-auto rounded-lg" />
+            <Media
+              resource={heroImage}
+              priority
+              quality={60}
+              imgClassName="w-full h-auto rounded-lg"
+            />
           </div>
         )}
 

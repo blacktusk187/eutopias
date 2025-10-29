@@ -24,6 +24,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     pictureClassName,
     imgClassName,
     priority,
+    quality: qualityFromProps,
     resource,
     size: sizeFromProps,
     src: srcFromProps,
@@ -49,12 +50,14 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
 
   const loading = loadingFromProps || (!priority ? 'lazy' : undefined)
 
-  // NOTE: this is used by the browser to determine which image to download at different screen sizes
+  // Use a mobile-first sizes map for better LCP. Override via size prop when needed.
   const sizes = sizeFromProps
     ? sizeFromProps
-    : Object.entries(breakpoints)
-        .map(([, value]) => `(max-width: ${value}px) ${value * 2}w`)
-        .join(', ')
+    : fill
+      ? '100vw'
+      : '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 800px'
+
+  const quality = typeof qualityFromProps === 'number' ? qualityFromProps : 70
 
   return (
     <picture className={cn(pictureClassName)}>
@@ -66,7 +69,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         placeholder="blur"
         blurDataURL={placeholderBlur}
         priority={priority}
-        quality={100}
+        quality={quality}
         loading={loading}
         sizes={sizes}
         src={src}

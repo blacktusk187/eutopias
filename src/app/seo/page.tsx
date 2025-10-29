@@ -1,10 +1,27 @@
 // src/app/seo/page.tsx
 'use client'
+
 import * as React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import MainSeoDashboard from '@/components/seo/MainSeoDashboard'
 import LastJobRunsWidget from '@/components/seo/LastJobRunsWidget'
+
+// Lazy-load the Sheet panel (safe to remove if not using the sheet integration)
+const SheetPanel = React.lazy(() => import('@/components/seo/SheetPanel'))
+
+type IngestOk =
+  | { ok: true; daily?: number; topPages?: number }
+  | {
+      ok: true
+      date?: string
+      lcp?: number | null
+      cls?: number | null
+      tbt?: number | null
+      inp?: number | null
+      pages_tested?: number
+    }
+type IngestErr = { ok: false; error?: string }
 
 export default function SEODashboardPage() {
   const [gscLoading, setGscLoading] = React.useState(false)
@@ -17,22 +34,39 @@ export default function SEODashboardPage() {
   }, [])
 
   async function runIngest(kind: 'gsc' | 'psi') {
-    kind === 'gsc' ? setGscLoading(true) : setPsiLoading(true)
-    setNotice(null)
     try {
+      kind === 'gsc' ? setGscLoading(true) : setPsiLoading(true)
+      setNotice(null)
+
       const res = await fetch(`/api/seo/ingest/${kind}`, { method: 'GET', cache: 'no-store' })
-      const data = await res.json().catch(() => ({}))
-      if (!res.ok) throw new Error(data?.error || 'Request failed')
-      setNotice(`${kind.toUpperCase()} ingest started successfully`)
-    } catch (e: any) {
-      setNotice(`${kind.toUpperCase()} ingest failed: ${e?.message || 'Unknown error'}`)
+      const data = (await res.json().catch(() => ({}))) as IngestOk | IngestErr
+
+      if (!res.ok || !('ok' in data) || data.ok !== true) {
+        const errMsg = (data as IngestErr)?.error || 'Request failed'
+        throw new Error(errMsg)
+      }
+
+      // Compose a friendly success message with any counters returned
+      const bits: string[] = []
+      if ('daily' in data && typeof data.daily === 'number') bits.push(`daily=${data.daily}`)
+      if ('topPages' in data && typeof data.topPages === 'number')
+        bits.push(`topPages=${data.topPages}`)
+      if ('pages_tested' in data && typeof data.pages_tested === 'number')
+        bits.push(`pages_tested=${data.pages_tested}`)
+      const suffix = bits.length ? ` (${bits.join(', ')})` : ''
+
+      setNotice(`${kind.toUpperCase()} ingest completed${suffix}`)
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e)
+      setNotice(`${kind.toUpperCase()} ingest failed: ${msg}`)
     } finally {
       kind === 'gsc' ? setGscLoading(false) : setPsiLoading(false)
     }
   }
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Vercel-style header */}
+      {/* Header */}
       <div className="border-b border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -69,10 +103,10 @@ export default function SEODashboardPage() {
         </div>
       </div>
 
-      {/* Main content */}
+      {/* Main */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
-          {/* Page header */}
+          {/* Page header + controls */}
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">SEO Dashboard</h1>
@@ -104,9 +138,22 @@ export default function SEODashboardPage() {
             </div>
           )}
 
-          {/* Dashboard content */}
+          {/* Job runs (GSC + PSI) */}
           <LastJobRunsWidget autoRefreshMs={60000} />
+
+          {/* KPI + Charts + Top Pages */}
           <MainSeoDashboard />
+
+          {/* Google Sheet panel (lazy, optional) */}
+          <React.Suspense
+            fallback={
+              <div className="rounded-2xl p-4 border bg-white text-sm text-gray-500">
+                Loading Google Sheet summary…
+              </div>
+            }
+          >
+            <SheetPanel />
+          </React.Suspense>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getServerSideURL } from '@/utilities/getURL'
 import { notFound } from 'next/navigation'
 
 import { getPayload } from 'payload'
@@ -103,9 +104,19 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
     }
   }
 
+  const origin = getServerSideURL()
+  const canonical = `${origin}/posts/category/${category.slug}${Number(pageNumber) > 1 ? `/page/${pageNumber}` : ''}`
+
   return {
     title: `${category.title} - Page ${pageNumber} - Eutopias`,
     description: `Posts in the ${category.title} category - Page ${pageNumber}`,
+    alternates: {
+      canonical,
+    },
+    robots: {
+      index: Number(pageNumber) > 1 ? false : true,
+      follow: true,
+    },
   }
 }
 
