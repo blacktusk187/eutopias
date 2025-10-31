@@ -111,3 +111,27 @@ export async function fetchTopPagesForDate(
   }
   return out
 }
+
+/** Fetch top pages for a date RANGE (aggregated), paged */
+export async function fetchTopPagesForRange(
+  client: webmasters_v3.Webmasters,
+  siteUrl: string,
+  startDate: string,
+  endDate: string,
+  rowLimit = 250,
+  maxRows = 5000,
+): Promise<GscPageRow[]> {
+  let startRow = 0
+  const out: GscPageRow[] = []
+  while (startRow < maxRows) {
+    const res = await client.searchanalytics.query({
+      siteUrl,
+      requestBody: { startDate, endDate, dimensions: ['page'], rowLimit, startRow },
+    })
+    const part = toPageRows(res.data.rows)
+    out.push(...part)
+    if (part.length < rowLimit) break
+    startRow += rowLimit
+  }
+  return out
+}

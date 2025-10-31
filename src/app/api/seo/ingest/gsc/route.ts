@@ -2,7 +2,14 @@ export const runtime = 'nodejs'
 
 import { NextResponse } from 'next/server'
 import { sql } from '@vercel/postgres'
-import { gscClient, lastNDaysRange, fmt, fetchDaily, fetchTopPagesForDate } from '@/lib/gsc'
+import {
+  gscClient,
+  lastNDaysRange,
+  fmt,
+  fetchDaily,
+  fetchTopPagesForDate,
+  fetchTopPagesForRange,
+} from '@/lib/gsc'
 import { startJob } from '@/lib/jobs'
 
 export async function GET() {
@@ -25,9 +32,13 @@ export async function GET() {
       `
     }
 
-    // top pages (yesterday)
+    // top pages snapshot (yesterday) with 7-day fallback if empty
     const y = fmt(new Date(Date.now() - 86_400_000))
-    const pages = await fetchTopPagesForDate(webmasters, siteUrl, y)
+    let pages = await fetchTopPagesForDate(webmasters, siteUrl, y)
+    if (pages.length === 0) {
+      const start = fmt(new Date(Date.now() - 7 * 86_400_000))
+      pages = await fetchTopPagesForRange(webmasters, siteUrl, start, y)
+    }
     await sql`delete from seo_top_pages where date = ${y}`
     for (const p of pages) {
       await sql`
