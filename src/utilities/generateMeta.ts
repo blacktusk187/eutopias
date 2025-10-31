@@ -4,7 +4,6 @@ import type { Media, Page, Post, Config } from '../payload-types'
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
-import { getMediaUrl } from './getMediaUrl'
 
 const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
   const serverUrl = getServerSideURL()
@@ -28,6 +27,9 @@ export const generateMeta = async (args: {
   const ogImage = getImageURL(doc?.meta?.image)
 
   const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias Magazine'
+  const siteDescription =
+    'Mission-driven storytelling that elevates real-world solutions through multimedia.'
+  const description = doc?.meta?.description || siteDescription
 
   // Build canonical URL. If no slug, default to root
   const slugPath = Array.isArray(doc?.slug)
@@ -41,9 +43,9 @@ export const generateMeta = async (args: {
   const canonicalUrl = new URL(canonicalPath, serverUrl).toString()
 
   return {
-    description: doc?.meta?.description,
+    description,
     openGraph: mergeOpenGraph({
-      description: doc?.meta?.description || '',
+      description,
       images: ogImage
         ? [
             {

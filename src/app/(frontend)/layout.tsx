@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           href="/fonts/Vanitas-Extrabold.woff2"
           type="font/woff2"
           crossOrigin="anonymous"
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </head>
       <body>
@@ -56,6 +56,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
+  description: 'Mission-driven storytelling that elevates real-world solutions through multimedia.',
   metadataBase: new URL(getServerSideURL()),
   openGraph: mergeOpenGraph(),
   twitter: {
