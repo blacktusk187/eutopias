@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
 import { sql } from '@vercel/postgres'
 import { fetchPsiForUrl, averageVitals, type Vitals } from '@/lib/psi'
 import { startJob } from '@/lib/jobs'
+import { fetchCruxOriginINP } from '@/lib/crux'
 
 const PAGE_SAMPLE_COUNT = 25
 
@@ -42,6 +43,15 @@ export async function GET() {
 
     // Average and persist for today.
     const avg = averageVitals(results)
+
+    // Fallback: if INP is missing across samples, try CrUX origin p75
+    if (avg.inp == null) {
+      const cruxKey = process.env.CRUX_API_KEY || ''
+      const originInp = await fetchCruxOriginINP(origin, cruxKey)
+      if (typeof originInp === 'number') {
+        avg.inp = originInp
+      }
+    }
     const today = new Date().toISOString().slice(0, 10)
 
     await sql /* sql */ `
@@ -55,7 +65,12 @@ export async function GET() {
         pages_tested = excluded.pages_tested
     `
 
-    await run.done({ date: today, pages_tested: avg.pages_tested, sampleUrls: urls.length })
+    await run.done({
+      date: today,
+      pages_tested: avg.pages_tested,
+      sampleUrls: urls.length,
+      inp_source: avg.inp != null ? 'psi_or_crux' : 'none',
+    })
     return NextResponse.json({ ok: true, date: today, ...avg })
   } catch (err) {
     await run.fail(err as unknown)
