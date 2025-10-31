@@ -199,7 +199,7 @@ export default function MainSeoDashboard() {
         <KPI
           label="Interaction to Next Paint"
           value={fmtSec(summary?.inp ?? null)}
-          helper="Target < 0.2s (nice)"
+          helper={summary?.inp == null ? 'No field INP data yet' : 'Target < 0.2s (nice)'}
           icon={<Activity className="w-4 h-4" />}
           ringClass={statusColor(summary?.inp ?? null, 0.2, 0.4)}
         />

@@ -81,12 +81,14 @@ export default function SEODashboardPage() {
                 <nav className="flex space-x-8">
                   <Link
                     href="/"
+                    prefetch={false}
                     className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium"
                   >
                     Home
                   </Link>
                   <Link
                     href="/seo"
+                    prefetch={false}
                     className="text-gray-900 bg-gray-100 px-3 py-2 text-sm font-medium rounded-md"
                   >
                     SEO Dashboard
