@@ -135,14 +135,7 @@
   }
 }
 
-html {
-  opacity: 0;
-}
-
-html[data-theme='dark'],
-html[data-theme='light'] {
-  opacity: initial;
-}
+/* Removed page hide to avoid delaying FCP/LCP */
 
 /* Trending Banner Scroll Animation */
 .trending-scroll-container {

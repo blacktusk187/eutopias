@@ -29,6 +29,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+        <link
+          rel="preload"
+          as="font"
+          href="/fonts/Vanitas-Extrabold.woff2"
+          type="font/woff2"
+          crossOrigin="anonymous"
+          fetchpriority="high"
+        />
       </head>
       <body>
         <Providers>
