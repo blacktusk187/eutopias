@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { getClientSideURL } from '@/utilities/getURL'
 import { RiTwitterXFill } from 'react-icons/ri'
-import { FaFacebookF, FaLinkedinIn, FaInstagram, FaEnvelope, FaLink } from 'react-icons/fa'
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaEnvelope, FaLink, FaCheck } from 'react-icons/fa'
 
 type Props = {
   urlPath?: string
@@ -14,6 +14,8 @@ type Props = {
 export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, className }) => {
   // Ensure we get the URL on the client side
   const [fullUrl, setFullUrl] = useState<string>('')
+  const [instagramCopied, setInstagramCopied] = useState(false)
+  const [linkCopied, setLinkCopied] = useState(false)
 
   useEffect(() => {
     if (absoluteUrl) {
@@ -66,8 +68,9 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
     if (fullUrl) {
       try {
         await navigator.clipboard.writeText(fullUrl)
-        // Show a brief notification or feedback
-        // For now, just open Instagram - user can paste the link
+        setInstagramCopied(true)
+        setTimeout(() => setInstagramCopied(false), 2000)
+        // Open Instagram - user can paste the link
         window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer')
       } catch (err) {
         // Fallback: try to copy to clipboard using execCommand
@@ -79,6 +82,8 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         textArea.select()
         try {
           document.execCommand('copy')
+          setInstagramCopied(true)
+          setTimeout(() => setInstagramCopied(false), 2000)
           window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer')
         } catch (e) {
           // If all else fails, just open Instagram
@@ -96,6 +101,8 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
     if (fullUrl) {
       try {
         await navigator.clipboard.writeText(fullUrl)
+        setLinkCopied(true)
+        setTimeout(() => setLinkCopied(false), 2000)
       } catch (err) {
         // Fallback: try to copy to clipboard using execCommand
         const textArea = document.createElement('textarea')
@@ -106,6 +113,8 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         textArea.select()
         try {
           document.execCommand('copy')
+          setLinkCopied(true)
+          setTimeout(() => setLinkCopied(false), 2000)
         } catch (e) {
           // Silently fail
         } finally {
@@ -158,9 +167,9 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         onClick={handleInstagramShare}
         className={iconButtonClass}
         aria-label="Copy link for Instagram"
-        title="Copy link for Instagram (link copied to clipboard)"
+        title={instagramCopied ? "Link copied! Paste in Instagram" : "Copy link for Instagram"}
       >
-        <FaInstagram size={16} />
+        {instagramCopied ? <FaCheck size={16} /> : <FaInstagram size={16} />}
       </button>
       <a
         href={emailHref}
@@ -174,9 +183,9 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         onClick={handleCopyLink}
         className={iconButtonClass}
         aria-label="Copy link"
-        title="Copy link to clipboard"
+        title={linkCopied ? "Link copied!" : "Copy link to clipboard"}
       >
-        <FaLink size={16} />
+        {linkCopied ? <FaCheck size={16} /> : <FaLink size={16} />}
       </button>
     </div>
   )

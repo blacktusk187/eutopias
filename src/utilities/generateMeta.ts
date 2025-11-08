@@ -10,10 +10,20 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 
   let url = serverUrl + '/website-template-OG.webp'
 
-  if (image && typeof image === 'object' && 'url' in image) {
-    const ogUrl = image.sizes?.og?.url
+  // Check if image is a Media object (not just an ID)
+  if (image && typeof image === 'object' && image !== null && 'url' in image) {
+    const media = image as Media
+    // Prefer OG size if available, otherwise use the main URL
+    const ogUrl = media.sizes?.og?.url
+    const imageUrl = media.url
 
-    url = ogUrl ? serverUrl + ogUrl : serverUrl + image.url
+    if (ogUrl) {
+      // Ensure absolute URL
+      url = ogUrl.startsWith('http') ? ogUrl : serverUrl + ogUrl
+    } else if (imageUrl) {
+      // Ensure absolute URL
+      url = imageUrl.startsWith('http') ? imageUrl : serverUrl + imageUrl
+    }
   }
 
   return url
@@ -26,10 +36,20 @@ export const generateMeta = async (args: {
   const serverUrl = getServerSideURL()
 
   // For Posts, use meta.image if available, otherwise fall back to heroImage
-  let imageToUse = doc?.meta?.image
-  if (!imageToUse && doc && 'heroImage' in doc && doc.heroImage) {
-    imageToUse = doc.heroImage as Media | null
+  let imageToUse: Media | null | undefined = undefined
+
+  // Check meta.image first
+  if (doc?.meta?.image && typeof doc.meta.image === 'object' && 'url' in doc.meta.image) {
+    imageToUse = doc.meta.image as Media
   }
+
+  // Fall back to heroImage if meta.image is not available
+  if (!imageToUse && doc && 'heroImage' in doc && doc.heroImage) {
+    if (typeof doc.heroImage === 'object' && doc.heroImage !== null && 'url' in doc.heroImage) {
+      imageToUse = doc.heroImage as Media
+    }
+  }
+
   const ogImage = getImageURL(imageToUse)
 
   // For Posts, use meta.title if available, otherwise fall back to title field
