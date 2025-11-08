@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { getClientSideURL } from '@/utilities/getURL'
 import { RiTwitterXFill } from 'react-icons/ri'
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaEnvelope, FaLink } from 'react-icons/fa'
@@ -12,11 +12,33 @@ type Props = {
 }
 
 export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, className }) => {
-  const origin = getClientSideURL()
-  const fullUrl = absoluteUrl || (urlPath ? `${origin}${urlPath}` : '')
+  // Ensure we get the URL on the client side
+  const [fullUrl, setFullUrl] = useState<string>('')
+
+  useEffect(() => {
+    if (absoluteUrl) {
+      setFullUrl(absoluteUrl)
+      return
+    }
+    
+    if (urlPath) {
+      const origin = getClientSideURL()
+      // Ensure urlPath starts with /
+      const normalizedPath = urlPath.startsWith('/') ? urlPath : `/${urlPath}`
+      // Construct absolute URL
+      const url = `${origin}${normalizedPath}`
+      setFullUrl(url)
+      return
+    }
+    
+    // Fallback to current page URL if nothing provided
+    if (typeof window !== 'undefined') {
+      setFullUrl(window.location.href)
+    }
+  }, [absoluteUrl, urlPath])
 
   const onWebShare = async () => {
-    if (navigator?.share) {
+    if (navigator?.share && fullUrl) {
       try {
         await navigator.share({ title, url: fullUrl })
         return
@@ -24,15 +46,81 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         // ignore
       }
     }
-    window.open(
-      `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(title)}`,
-    )
+    if (fullUrl) {
+      window.open(
+        `https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}&text=${encodeURIComponent(title)}`,
+        '_blank',
+        'noopener,noreferrer'
+      )
+    }
   }
 
   const iconButtonClass =
     'inline-flex items-center justify-center w-9 h-9 rounded-full bg-foreground/10 hover:bg-foreground/15 text-foreground mr-2'
 
-  const emailHref = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(fullUrl)}`
+  const emailHref = fullUrl
+    ? `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(fullUrl)}`
+    : '#'
+
+  const handleInstagramShare = async () => {
+    if (fullUrl) {
+      try {
+        await navigator.clipboard.writeText(fullUrl)
+        // Show a brief notification or feedback
+        // For now, just open Instagram - user can paste the link
+        window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer')
+      } catch (err) {
+        // Fallback: try to copy to clipboard using execCommand
+        const textArea = document.createElement('textarea')
+        textArea.value = fullUrl
+        textArea.style.position = 'fixed'
+        textArea.style.opacity = '0'
+        document.body.appendChild(textArea)
+        textArea.select()
+        try {
+          document.execCommand('copy')
+          window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer')
+        } catch (e) {
+          // If all else fails, just open Instagram
+          window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer')
+        } finally {
+          if (document.body.contains(textArea)) {
+            document.body.removeChild(textArea)
+          }
+        }
+      }
+    }
+  }
+
+  const handleCopyLink = async () => {
+    if (fullUrl) {
+      try {
+        await navigator.clipboard.writeText(fullUrl)
+      } catch (err) {
+        // Fallback: try to copy to clipboard using execCommand
+        const textArea = document.createElement('textarea')
+        textArea.value = fullUrl
+        textArea.style.position = 'fixed'
+        textArea.style.opacity = '0'
+        document.body.appendChild(textArea)
+        textArea.select()
+        try {
+          document.execCommand('copy')
+        } catch (e) {
+          // Silently fail
+        } finally {
+          if (document.body.contains(textArea)) {
+            document.body.removeChild(textArea)
+          }
+        }
+      }
+    }
+  }
+
+  // Don't render if we don't have a valid URL
+  if (!fullUrl) {
+    return null
+  }
 
   return (
     <div className={className}>
@@ -67,15 +155,10 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         <FaLinkedinIn size={16} />
       </a>
       <button
-        onClick={async () => {
-          try {
-            await navigator.clipboard.writeText(fullUrl)
-          } catch {}
-          window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer')
-        }}
+        onClick={handleInstagramShare}
         className={iconButtonClass}
-        aria-label="Share on Instagram"
-        title="Share on Instagram (copy link)"
+        aria-label="Copy link for Instagram"
+        title="Copy link for Instagram (link copied to clipboard)"
       >
         <FaInstagram size={16} />
       </button>
@@ -88,14 +171,10 @@ export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, clas
         <FaEnvelope size={16} />
       </a>
       <button
-        onClick={async () => {
-          try {
-            await navigator.clipboard.writeText(fullUrl)
-          } catch {}
-        }}
+        onClick={handleCopyLink}
         className={iconButtonClass}
         aria-label="Copy link"
-        title="Copy link"
+        title="Copy link to clipboard"
       >
         <FaLink size={16} />
       </button>
