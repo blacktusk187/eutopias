@@ -8,6 +8,7 @@ import { Media } from '@/components/Media'
 import { formatAuthors } from '@/utilities/formatAuthors'
 import RichText from '@/components/RichText'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { SocialShare } from '@/components/ui/SocialShare'
 
 export const PostHero: React.FC<{
   post: Post
@@ -105,21 +106,8 @@ export const PostHero: React.FC<{
             </div>
           </div>
 
-          {/* Social Sharing Icons */}
-          <div className="flex items-center gap-2">
-            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
-              <FiShare2 className="w-4 h-4" />
-            </button>
-            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
-              <FiTwitter className="w-4 h-4" />
-            </button>
-            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
-              <FiFacebook className="w-4 h-4" />
-            </button>
-            <button className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors">
-              <FiLinkedin className="w-4 h-4" />
-            </button>
-          </div>
+          {/* Social Sharing */}
+          <SocialShare urlPath={`/posts/${post.slug}`} title={title || ''} />
         </div>
 
         {/* Line Divider */}

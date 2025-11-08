@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { getServerSideURL } from '@/utilities/getURL'
+import { getClientSideURL } from '@/utilities/getURL'
 import { RiTwitterXFill } from 'react-icons/ri'
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaEnvelope, FaLink } from 'react-icons/fa'
 
@@ -12,7 +12,8 @@ type Props = {
 }
 
 export const SocialShare: React.FC<Props> = ({ urlPath, absoluteUrl, title, className }) => {
-  const fullUrl = absoluteUrl || (urlPath ? `${getServerSideURL()}${urlPath}` : '')
+  const origin = getClientSideURL()
+  const fullUrl = absoluteUrl || (urlPath ? `${origin}${urlPath}` : '')
 
   const onWebShare = async () => {
     if (navigator?.share) {
