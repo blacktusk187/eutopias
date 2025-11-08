@@ -24,9 +24,20 @@ export const generateMeta = async (args: {
 }): Promise<Metadata> => {
   const { doc } = args
   const serverUrl = getServerSideURL()
-  const ogImage = getImageURL(doc?.meta?.image)
 
-  const title = doc?.meta?.title ? doc?.meta?.title + ' | Eutopias' : 'Eutopias Magazine'
+  // For Posts, use meta.image if available, otherwise fall back to heroImage
+  let imageToUse = doc?.meta?.image
+  if (!imageToUse && 'heroImage' in doc && doc.heroImage) {
+    imageToUse = doc.heroImage as Media | null
+  }
+  const ogImage = getImageURL(imageToUse)
+
+  // For Posts, use meta.title if available, otherwise fall back to title field
+  let metaTitle = doc?.meta?.title
+  if (!metaTitle && 'title' in doc && doc.title) {
+    metaTitle = doc.title as string
+  }
+  const title = metaTitle ? metaTitle + ' | Eutopias' : 'Eutopias Magazine'
   const siteDescription =
     'Mission-driven storytelling that elevates real-world solutions through multimedia.'
   const description = doc?.meta?.description || siteDescription
@@ -42,6 +53,12 @@ export const generateMeta = async (args: {
   const canonicalPath = slugPath === '/home' ? '/' : slugPath
   const canonicalUrl = new URL(canonicalPath, serverUrl).toString()
 
+  // Open Graph URL must be absolute for Facebook
+  const ogUrl = new URL(canonicalPath, serverUrl).toString()
+
+  // Determine if this is a Post (article) vs Page (website)
+  const isPost = 'heroImage' in doc || 'content' in doc
+
   return {
     description,
     openGraph: mergeOpenGraph({
@@ -54,7 +71,8 @@ export const generateMeta = async (args: {
           ]
         : undefined,
       title,
-      url: canonicalPath,
+      type: isPost ? 'article' : 'website',
+      url: ogUrl,
     }),
     alternates: {
       canonical: canonicalUrl,
