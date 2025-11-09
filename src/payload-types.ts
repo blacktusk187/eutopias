@@ -263,6 +263,10 @@ export interface Post {
     image?: (number | null) | Media;
     description?: string | null;
   };
+  /**
+   * Magazine issue number for grouping posts
+   */
+  issueNumber?: number | null;
   publishedAt?: string | null;
   /**
    * Number of times this post has been viewed
@@ -1304,6 +1308,7 @@ export interface PostsSelect<T extends boolean = true> {
         image?: T;
         description?: T;
       };
+  issueNumber?: T;
   publishedAt?: T;
   views?: T;
   authors?: T;
