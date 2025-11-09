@@ -5,10 +5,9 @@ import type { Media, Page, Post, Config } from '../payload-types'
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
 
-const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
-  const serverUrl = getServerSideURL()
-
-  let url = serverUrl + '/website-template-OG.webp'
+const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null, serverUrl?: string) => {
+  const baseUrl = serverUrl || getServerSideURL()
+  const templateUrl = baseUrl + '/website-template-OG.webp'
 
   // Check if image is a Media object (not just an ID)
   if (image && typeof image === 'object' && image !== null && 'url' in image) {
@@ -19,14 +18,23 @@ const getImageURL = (image?: Media | Config['db']['defaultIDType'] | null) => {
 
     if (ogUrl) {
       // Ensure absolute URL
-      url = ogUrl.startsWith('http') ? ogUrl : serverUrl + ogUrl
+      const absoluteUrl = ogUrl.startsWith('http') ? ogUrl : baseUrl + ogUrl
+      // Only return if it's not the template image
+      if (!absoluteUrl.includes('website-template-OG.webp')) {
+        return absoluteUrl
+      }
     } else if (imageUrl) {
       // Ensure absolute URL
-      url = imageUrl.startsWith('http') ? imageUrl : serverUrl + imageUrl
+      const absoluteUrl = imageUrl.startsWith('http') ? imageUrl : baseUrl + imageUrl
+      // Only return if it's not the template image
+      if (!absoluteUrl.includes('website-template-OG.webp')) {
+        return absoluteUrl
+      }
     }
   }
 
-  return url
+  // Return template as fallback
+  return templateUrl
 }
 
 export const generateMeta = async (args: {
@@ -50,7 +58,7 @@ export const generateMeta = async (args: {
     }
   }
 
-  const ogImage = getImageURL(imageToUse)
+  const ogImage = getImageURL(imageToUse, serverUrl)
 
   // For Posts, use meta.title if available, otherwise fall back to title field
   let metaTitle = doc?.meta?.title
@@ -79,6 +87,9 @@ export const generateMeta = async (args: {
   // Determine if this is a Post (article) vs Page (website)
   const isPost = doc && ('heroImage' in doc || 'content' in doc)
 
+  // Get Facebook App ID from environment variable
+  const facebookAppId = process.env.NEXT_PUBLIC_FACEBOOK_APP_ID || process.env.FACEBOOK_APP_ID
+
   return {
     description,
     openGraph: mergeOpenGraph({
@@ -98,5 +109,11 @@ export const generateMeta = async (args: {
       canonical: canonicalUrl,
     },
     title,
+    // Add other metadata for Facebook (fb:app_id)
+    other: {
+      ...(facebookAppId && {
+        'fb:app_id': facebookAppId,
+      }),
+    },
   }
 }

@@ -51,7 +51,7 @@ export const Posts: CollectionConfig<'posts'> = {
     },
   } as const,
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ['title', 'issueNumber', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({
@@ -180,6 +180,14 @@ export const Posts: CollectionConfig<'posts'> = {
           ],
         },
       ],
+    },
+    {
+      name: 'issueNumber',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        description: 'Magazine issue number for grouping posts',
+      },
     },
     {
       name: 'publishedAt',
