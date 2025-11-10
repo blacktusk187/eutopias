@@ -593,6 +593,10 @@ export interface ArchiveBlock {
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'posts' | null;
   categories?: (number | Category)[] | null;
+  /**
+   * Filter posts by magazine issue number (e.g., 35 for Issue 35)
+   */
+  issueNumber?: number | null;
   limit?: number | null;
   selectedDocs?:
     | {
@@ -1261,6 +1265,7 @@ export interface ArchiveBlockSelect<T extends boolean = true> {
   populateBy?: T;
   relationTo?: T;
   categories?: T;
+  issueNumber?: T;
   limit?: T;
   selectedDocs?: T;
   id?: T;

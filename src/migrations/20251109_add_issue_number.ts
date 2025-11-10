@@ -15,12 +15,12 @@ export const addIssueNumber: Migration = {
           ALTER TABLE public.posts ADD COLUMN issue_number numeric;
         END IF;
 
-        -- versions table (admin reads this)
+        -- versions table (admin reads this) - Payload uses version_ prefix for version columns
         IF NOT EXISTS (
           SELECT 1 FROM information_schema.columns
-          WHERE table_schema='public' AND table_name='_posts_v' AND column_name='issue_number'
+          WHERE table_schema='public' AND table_name='_posts_v' AND column_name='version_issue_number'
         ) THEN
-          ALTER TABLE public._posts_v ADD COLUMN issue_number numeric;
+          ALTER TABLE public._posts_v ADD COLUMN version_issue_number numeric;
         END IF;
       END
       $$;
@@ -33,9 +33,9 @@ export const addIssueNumber: Migration = {
       BEGIN
         IF EXISTS (
           SELECT 1 FROM information_schema.columns
-          WHERE table_schema='public' AND table_name='_posts_v' AND column_name='issue_number'
+          WHERE table_schema='public' AND table_name='_posts_v' AND column_name='version_issue_number'
         ) THEN
-          ALTER TABLE public._posts_v DROP COLUMN issue_number;
+          ALTER TABLE public._posts_v DROP COLUMN version_issue_number;
         END IF;
 
         IF EXISTS (

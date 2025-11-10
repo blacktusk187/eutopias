@@ -12,7 +12,7 @@ export const ArchiveBlock: React.FC<
     id?: string
   }
 > = async (props) => {
-  const { id, categories, introContent, limit: limitFromProps, populateBy, selectedDocs } = props
+  const { id, categories, issueNumber, introContent, limit: limitFromProps, populateBy, selectedDocs } = props
 
   const limit = limitFromProps || 3
 
@@ -26,17 +26,28 @@ export const ArchiveBlock: React.FC<
       else return category
     })
 
+    // Build where clause with optional filters
+    const whereClause: any = {}
+
+    if (flattenedCategories && flattenedCategories.length > 0) {
+      whereClause.categories = {
+        in: flattenedCategories,
+      }
+    }
+
+    if (issueNumber !== null && issueNumber !== undefined) {
+      whereClause.issueNumber = {
+        equals: issueNumber,
+      }
+    }
+
     const fetchedPosts = await payload.find({
       collection: 'posts',
       depth: 1,
       limit,
-      ...(flattenedCategories && flattenedCategories.length > 0
+      ...(Object.keys(whereClause).length > 0
         ? {
-            where: {
-              categories: {
-                in: flattenedCategories,
-              },
-            },
+            where: whereClause,
           }
         : {}),
     })

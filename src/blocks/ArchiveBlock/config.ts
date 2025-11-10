@@ -67,6 +67,16 @@ export const Archive: Block = {
       relationTo: 'categories',
     },
     {
+      name: 'issueNumber',
+      type: 'number',
+      admin: {
+        condition: (_, siblingData) => siblingData.populateBy === 'collection',
+        description: 'Filter posts by magazine issue number (e.g., 35 for Issue 35)',
+        step: 1,
+      },
+      label: 'Issue Number',
+    },
+    {
       name: 'limit',
       type: 'number',
       admin: {
