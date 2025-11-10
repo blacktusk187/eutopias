@@ -35,7 +35,8 @@ export const ArchiveBlock: React.FC<
       }
     }
 
-    if (issueNumber !== null && issueNumber !== undefined) {
+    // Only filter by issueNumber if it's a valid number
+    if (issueNumber !== null && issueNumber !== undefined && typeof issueNumber === 'number' && !isNaN(issueNumber)) {
       whereClause.issueNumber = {
         equals: issueNumber,
       }
@@ -45,6 +46,7 @@ export const ArchiveBlock: React.FC<
       collection: 'posts',
       depth: 1,
       limit,
+      overrideAccess: false,
       ...(Object.keys(whereClause).length > 0
         ? {
             where: whereClause,
