@@ -27,6 +27,20 @@ export const Pagination: React.FC<{
   const hasExtraPrevPages = page - 1 > 1
   const hasExtraNextPages = page + 1 < totalPages
 
+  // Helper function to build pagination URL
+  const getPageUrl = (pageNum: number) => {
+    if (pageNum === 1) {
+      // For page 1, use basePath directly (which may include query params)
+      return basePath
+    }
+    // For other pages, check if basePath has query params
+    const [path, query] = basePath.split('?')
+    if (query) {
+      return `${path}/page/${pageNum}?${query}`
+    }
+    return `${basePath}/page/${pageNum}`
+  }
+
   return (
     <div className={cn('my-12', className)}>
       <PaginationComponent>
@@ -35,7 +49,7 @@ export const Pagination: React.FC<{
             <PaginationPrevious
               disabled={!hasPrevPage}
               onClick={() => {
-                router.push(`${basePath}/page/${page - 1}`)
+                router.push(getPageUrl(page - 1))
               }}
             />
           </PaginationItem>
@@ -50,7 +64,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`${basePath}/page/${page - 1}`)
+                  router.push(getPageUrl(page - 1))
                 }}
               >
                 {page - 1}
@@ -62,7 +76,7 @@ export const Pagination: React.FC<{
             <PaginationLink
               isActive
               onClick={() => {
-                router.push(`${basePath}/page/${page}`)
+                router.push(getPageUrl(page))
               }}
             >
               {page}
@@ -73,7 +87,7 @@ export const Pagination: React.FC<{
             <PaginationItem>
               <PaginationLink
                 onClick={() => {
-                  router.push(`${basePath}/page/${page + 1}`)
+                  router.push(getPageUrl(page + 1))
                 }}
               >
                 {page + 1}
@@ -91,7 +105,7 @@ export const Pagination: React.FC<{
             <PaginationNext
               disabled={!hasNextPage}
               onClick={() => {
-                router.push(`${basePath}/page/${page + 1}`)
+                router.push(getPageUrl(page + 1))
               }}
             />
           </PaginationItem>

@@ -8,11 +8,30 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-dynamic'
 export const revalidate = 600
 
-export default async function Page() {
+type Args = {
+  searchParams: Promise<{
+    issue?: string
+  }>
+}
+
+export default async function Page({ searchParams: searchParamsPromise }: Args) {
+  const { issue } = await searchParamsPromise
   const payload = await getPayload({ config: configPromise })
+
+  // Parse issue number from query parameter
+  const issueNumber = issue ? Number(issue) : null
+  const hasIssueFilter = issueNumber !== null && !isNaN(issueNumber) && issueNumber > 0
+
+  // Build where clause
+  const whereClause: any = {}
+  if (hasIssueFilter) {
+    whereClause.issueNumber = {
+      equals: issueNumber,
+    }
+  }
 
   const posts = await payload.find({
     collection: 'posts',
@@ -24,7 +43,13 @@ export default async function Page() {
       slug: true,
       categories: true,
       meta: true,
+      issueNumber: true,
     },
+    ...(Object.keys(whereClause).length > 0
+      ? {
+          where: whereClause,
+        }
+      : {}),
   })
 
   return (
@@ -32,7 +57,7 @@ export default async function Page() {
       <PageClient />
       <div className="container mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+          <h1>{hasIssueFilter ? `Issue ${issueNumber} Posts` : 'Posts'}</h1>
         </div>
       </div>
 
@@ -49,7 +74,11 @@ export default async function Page() {
 
       <div className="container">
         {posts.totalPages > 1 && posts.page && (
-          <Pagination page={posts.page} totalPages={posts.totalPages} />
+          <Pagination
+            page={posts.page}
+            totalPages={posts.totalPages}
+            basePath={hasIssueFilter ? `/posts?issue=${issueNumber}` : '/posts'}
+          />
         )}
       </div>
     </div>
