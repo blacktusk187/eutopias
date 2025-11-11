@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { LatestStoriesBlock } from '@/blocks/LatestStoriesBlock/Component'
+import { IssueBlock } from '@/blocks/IssueBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +17,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   latestStories: LatestStoriesBlock,
+  issue: IssueBlock,
 }
 
 export const RenderBlocks: React.FC<{

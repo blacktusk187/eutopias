@@ -30,6 +30,14 @@ export const addIssueNumber: Migration = {
         ) THEN
           ALTER TABLE public.pages_blocks_archive ADD COLUMN issue_number numeric;
         END IF;
+
+        -- Pages versions archive block table (for drafts/admin)
+        IF NOT EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema='public' AND table_name='_pages_v_blocks_archive' AND column_name='issue_number'
+        ) THEN
+          ALTER TABLE public._pages_v_blocks_archive ADD COLUMN issue_number numeric;
+        END IF;
       END
       $$;
     `)
@@ -44,6 +52,13 @@ export const addIssueNumber: Migration = {
           WHERE table_schema='public' AND table_name='_posts_v' AND column_name='version_issue_number'
         ) THEN
           ALTER TABLE public._posts_v DROP COLUMN version_issue_number;
+        END IF;
+
+        IF EXISTS (
+          SELECT 1 FROM information_schema.columns
+          WHERE table_schema='public' AND table_name='_pages_v_blocks_archive' AND column_name='issue_number'
+        ) THEN
+          ALTER TABLE public._pages_v_blocks_archive DROP COLUMN issue_number;
         END IF;
 
         IF EXISTS (

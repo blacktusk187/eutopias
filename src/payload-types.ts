@@ -195,7 +195,15 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | LatestStoriesBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | LatestStoriesBlock
+    | IssueBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -835,6 +843,19 @@ export interface LatestStoriesBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IssueBlock".
+ */
+export interface IssueBlock {
+  /**
+   * The issue number to display posts from
+   */
+  issueNumber: number;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'issue';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "authors".
  */
 export interface Author {
@@ -1179,6 +1200,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         latestStories?: T | LatestStoriesBlockSelect<T>;
+        issue?: T | IssueBlockSelect<T>;
       };
   meta?:
     | T
@@ -1291,6 +1313,15 @@ export interface LatestStoriesBlockSelect<T extends boolean = true> {
   featuredMain?: T;
   featuredSub1?: T;
   featuredSub2?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IssueBlock_select".
+ */
+export interface IssueBlockSelect<T extends boolean = true> {
+  issueNumber?: T;
   id?: T;
   blockName?: T;
 }
