@@ -46,86 +46,8 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Today's Picks - Left Column (1/3) */}
-        <div className="lg:col-span-4 order-3 lg:order-1">
-          <div className="h-full flex flex-col">
-            <h3 className="text-2xl font-bold mb-6 text-foreground">FEATURED</h3>
-            <div className="flex-1 space-y-6">
-              {todaysPicks.map((article) => {
-                const category = getCategoryTitle(article)
-                const img = getPostImage(article)
-
-                return (
-                  <Link key={article.id} href={`/posts/${article.slug}`} className="block group">
-                    <div className="flex gap-4 hover:bg-accent/50 p-2 rounded transition-colors">
-                      <div className="w-16 h-16 flex-shrink-0">
-                        {img ? (
-                          <div className="relative w-full h-full overflow-hidden rounded">
-                            {img.resource ? (
-                              <Media
-                                resource={img.resource}
-                                fill
-                                pictureClassName="absolute inset-0"
-                                imgClassName="object-cover"
-                              />
-                            ) : (
-                              <Media
-                                resource={img.src}
-                                fill
-                                pictureClassName="absolute inset-0"
-                                imgClassName="object-cover"
-                              />
-                            )}
-                          </div>
-                        ) : (
-                          <div className="w-full h-full bg-muted rounded" />
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                            {category}
-                          </span>
-                        </div>
-                        <h4 className="text-sm font-medium text-foreground leading-tight line-clamp-3 group-hover:text-accent-foreground transition-colors">
-                          {article.title}
-                        </h4>
-                        {article.deck?.root?.children?.length ? (
-                          <div className="mt-1 text-xs text-muted-foreground line-clamp-2">
-                            {/* Render first paragraph/text node inline */}
-                            {(article.deck.root.children as any[])
-                              .map((n: any) => {
-                                if (n?.type === 'paragraph' && Array.isArray(n.children)) {
-                                  return n.children
-                                    .filter((c: any) => typeof c.text === 'string' && c.text.trim())
-                                    .map((c: any) => c.text)
-                                    .join(' ')
-                                }
-                                if (typeof n?.text === 'string') return n.text
-                                return ''
-                              })
-                              .join(' ')}
-                          </div>
-                        ) : null}
-                      </div>
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
-            <div className="mt-6">
-              <Link
-                href={`/posts?issue=${issueNumber}`}
-                className="text-sm font-medium text-foreground hover:text-accent-foreground transition-colors underline"
-              >
-                View All Issue {issueNumber} Articles
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Featured Articles - Right Column (2/3) */}
-        <div className="lg:col-span-8 order-1 lg:order-2">
+        {/* Featured Articles - Left Column (2/3) */}
+        <div className="lg:col-span-8 order-1 lg:order-1">
           <div className="space-y-6">
             {/* Main Featured Article */}
             {featuredMain && (
@@ -264,6 +186,84 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
                   </Link>
                 )
               })}
+            </div>
+          </div>
+        </div>
+
+        {/* Featured List - Right Column (1/3) */}
+        <div className="lg:col-span-4 order-3 lg:order-2">
+          <div className="h-full flex flex-col">
+            <h3 className="text-2xl font-bold mb-6 text-foreground">FEATURED</h3>
+            <div className="flex-1 space-y-6">
+              {todaysPicks.map((article) => {
+                const category = getCategoryTitle(article)
+                const img = getPostImage(article)
+
+                return (
+                  <Link key={article.id} href={`/posts/${article.slug}`} className="block group">
+                    <div className="flex gap-4 hover:bg-accent/50 p-2 rounded transition-colors">
+                      <div className="w-16 h-16 flex-shrink-0">
+                        {img ? (
+                          <div className="relative w-full h-full overflow-hidden rounded">
+                            {img.resource ? (
+                              <Media
+                                resource={img.resource}
+                                fill
+                                pictureClassName="absolute inset-0"
+                                imgClassName="object-cover"
+                              />
+                            ) : (
+                              <Media
+                                resource={img.src}
+                                fill
+                                pictureClassName="absolute inset-0"
+                                imgClassName="object-cover"
+                              />
+                            )}
+                          </div>
+                        ) : (
+                          <div className="w-full h-full bg-muted rounded" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                            {category}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-medium text-foreground leading-tight line-clamp-3 group-hover:text-accent-foreground transition-colors">
+                          {article.title}
+                        </h4>
+                        {article.deck?.root?.children?.length ? (
+                          <div className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                            {/* Render first paragraph/text node inline */}
+                            {(article.deck.root.children as any[])
+                              .map((n: any) => {
+                                if (n?.type === 'paragraph' && Array.isArray(n.children)) {
+                                  return n.children
+                                    .filter((c: any) => typeof c.text === 'string' && c.text.trim())
+                                    .map((c: any) => c.text)
+                                    .join(' ')
+                                }
+                                if (typeof n?.text === 'string') return n.text
+                                return ''
+                              })
+                              .join(' ')}
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+            <div className="mt-6">
+              <Link
+                href={`/posts?issue=${issueNumber}`}
+                className="text-sm font-medium text-foreground hover:text-accent-foreground transition-colors underline"
+              >
+                View All Issue {issueNumber} Articles
+              </Link>
             </div>
           </div>
         </div>
