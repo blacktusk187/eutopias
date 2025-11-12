@@ -22,13 +22,10 @@ export const IssueBlock: React.FC<IssueBlockProps & { id?: string }> = async (pr
       collection: 'posts',
       depth: 2, // Populate relationships (categories, heroImage, meta.image, etc.)
       limit: 100, // Get enough posts to organize
-      overrideAccess: false,
+      overrideAccess: false, // Respects access control - automatically filters to published for non-authenticated users
       where: {
         issueNumber: {
           equals: issueNumber,
-        },
-        _status: {
-          equals: 'published',
         },
       },
       sort: '-publishedAt', // Sort by most recent first
