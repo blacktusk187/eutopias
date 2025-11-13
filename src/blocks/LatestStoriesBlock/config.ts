@@ -11,10 +11,10 @@ export const LatestStoriesBlock: Block = {
       hasMany: true,
       required: true,
       minRows: 3,
-      maxRows: 8,
+      maxRows: 10,
       label: "Today's Picks",
       admin: {
-        description: 'Select 3-8 posts to display in the left column',
+        description: 'Select 3-10 posts to display in the left column',
       },
       maxDepth: 3,
     },
@@ -45,6 +45,26 @@ export const LatestStoriesBlock: Block = {
       label: 'Featured Article 2',
       admin: {
         description: 'Second article in the bottom grid',
+      },
+      maxDepth: 3,
+    },
+    {
+      name: 'featuredSub3',
+      type: 'relationship',
+      relationTo: 'posts',
+      label: 'Featured Article 3',
+      admin: {
+        description: 'Third article in the bottom grid',
+      },
+      maxDepth: 3,
+    },
+    {
+      name: 'featuredSub4',
+      type: 'relationship',
+      relationTo: 'posts',
+      label: 'Featured Article 4',
+      admin: {
+        description: 'Fourth article in the bottom grid',
       },
       maxDepth: 3,
     },

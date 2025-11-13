@@ -11,6 +11,8 @@ interface IssueSectionProps {
   featuredMain?: Post | null
   featuredSub1?: Post | null
   featuredSub2?: Post | null
+  featuredSub3?: Post | null
+  featuredSub4?: Post | null
 }
 
 // Normalize a post's image (meta.image → heroImage) as object or string URL
@@ -28,6 +30,8 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
   featuredMain,
   featuredSub1,
   featuredSub2,
+  featuredSub3,
+  featuredSub4,
 }) => {
   const getCategoryTitle = (post: Post): string => {
     if (post.categories && post.categories.length > 0) {
@@ -124,7 +128,7 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
 
             {/* Grid of Additional Featured Articles */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[featuredSub1, featuredSub2].map((article) => {
+              {[featuredSub1, featuredSub2, featuredSub3, featuredSub4].map((article) => {
                 if (!article) return null
                 const category = getCategoryTitle(article)
                 const img = getPostImage(article)

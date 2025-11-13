@@ -47,12 +47,14 @@ export const IssueBlock: React.FC<IssueBlockProps & { id?: string }> = async (pr
   }
 
   // Organize posts similar to LatestStoriesBlock structure
-  // First post becomes featuredMain, next 2 become featuredSub1 and featuredSub2
-  // Remaining posts become todaysPicks (up to 8)
+  // First post becomes featuredMain, next 4 become featuredSub1-4
+  // Remaining posts become todaysPicks (up to 10)
   const featuredMain = posts[0] || null
   const featuredSub1 = posts[1] || null
   const featuredSub2 = posts[2] || null
-  const todaysPicks = posts.slice(3, 11) // Get up to 8 posts for the left column
+  const featuredSub3 = posts[3] || null
+  const featuredSub4 = posts[4] || null
+  const todaysPicks = posts.slice(5, 15) // Get up to 10 posts for the left column
 
   // If we don't have enough posts, return null or a message
   if (posts.length === 0) {
@@ -67,6 +69,8 @@ export const IssueBlock: React.FC<IssueBlockProps & { id?: string }> = async (pr
         featuredMain={featuredMain}
         featuredSub1={featuredSub1}
         featuredSub2={featuredSub2}
+        featuredSub3={featuredSub3}
+        featuredSub4={featuredSub4}
       />
     </div>
   )
