@@ -76,7 +76,8 @@ export const generateMeta = async (args: {
   // For homepage, always use the default title. For other pages/posts, use meta.title if available, otherwise fall back to title field
   let metaTitle: string | undefined = undefined
   if (!isHomepage) {
-    metaTitle = doc?.meta?.title
+    const metaTitleValue = doc?.meta?.title
+    metaTitle = metaTitleValue ?? undefined
     if (!metaTitle && doc && 'title' in doc && doc.title) {
       metaTitle = doc.title as string
     }
