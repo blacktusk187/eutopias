@@ -65,7 +65,7 @@ export const generateMeta = async (args: {
   if (!metaTitle && doc && 'title' in doc && doc.title) {
     metaTitle = doc.title as string
   }
-  const title = metaTitle ? metaTitle + ' | Eutopias' : 'Eutopias Magazine'
+  const title = metaTitle ? metaTitle + ' | Eutopias' : 'Eutopias | Mission-driven storytelling'
   const siteDescription =
     'Mission-driven storytelling that elevates real-world solutions through multimedia.'
   const description = doc?.meta?.description || siteDescription
