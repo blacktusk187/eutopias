@@ -60,16 +60,6 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(imageToUse, serverUrl)
 
-  // For Posts, use meta.title if available, otherwise fall back to title field
-  let metaTitle = doc?.meta?.title
-  if (!metaTitle && doc && 'title' in doc && doc.title) {
-    metaTitle = doc.title as string
-  }
-  const title = metaTitle ? metaTitle + ' | Eutopias' : 'Eutopias | Mission-driven storytelling'
-  const siteDescription =
-    'Mission-driven storytelling that elevates real-world solutions through multimedia.'
-  const description = doc?.meta?.description || siteDescription
-
   // Build canonical URL. If no slug, default to root
   const slugPath = Array.isArray(doc?.slug)
     ? `/${doc?.slug.join('/')}`
@@ -79,6 +69,22 @@ export const generateMeta = async (args: {
 
   // Normalize: /home should canonicalize to /
   const canonicalPath = slugPath === '/home' ? '/' : slugPath
+  
+  // Check if this is the homepage
+  const isHomepage = canonicalPath === '/' || doc?.slug === 'home'
+
+  // For homepage, always use the default title. For other pages/posts, use meta.title if available, otherwise fall back to title field
+  let metaTitle: string | undefined = undefined
+  if (!isHomepage) {
+    metaTitle = doc?.meta?.title
+    if (!metaTitle && doc && 'title' in doc && doc.title) {
+      metaTitle = doc.title as string
+    }
+  }
+  const title = metaTitle ? metaTitle + ' | Eutopias' : 'Eutopias | Mission-driven storytelling'
+  const siteDescription =
+    'Mission-driven storytelling that elevates real-world solutions through multimedia.'
+  const description = doc?.meta?.description || siteDescription
   const canonicalUrl = new URL(canonicalPath, serverUrl).toString()
 
   // Open Graph URL must be absolute for Facebook
