@@ -102,6 +102,7 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
   const result = await payload.find({
     collection: 'pages',
     draft,
+    depth: 2, // Populate relationships (posts, images, etc.)
     limit: 1,
     pagination: false,
     overrideAccess: draft,

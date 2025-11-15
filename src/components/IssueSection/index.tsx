@@ -75,14 +75,14 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
                           />
-                        ) : (
+                        ) : img.src ? (
                           <Media
-                            resource={img.src}
+                            src={img.src}
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
                           />
-                        )}
+                        ) : null}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4">
                           <div className="flex items-center gap-2 mb-2">
@@ -145,14 +145,14 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
                               pictureClassName="absolute inset-0"
                               imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
-                          ) : (
+                          ) : img.src ? (
                             <Media
-                              resource={img.src}
+                              src={img.src}
                               fill
                               pictureClassName="absolute inset-0"
                               imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
                             />
-                          )}
+                          ) : null}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                         </>
                       ) : (
@@ -216,14 +216,14 @@ export const IssueSection: React.FC<IssueSectionProps> = ({
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover"
                               />
-                            ) : (
+                            ) : img.src ? (
                               <Media
-                                resource={img.src}
+                                src={img.src}
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover"
                               />
-                            )}
+                            ) : null}
                           </div>
                         ) : (
                           <div className="w-full h-full bg-muted rounded" />
