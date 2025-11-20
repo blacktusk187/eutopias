@@ -15,6 +15,8 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -27,10 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           name="google-site-verification"
           content="dbjdM7OpLyx9R26plYtBxhyLStIk4NppOrM85K9nidk"
         />
-        <meta
-          name="facebook-domain-verification"
-          content="5ctn5jrc3tg01qvr4swxvta2eekn9k"
-        />
+        <meta name="facebook-domain-verification" content="5ctn5jrc3tg01qvr4swxvta2eekn9k" />
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         <link
@@ -53,6 +52,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           {children}
           <Footer />
+          <SpeedInsights />
+          <Analytics />
         </Providers>
       </body>
     </html>
