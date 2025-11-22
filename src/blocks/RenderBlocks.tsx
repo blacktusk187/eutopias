@@ -9,6 +9,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { LatestStoriesBlock } from '@/blocks/LatestStoriesBlock/Component'
 import { IssueBlock } from '@/blocks/IssueBlock/Component'
+import { FromTheVaultBlock } from '@/blocks/FromTheVaultBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -18,6 +19,7 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   latestStories: LatestStoriesBlock,
   issue: IssueBlock,
+  fromTheVault: FromTheVaultBlock,
 }
 
 export const RenderBlocks: React.FC<{
