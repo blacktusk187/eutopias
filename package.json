@@ -51,7 +51,7 @@
     "googleapis": "^164.1.0",
     "graphql": "^16.8.2",
     "lucide-react": "^0.378.0",
-    "next": "15.4.4",
+    "next": "15.4.8",
     "next-sitemap": "^4.2.3",
     "optional": "^0.1.4",
     "payload": "3.60.0",
