@@ -78,6 +78,7 @@
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react": "4.5.2",
     "autoprefixer": "^10.4.19",
+    "baseline-browser-mapping": "^2.9.19",
     "copyfiles": "^2.4.1",
     "diff": "^8.0.2",
     "eslint": "^9.16.0",
