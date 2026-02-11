@@ -8,10 +8,7 @@ import React from 'react'
 
 import type { Props as MediaProps } from '../types'
 
-import { cssVariables } from '@/cssVariables'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
-
-const { breakpoints } = cssVariables
 
 // A base64 encoded image to use as a placeholder while the image is loading
 const placeholderBlur =
@@ -29,6 +26,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
     size: sizeFromProps,
     src: srcFromProps,
     loading: loadingFromProps,
+    unoptimized,
   } = props
 
   let width: number | undefined
@@ -58,6 +56,21 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
       : '(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 800px'
 
   const quality = typeof qualityFromProps === 'number' ? qualityFromProps : 70
+
+  // Native <img> to avoid Vercel image transforms (for thumbnails / non-LCP)
+  if (unoptimized && typeof src === 'string') {
+    return (
+      <picture className={cn(pictureClassName)}>
+        <img
+          src={src}
+          alt={alt || ''}
+          className={cn(imgClassName, fill && 'h-full w-full object-cover')}
+          loading={priority ? 'eager' : 'lazy'}
+          {...(width != null && height != null && !fill ? { width, height } : {})}
+        />
+      </picture>
+    )
+  }
 
   return (
     <picture className={cn(pictureClassName)}>
