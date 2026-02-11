@@ -17,7 +17,8 @@ export interface Props {
   quality?: number // for NextImage only
   ref?: Ref<HTMLImageElement | HTMLVideoElement | null>
   resource?: MediaType | string | number | null // for Payload media
-  size?: string // for NextImage only
+  size?: string // for NextImage only (sizes attribute, e.g. "64px" or "(max-width: 768px) 100vw, 400px")
   src?: StaticImageData | string // for static media or string URLs
+  unoptimized?: boolean // render native <img> to avoid Vercel image transforms
   videoClassName?: string
 }

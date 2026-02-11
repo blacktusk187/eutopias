@@ -69,6 +69,8 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                   fill
                                   pictureClassName="absolute inset-0"
                                   imgClassName="object-cover"
+                                  unoptimized
+                                  size="64px"
                                 />
                               ) : img.src ? (
                                 <Media
@@ -76,6 +78,8 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                   fill
                                   pictureClassName="absolute inset-0"
                                   imgClassName="object-cover"
+                                  unoptimized
+                                  size="64px"
                                 />
                               ) : null}
                             </div>
@@ -128,6 +132,7 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                            size="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
                           />
                         ) : img.src ? (
                           <Media
@@ -135,6 +140,7 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                            size="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
                           />
                         ) : null}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -180,6 +186,8 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                                unoptimized
+                                size="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                               />
                             ) : img.src ? (
                               <Media
@@ -187,6 +195,8 @@ export const CategoryPostsLayout: React.FC<CategoryPostsLayoutProps> = ({ posts 
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
+                                unoptimized
+                                size="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                               />
                             ) : null}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
