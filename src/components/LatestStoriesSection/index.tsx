@@ -62,10 +62,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                             {img.resource ? (
                               <Media
                                 resource={img.resource}
+                                mediaSize="thumbnail"
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover"
-                                unoptimized
                                 size="64px"
                               />
                             ) : img.src ? (
@@ -74,7 +74,6 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                                 fill
                                 pictureClassName="absolute inset-0"
                                 imgClassName="object-cover"
-                                unoptimized
                                 size="64px"
                               />
                             ) : null}
@@ -147,6 +146,7 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                         {img.resource ? (
                           <Media
                             resource={img.resource}
+                            mediaSize="large"
                             fill
                             pictureClassName="absolute inset-0"
                             imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -219,10 +219,10 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                           {img.resource ? (
                             <Media
                               resource={img.resource}
+                              mediaSize="small"
                               fill
                               pictureClassName="absolute inset-0"
                               imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
-                              unoptimized
                               size="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                             />
                           ) : img.src ? (
@@ -231,7 +231,6 @@ export const LatestStoriesSection: React.FC<LatestStoriesSectionProps> = ({
                               fill
                               pictureClassName="absolute inset-0"
                               imgClassName="object-cover group-hover:scale-105 transition-transform duration-300"
-                              unoptimized
                               size="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                             />
                           ) : null}

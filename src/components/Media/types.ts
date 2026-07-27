@@ -3,22 +3,25 @@ import type { ElementType, Ref } from 'react'
 
 import type { Media as MediaType } from '@/payload-types'
 
+export type MediaSizeKey = keyof NonNullable<MediaType['sizes']>
+
 export interface Props {
   alt?: string
   className?: string
-  fill?: boolean // for NextImage only
+  fill?: boolean
   htmlElement?: ElementType | null
   pictureClassName?: string
   imgClassName?: string
   onClick?: () => void
   onLoad?: () => void
-  loading?: 'lazy' | 'eager' // for NextImage only
-  priority?: boolean // for NextImage only
-  quality?: number // for NextImage only
+  loading?: 'lazy' | 'eager'
+  priority?: boolean
   ref?: Ref<HTMLImageElement | HTMLVideoElement | null>
-  resource?: MediaType | string | number | null // for Payload media
-  size?: string // for NextImage only (sizes attribute, e.g. "64px" or "(max-width: 768px) 100vw, 400px")
-  src?: StaticImageData | string // for static media or string URLs
-  unoptimized?: boolean // render native <img> to avoid Vercel image transforms
+  /** Preferred Payload-generated size variant (e.g. thumbnail, small, large) */
+  mediaSize?: MediaSizeKey
+  resource?: MediaType | string | number | null
+  /** HTML sizes attribute for responsive srcSet selection */
+  size?: string
+  src?: StaticImageData | string
   videoClassName?: string
 }

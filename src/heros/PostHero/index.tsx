@@ -47,8 +47,8 @@ export const PostHero: React.FC<{
           <div className="mb-8">
             <Media
               resource={heroImage}
+              mediaSize="large"
               priority
-              quality={60}
               imgClassName="w-full h-auto rounded-lg"
             />
           </div>

@@ -56,12 +56,20 @@ export const MediaBlock: React.FC<Props> = (props) => {
         ? ''
         : 'border border-border rounded-[0.8rem]'
 
+  const mediaSize =
+    width === 'sm' || width === 'md'
+      ? 'large'
+      : width === 'lg' || width === 'xl' || width === 'full'
+        ? 'xlarge'
+        : 'large'
+
   return (
     <div className={cn('', { container: enableGutter }, className)}>
       {(media || staticImage) && (
         <div className={cn(widthClasses, alignClasses)}>
           <Media
             imgClassName={cn(imageDecorationClasses, imgClassName)}
+            mediaSize={media && typeof media === 'object' ? mediaSize : undefined}
             resource={media}
             src={staticImage}
           />

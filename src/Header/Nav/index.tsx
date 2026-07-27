@@ -5,7 +5,6 @@ import { FiMenu, FiX, FiSearch, FiArrowRight } from 'react-icons/fi'
 import type { Header as HeaderType, Category, Post, Media } from '@/payload-types'
 import Link from 'next/link'
 import { Drawer, DrawerHeader, DrawerContent } from '@/components/ui/drawer'
-import Image from 'next/image'
 import { getMediaUrl } from '@/utilities/getMediaUrl'
 
 interface HeaderNavProps {
@@ -230,11 +229,11 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                                     <div className="flex items-start gap-3">
                                       <div className="relative w-24 h-16 overflow-hidden rounded border border-border flex-shrink-0">
                                         {imgUrl ? (
-                                          <Image
+                                          <img
                                             src={imgUrl}
                                             alt={post.title || ''}
-                                            fill
-                                            className="object-cover"
+                                            className="absolute inset-0 h-full w-full object-cover"
+                                            loading="lazy"
                                             sizes="96px"
                                           />
                                         ) : (
@@ -340,11 +339,11 @@ export const HeaderNav: React.FC<HeaderNavProps> = ({
                                   <div className="flex items-start gap-3">
                                     <div className="relative w-24 h-16 overflow-hidden rounded border border-border flex-shrink-0">
                                       {imgUrl ? (
-                                        <Image
+                                        <img
                                           src={imgUrl}
                                           alt={post.title || ''}
-                                          fill
-                                          className="object-cover"
+                                          className="absolute inset-0 h-full w-full object-cover"
+                                          loading="lazy"
                                           sizes="96px"
                                         />
                                       ) : (

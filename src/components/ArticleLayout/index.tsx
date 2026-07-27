@@ -59,6 +59,7 @@ export const ArticleLayout: React.FC<ArticleLayoutProps> = ({ post }) => {
               <div className="mb-6">
                 <Media
                   resource={heroImage}
+                  mediaSize="large"
                   priority
                   pictureClassName="block"
                   imgClassName="w-full h-auto rounded-lg shadow-lg"
